@@ -6,5 +6,10 @@ public interface UtilisateurDAO {
 //methode pour crée un nuovelle utlisateur
 public void newUtilisateur(Utilisateur utilisateur);
 
+
+public abstract Utilisateur  selectByPseudo(Utilisateur utilisateur) ; 
+
+
+
 	
 }

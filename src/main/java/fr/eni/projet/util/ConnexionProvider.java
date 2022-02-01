@@ -18,7 +18,7 @@ public class ConnexionProvider {
 			datasource = (DataSource) context.lookup("java:comp/env/jdbc/EncheresCNXPool");
 		} catch (NamingException e) {
 			//TODO gestion d'erreur à faire
-			e.printStackTrace();
+			e.printStackTrace(); 
 		}
 	}
 

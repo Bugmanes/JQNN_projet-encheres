@@ -6,9 +6,9 @@ import java.util.List;
 public class Categorie {
 	private int noCategorie;
 	private String libelle;
-	private List<Article> articles = new ArrayList<Article>(); 
-	
-	public Categorie() { 
+	private List<Article> articles = new ArrayList<Article>();
+
+	public Categorie() {
 	}
 
 	public Categorie(String libelle) {
@@ -30,5 +30,13 @@ public class Categorie {
 	public void setLibelle(String libelle) {
 		this.libelle = libelle;
 	}
-	
+
+	public List<Article> getArticles() {
+		return articles;
+	}
+
+	public void setArticles(List<Article> articles) {
+		this.articles = articles;
+	}
+
 }

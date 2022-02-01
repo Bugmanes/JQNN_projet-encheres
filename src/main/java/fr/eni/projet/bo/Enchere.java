@@ -3,17 +3,18 @@ package fr.eni.projet.bo;
 import java.sql.Date;
 
 public class Enchere {
-	
-	//Declaratio des attributes
+
+	// Declaratio des attributes
 	private Date dateEnchere;
 	private int montantEnchere;
 	private Utilisateur utilisateur;
 	private Article article;
-	
-	//Constracteur vide 
+
+	// Constracteur vide
 	public Enchere() {
 	}
 
+	// constructeur surchargé
 	public Enchere(Date dateEnchere, int montantEnchere, Utilisateur utilisateur, Article article) {
 		setDateEnchere(dateEnchere);
 		setMontantEnchere(montantEnchere);
@@ -52,8 +53,5 @@ public class Enchere {
 	public void setArticle(Article article) {
 		this.article = article;
 	}
-	
-	
-	
 
 }

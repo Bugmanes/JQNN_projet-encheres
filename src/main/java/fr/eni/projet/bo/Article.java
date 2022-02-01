@@ -18,7 +18,7 @@ public class Article {
 	private Categorie categorie;
 	private Utilisateur acheteur;
 	private Utilisateur vendeur;
-	private List<Enchere> Encheres = new ArrayList<>();
+	private List<Enchere> encheres = new ArrayList<>();
 
 //constructeur par defaut de la classe Article
 	public Article() {
@@ -27,18 +27,26 @@ public class Article {
 
 //coonstructeur surcharger de la classe Article
 	public Article(String nomArticle, String description, LocalDate dateDebutEncheres, LocalDate dateFinEncheres,
-			int prixInitial, int prixVentes, Utilisateur vendeur,Categorie categorie) {
+			int prixInitial, Utilisateur vendeur, Categorie categorie) {
 
-		
 		setNomArticle(nomArticle);
 		setDescription(description);
 		setDateDebutEncheres(dateDebutEncheres);
 		setDateFinEncheres(dateFinEncheres);
 		setPrixInitial(prixInitial);
-		setPrixVentes(prixVentes);
+		setVendeur(vendeur);
+		setCategorie(categorie);
 	}
 
- public Retrait getRetrait() {
+	public List<Enchere> getEncheres() {
+		return encheres;
+	}
+
+	public void setEncheres(List<Enchere> encheres) {
+		this.encheres = encheres;
+	}
+
+	public Retrait getRetrait() {
 		return retrait;
 	}
 
@@ -70,7 +78,7 @@ public class Article {
 		this.vendeur = vendeur;
 	}
 
-	//getter and setter
+	// getter and setter
 	public int getNoArticle() {
 		return noArticle;
 	}

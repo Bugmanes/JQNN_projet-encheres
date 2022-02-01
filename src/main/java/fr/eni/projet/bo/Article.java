@@ -24,6 +24,7 @@ public Article(int noArticle,String nomArticle,  String description, LocalDate d
 		LocalDate dateFinEncheres, int prixInitial, int prixVentes) {
 	
 	setNoArticle(noArticle);
+	//ertyu
 	setNomArticle(nomArticle);
 	setDescription(description);
 	setDateDebutEncheres(dateDebutEncheres);

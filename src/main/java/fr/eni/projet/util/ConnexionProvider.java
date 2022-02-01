@@ -15,7 +15,7 @@ public class ConnexionProvider {
 	static {
 		try {
 			Context context = new InitialContext();
-			datasource = (DataSource) context.lookup("java:comp/env/jdbc/RepasCNXPool");
+			datasource = (DataSource) context.lookup("java:comp/env/jdbc/EncheresCNXPool");
 		} catch (NamingException e) {
 			//TODO gestion d'erreur à faire
 			e.printStackTrace();

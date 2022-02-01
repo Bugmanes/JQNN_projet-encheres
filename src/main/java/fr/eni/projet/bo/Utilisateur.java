@@ -17,6 +17,8 @@ public class Utilisateur {
 	private int credit;
 	private boolean administrateur;
 	private List<Enchere> listEncheres;
+	private List<Article> articlesAVendre;
+	private List<Article> articlesAEnchere;
 
 	public Utilisateur() {
 	}

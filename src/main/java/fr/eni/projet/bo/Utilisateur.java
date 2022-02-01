@@ -16,12 +16,10 @@ public class Utilisateur {
 	private boolean administrateur;
 	
 	public Utilisateur() {
-		super();
 	}
 
 	public Utilisateur(String pesudo, String nom, String prenom, String email, String telephone, String rue,
 			String codePostal, String ville, String motDePasse, int credit, boolean administrateur) {
-		super();
 		setPesudo(pesudo); 
 		setNom(prenom);
 		setPrenom(prenom);

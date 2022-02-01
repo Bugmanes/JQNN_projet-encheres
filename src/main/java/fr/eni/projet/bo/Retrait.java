@@ -1,12 +1,12 @@
 package fr.eni.projet.bo;
 
 public class Retrait {
-	
+
 	private String rue;
 	private String codePostale;
 	private String ville;
 	private Article article;
-	
+
 	public Retrait() {
 	}
 
@@ -40,17 +40,13 @@ public class Retrait {
 	public void setVille(String ville) {
 		this.ville = ville;
 	}
-	
+
 	public Article getArticle() {
 		return article;
 	}
-	
+
 	public void setArticle(Article article) {
 		this.article = article;
 	}
-	
-	
-	
-	
-	
+
 }

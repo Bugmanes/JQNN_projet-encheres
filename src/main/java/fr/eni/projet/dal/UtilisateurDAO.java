@@ -1,5 +1,10 @@
 package fr.eni.projet.dal;
 
-public interface UtilisateurDAO {
+import fr.eni.projet.bo.Utilisateur;
 
+public interface UtilisateurDAO {
+//methode pour crée un nuovelle utlisateur
+public void newUtilisateur(Utilisateur utilisateur);
+
+	
 }

@@ -16,15 +16,14 @@ public class Utilisateur {
 	private String motDePasse;
 	private int credit;
 	private boolean administrateur;
-	private List<Enchere>  listEncheres;
-	//test
-	
+	private List<Enchere> listEncheres;
+
 	public Utilisateur() {
 	}
 
 	public Utilisateur(String pesudo, String nom, String prenom, String email, String telephone, String rue,
 			String codePostal, String ville, String motDePasse, int credit, boolean administrateur) {
-		setPesudo(pesudo); 
+		setPesudo(pesudo);
 		setNom(prenom);
 		setPrenom(prenom);
 		setEmail(email);
@@ -140,7 +139,5 @@ public class Utilisateur {
 				+ codePostal + ", ville=" + ville + ", motDePasse=" + motDePasse + ", credit=" + credit
 				+ ", administrateur=" + administrateur + "]";
 	}
-	
-	
-	
+
 }

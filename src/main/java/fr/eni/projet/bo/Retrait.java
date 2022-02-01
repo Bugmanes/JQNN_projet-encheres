@@ -8,15 +8,13 @@ public class Retrait {
 	private Article article;
 	
 	public Retrait() {
-		super();
 	}
 
 	public Retrait(String rue, String codePostale, String ville, Article article) {
-		super();
-		this.rue = rue;
-		this.codePostale = codePostale;
-		this.ville = ville;
-		this.article = article;
+		setRue(rue);
+		setCodePostale(codePostale);
+		setVille(ville);
+		setArticle(article);
 	}
 
 	public String getRue() {

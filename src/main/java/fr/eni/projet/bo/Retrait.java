@@ -3,16 +3,16 @@ package fr.eni.projet.bo;
 public class Retrait {
 
 	private String rue;
-	private String codePostale;
+	private String codePostal;
 	private String ville;
 	private Article article;
 
 	public Retrait() {
 	}
 
-	public Retrait(String rue, String codePostale, String ville, Article article) {
+	public Retrait(String rue, String codePostal, String ville, Article article) {
 		setRue(rue);
-		setCodePostale(codePostale);
+		setCodePostal(codePostal);
 		setVille(ville);
 		setArticle(article);
 	}
@@ -25,12 +25,12 @@ public class Retrait {
 		this.rue = rue;
 	}
 
-	public String getCodePostale() {
-		return codePostale;
+	public String getCodePostal() {
+		return codePostal;
 	}
 
-	public void setCodePostale(String codePostale) {
-		this.codePostale = codePostale;
+	public void setCodePostal(String codePostal) {
+		this.codePostal = codePostal;
 	}
 
 	public String getVille() {

@@ -1,5 +1,7 @@
 package fr.eni.projet.bo;
 
+import java.util.List;
+
 public class Utilisateur {
 
 	private int noUtilisateur;
@@ -14,6 +16,7 @@ public class Utilisateur {
 	private String motDePasse;
 	private int credit;
 	private boolean administrateur;
+	private List<Enchere>  listEncheres;
 	
 	public Utilisateur() {
 	}

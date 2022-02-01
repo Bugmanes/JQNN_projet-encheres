@@ -8,7 +8,7 @@ public class Categorie {
 	private String libelle;
 	private List<Article> articles = new ArrayList<Article>(); 
 	
-	public Categorie() {
+	public Categorie() { 
 	}
 
 	public Categorie(String libelle) {

@@ -17,6 +17,7 @@ public class Utilisateur {
 	private int credit;
 	private boolean administrateur;
 	private List<Enchere>  listEncheres;
+	//test
 	
 	public Utilisateur() {
 	}

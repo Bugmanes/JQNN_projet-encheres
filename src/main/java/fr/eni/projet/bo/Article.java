@@ -1,6 +1,9 @@
 package fr.eni.projet.bo;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+
 //class Nicolas
 public class Article {
 	// Attribut de la classe Article
@@ -12,6 +15,10 @@ public class Article {
 	private int prixInitial;
 	private int prixVentes;
 	private Retrait retrait;
+	private Categorie categorie;
+	private Utilisateur acheteur;
+	private Utilisateur vendeur;
+	private List<Enchere> Encheres = new ArrayList<>();
 
 //constructeur par defaut de la classe Article
 	public Article() {
@@ -20,8 +27,9 @@ public class Article {
 
 //coonstructeur surcharger de la classe Article
 	public Article(String nomArticle, String description, LocalDate dateDebutEncheres, LocalDate dateFinEncheres,
-			int prixInitial, int prixVentes) {
+			int prixInitial, int prixVentes, Utilisateur vendeur,Categorie categorie) {
 
+		
 		setNomArticle(nomArticle);
 		setDescription(description);
 		setDateDebutEncheres(dateDebutEncheres);
@@ -30,7 +38,39 @@ public class Article {
 		setPrixVentes(prixVentes);
 	}
 
-//getter and setter
+ public Retrait getRetrait() {
+		return retrait;
+	}
+
+	public void setRetrait(Retrait retrait) {
+		this.retrait = retrait;
+	}
+
+	public Categorie getCategorie() {
+		return categorie;
+	}
+
+	public void setCategorie(Categorie categorie) {
+		this.categorie = categorie;
+	}
+
+	public Utilisateur getAcheteur() {
+		return acheteur;
+	}
+
+	public void setAcheteur(Utilisateur acheteur) {
+		this.acheteur = acheteur;
+	}
+
+	public Utilisateur getVendeur() {
+		return vendeur;
+	}
+
+	public void setVendeur(Utilisateur vendeur) {
+		this.vendeur = vendeur;
+	}
+
+	//getter and setter
 	public int getNoArticle() {
 		return noArticle;
 	}

@@ -6,7 +6,7 @@ import java.util.List;
 public class Categorie {
 	private int noCategorie;
 	private String libelle;
-	private List<Article> articles = new ArrayList<Article>();
+	private List<Article> articles = new ArrayList<Article>(); 
 	
 	public Categorie() {
 	}

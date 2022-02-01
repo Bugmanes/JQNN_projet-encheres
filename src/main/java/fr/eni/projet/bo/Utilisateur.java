@@ -18,7 +18,7 @@ public class Utilisateur {
 	private boolean administrateur;
 	private List<Enchere> listEncheres;
 	private List<Article> articlesAVendre;
-	private List<Article> articlesAEnchere;
+	private List<Article> articlesAEnchere; 
 
 	public Utilisateur() {
 	}

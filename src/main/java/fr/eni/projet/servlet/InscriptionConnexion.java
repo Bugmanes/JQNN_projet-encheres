@@ -22,6 +22,7 @@ public class InscriptionConnexion extends HttpServlet {
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		// connexion d'un utilisateur
+		request.getRequestDispatcher("/WEB-INF/jsp/seConncter").forward(request, response);
 	}
 
 	/**

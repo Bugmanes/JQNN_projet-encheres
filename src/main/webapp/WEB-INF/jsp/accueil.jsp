@@ -1,23 +1,24 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="ISO-8859-1">
-<title>Liste des enchères</title>
+<meta charset="UTF-8">
+<title>Liste des enchÃ¨res</title>
 <link rel="stylesheet" href="asset/css/style.css">
 </head>
 <body>
+<jsp:include page="/WEB-INF/jsp/headerInvitÃ©.jsp"></jsp:include>
 	<main>
 		<div class="titre">
-			<h3>Liste des enchères</h3>
+			<h3>Liste des enchÃ¨res</h3>
 		</div>
 		<div class="filtre">
 			<div class="titreFiltre">
 				<h4>Filtres :</h4>
 			</div>
 			<div class="rechercher">
-				<form>
+				<form action="<%=request.getContextPath()%>/AcceuilServlet" method="get">
 					<div>
 						<input type="search" id="maRecherche" name="q"
 							placeholder="le nom de l'article contient " />
@@ -27,12 +28,12 @@
 			</div>
 			<div class="categorie">
 				<div class="choixCategorie">
-					<label for="categorie">Catégorie :</label> <select name="categorie"
+					<label for="categorie">CatÃ©gorie :</label> <select name="categorie"
 						id="categorie">
 						<option value="">Toutes</option>
 						<option value="Informatique">Informatique</option>
 						<option value="Ameublement">Ameublement</option>
-						<option value="Vètement">Vètement</option>
+						<option value="VÃ¨tement">VÃ¨tement</option>
 						<option value="Sport&Loisirs">Sport&Loisirs</option>
 					</select>
 				</div>

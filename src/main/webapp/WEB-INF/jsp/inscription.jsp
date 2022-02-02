@@ -13,42 +13,42 @@
 			<h4>Mon Profil</h4>
 		</div>
 		<div class="formulaireInscription">
-			<form action="/" method="post">
+			<form action="<%=request.getContextPath() %>/InscriptionConnexion" method="post">
 				<div>
 					<label for="Pseudo">Pseudo :</label> <input type="text" id="Pseudo"
 						name="Pseudo" />
 				</div>
 				<div>
-					<label for="prenom">prenom :</label> <input type="text" id="prenom"
-						name="prenom" />
+					<label for="Prenom">prenom :</label> <input type="text" id="Prenom"
+						name="Prenom" />
 				</div>
 				<div>
-					<label for="telephone">telephone :</label> <input type="phone"
-						id="telephone" name="telephone" />
+					<label for="Telephone">telephone :</label> <input type="phone"
+						id="Telephone" name="Telephone" />
 				</div>
 				<div>
-					<label for="password">Mot de passe :</label> <input type="password"
-						id="password" name="password" />
+					<label for="Password">Mot de passe :</label> <input type="password"
+						id="Password" name="Password" />
 				</div>
 				<div>
 					<label for="Nom">Nom :</label> <input type="text" id="Nom"
 						name="Nom" />
 				</div>
 				<div>
-					<label for="email">email :</label> <input type="email" id="email"
-						name="email" />
+					<label for="Email">email :</label> <input type="email" id="Email"
+						name="Email" />
 				</div>
 				<div>
-					<label for="rue">Rue :</label> <input type="text" id="rue"
-						name="rue" />
+					<label for="Rue">Rue :</label> <input type="text" id="Rue"
+						name="Rue" />
 				</div>
 				<div>
-					<label for="ville">ville :</label> <input type="text" id="ville"
-						name="vile" />
+					<label for="Ville">ville :</label> <input type="text" id="Ville"
+						name="Ville" />
 				</div>
 				<div>
-					<label for="password2">Confirmation :</label> <input
-						type="password" id="password2" name="password2" />
+					<label for="Password2">Confirmation :</label> <input
+						type="password" id="Password2" name="Password2" />
 				</div>
 				<div class="buttonCree">
 					<button type="submit">
@@ -56,7 +56,7 @@
 					</button>
 				</div>
 				<div class="buttonAnnuler">
-					<a href="/Acceuil.html">
+					<a href="/acceuil.html">
 						<button>
 							<p>Anuller</p>
 						</button>

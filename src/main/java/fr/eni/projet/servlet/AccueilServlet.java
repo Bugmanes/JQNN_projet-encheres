@@ -20,8 +20,9 @@ public class AccueilServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		
 		// afficher la liste d'enchères
+		request.getRequestDispatcher("/WEB-INF/jsp/acceuil.jsp").forward(request, response);;
 	}
 
 }

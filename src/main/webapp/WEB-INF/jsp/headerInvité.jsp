@@ -8,7 +8,7 @@
         </div>
         <div class="login">
           <div class="inscription">
-            <a href="#">S'inscrire</a>
+            <a href="http://localhost:8080/JQNN_projet-encheres/WEB-INF/jsp/inscription.jsp">S'inscrire</a>
           </div>
           <div class="connexion">
             <a href="#">Se connecter</a>

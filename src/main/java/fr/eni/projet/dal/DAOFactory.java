@@ -6,7 +6,7 @@ public class DAOFactory {
 	public static UtilisateurDAO getUtilisateurDAO() {
 		
 	UtilisateurDAO utilisateurDAo = new UtilisateurDaoImpl(); 
-		//me return une new instance d'Utilisateur qui implémente les methode de UtilisateurDAO
+		//me return une new instance d'Utilisateur qui implémente les methodes de UtilisateurDAO
 		return  utilisateurDAo;
 	}
 	

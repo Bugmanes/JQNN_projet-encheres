@@ -62,11 +62,11 @@ public class UtilisateurDaoImpl implements UtilisateurDAO {
 		ResultSet rs;
 		try {
 			// connection
-			 cnx = ConnexionProvider.getConnection();
+			cnx = ConnexionProvider.getConnection();
 			PreparedStatement pstmt = cnx.prepareStatement(SELECT_BY_PSEUDO);
 			pstmt.setString(1, pseudo);
 			// récupere les valeurs de bdd
-			 rs = pstmt.executeQuery();
+			rs = pstmt.executeQuery();
 
 			if (rs.next()) {// creation d'un nouveau utilisateur
 				utilisateur = new Utilisateur(pseudo, rs.getString("nom"), rs.getString("prenom"),
@@ -75,34 +75,33 @@ public class UtilisateurDaoImpl implements UtilisateurDAO {
 			}
 
 		} catch (SQLException e) {
-			//TODO by @Nael
-			//throw new DALException("problème de méthode selectByPseudo()",e);
-		}finally {
-			//cnx.close(); //TODO by @Nael
+			// TODO by @Nael
+			// throw new DALException("problème de méthode selectByPseudo()",e);
+		} finally {
+			// cnx.close(); //TODO by @Nael
 		}
 		return utilisateur;
-
 	}
 
-	public Utilisateur selectByPseudoConnexion(Utilisateur utilisateur) throws BLLException | DALException {
+	public Utilisateur selectByPseudoConnexion(Utilisateur utilisateur) throws BLLException, DALException {
 		try {
 			Connection cnx = ConnexionProvider.getConnection();
 			PreparedStatement stmt = cnx.prepareStatement(SELECT_BY_PSEUDO_CONNEXION);
-			stmt.setString(1,utilisateur.getPseudo());
-			stmt.setString(2,utilisateur.getEmail());
-			stmt.setString(3,utilisateur.getMotDePasse());
+			stmt.setString(1, utilisateur.getPseudo());
+			stmt.setString(2, utilisateur.getEmail());
+			stmt.setString(3, utilisateur.getMotDePasse());
 			ResultSet result = stmt.executeQuery();
-			if(result.next()) {
+			if (result.next()) {
 				utilisateur.setNom(result.getString("nom"));
 				utilisateur.setMotDePasse(null);
-			}else {
-				//levee d'une BLLException
-				throw new BLLException("identification incorect"); 
-				
+			} else {
+				// levee d'une BLLException
+				throw new BLLException("identification incorect");
+
 			}
 		} catch (SQLException e) {
 			// lever une exception de type DALException
-			throw new DALException("probleme technique", e); 
+			throw new DALException("probleme technique", e);
 			e.printStackTrace();
 		}
 		return utilisateur;

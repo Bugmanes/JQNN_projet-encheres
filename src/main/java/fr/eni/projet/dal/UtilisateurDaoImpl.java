@@ -15,7 +15,7 @@ public class UtilisateurDaoImpl implements UtilisateurDAO {
 	// requete SQL Insert
 	private final static String SQL_INSERT = "INSERT INTO  UTILISATEURS (pseudo,nom,prenom,email,telephone,rue,code_postal,ville,mot_de_passe,credit,administrateur) VALUES (?,?,?,?,?,?,?,?,?,?,?);";
 	private final static String SELECT_BY_PSEUDO = "SELECT * FROM UTILISATEURS WHERE pseudo = ?;";
-	private final static String SELECT_BY_PSEUDO_CONNEXION = "SELECT * FROM UTILISATEUR WHERE pseudo =? AND password =?";
+	private final static String SELECT_BY_PSEUDO_CONNEXION = "SELECT * FROM UTILISATEUR WHERE password =? AND (email =? OR pseudo =?)";
 
 	@Override
 	public void newUtilisateur(Utilisateur utilisateur) {

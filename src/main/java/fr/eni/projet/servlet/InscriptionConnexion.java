@@ -16,6 +16,11 @@ public class InscriptionConnexion extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// connexion d'un utilisateur
+		String identifiant = request.getParameter("identifiant");
+		String motDePasse = request.getParameter("motDePasse");
+		UtilisateurManager um = UtilisateurManager.getInstance();
+		um.authentification(identifiant, motDePasse);
+
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -35,9 +40,10 @@ public class InscriptionConnexion extends HttpServlet {
 		int credit = 1000;
 		Boolean administrateur = false;
 		UtilisateurManager um = UtilisateurManager.getInstance();
-		um.nouvelUtilisateur(pseudo, nom, prenom, email, telephone, rue, codePostal, ville, motDePasse, credit,administrateur);
-		
-		//TODO navigation
+		um.nouvelUtilisateur(pseudo, nom, prenom, email, telephone, rue, codePostal, ville, motDePasse, credit,
+				administrateur);
+
+		// TODO navigation
 		request.getRequestDispatcher("/WEB-INF/jsp/inscription.jsp").forward(request, response);
 	}
 

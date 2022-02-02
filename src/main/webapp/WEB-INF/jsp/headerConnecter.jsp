@@ -4,7 +4,7 @@
 	<header>
 		<div class="nav">
 			<div class="logo">
-				<h1>ENI-Encheres</h1>
+				 <h1><a href="http://localhost:8080/JQNN_projet-encheres/acceuil.jsp">ENI-Encheres</a></h1>
 			</div>
 			<div class="navbar">
 				<div class="enchere">

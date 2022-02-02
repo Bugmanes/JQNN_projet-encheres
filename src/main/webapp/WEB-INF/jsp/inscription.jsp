@@ -7,6 +7,7 @@
 <title>Inscription</title>
 <link rel="stylesheet" href="asset/css/style.css">
 </head>
+<jsp:include  page ="/headerInvité"></jsp:include>
 <body>
 	<main>
 		<div class="titreMonProfil">
@@ -15,42 +16,43 @@
 		<div class="formulaireInscription">
 			<form action="<%=request.getContextPath() %>/InscriptionConnexion" method="post">
 				<div>
-					<label for="Pseudo">Pseudo :</label> <input type="text" id="Pseudo"
-						name="Pseudo" />
+					<label for="pseudo">Pseudo :</label> <input type="text" id="pseudo"
+						name="pseudo" />
 				</div>
 				<div>
-					<label for="Prenom">prenom :</label> <input type="text" id="Prenom"
-						name="Prenom" />
+					<label for="prenom">prenom :</label> <input type="text" id="prenom"
+						name="prenom" />
 				</div>
 				<div>
-					<label for="Telephone">telephone :</label> <input type="phone"
-						id="Telephone" name="Telephone" />
+					<label for="telephone">telephone :</label> <input type="phone"
+						id="telephone" name="telephone" />
 				</div>
 				<div>
-					<label for="Password">Mot de passe :</label> <input type="password"
-						id="Password" name="Password" />
+					<label for="password">Mot de passe :</label> <input type="password"
+						id="password" name="password" />
 				</div>
 				<div>
-					<label for="Nom">Nom :</label> <input type="text" id="Nom"
-						name="Nom" />
+					<label for="nom">Nom :</label> <input type="text" id="nom"
+						name="nom" />
 				</div>
 				<div>
-					<label for="Email">email :</label> <input type="email" id="Email"
-						name="Email" />
+					<label for="email">email :</label> <input type="email" id="email"
+						name="email" />
 				</div>
 				<div>
-					<label for="Rue">Rue :</label> <input type="text" id="Rue"
-						name="Rue" />
+					<label for="rue">Rue :</label> <input type="text" id="rue"
+						name="rue" />
 				</div>
 				<div>
-					<label for="Ville">ville :</label> <input type="text" id="Ville"
-						name="Ville" />
+					<label for="ville">ville :</label> <input type="text" id="ville"
+						name="ville" />
 				</div>
 				<div>
-					<label for="Password2">Confirmation :</label> <input
-						type="password" id="Password2" name="Password2" />
+					<label for="password2">Confirmation :</label> <input
+						type="password" id="password2" name="password2" />
 				</div>
 				<div class="buttonCree">
+					<a href="/seConnecter"></a>
 					<button type="submit">
 						<p>Créer</p>
 					</button>

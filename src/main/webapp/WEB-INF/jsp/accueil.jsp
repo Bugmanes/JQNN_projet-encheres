@@ -8,7 +8,7 @@
 <link rel="stylesheet" href="asset/css/style.css">
 </head>
 <body>
-<jsp:include page="/WEB-INF/jsp/headerInvité.jsp"></jsp:include>
+<jsp:include page="/WEB-INF/jsp/headerInvite.jsp">Header</jsp:include>
 	<main>
 		<div class="titre">
 			<h3>Liste des enchères</h3>

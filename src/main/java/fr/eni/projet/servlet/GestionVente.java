@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import fr.eni.projet.bll.CategorieManager;
+import fr.eni.projet.bll.EnchereManager;
 import fr.eni.projet.bo.Categorie;
 import fr.eni.projet.bo.Utilisateur;
 
@@ -49,6 +50,8 @@ public class GestionVente extends HttpServlet {
 		String libelle = request.getParameter("categorie");
 		CategorieManager cm = CategorieManager.getInstance();
 		Categorie categorie = cm.chercherCategorie(libelle);
+		EnchereManager em = EnchereManager.getInstance();
+		em.nouvelleVente(nom, description, dateDebut, dateFin, miseAPrix, utilisateur, categorie);
 	}
 
 }

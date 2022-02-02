@@ -22,7 +22,7 @@ public class UtilisateurManager {
 		return instance;
 	}
 
-	public Utilisateur authentification(Utilisateur utilisateur) {
+	public Utilisateur authentification(String identifiant, String motDePasse) {
 		Utilisateur user = null;
 
 		return user;

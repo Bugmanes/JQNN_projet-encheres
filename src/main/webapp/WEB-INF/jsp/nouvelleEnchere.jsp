@@ -13,7 +13,7 @@
       <main>
         <div id="photo"></div>
         <div class="corpsVente">
-          <form method="post" action="#">
+          <form method="post" action="<%=request.getContextPath()%>/GestionVente">
             <label for="nomArticle">Article : </label>
             <input id="nomArticle" type="text" name="nomArticle" />
             <label for="description">Description : </label>
@@ -31,7 +31,7 @@
               <option value="#"></option>
             </select>
             <label for="photo">Photo de l'article : </label>
-            <input type="image" name="photo" id="photo">
+            <input type="file" name="photo" id="photo">
             <label for="prixInitial">Mise à prix : </label>
             <input type="number" name="prixInitial" id="prixInitial" />
             <label for="debut">Début de l'enchère : </label>

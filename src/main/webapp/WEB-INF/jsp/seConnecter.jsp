@@ -23,8 +23,8 @@
 
 					<div class="checkbox">
 						<input type="checkbox" id="souvenir" name="souvenir"
-							value="souvenir" /> <label for="souvenir">Se
-							souvennir de moi</label>
+							value="souvenir" /> <label for="souvenir">Se souvennir
+							de moi</label>
 					</div>
 					<div class="buttonSeconnecter">
 						<button type="submit">connxion</button>

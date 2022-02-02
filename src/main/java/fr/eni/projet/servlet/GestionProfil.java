@@ -34,6 +34,7 @@ public class GestionProfil extends HttpServlet {
 			throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		Utilisateur utilisateur = (Utilisateur) session.getAttribute("utilisateur");
+		getServletContext().getRequestDispatcher("/profil").forward(request, response);
 	}
 
 }

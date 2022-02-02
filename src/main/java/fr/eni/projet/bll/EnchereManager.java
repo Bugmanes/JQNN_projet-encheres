@@ -1,7 +1,6 @@
 package fr.eni.projet.bll;
 
 import java.time.LocalDate;
-
 import fr.eni.projet.bo.Article;
 import fr.eni.projet.bo.Categorie;
 import fr.eni.projet.bo.Utilisateur;

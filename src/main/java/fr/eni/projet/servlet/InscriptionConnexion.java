@@ -16,13 +16,12 @@ public class InscriptionConnexion extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// connexion d'un utilisateur
-
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// gérer une nouvelle inscription
-		// attribut que l'ont vien idratter grace au valeur recu par la jsp
+		// attribut que l'on vient hydrater grace au valeur reçu par la jsp
 		
 		String pseudo = request.getParameter("pseudo");
 		String nom = request.getParameter("nom");
@@ -33,7 +32,7 @@ public class InscriptionConnexion extends HttpServlet {
 		String codePostal = request.getParameter("codePostal");
 		String ville = request.getParameter("ville");
 		String motDePasse = request.getParameter("motDePasse");
-		int credit = 0;
+		int credit = 1000;
 		Boolean administrateur = false;
 		UtilisateurManager um = new UtilisateurManager();
 		um.ajouterUtilisateur(pseudo, nom, prenom, email, telephone, rue, codePostal, ville, motDePasse,credit,administrateur);

@@ -84,7 +84,7 @@ public class UtilisateurDaoImpl implements UtilisateurDAO {
 
 	}
 
-	public Utilisateur selectByPseudoConnexion(Utilisateur utilisateur) {
+	public Utilisateur selectByPseudoConnexion(Utilisateur utilisateur) throws BLLException | DALException {
 		try {
 			Connection cnx = ConnexionProvider.getConnection();
 			PreparedStatement stmt = cnx.prepareStatement(SELECT_BY_PSEUDO_CONNEXION);
@@ -97,12 +97,12 @@ public class UtilisateurDaoImpl implements UtilisateurDAO {
 				utilisateur.setMotDePasse(null);
 			}else {
 				//levee d'une BLLException
-				//throw new BLLException("identification incorect"); 
-				System.out.println("identification incorect");
+				throw new BLLException("identification incorect"); 
+				
 			}
 		} catch (SQLException e) {
 			// lever une exception de type DALException
-			//throw new DALException("probleme technique", e); 
+			throw new DALException("probleme technique", e); 
 			e.printStackTrace();
 		}
 		return utilisateur;

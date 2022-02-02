@@ -22,7 +22,7 @@ public class InscriptionConnexion extends HttpServlet {
 			throws ServletException, IOException {
 		// gérer une nouvelle inscription
 		// attribut que l'on vient hydrater grace au valeur reçu par la jsp
-		
+
 		String pseudo = request.getParameter("pseudo");
 		String nom = request.getParameter("nom");
 		String prenom = request.getParameter("prenom");
@@ -34,8 +34,8 @@ public class InscriptionConnexion extends HttpServlet {
 		String motDePasse = request.getParameter("motDePasse");
 		int credit = 1000;
 		Boolean administrateur = false;
-		UtilisateurManager um = new UtilisateurManager();
-		um.getInstance(pseudo, nom, prenom, email, telephone, rue, codePostal, ville, motDePasse,credit,administrateur);
+		UtilisateurManager um = UtilisateurManager.getInstance();
+		um.nouvelleUtilisateur(pseudo, nom, prenom, email, telephone, rue, codePostal, ville, motDePasse, credit,administrateur);
 		request.getRequestDispatcher("/WEB-INF/jsp/inscription.jsp").forward(request, response);
 	}
 

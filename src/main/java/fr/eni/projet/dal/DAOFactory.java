@@ -22,4 +22,10 @@ public class DAOFactory {
 		return enchereDAO;
 	}
 	
+	//méthode de création d'un articleDAO
+	public static ArticleDAO getArticleDAO() {
+		ArticleDAO art = new ArticleDaoImpl();
+		return art;
+	}
+	
 }

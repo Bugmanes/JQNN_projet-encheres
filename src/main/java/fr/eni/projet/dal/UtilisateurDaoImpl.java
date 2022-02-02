@@ -3,7 +3,6 @@ package fr.eni.projet.dal;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -14,7 +13,7 @@ import fr.eni.projet.util.ConnexionProvider;
 public class UtilisateurDaoImpl implements UtilisateurDAO {
 
 	// requete SQL Insert
-	private final static String SQL_INSERT = ("INSERT INTO  UTILISATEURS (pseudo,nom,prenom,email,telephone,rue,code_postal,ville,mot_de_passe,credit,administrateur) VALUES (?,?,?,?,?,?,?,?,?,?,?);");
+	private final static String SQL_INSERT = "INSERT INTO  UTILISATEURS (pseudo,nom,prenom,email,telephone,rue,code_postal,ville,mot_de_passe,credit,administrateur) VALUES (?,?,?,?,?,?,?,?,?,?,?);";
 	private final static String SELECT_BY_PSEUDO = "SELECT * FROM UTILISATEURS WHERE pseudo = ?;";
 	private final static String SELECT_BY_PSEUDO_CONNEXION = "SELECT * FROM UTILISATEUR WHERE pseudo =? AND password =?";
 
@@ -23,7 +22,7 @@ public class UtilisateurDaoImpl implements UtilisateurDAO {
 
 		try {
 			Connection cnx = ConnexionProvider.getConnection();
-			java.sql.ResultSet rs = null;
+			ResultSet rs = null;
 			// création du PrepareStatement la definition des point d'interogation dans la
 			// requete SQL
 			PreparedStatement pstmt = cnx.prepareStatement(SQL_INSERT, PreparedStatement.RETURN_GENERATED_KEYS);
@@ -37,7 +36,7 @@ public class UtilisateurDaoImpl implements UtilisateurDAO {
 			pstmt.setString(8, utilisateur.getVille());
 			pstmt.setString(9, utilisateur.getMotDePasse());
 			pstmt.setInt(10, utilisateur.getCredit());
-			pstmt.setBoolean(11, false);
+			pstmt.setBoolean(11, utilisateur.isAdministrateur());
 			pstmt.executeUpdate();
 			rs = pstmt.getGeneratedKeys();
 			if (rs.next()) {
@@ -45,6 +44,7 @@ public class UtilisateurDaoImpl implements UtilisateurDAO {
 			}
 			rs.close();
 			pstmt.close();
+			cnx.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

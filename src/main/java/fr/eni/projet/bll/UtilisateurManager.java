@@ -11,21 +11,35 @@ public class UtilisateurManager {
 	private UtilisateurManager() {
 
 	}
-
-	public static UtilisateurManager getInstance() {
+	
+	public static UtilisateurManager getInstance()   {
 		if (instance == null) {
 			instance = new UtilisateurManager();
+			UtilisateurDAO dao = DAOFactory.getUtilisateurDAO();			
+		
 		}
+		
 		return instance;
 	}
-  
-	public void nouvelleUtilisateur(String pseudo, String nom, String prenom, String email, String telephone,
-			String rue, String codePostal, String ville, String motDePasse, int credit, boolean administrateur) {
-		Utilisateur user = new Utilisateur(pseudo, nom, prenom, email, telephone, rue, codePostal, ville, motDePasse,
-				credit, administrateur);
-		UtilisateurDAO userDAO = DAOFactory.getUtilisateurDAO();
-		userDAO.newUtilisateur(user);
-
+	
+	public Utilisateur authentification(Utilisateur utilisateur) {
+		Utilisateur user = null;
+		
+		return user;
+		
 	}
+
+	//			( {
+//
+//				Utilisateur utilisateur = new Utilisateur(pseudo, nom, prenom, email, telephone, rue, codePostal, ville,
+//						motDePasse, credit, administrateur);
+//
+//				UtilisateurDAO dao = DAOFactory.getUtilisateurDAO();
+//				dao.newUtilisateur(utilisateur);
+//			}
+//		
+		
+		
+		
 
 }

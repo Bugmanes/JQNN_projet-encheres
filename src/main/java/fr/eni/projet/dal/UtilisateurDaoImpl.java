@@ -93,12 +93,19 @@ public class UtilisateurDaoImpl implements UtilisateurDAO {
 			stmt.setString(3,utilisateur.getMotDePasse());
 			ResultSet result = stmt.executeQuery();
 			if(result.next()) {
-				utilisateur.getPseudo(result.get);
-				utilisateur.getMotDePasse();
+				utilisateur.setNom(result.getString("nom"));
+				utilisateur.setMotDePasse(null);
+			}else {
+				//levee d'une BLLException
+				//throw new BLLException("identification incorect"); 
+				System.out.println("identification incorect");
 			}
-		} catch (Exception e) {
-			// TODO: handle exception
+		} catch (SQLException e) {
+			// lever une exception de type DALException
+			//throw new DALException("probleme technique", e); 
+			e.printStackTrace();
 		}
+		return utilisateur;
 	}
 
 }

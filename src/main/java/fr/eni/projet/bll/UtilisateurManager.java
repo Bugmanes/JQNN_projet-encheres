@@ -23,9 +23,9 @@ public class UtilisateurManager {
 	}
 
 	public Utilisateur authentification(String identifiant, String motDePasse) {
-		Utilisateur user = new Utilisateur(identifiant, motDePasse);
+		
 
-		return user;
+		
 
 	}
 

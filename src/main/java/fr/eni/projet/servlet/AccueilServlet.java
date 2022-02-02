@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class AccueilServlet
  */
-@WebServlet("/AccueilServlet")
+@WebServlet("/accueil.html")
 public class AccueilServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -20,9 +20,15 @@ public class AccueilServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
-		// afficher la liste d'enchères
-		request.getRequestDispatcher("/WEB-INF/jsp/acceuil.jsp").forward(request, response);;
+//		if (!request.getParameter("recherche").equalsIgnoreCase("1")) {
+//			request.getRequestDispatcher("/WEB-INF/jsp/acceuil.jsp").forward(request, response);
+//		
+//		}else 
+//		// afficher la liste d'enchères
+//		
+			
+			
+		getServletContext().getRequestDispatcher("/WEB-INF/jsp/acceuil.jsp").forward(request, response);
 	}
 
 }

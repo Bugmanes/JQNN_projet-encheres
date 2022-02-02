@@ -15,12 +15,13 @@ public class InscriptionConnexion extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+	
 		// connexion d'un utilisateur
 		String identifiant = request.getParameter("identifiant");
 		String motDePasse = request.getParameter("motDePasse");
 		UtilisateurManager um = UtilisateurManager.getInstance();
 		um.authentification(identifiant, motDePasse);
-
+ 
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)

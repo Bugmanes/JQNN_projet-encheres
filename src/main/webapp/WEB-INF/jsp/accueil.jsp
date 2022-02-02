@@ -18,7 +18,7 @@
 				<h4>Filtres :</h4>
 			</div>
 			<div class="rechercher">
-				<form action="<%=request.getContextPath()%>/AcceuilServlet" method="get">
+				<form <%-- action="<%=request.getContextPath()%>/AcceuilServlet"  --%> method="get">
 					<div>
 						<input type="search" id="maRecherche" name="q"
 							placeholder="le nom de l'article contient " />

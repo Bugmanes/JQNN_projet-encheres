@@ -7,14 +7,16 @@
 <title>Inscription</title>
 <link rel="stylesheet" href="asset/css/style.css">
 </head>
-<jsp:include  page ="/headerInvité"></jsp:include>
+<%-- <jsp:include page ="/headerInvite"></jsp:include> --%>
+
+<%@include file="/headerInvite"%>
 <body>
 	<main>
 		<div class="titreMonProfil">
 			<h4>Mon Profil</h4>
 		</div>
 		<div class="formulaireInscription">
-			<form action="<%=request.getContextPath() %>/InscriptionConnexion" method="post">
+			<form action="<%=request.getContextPath()%>/InscriptionConnexion" method ="POST">
 				<div>
 					<label for="pseudo">Pseudo :</label> <input type="text" id="pseudo"
 						name="pseudo" />
@@ -51,12 +53,13 @@
 					<label for="password2">Confirmation :</label> <input
 						type="password" id="password2" name="password2" />
 				</div>
+				
 				<div class="buttonCree">
-					<a href="/seConnecter"></a>
-					<button type="submit">
-						<p>Créer</p>
-					</button>
+					<a href="/seConnecter">
+					<button type="submit">Créer</button>
+					</a>
 				</div>
+				
 				<div class="buttonAnnuler">
 					<a href="/acceuil.html">
 						<button>

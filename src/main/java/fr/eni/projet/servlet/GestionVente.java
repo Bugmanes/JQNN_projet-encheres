@@ -40,7 +40,6 @@ public class GestionVente extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		// créer une vente
 		String nom = request.getParameter("nomArticle");
 		String description = request.getParameter("description");
@@ -54,6 +53,8 @@ public class GestionVente extends HttpServlet {
 		Categorie categorie = cm.chercherCategorie(libelle);
 		EnchereManager em = EnchereManager.getInstance();
 		em.nouvelleVente(nom, description, dateDebut, dateFin, miseAPrix, utilisateur, categorie);
+		
+		//TODO navigation
 	}
 
 }

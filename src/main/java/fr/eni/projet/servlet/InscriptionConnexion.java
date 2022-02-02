@@ -6,8 +6,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import fr.eni.projet.bll.UtilisateurManager;
+import fr.eni.projet.bo.Utilisateur;
 
 @WebServlet("/InscriptionConnexion")
 public class InscriptionConnexion extends HttpServlet {
@@ -20,7 +22,8 @@ public class InscriptionConnexion extends HttpServlet {
 		String motDePasse = request.getParameter("motDePasse");
 		UtilisateurManager um = UtilisateurManager.getInstance();
 		um.authentification(identifiant, motDePasse);
-
+		HttpSession session = request.getSession();
+		session.setAttribute("utilisateur", um);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)

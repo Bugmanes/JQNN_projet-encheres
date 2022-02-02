@@ -23,7 +23,7 @@ public class UtilisateurManager {
 	}
 
 	public Utilisateur authentification(String identifiant, String motDePasse) {
-		Utilisateur user = null;
+		Utilisateur user = new Utilisateur(identifiant, motDePasse);
 
 		return user;
 
@@ -37,7 +37,5 @@ public class UtilisateurManager {
 		userDAO.newUtilisateur(user);
 
 	}
-
-	
 
 }

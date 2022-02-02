@@ -53,6 +53,11 @@ public class Utilisateur {
 	public Utilisateur(String pseudo, String email, String motDePasse) {
 
 		setPseudo(pseudo);
+		setMotDePasse(motDePasse);
+	}
+
+	public Utilisateur(String email, String motDePasse) {
+
 		setEmail(email);
 		setMotDePasse(motDePasse);
 	}

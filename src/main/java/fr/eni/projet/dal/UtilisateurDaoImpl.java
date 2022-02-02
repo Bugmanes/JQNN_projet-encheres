@@ -38,17 +38,17 @@ public class UtilisateurDaoImpl implements UtilisateurDAO {
 			pstmt.setInt(10, utilisateur.getCredit());
 			pstmt.setBoolean(11, false);
 			pstmt.executeUpdate();
-			// création du ResultSet qui génere une clée
 			rs = pstmt.getGeneratedKeys();
 			if (rs.next()) {
-				int noUtilisateur = rs.getInt(1);
-				rs.close();
-				pstmt.close();
+				utilisateur.setNoUtilisateur(rs.getInt(1));
 			}
+			rs.close();
+			pstmt.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+
 
 		// TODO Auto-generated method stub
 

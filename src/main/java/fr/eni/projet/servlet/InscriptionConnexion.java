@@ -35,7 +35,7 @@ public class InscriptionConnexion extends HttpServlet {
 		int credit = 1000;
 		Boolean administrateur = false;
 		UtilisateurManager um = new UtilisateurManager();
-		um.ajouterUtilisateur(pseudo, nom, prenom, email, telephone, rue, codePostal, ville, motDePasse,credit,administrateur);
+		um.getInstance(pseudo, nom, prenom, email, telephone, rue, codePostal, ville, motDePasse,credit,administrateur);
 		request.getRequestDispatcher("/WEB-INF/jsp/inscription.jsp").forward(request, response);
 	}
 

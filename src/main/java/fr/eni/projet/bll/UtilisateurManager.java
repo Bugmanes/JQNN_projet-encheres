@@ -11,22 +11,35 @@ public class UtilisateurManager {
 	private UtilisateurManager() {
 
 	}
+	
+	private UtilisateurManager(String pseudo, String nom, String prenom, String email, String telephone, String rue,
+			String codePostal, String ville, String motDePasse, int credit, boolean administrateur) {
 
-	public static UtilisateurManager getInstance() {
+	}
+
+	public static UtilisateurManager getInstance(String pseudo, String nom, String prenom, String email, String telephone, String rue,
+			String codePostal, String ville, String motDePasse, int credit, boolean administrateur)   {
 		if (instance == null) {
-			instance = new UtilisateurManager();
+			instance = new UtilisateurManager(pseudo,nom, prenom,email,telephone,rue,codePostal,ville,motDePasse,credit,administrateur);
+			UtilisateurDAO dao = DAOFactory.getUtilisateurDAO();
+			dao.getUtilisateurDAO(UtilisateurManager);
+		
 		}
+		
 		return instance;
 	}
 
-	public void ajouterUtilisateur(String pseudo, String nom, String prenom, String email, String telephone, String rue,
-			String codePostal, String ville, String motDePasse, int credit, boolean administrateur) {
-
-		Utilisateur utilisateur = new Utilisateur(pseudo, nom, prenom, email, telephone, rue, codePostal, ville,
-				motDePasse, credit, administrateur);
-
-		UtilisateurDAO dao = DAOFactory.createUtilisateurDAO();
-		dao.newUtilisateur(utilisateur);
-	}
+	//			( {
+//
+//				Utilisateur utilisateur = new Utilisateur(pseudo, nom, prenom, email, telephone, rue, codePostal, ville,
+//						motDePasse, credit, administrateur);
+//
+//				UtilisateurDAO dao = DAOFactory.getUtilisateurDAO();
+//				dao.newUtilisateur(utilisateur);
+//			}
+//		
+		
+		
+		
 
 }

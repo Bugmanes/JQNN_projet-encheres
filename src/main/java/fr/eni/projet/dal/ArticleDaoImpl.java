@@ -1,13 +1,14 @@
 package fr.eni.projet.dal;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.ZoneId;
-import java.util.Date;
 
 import fr.eni.projet.bo.Article;
 import fr.eni.projet.util.ConnexionProvider;
@@ -24,13 +25,17 @@ public class ArticleDaoImpl implements ArticleDAO {
 			PreparedStatement stmt = cnx.prepareStatement(INSERT, Statement.RETURN_GENERATED_KEYS);
 			stmt.setString(1, article.getNomArticle());
 			stmt.setString(2, article.getDescription());
-			//DateFormat form = new SimpleDateFormat("yyyy-mm-dd");
-			ZoneId defaultZoneId = ZoneId.systemDefault();
-			stmt.setDate(3, Date.from(article.getDateDebutEncheres().atStartOfDay(defaultZoneId).toInstant()));
-			stmt.setDate(4, article.getDateFinEncheres());
+			stmt.setDate(3, Date.valueOf(article.getDateDebutEncheres()));
+			stmt.setDate(4, Date.valueOf(article.getDateFinEncheres()));
 			stmt.setInt(5, article.getPrixInitial());
 			stmt.setInt(6, article.getVendeur().getNoUtilisateur());
 			stmt.setInt(7, article.getCategorie().getNoCategorie());
+			stmt.executeQuery();
+			ResultSet rs = stmt.getGeneratedKeys();
+			article.setNoArticle(rs.getInt(1));
+			rs.close();
+			stmt.close();
+			cnx.close();
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

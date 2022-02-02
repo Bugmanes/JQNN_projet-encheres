@@ -14,6 +14,11 @@ public class Categorie {
 	public Categorie(String libelle) {
 		setLibelle(libelle);
 	}
+	
+	public Categorie(int no, String libelle) {
+		setNoCategorie(no);
+		setLibelle(libelle);
+	}
 
 	public int getNoCategorie() {
 		return noCategorie;

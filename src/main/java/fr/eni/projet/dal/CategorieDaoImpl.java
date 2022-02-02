@@ -25,7 +25,7 @@ public class CategorieDaoImpl implements CategorieDAO {
 			Statement stmt = cnx.createStatement();
 			ResultSet rs = stmt.executeQuery(SELECT_ALL);
 			while (rs.next()) {
-				categorie = new Categorie(rs.getString("libelle"));
+				categorie = new Categorie(rs.getInt("no_categorie") ,rs.getString("libelle"));
 				categories.add(categorie);
 			}
 			rs.close();

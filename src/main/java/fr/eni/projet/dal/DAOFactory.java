@@ -16,5 +16,10 @@ public class DAOFactory {
 		return categorieDAO;
 	}
 	
+	//méthode de création d'un enchereDAO
+	public static EnchereDAO getEnchereDAO() {
+		EnchereDAO enchereDAO = new EnchereDaoImpl();
+		return enchereDAO;
+	}
 	
 }

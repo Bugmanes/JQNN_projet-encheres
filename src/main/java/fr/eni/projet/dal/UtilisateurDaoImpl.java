@@ -15,14 +15,7 @@ public class UtilisateurDaoImpl implements UtilisateurDAO {
 
 	// requete SQL Insert
 	private final static String SQL_INSERT = ("INSERT INTO  UTILISATEURS (pseudo,nom,prenom,email,telephone,rue,code_postal,ville,mot_de_passe,credit,administrateur) VALUES (?,?,?,?,?,?,?,?,?,?,?);");
-	private final static String SELECT_BY_PSEUDO = "SELECT * FROM UTILISATEURS WHERE pseudo = 1;";
-
-	@Override // TODO à faire Par nael
-	public Utilisateur selectByPseudo(Utilisateur utilisateur) {
-		Connection cnx = ConnexionProvider.getConnection();
-		PreparedStatement pstmt = cnx.prepareStatement(SELECT_BY_PSEUDO);
-		ResultSet rs = pstmt.executeQuery();
-	}
+	private final static String SELECT_BY_PSEUDO = "SELECT * FROM UTILISATEURS WHERE pseudo = ?;";
 
 	@Override
 	public void newUtilisateur(Utilisateur utilisateur) {
@@ -58,6 +51,31 @@ public class UtilisateurDaoImpl implements UtilisateurDAO {
 		}
 
 		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public Utilisateur selectByPseudo(String pseudo) {
+		//declaration 
+		Utilisateur utilisateur = null ;
+		try {
+			//connection
+			Connection cnx = ConnexionProvider.getConnection();
+			PreparedStatement pstmt = cnx.prepareStatement(SELECT_BY_PSEUDO);
+			pstmt.setString(1, pseudo);
+			//récupere les valeurs de bdd
+			ResultSet rs = pstmt.executeQuery();
+
+			if (rs.next()) {//creation d'un nouveau utilisateur
+				 utilisateur = new Utilisateur(pseudo, rs.getString("nom"), rs.getString("prenom"),
+						rs.getString("email"), rs.getString("telephone"), rs.getString("rue"),
+						rs.getString("code_postal"), rs.getString("ville"));
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return  utilisateur;
 
 	}
 

@@ -7,7 +7,7 @@ public interface UtilisateurDAO {
 public void newUtilisateur(Utilisateur utilisateur);
 
 
-public abstract Utilisateur  selectByPseudo(Utilisateur utilisateur) ; 
+public abstract Utilisateur selectByPseudo(String pseudo) ; 
 
 
 

@@ -18,7 +18,7 @@ public class UtilisateurManager {
 		}
 		return instance;
 	}
-
+  
 	public void nouvelleUtilisateur(String pseudo, String nom, String prenom, String email, String telephone,
 			String rue, String codePostal, String ville, String motDePasse, int credit, boolean administrateur) {
 		Utilisateur user = new Utilisateur(pseudo, nom, prenom, email, telephone, rue, codePostal, ville, motDePasse,

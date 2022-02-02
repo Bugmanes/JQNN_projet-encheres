@@ -27,6 +27,7 @@ public class EnchereManager {
 			Utilisateur utilisateur, Categorie categorie) {
 		Article article = new Article(nom, description, debut, fin, prixInitial, utilisateur, categorie);
 		EnchereDAO enchereDAO = DAOFactory.getEnchereDAO();
+		enchereDAO.insertArticle(article);
 	}
 
 }

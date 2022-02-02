@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import fr.eni.projet.bll.CategorieManager;
+import fr.eni.projet.bo.Categorie;
 import fr.eni.projet.bo.Utilisateur;
 
 /**
@@ -39,12 +41,14 @@ public class GestionVente extends HttpServlet {
 		// créer une vente
 		String nom = request.getParameter("nomArticle");
 		String description = request.getParameter("description");
-		String categorie = request.getParameter("categorie");
 		int miseAPrix = Integer.parseInt(request.getParameter("prixInitial"));
 		LocalDate dateDebut = LocalDate.parse(request.getParameter("debut"));
 		LocalDate dateFin = LocalDate.parse(request.getParameter("fin"));
 		HttpSession session = request.getSession();
 		Utilisateur utilisateur = (Utilisateur) session.getAttribute("utilisateur");
+		String libelle = request.getParameter("categorie");
+		CategorieManager cm = CategorieManager.getInstance();
+		Categorie categorie = cm.chercherCategorie(libelle);
 	}
 
 }

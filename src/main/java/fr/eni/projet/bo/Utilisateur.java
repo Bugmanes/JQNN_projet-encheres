@@ -22,8 +22,6 @@ public class Utilisateur {
 
 	public Utilisateur() {
 	}
-	
-	
 
 	public Utilisateur(String pseudo, String nom, String prenom, String email, String telephone, String rue,
 			String codePostal, String ville) {
@@ -36,8 +34,6 @@ public class Utilisateur {
 		this.codePostal = codePostal;
 		this.ville = ville;
 	}
-
-
 
 	public Utilisateur(String pseudo, String nom, String prenom, String email, String telephone, String rue,
 			String codePostal, String ville, String motDePasse, int credit, boolean administrateur) {
@@ -52,6 +48,13 @@ public class Utilisateur {
 		setMotDePasse(motDePasse);
 		setCredit(credit);
 		setAdministrateur(administrateur);
+	}
+
+	public Utilisateur(String pseudo, String email, String motDePasse) {
+
+		setPseudo(pseudo);
+		setEmail(email);
+		setMotDePasse(motDePasse);
 	}
 
 	public List<Article> getArticlesAchete() {

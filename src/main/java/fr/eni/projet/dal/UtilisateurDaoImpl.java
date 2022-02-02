@@ -16,6 +16,7 @@ public class UtilisateurDaoImpl implements UtilisateurDAO {
 	// requete SQL Insert
 	private final static String SQL_INSERT = ("INSERT INTO  UTILISATEURS (pseudo,nom,prenom,email,telephone,rue,code_postal,ville,mot_de_passe,credit,administrateur) VALUES (?,?,?,?,?,?,?,?,?,?,?);");
 	private final static String SELECT_BY_PSEUDO = "SELECT * FROM UTILISATEURS WHERE pseudo = ?;";
+	private final static String SELECT_BY_PSEUDO_CONNEXION = "SELECT * FROM UTILISATEUR WHERE pseudo =? AND password =?";
 
 	@Override
 	public void newUtilisateur(Utilisateur utilisateur) {
@@ -49,25 +50,24 @@ public class UtilisateurDaoImpl implements UtilisateurDAO {
 			e.printStackTrace();
 		}
 
-
 		// TODO Auto-generated method stub
 
 	}
 
 	@Override
 	public Utilisateur selectByPseudo(String pseudo) {
-		//declaration 
-		Utilisateur utilisateur = null ;
+		// declaration
+		Utilisateur utilisateur = null;
 		try {
-			//connection
+			// connection
 			Connection cnx = ConnexionProvider.getConnection();
 			PreparedStatement pstmt = cnx.prepareStatement(SELECT_BY_PSEUDO);
 			pstmt.setString(1, pseudo);
-			//récupere les valeurs de bdd
+			// récupere les valeurs de bdd
 			ResultSet rs = pstmt.executeQuery();
 
-			if (rs.next()) {//creation d'un nouveau utilisateur
-				 utilisateur = new Utilisateur(pseudo, rs.getString("nom"), rs.getString("prenom"),
+			if (rs.next()) {// creation d'un nouveau utilisateur
+				utilisateur = new Utilisateur(pseudo, rs.getString("nom"), rs.getString("prenom"),
 						rs.getString("email"), rs.getString("telephone"), rs.getString("rue"),
 						rs.getString("code_postal"), rs.getString("ville"));
 			}
@@ -75,8 +75,25 @@ public class UtilisateurDaoImpl implements UtilisateurDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return  utilisateur;
+		return utilisateur;
 
+	}
+
+	public Utilisateur selectByPseudoConnexion(Utilisateur utilisateur) {
+		try {
+			Connection cnx = ConnexionProvider.getConnection();
+			PreparedStatement stmt = cnx.prepareStatement(SELECT_BY_PSEUDO_CONNEXION);
+			stmt.setString(1,utilisateur.getPseudo());
+			stmt.setString(2,utilisateur.getEmail());
+			stmt.setString(3,utilisateur.getMotDePasse());
+			ResultSet result = stmt.executeQuery();
+			if(result.next()) {
+				utilisateur.getPseudo(result.get);
+				utilisateur.getMotDePasse();
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
 	}
 
 }

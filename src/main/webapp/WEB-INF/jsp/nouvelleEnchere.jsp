@@ -13,7 +13,7 @@
       <main>
         <div id="photo"></div>
         <div class="corpsVente">
-          <form method="" action="">
+          <form method="post" action="#">
             <label for="nomArticle">Article : </label>
             <input id="nomArticle" type="text" name="nomArticle" />
             <label for="description">Description : </label>

@@ -10,5 +10,11 @@ public class DAOFactory {
 		return  utilisateurDAo;
 	}
 	
+	// méthode de création d'un catégorie DAO
+	public static CategorieDAO getCategorieDAO() {
+		CategorieDAO categorieDAO = new CategorieDaoImpl();
+		return categorieDAO;
+	}
+	
 	
 }

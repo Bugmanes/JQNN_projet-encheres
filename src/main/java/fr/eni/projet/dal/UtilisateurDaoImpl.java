@@ -58,13 +58,15 @@ public class UtilisateurDaoImpl implements UtilisateurDAO {
 	public Utilisateur selectByPseudo(String pseudo) {
 		// declaration
 		Utilisateur utilisateur = null;
+		Connection cnx;
+		ResultSet rs;
 		try {
 			// connection
-			Connection cnx = ConnexionProvider.getConnection();
+			 cnx = ConnexionProvider.getConnection();
 			PreparedStatement pstmt = cnx.prepareStatement(SELECT_BY_PSEUDO);
 			pstmt.setString(1, pseudo);
 			// récupere les valeurs de bdd
-			ResultSet rs = pstmt.executeQuery();
+			 rs = pstmt.executeQuery();
 
 			if (rs.next()) {// creation d'un nouveau utilisateur
 				utilisateur = new Utilisateur(pseudo, rs.getString("nom"), rs.getString("prenom"),
@@ -73,7 +75,10 @@ public class UtilisateurDaoImpl implements UtilisateurDAO {
 			}
 
 		} catch (SQLException e) {
-			e.printStackTrace();
+			//TODO by @Nael
+			//throw new DALException("problème de méthode selectByPseudo()",e);
+		}finally {
+			//cnx.close(); //TODO by @Nael
 		}
 		return utilisateur;
 

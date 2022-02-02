@@ -17,10 +17,10 @@ public class UtilisateurDaoImpl implements UtilisateurDAO {
 	private final static String SQL_INSERT = ("INSERT INTO  UTILISATEURS (pseudo,nom,prenom,email,telephone,rue,code_postal,ville,mot_de_passe,credit,administrateur) VALUES (?,?,?,?,?,?,?,?,?,?,?);");
 	private final static String SELECT_BY_PSEUDO = "SELECT * FROM UTILISATEURS WHERE pseudo = 1;";
 
-	@Override //a faire  Par nael
+	@Override // TODO à faire Par nael
 	public Utilisateur selectByPseudo(Utilisateur utilisateur) {
 		Connection cnx = ConnexionProvider.getConnection();
-		PreparedStatement pstmt =cnx.prepareStatement(SELECT_BY_PSEUDO)
+		PreparedStatement pstmt = cnx.prepareStatement(SELECT_BY_PSEUDO);
 		ResultSet rs = pstmt.executeQuery();
 	}
 
@@ -30,7 +30,7 @@ public class UtilisateurDaoImpl implements UtilisateurDAO {
 		try {
 			Connection cnx = ConnexionProvider.getConnection();
 			java.sql.ResultSet rs = null;
-			// créeation du PrepareStatement la definition des point d'interogation dans la
+			// création du PrepareStatement la definition des point d'interogation dans la
 			// requete SQL
 			PreparedStatement pstmt = cnx.prepareStatement(SQL_INSERT, PreparedStatement.RETURN_GENERATED_KEYS);
 			pstmt.setString(1, utilisateur.getPseudo());

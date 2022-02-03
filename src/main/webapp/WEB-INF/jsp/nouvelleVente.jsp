@@ -41,11 +41,11 @@
             <input type="date" id="fin" name="fin" />
             <div id="retrait">
               <label for="rue">Rue : </label>
-              <input type="text" id="rue" name="rue">
+              <input type="text" id="rue" name="rue" value=<%=request.getAttribute("rue")%>>
               <label for="codePostal">Code Postal :</label>
-              <input type="text" id="codePostal" name="codePostal">
+              <input type="text" id="codePostal" name="codePostal" value=<%=request.getAttribute("codePostal")%>>
               <label for="ville">Ville :</label>
-              <input type="text" name="ville" id="ville">
+              <input type="text" name="ville" id="ville" value=<%=request.getAttribute("ville")%>>
             </div>
             <input type="submit" value="Enregistrer">
             <input type="reset" value="Annuler">

@@ -23,8 +23,9 @@
       Saisissez votre Ville:<input type="email" placeholder="Saisissez votre Ville :"autocomplete="${utilisateur.ville }"><br>
       Saisissez votre Code_Postal:<input type="text" placeholder="Saisissez votre Code Pstal:"autocomplete="${utilisateur.codePostal}"><br>
 	  
-	  Crédit :${utilisateur.credit} 	 	      
-      <input type="submit" value="modifier" name = "modifier">
+	  Crédit :${utilisateur.credit} 
+	  	 	      
+      <input type="submit" value="modifier"  name = "modifier" >
       <input type="submit" value="Supprimer mon compte " name ="supprimer">
     </form>
 	

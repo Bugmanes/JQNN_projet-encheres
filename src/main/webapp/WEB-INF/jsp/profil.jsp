@@ -13,7 +13,7 @@
 <body>
 <%@include file="headerInvite.jsp" %>
 	<section>
-        <form action="<%=request.getContextPath()+"/GestionProfil" %>" method="POST">
+        <form action="<%=request.getContextPath()+"/AfficherProfil" %>" method="POST">
             <ul>
                 <li>${utilisateur.pseudo}</li>
                 <li>${utilisateur.nom}</li>
@@ -24,7 +24,7 @@
                 <li>${utilisateur.codePostal}</li>
                 <li>${utilisateur.ville }</li>
             </ul>
-            <button type="submit" value="modifier" name="modifier">Modifier</button>					
+            <button type="submit" value="modifier" name="modifier" >Modifier</button>					
 					
         </form>
     </section>

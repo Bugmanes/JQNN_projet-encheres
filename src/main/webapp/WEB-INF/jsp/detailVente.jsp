@@ -1,3 +1,4 @@
+<%@page import="fr.eni.projet.bo.Article"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -12,9 +13,10 @@
     <div class="container">
       <header></header>
       <main>
+      	<%Article article = (Article) request.getAttribute("article"); %>
         <h2>Détail vente</h2>
         <div class="corpsVente">
-          <p>nom de la vente</p>
+          <p>${article.nomArticle}</p>
           <div class="left">
             <div>Description :</div>
             <div>Catégorie :</div>
@@ -25,13 +27,15 @@
             <div>Vendeur :</div>
           </div>
           <div class="right">
-            <div>contenu de la description</div>
-            <div>la Catégorie</div>
-            <div>la meilleure offre</div>
-            <div>le prix initial</div>
-            <div>date de fin d'enchère</div>
-            <div>adresse de retrait</div>
-            <div>pseudo du vendeur</div>
+            <div>${article.description}</div>
+            <div><%=article.getCategorie().getLibelle() %></div>
+            <div>${article.prixVentes} par <%=article.getAcheteur().getPseudo()%></div>
+            <div>${article.prixInitial}</div>
+            <div>${article.dateFinEncheres}</div>
+            <div><%=article.getRetrait().getRue()%><br>
+            	<%=article.getRetrait().getCodePostal() + " " + article.getRetrait().getVille()%>
+            </div>
+            <div><%=article.getVendeur().getPseudo()%></div>
           </div>
         </div>
         <form method="post" action="#">

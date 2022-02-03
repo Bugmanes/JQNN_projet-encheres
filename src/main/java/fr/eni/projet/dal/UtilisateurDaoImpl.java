@@ -87,23 +87,22 @@ public class UtilisateurDaoImpl implements UtilisateurDAO {
 
 	public Utilisateur selectByPseudoConnexion(String identifiant, String motDePasse)
 			throws BLLException, DALException {
+		Utilisateur user = null;
 		try {
 			Connection cnx = ConnexionProvider.getConnection();
 			PreparedStatement stmt = cnx.prepareStatement(SELECT_BY_PSEUDO_CONNEXION);
 			stmt.setString(1, identifiant);
 			stmt.setString(2, identifiant);
-			Utilisateur user = null;
 
 			ResultSet result = stmt.executeQuery();
 			if (result.next()) {
-				user = new Utilisateur(result.getString("no_utilisateur"), result.getString("pseudo"),
-						result.getString("nom"), result.getString("prenom"), result.getString("email"),
-						result.getString("telephone"), result.getString("rue"), result.getString("code_postal"),
-						result.getString("ville"), result.getInt("credit"), result.getBoolean("administrateur"));
-				return true;
-			} else {
-				// levee d'une BLLException
-				throw new BLLException("identification incorect");
+				if (result.equals(result.getInt("mot_de_passe"))) {
+					user = new Utilisateur(result.getString("no_utilisateur"), result.getString("pseudo"),
+							result.getString("nom"), result.getString("prenom"), result.getString("email"),
+							result.getString("telephone"), result.getString("rue"), result.getString("code_postal"),
+							result.getString("ville"), result.getInt("credit"), result.getBoolean("administrateur"));
+
+				}
 				return user = null;
 
 			}
@@ -112,7 +111,7 @@ public class UtilisateurDaoImpl implements UtilisateurDAO {
 			throw new DALException("probleme technique", e);
 			e.printStackTrace();
 		}
-		return ;
+
 	}
 
 	@Override

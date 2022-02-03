@@ -8,6 +8,7 @@ import fr.eni.projet.bo.Article;
 import fr.eni.projet.bo.Categorie;
 import fr.eni.projet.bo.Utilisateur;
 import fr.eni.projet.dal.ArticleDAO;
+import fr.eni.projet.dal.DALException;
 import fr.eni.projet.dal.DAOFactory;
 
 public class EnchereManager {
@@ -24,7 +25,7 @@ public class EnchereManager {
 		}
 		return instance;
 	}
-public List<Article> listerArticles(){
+public List<Article> listerArticles() throws DALException{
 	ArticleDAO adao = DAOFactory.getArticleDAO();
 	
 	List<Article> liste = adao.selectAll();
@@ -33,7 +34,7 @@ public List<Article> listerArticles(){
 };
 	
 	public void nouvelleVente(String nom, String description, LocalDate debut, LocalDate fin, int prixInitial,
-			Utilisateur utilisateur, Categorie categorie) {
+			Utilisateur utilisateur, Categorie categorie) throws DALException {
 		Article article = new Article(nom, description, debut, fin, prixInitial, utilisateur, categorie);
 		ArticleDAO articleDAO = DAOFactory.getArticleDAO();
 		articleDAO.insertArticle(article);

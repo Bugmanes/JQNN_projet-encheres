@@ -6,6 +6,7 @@ import org.apache.jasper.tagplugins.jstl.core.ForEach;
 
 import fr.eni.projet.bo.Categorie;
 import fr.eni.projet.dal.CategorieDAO;
+import fr.eni.projet.dal.DALException;
 import fr.eni.projet.dal.DAOFactory;
 
 public class CategorieManager {
@@ -18,7 +19,7 @@ public class CategorieManager {
 	
 	}
 	
-	public static CategorieManager getInstance() {
+	public static CategorieManager getInstance() throws DALException {
 		categorieDAO = DAOFactory.getCategorieDAO();
 		categories = categorieDAO.selectAll();
 		if (instance == null) {

@@ -17,7 +17,7 @@ public class CategorieDaoImpl implements CategorieDAO {
 	private final static String SELECT_BY_ID = "SELECT * FROM Articles_Vendus WHERE id = ?;";
 
 	@Override
-	public ArrayList<Categorie> selectAll() {
+	public ArrayList<Categorie> selectAll() throws DALException {
 
 		Categorie categorie;
 		ArrayList<Categorie> categories = new ArrayList<>();
@@ -34,15 +34,14 @@ public class CategorieDaoImpl implements CategorieDAO {
 			stmt.close();
 			cnx.close();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			throw new DALException("problème avec la méthode selectAll de catégorie", e);
 		}
 
 		return categories;
 	}
 
 	@Override
-	public Categorie selectById(int id) {
+	public Categorie selectById(int id) throws DALException {
 		Categorie categorie = null;
 		Connection cnx;
 		ResultSet rs;
@@ -63,8 +62,7 @@ public class CategorieDaoImpl implements CategorieDAO {
 			cnx.close();
 
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			throw new DALException("problème avec la méthode selectById de catégorie", e);
 		}
 
 		return categorie;

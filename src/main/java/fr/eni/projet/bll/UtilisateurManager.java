@@ -6,6 +6,7 @@ import fr.eni.projet.dal.UtilisateurDAO;
 
 public class UtilisateurManager {
 
+	private static UtilisateurDAO dao= null;
 	private static UtilisateurManager instance;
 
 	private UtilisateurManager() {
@@ -15,13 +16,15 @@ public class UtilisateurManager {
 	public static UtilisateurManager getInstance() {
 		if (instance == null) {
 			instance = new UtilisateurManager();
-			UtilisateurDAO dao = DAOFactory.getUtilisateurDAO();
+			dao = DAOFactory.getUtilisateurDAO();
 		}
 		return instance;
 	}
 
 	public Utilisateur authentification(String identifiant, String motDePasse) {
-		utilisateur user = Utilisateur.user;
+		Utilisateur user = new Utilisateur (identifiant, motDePasse);
+		//contacte la dal
+		user = dao.getClass()
 		return user;
 
 	}

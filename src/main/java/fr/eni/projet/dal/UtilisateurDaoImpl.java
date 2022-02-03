@@ -85,8 +85,7 @@ public class UtilisateurDaoImpl implements UtilisateurDAO {
 		return utilisateur;
 	}
 
-	public Utilisateur selectByPseudoConnexion(String identifiant, String motDePasse)
-			throws BLLException, DALException {
+	public Utilisateur selectByPseudoConnexion(String identifiant, String motDePasse) throws DALException{
 		Utilisateur user = null;
 		try {
 			Connection cnx = ConnexionProvider.getConnection();
@@ -109,8 +108,9 @@ public class UtilisateurDaoImpl implements UtilisateurDAO {
 		} catch (SQLException e) {
 			// lever une exception de type DALException
 			throw new DALException("probleme technique", e);
-			e.printStackTrace();
+			
 		}
+		return user;
 
 	}
 

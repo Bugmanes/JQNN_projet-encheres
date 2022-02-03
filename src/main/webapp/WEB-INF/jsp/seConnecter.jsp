@@ -8,12 +8,13 @@
 <link rel="stylesheet" href="asset/css/style.css">
 </head>
 <body>
-<%@include file="headerInvite.jsp" %>
+	<%@include file="headerInvite.jsp"%>
 	<main>
 		<div class="connexion">
 			<div class="formuulaireConnexion">
-		
-				<form action="<%=request.getContextPath()+"/Connexion"%>" method="post">
+
+				<form action="<%=request.getContextPath() + "/Connexion"%>"
+					method="post">
 					<div>
 						<label for="identifiant">votre identifiant :</label> <input
 							type="text" id="identifiant" name="identifiant" />
@@ -33,12 +34,25 @@
 					</div>
 				</form>
 				<div class="oublier">
-					<a href="#">Mot de ppasse oublier</a>
+					<a href="#">Mot de passe oublié</a>
 				</div>
 			</div>
+			<%
+			if(request.getAttribute("erreur")!=null){
+				boolean ok =(boolean) request.getAttribute("erreur");
+				if (!ok){		
+			%>
+			<div class = "messageErreur">
+				<a>authentification incorrecte</a>
+			</div>
+			<%
+				}
+			}	
+			%>
 			<div class="buttonCreeCompte">
-				<a href="http://localhost:8080/JQNN_projet-encheres/InscriptionConnexion">
-					<button>Cée un compte</button>
+				<a
+					href="http://localhost:8080/JQNN_projet-encheres/InscriptionConnexion">
+					<button>Crée un compte</button>
 				</a>
 			</div>
 		</div>

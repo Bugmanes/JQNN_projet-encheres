@@ -10,7 +10,7 @@ public interface UtilisateurDAO {
 	public abstract Utilisateur selectByPseudo(String pseudo);
 
 	// methode de selection par pseudo
-	public abstract Utilisateur selectByPseudoConnexion(String identifiant, String motDePasse);
+	public abstract Utilisateur selectByPseudoConnexion(String identifiant, String motDePasse)throws DALException;
 
 	public Utilisateur selectById(int id);
 

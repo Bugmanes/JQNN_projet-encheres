@@ -66,7 +66,7 @@
 				<div class="buttonCree">
 					<a href="/seConnecter">
 						<button type="submit">Créer</button>
-					</a>
+					</a> 
 				</div>
 
 				<div class="buttonAnnuler">

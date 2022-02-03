@@ -38,8 +38,19 @@ public class GestionVente extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		
 		// transmission de l'utilisateur à la page nouvelle vente
+		// récupération de l'utilisateur de la session en cours
+		HttpSession session = request.getSession();
+		Utilisateur utilisateur = (Utilisateur) session.getAttribute("utilisateur");
+		
+		// paramètrage des attributs à transmettre à la jsp
+		request.setAttribute("rue", utilisateur.getRue());
+		request.setAttribute("codePostal", utilisateur.getCodePostal());
+		request.setAttribute("ville", utilisateur.getVille());
+		
+		// envoi à la jsp
+		request.getRequestDispatcher("/WEB-INF/nouvelleVente.jsp").forward(request, response);
 	}
 
 	/**
@@ -73,7 +84,8 @@ public class GestionVente extends HttpServlet {
 		EnchereManager em = EnchereManager.getInstance();
 		em.nouvelleVente(nom, description, dateDebut, dateFin, miseAPrix, utilisateur, categorie);
 		
-		//TODO navigation
+		// renvoi vers l'accueil
+		request.getRequestDispatcher("/accueil").forward(request, response);
 	}
 
 }

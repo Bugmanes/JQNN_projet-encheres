@@ -5,6 +5,7 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Detail de l'enchère</title>
+<%@include file="headerInvite.jsp" %>
 <link rel="stylesheet" href="asset/css/style.css">
 </head>
 <body>

@@ -1,17 +1,19 @@
+
+
 <link rel="stylesheet" href="asset/css/style.css">
 </head>
 <body>
 <header>
       <div class="nav">
-        <div class="logo">
-          <h1><a href="http://localhost:8080/JQNN_projet-encheres/acceuil.jsp">ENI-Encheres</a></h1>
+        <div class="logo" position>
+          <h1><a href="http://localhost:8080/JQNN_projet-encheres/accueil">ENI-Encheres</a></h1>
         </div>
         <div class="login">
           <div class="inscription">
-            <a href="http://localhost:8080/JQNN_projet-encheres/WEB-INF/jsp/inscription.jsp">S'inscrire</a>
+            <a href="http://localhost:8080/JQNN_projet-encheres/InscriptionConnexion">S'inscrire</a>
           </div>
           <div class="connexion">
-            <a href="#">Se connecter</a>
+            <a href="http://localhost:8080/JQNN_projet-encheres/Connexion">Se connecter</a>
           </div>
         </div>
       </div>

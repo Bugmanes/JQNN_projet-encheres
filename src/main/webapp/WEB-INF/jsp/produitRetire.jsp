@@ -8,6 +8,6 @@
 <link rel="stylesheet" href="asset/css/style.css">
 </head>
 <body>
- 
+ <%@include file="headerConnecter.jsp" %>
 </body>
 </html>

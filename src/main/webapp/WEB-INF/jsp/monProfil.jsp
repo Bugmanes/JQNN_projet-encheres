@@ -8,7 +8,7 @@
 <title>Mon profil</title>
 </head>
 <body>
-
+<%@include file="headerConnecter.jsp" %>
 <form action="" method="POST">
       
       Pseudo : <input type="text" placeholder="Saisissez votre user Pseudo :"><br>

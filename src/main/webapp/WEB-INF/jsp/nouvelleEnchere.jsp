@@ -8,6 +8,7 @@
 <link rel="stylesheet" href="asset/css/style.css">
 </head>
 <body>
+<%@include file="headerConnecter.jsp" %>
     <div class="container">
       <header></header>
       <main>

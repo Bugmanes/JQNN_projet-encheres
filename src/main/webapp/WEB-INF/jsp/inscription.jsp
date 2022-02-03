@@ -7,9 +7,7 @@
 <title>Inscription</title>
 <link rel="stylesheet" href="asset/css/style.css">
 </head>
-<%-- <jsp:include page ="/headerInvite"></jsp:include> --%>
-
-<%@include file="/headerInvite"%>
+<%@include file="headerInvite.jsp" %>
 <body>
 	<main>
 		<div class="titreMonProfil">

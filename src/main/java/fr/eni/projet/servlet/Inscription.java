@@ -12,20 +12,13 @@ import fr.eni.projet.bll.UtilisateurManager;
 import fr.eni.projet.bo.Utilisateur;
 
 @WebServlet("/InscriptionConnexion")
-public class InscriptionConnexion extends HttpServlet {
+public class Inscription extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		request.getRequestDispatcher("/WEB-INF/jsp/inscription.jsp").forward(request, response);
 	
-		// connexion d'un utilisateur
-		String identifiant = request.getParameter("identifiant");
-		String motDePasse = request.getParameter("motDePasse");
-		UtilisateurManager um = UtilisateurManager.getInstance();
-		um.authentification(identifiant, motDePasse);
-
-		HttpSession session = request.getSession();
-		session.setAttribute("utilisateur", um);
       
 	}
 
@@ -50,7 +43,7 @@ public class InscriptionConnexion extends HttpServlet {
 				administrateur);
 
 		// TODO navigation
-		request.getRequestDispatcher("/WEB-INF/jsp/inscription.jsp").forward(request, response);
+		
 	}
 
 }

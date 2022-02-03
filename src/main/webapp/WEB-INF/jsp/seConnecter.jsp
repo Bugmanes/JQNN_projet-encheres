@@ -8,10 +8,12 @@
 <link rel="stylesheet" href="asset/css/style.css">
 </head>
 <body>
+<%@include file="headerInvite.jsp" %>
 	<main>
 		<div class="connexion">
 			<div class="formuulaireConnexion">
-				<form action="/" method="post">
+		
+				<form action="<%=request.getContextPath()+"/Connexion"%>" method="post">
 					<div>
 						<label for="identifiant">votre identifiant :</label> <input
 							type="text" id="identifiant" name="identifiant" />
@@ -27,7 +29,7 @@
 							de moi</label>
 					</div>
 					<div class="buttonSeconnecter">
-						<button type="submit">connxion</button>
+						<button type="submit">connexion</button>
 					</div>
 				</form>
 				<div class="oublier">
@@ -35,7 +37,7 @@
 				</div>
 			</div>
 			<div class="buttonCreeCompte">
-				<a href="#">
+				<a href="http://localhost:8080/JQNN_projet-encheres/InscriptionConnexion">
 					<button>Cée un compte</button>
 				</a>
 			</div>

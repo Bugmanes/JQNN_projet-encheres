@@ -1,0 +1,25 @@
+.nav {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: solid;
+  margin-left: -9px;
+}
+.navbar {
+  display: flex;
+}
+
+.logo {
+  margin-top: -15px;
+  margin-left: 9px;
+}
+
+.login,
+.navbar {
+  display: flex;
+  margin-top: 17px;
+  gap: 9px;
+}
+
+a {
+  text-decoration: none;
+  color: black;

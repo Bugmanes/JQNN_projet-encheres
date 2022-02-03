@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class AccueilServlet
  */
-@WebServlet("/accueil.html")
+@WebServlet("/accueil")
 public class AccueilServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -28,7 +28,7 @@ public class AccueilServlet extends HttpServlet {
 //		
 			
 			
-		getServletContext().getRequestDispatcher("/WEB-INF/jsp/acceuil.jsp").forward(request, response);
+		getServletContext().getRequestDispatcher("/WEB-INF/jsp/accueil.jsp").forward(request, response);
 	}
 
 }

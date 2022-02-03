@@ -20,7 +20,7 @@ public class UtilisateurDaoImpl implements UtilisateurDAO {
 	private final static String SELECT_BY_ID = "SELECT * FROM UTILISATEURS BY id = ?";
 
 	@Override
-	public void newUtilisateur(Utilisateur utilisateur) {
+	public void newUtilisateur(Utilisateur utilisateur) throws DALException {
 
 		try {
 			Connection cnx = ConnexionProvider.getConnection();
@@ -48,8 +48,7 @@ public class UtilisateurDaoImpl implements UtilisateurDAO {
 			pstmt.close();
 			cnx.close();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			throw new DALException("problème avec la méthode newUtilisateur", e);
 		}
 
 		// TODO Auto-generated method stub
@@ -57,7 +56,7 @@ public class UtilisateurDaoImpl implements UtilisateurDAO {
 	}
 
 	@Override
-	public Utilisateur selectByPseudo(String pseudo) {
+	public Utilisateur selectByPseudo(String pseudo) throws DALException {
 		// declaration
 		Utilisateur utilisateur = null;
 		Connection cnx;
@@ -77,15 +76,14 @@ public class UtilisateurDaoImpl implements UtilisateurDAO {
 			}
 
 		} catch (SQLException e) {
-			// TODO by @Nael
-			// throw new DALException("problème de méthode selectByPseudo()",e);
+			throw new DALException("problème de méthode selectByPseudo()",e);
 		} finally {
 			// cnx.close(); //TODO by @Nael
 		}
 		return utilisateur;
 	}
 
-	public Utilisateur selectByPseudoConnexion(String identifiant, String motDePasse) throws DALException{
+	public Utilisateur selectByPseudoConnexion(String identifiant, String motDePasse) throws DALException {
 		Utilisateur user = null;
 		try {
 			Connection cnx = ConnexionProvider.getConnection();
@@ -106,8 +104,8 @@ public class UtilisateurDaoImpl implements UtilisateurDAO {
 
 			}
 		} catch (SQLException e) {
-			// lever une exception de type DALException
-			throw new DALException("probleme technique", e);
+
+			throw new DALException("probleme avec la méthode selectByPseudoConnexion", e);
 			
 		}
 		return user;
@@ -115,7 +113,7 @@ public class UtilisateurDaoImpl implements UtilisateurDAO {
 	}
 
 	@Override
-	public Utilisateur selectById(int id) {
+	public Utilisateur selectById(int id) throws DALException {
 		// création de mes varibales
 		Utilisateur utilisateur = null;
 		Connection cnx;
@@ -135,8 +133,7 @@ public class UtilisateurDaoImpl implements UtilisateurDAO {
 			}
 
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			throw new DALException("problème avec la méthode selectById", e);
 		}
 
 		return utilisateur;

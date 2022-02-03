@@ -4,14 +4,14 @@ import fr.eni.projet.bo.Utilisateur;
 
 public interface UtilisateurDAO {
 //methode pour création d'utlisateur
-	public void newUtilisateur(Utilisateur utilisateur);
+	public void newUtilisateur(Utilisateur utilisateur) throws DALException;
 
 	// methode de selection par pseudo
-	public abstract Utilisateur selectByPseudo(String pseudo);
+	public abstract Utilisateur selectByPseudo(String pseudo) throws DALException;
 
 	// methode de selection par pseudo
-	public abstract Utilisateur selectByPseudoConnexion(String identifiant, String motDePasse)throws DALException;
+	public abstract Utilisateur selectByPseudoConnexion(String identifiant, String motDePasse) throws DALException;
 
-	public Utilisateur selectById(int id);
+	public Utilisateur selectById(int id) throws DALException;
 
 }

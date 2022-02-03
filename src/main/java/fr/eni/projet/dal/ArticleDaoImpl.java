@@ -21,8 +21,8 @@ import fr.eni.projet.util.ConnexionProvider;
 public class ArticleDaoImpl implements ArticleDAO {
 
 	private static final String INSERT = "INSERT INTO ARTICLES_VENDUS (nom_article, description, date-debut-encheres, date_fin_encheres, prix_initial, no_utilisateur, no_categorie) VALUES (?, ?, ?, ?, ?, ?, ?);";
-private static final String SELECT_ARTICLE="SELECT (nom_article, description, date-debut-encheres, date_fin_encheres, prix_initial, no_utilisateur, no_categorie)FROM ARTICLES_VENDUS";
-	
+	private static final String SELECT_ARTICLE = "SELECT (nom_article, description, date-debut-encheres, date_fin_encheres, prix_initial, no_utilisateur, no_categorie) FROM ARTICLES_VENDUS";
+
 	@Override
 	public void insertArticle(Article article) {
 
@@ -42,7 +42,7 @@ private static final String SELECT_ARTICLE="SELECT (nom_article, description, da
 			rs.close();
 			stmt.close();
 			cnx.close();
-			
+
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -54,26 +54,26 @@ private static final String SELECT_ARTICLE="SELECT (nom_article, description, da
 	public List<Article> selectAll() {
 		List<Article> liste_article = new ArrayList<>();
 		try {
-			//déclaration de mes variable
+			// déclaration de mes variable
 			Connection cnx;
-			Statement stmt ;
+			Statement stmt;
 			ResultSet rs;
-			//hydrataion de mes varibales
+			// hydrataion de mes varibales
 			cnx = ConnexionProvider.getConnection();
 			stmt = cnx.createStatement();
 			rs = stmt.executeQuery(SELECT_ARTICLE);
-			
+
 			Article art = new Article();
-			while(rs.next()) {
+			while (rs.next()) {
 //				Date date = LocalDate.valueOf(date);
 //				LocalDate local;
 //				date.toLocalDate();
 				Utilisateur user;
-				user.getNoUtilisateur();                                                                        
-			 art = new Article(rs.getString("nom_article"), rs.getString("description"),
-					 rs.getDate("date-debut-encheres").toLocalDate(), rs.getDate("date-fin-encheres").toLocalDate(),
-					 rs.getInt("prix_initial"),rs.getInt("no_utilisateur"),rs.getInt("no_categorie") );
-			} 
+				user.getNoUtilisateur();
+				art = new Article(rs.getString("nom_article"), rs.getString("description"),
+						rs.getDate("date-debut-encheres").toLocalDate(), rs.getDate("date-fin-encheres").toLocalDate(),
+						rs.getInt("prix_initial"), rs.getInt("no_utilisateur"), rs.getInt("no_categorie"));
+			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -8,6 +8,7 @@ public interface ArticleDAO {
 
 	public void insertArticle(Article article);
 
+	
 	public List<Article> selectAll();
 
 		

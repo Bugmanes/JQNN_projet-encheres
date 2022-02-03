@@ -13,8 +13,8 @@ import fr.eni.projet.bo.Utilisateur;
 /**
  * Servlet implementation class GestionProfil
  */
-@WebServlet("/GestionProfil")
-public class GestionProfil extends HttpServlet {
+@WebServlet("/ModifierProfil")
+public class ModifierProfil extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
@@ -24,6 +24,10 @@ public class GestionProfil extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		request.getRequestDispatcher("/WEB-INF/profil.jsp").forward(request, response);
+		
+		HttpSession session = request.getSession();
+		request.setAttribute("utilisateur", session.getAttribute("utilisateur"));
+		getServletContext().getRequestDispatcher("/profil").forward(request, response);
 	}
 
 	/**
@@ -32,9 +36,7 @@ public class GestionProfil extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		HttpSession session = request.getSession();
-		Utilisateur utilisateur = (Utilisateur) session.getAttribute("utilisateur");
-		getServletContext().getRequestDispatcher("/profil").forward(request, response);
+		
 	}
 
 }

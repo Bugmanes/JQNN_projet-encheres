@@ -24,7 +24,7 @@
                 <li>${utilisateur.codePostal}</li>
                 <li>${utilisateur.ville }</li>
             </ul>
-            <button type="submit" value="modifier">Modifier</button>					
+            <button type="submit" value="modifier" name="modifier">Modifier</button>					
 					
         </form>
     </section>

@@ -11,7 +11,7 @@
 <%@include file="headerConnecter.jsp" %>
 <form action="" method="POST">
       
-      Pseudo : <input type="text" placeholder="Saisissez votre user Pseudo :" autocomplete="${utilisateur.pseudo}"><br>
+      Pseudo : <input type="text" placeholder="Saisissez votre user Pseudo :" autocomplete="${utilisateur.pseudo}" ><br>
       Saisissez votre Nom :<input type="text" placeholder="Saisissez votre nom :"autocomplete="${utilisateur.nom}"><br>
       Saisissez votre prenom :<input type="text" placeholder="Saisissez votre prenom :"autocomplete="${utilisateur.prenom }"><br>
       Saisissez votre email:<input type="email" placeholder="Saisissez votre email:"autocomplete="${utilisateur.email }"><br>
@@ -24,8 +24,8 @@
       Saisissez votre Code_Postal:<input type="text" placeholder="Saisissez votre Code Pstal:"autocomplete="${utilisateur.codePostal}"><br>
 	  
 	  Crédit :${utilisateur.credit} 	 	      
-      <input type="submit" value="regester now">
-      <input type="submit" value="Supprimer mon compte ">
+      <input type="submit" value="modifier" name = "modifier">
+      <input type="submit" value="Supprimer mon compte " name ="supprimer">
     </form>
 	
 

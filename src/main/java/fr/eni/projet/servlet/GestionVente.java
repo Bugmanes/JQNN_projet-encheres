@@ -39,7 +39,7 @@ public class GestionVente extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		// afficher une vente en particulier
+		// transmission de l'utilisateur à la page nouvelle vente
 	}
 
 	/**

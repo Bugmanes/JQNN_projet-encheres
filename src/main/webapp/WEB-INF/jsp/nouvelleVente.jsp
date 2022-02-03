@@ -11,7 +11,7 @@
 <%@include file="headerConnecter.jsp" %>
     <div class="container">
       <header></header>
-      <main>
+      <main> 
         <div id="photo"></div>
         <div class="corpsVente">
           <form method="post" action="<%=request.getContextPath()%>/GestionVente">

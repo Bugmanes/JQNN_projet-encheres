@@ -19,16 +19,17 @@ public class CategorieManager {
 	}
 	
 	public static CategorieManager getInstance() {
+		categorieDAO = DAOFactory.getCategorieDAO();
+		categories = categorieDAO.selectAll();
 		if (instance == null) {
 			instance = new CategorieManager();
-			categorieDAO = DAOFactory.getCategorieDAO();
-			categories = categorieDAO.selectAll();
 		}
 		return instance;
 	}
 	
 	public Categorie chercherCategorie(String libelle) {
 		Categorie categorie = null;
+		
 		for (Categorie cat : categories) {
 			if (cat.getLibelle().equals(libelle)) {
 				categorie = cat;

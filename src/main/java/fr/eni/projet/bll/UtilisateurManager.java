@@ -16,16 +16,11 @@ public class UtilisateurManager {
 		if (instance == null) {
 			instance = new UtilisateurManager();
 			UtilisateurDAO dao = DAOFactory.getUtilisateurDAO();
-
 		}
-
 		return instance;
 	}
 
 	public Utilisateur authentification(String identifiant, String motDePasse) {
-		
-
-		
 
 	}
 

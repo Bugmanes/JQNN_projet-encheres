@@ -8,6 +8,6 @@ public interface UtilisateurDAO {
 
 	public abstract Utilisateur selectByPseudo(String pseudo);
 
-	public abstract Utilisateur selectByPseudoConnexion(Utilisateur utilisateur);
+	public abstract Utilisateur selectByPseudoConnexion(String identifiant, String motDePasse);
 
 }

@@ -21,6 +21,8 @@ public class UtilisateurManager {
 	}
 
 	public Utilisateur authentification(String identifiant, String motDePasse) {
+		Utilisateur utilisateur = new Utilisateur(identifiant, motDePasse);
+		return utilisateur;
 
 	}
 

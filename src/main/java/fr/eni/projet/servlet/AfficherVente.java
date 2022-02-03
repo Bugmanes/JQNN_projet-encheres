@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import fr.eni.projet.bo.Article;
+
 /**
  * Servlet implementation class Encherir
  */
@@ -16,8 +18,11 @@ public class AfficherVente extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
+
 		// afficher une vente
+		Article article = (Article) request.getAttribute("article");
+		request.setAttribute("article", article);
+		request.getRequestDispatcher("/WEB-INF/jsp/detailVente.jsp").forward(request, response);
 	}
 
 	/**

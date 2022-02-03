@@ -1,3 +1,4 @@
+<%@page import="fr.eni.projet.bo.Utilisateur"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 
@@ -15,6 +16,7 @@
 	<section>
         <form action="<%=request.getContextPath()+"/AfficherProfil" %>" method="POST">
             <ul>
+            	<%Utilisateur utilisateur = (Utilisateur) request.getAttribute("utilisateur"); %>
                 <li>${utilisateur.pseudo}</li>
                 <li>${utilisateur.nom}</li>
                 <li>${utilisateur.prenom }</li>

@@ -23,10 +23,12 @@ public class AfficherProfil extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		request.getRequestDispatcher("/WEB-INF/profil.jsp").forward(request, response);
 		
+		// récupération de l'utilisateur de la session et passage en attribut de request
 		HttpSession session = request.getSession();
 		request.setAttribute("utilisateur", session.getAttribute("utilisateur"));
+		
+		// envoi à la page d'affichage du profil
 		getServletContext().getRequestDispatcher("/profil").forward(request, response);
 	}
 

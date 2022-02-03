@@ -6,10 +6,10 @@ import fr.eni.projet.bo.Article;
 
 public interface ArticleDAO {
 
-	public void insertArticle(Article article);
+	public void insertArticle(Article article) throws DALException;
 
 	
-	public List<Article> selectAll();
+	public List<Article> selectAll() throws DALException;
 
 		
 	

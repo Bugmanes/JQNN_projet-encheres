@@ -25,7 +25,7 @@ public class ArticleDaoImpl implements ArticleDAO {
 	private static final String SELECT_ALL = "SELECT * FROM ARTICLES_VENDUS";
 
 	@Override
-	public void insertArticle(Article article) {
+	public void insertArticle(Article article) throws DALException {
 
 		try {
 			Connection cnx = ConnexionProvider.getConnection();
@@ -45,14 +45,13 @@ public class ArticleDaoImpl implements ArticleDAO {
 			cnx.close();
 
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			throw new DALException("problème dans la méthode insertArticle", e);
 		}
 
 	}
 
 	@Override
-	public List<Article> selectAll() {
+	public List<Article> selectAll() throws DALException {
 		List<Article> liste_article = new ArrayList<>();
 		Article art;
 		Categorie cat;
@@ -81,8 +80,7 @@ public class ArticleDaoImpl implements ArticleDAO {
 
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			throw new DALException("problème avec la méthode selectAll article", e);
 		}
 		return liste_article;
 	}

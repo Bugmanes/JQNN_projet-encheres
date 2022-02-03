@@ -25,8 +25,11 @@
                 <li>${utilisateur.rue}</li>
                 <li>${utilisateur.codePostal}</li>
                 <li>${utilisateur.ville }</li>
+                <%boolean ok =true; %>
             </ul>
+            <% if(ok){%>
             <button type="submit" value="modifier" name="modifier" >Modifier</button>					
+			<%} %>
 					
         </form>
     </section>

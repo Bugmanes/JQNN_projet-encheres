@@ -29,7 +29,7 @@ public class AfficherProfil extends HttpServlet {
 		request.setAttribute("utilisateur", session.getAttribute("utilisateur"));
 		
 		// envoi à la page d'affichage du profil
-		getServletContext().getRequestDispatcher("/profil").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/jsp/profil.jsp").forward(request, response);
 	}
 
 	/**
@@ -38,6 +38,7 @@ public class AfficherProfil extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		
 		
 	}
 

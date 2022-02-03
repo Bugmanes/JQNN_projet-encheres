@@ -10,6 +10,7 @@
 <body>
 <%@include file="headerConnecter.jsp" %>
 <form action="" method="POST">
+
      <%Utilisateur utilisateur = (Utilisateur) request.getAttribute("utilisateur");%>
       Pseudo : <input type="text" placeholder="Saisissez votre user Pseudo :" autocomplete="${utilisateur.pseudo}" ><br>
       Saisissez votre Nom :<input type="text" placeholder="Saisissez votre nom :"autocomplete="${utilisateur.nom}"><br>
@@ -24,9 +25,12 @@
       Saisissez votre Code_Postal:<input type="text" placeholder="Saisissez votre Code Pstal:"autocomplete="${utilisateur.codePostal}"><br>
 	  
 	  Crédit :${utilisateur.credit} 
+	  
+	  <button type ="submit" value="enregistrer" name="enregistrer">Enregistere</button>
+	  
 	  	 	      
-      <input type="submit" value="modifier"  name = "modifier" >
-      <input type="submit" value="Supprimer mon compte " name ="supprimer">
+       <button type ="submit" value="supprimer" name=""supprimer"">Supprimer mon Coumpte</button>
+      
     </form>
 	
 

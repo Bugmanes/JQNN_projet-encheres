@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 import fr.eni.projet.bo.Utilisateur;
 import fr.eni.projet.util.ConnexionProvider;
@@ -16,7 +17,8 @@ public class UtilisateurDaoImpl implements UtilisateurDAO {
 	private final static String SQL_INSERT = "INSERT INTO  UTILISATEURS (pseudo,nom,prenom,email,telephone,rue,code_postal,ville,mot_de_passe,credit,administrateur) VALUES (?,?,?,?,?,?,?,?,?,?,?);";
 	private final static String SELECT_BY_PSEUDO = "SELECT * FROM UTILISATEURS WHERE pseudo = ?;";
 	private final static String SELECT_BY_PSEUDO_CONNEXION = "SELECT * FROM UTILISATEURS WHERE (pseudo =? OR email =?)";
-
+    private final static String SELECT_BY_ID="SELECT * FROM UTILISATEURS BY id = ?";
+	
 	@Override
 	public void newUtilisateur(Utilisateur utilisateur) {
 
@@ -111,6 +113,36 @@ public class UtilisateurDaoImpl implements UtilisateurDAO {
 			e.printStackTrace();
 		}
 		return ;
+	}
+
+	@Override
+	public Utilisateur selectById(int id) {
+		//création de mes varibales
+		Utilisateur utilisateur = null;
+		Connection cnx;
+		ResultSet rs;
+		PreparedStatement pstmt = null;
+		try {
+			//récupération de la connexion
+			cnx = ConnexionProvider.getConnection();
+			PreparedStatement stmt = cnx.prepareStatement(SELECT_BY_ID);
+			pstmt.setInt(1, id);
+			rs = pstmt.executeQuery();
+			//création du nouveau utilisateur
+			if(rs.next()) {
+				utilisateur = new Utilisateur(rs.getString("pseudo"), rs.getString("nom"), rs.getString("prenom"),
+						rs.getString("email"), rs.getString("telephone"), rs.getString("rue"),
+						rs.getString("code_postal"), rs.getString("ville"));
+			} 
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		
+		return utilisateur;
 	}
 
 }

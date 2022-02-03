@@ -10,10 +10,12 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
 import fr.eni.projet.bo.Article;
+import fr.eni.projet.bo.Utilisateur;
 import fr.eni.projet.util.ConnexionProvider;
 
 public class ArticleDaoImpl implements ArticleDAO {
@@ -63,9 +65,14 @@ private static final String SELECT_ARTICLE="SELECT (nom_article, description, da
 			
 			Article art = new Article();
 			while(rs.next()) {
-				Date zertyu = rs.getDate("date-debut-encheres");
-				LocalDate.valueOf(zertyu);
-			 art = new Article(rs.getString("nom_article"), rs.getString("description"), rs.getDate("date-debut-encheres"), rs.getDate("date-fin-encheres"),rs.getInt("prix_initial"),rs.getInt("no_utilisateur"), rs.getInt("no_categorie") );
+//				Date date = LocalDate.valueOf(date);
+//				LocalDate local;
+//				date.toLocalDate();
+				Utilisateur user;
+				user.getNoUtilisateur();                                                                        
+			 art = new Article(rs.getString("nom_article"), rs.getString("description"),
+					 rs.getDate("date-debut-encheres").toLocalDate(), rs.getDate("date-fin-encheres").toLocalDate(),
+					 rs.getInt("prix_initial"),rs.getInt("no_utilisateur"),rs.getInt("no_categorie") );
 			} 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

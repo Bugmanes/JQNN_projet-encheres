@@ -1,4 +1,4 @@
-<%@page import="fr.eni.projet.bll.UtilisateurManager"%>
+<%@page import="fr.eni.projet.bo.Utilisateur"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -10,7 +10,7 @@
 <body>
 <%@include file="headerConnecter.jsp" %>
 <form action="" method="POST">
-      
+     <%Utilisateur utilisateur = (Utilisateur) request.getAttribute("utilisateur");%>
       Pseudo : <input type="text" placeholder="Saisissez votre user Pseudo :" autocomplete="${utilisateur.pseudo}" ><br>
       Saisissez votre Nom :<input type="text" placeholder="Saisissez votre nom :"autocomplete="${utilisateur.nom}"><br>
       Saisissez votre prenom :<input type="text" placeholder="Saisissez votre prenom :"autocomplete="${utilisateur.prenom }"><br>

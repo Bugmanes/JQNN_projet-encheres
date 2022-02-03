@@ -1,6 +1,9 @@
 package fr.eni.projet.bll;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+
 import fr.eni.projet.bo.Article;
 import fr.eni.projet.bo.Categorie;
 import fr.eni.projet.bo.Utilisateur;
@@ -21,7 +24,14 @@ public class EnchereManager {
 		}
 		return instance;
 	}
-
+public List<Article> listerArticles(){
+	ArticleDAO adao = DAOFactory.getArticleDAO();
+	
+	List<Article> liste = adao.selectAll();
+	
+	return liste;
+};
+	
 	public void nouvelleVente(String nom, String description, LocalDate debut, LocalDate fin, int prixInitial,
 			Utilisateur utilisateur, Categorie categorie) {
 		Article article = new Article(nom, description, debut, fin, prixInitial, utilisateur, categorie);

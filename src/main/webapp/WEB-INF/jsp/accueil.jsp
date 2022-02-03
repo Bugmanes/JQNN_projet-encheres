@@ -8,7 +8,7 @@
 <link rel="stylesheet" href="asset/css/style.css">
 </head>
 <body>
-<%@include file="headerInvite.jsp" %>
+	<%@include file="headerInvite.jsp"%>
 	<main>
 		<div class="titre">
 			<h3>Liste des enchères</h3>
@@ -18,7 +18,8 @@
 				<h4>Filtres :</h4>
 			</div>
 			<div class="rechercher">
-				<form action="<%=request.getContextPath()%>/AcceuilServlet"  method="get">
+				<form action="<%=request.getContextPath()%>/AcceuilServlet"
+					method="get">
 					<div>
 						<input type="search" id="maRecherche" name="q"
 							placeholder="le nom de l'article contient " />
@@ -74,7 +75,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="annonce">
+		<!-- 		<div class="annonce">
 			<div class="annonce1">
 				<div class="gauche">
 					<div class="imgannonce1">
@@ -98,8 +99,20 @@
 					</div>
 				</div>
 			</div>
+		</div> -->
+		<div class="Articles">
+			<%
+			List<Article> liste = (List<Article>) request.getAttribute("liste");
+			for(Article article:liste){
+			out.print(article.getNom());
+			out.print(article.getPrix());
+			out.print(article.getPrixInitial());
+			out.print(article.getDateFinEncheres());
+			out.print(article.getVendeur());
+		}
+		%>
 		</div>
-	</main> 
+	</main>
 
 </body>
 </html>

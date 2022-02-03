@@ -29,11 +29,11 @@ public class DAOFactory {
 		return art;
 	}
 
-	public static UtilisateurDAO selectUtilisateur() {
-
-		UtilisateurDAO utilisateurDAo = new UtilisateurDaoImpl();
-		// me return une new instance d'Utilisateur qui implémente les methodes de
-		// UtilisateurDAO
-		return utilisateurDAo;
-	}
+//	public static UtilisateurDAO selectUtilisateur() {
+//
+//		UtilisateurDAO utilisateurDAo = new UtilisateurDaoImpl();
+//		// me return une new instance d'Utilisateur qui implémente les methodes de
+//		// UtilisateurDAO
+//		return utilisateurDAo;
+//	}
 }

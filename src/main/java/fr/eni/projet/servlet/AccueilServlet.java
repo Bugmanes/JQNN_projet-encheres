@@ -1,11 +1,17 @@
 package fr.eni.projet.servlet;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import fr.eni.projet.bll.EnchereManager;
+import fr.eni.projet.bo.Article;
 
 /**
  * Servlet implementation class AccueilServlet
@@ -26,7 +32,11 @@ public class AccueilServlet extends HttpServlet {
 //		}else 
 //		// afficher la liste d'enchères
 //		
-	
+		EnchereManager em = EnchereManager.getInstance();
+		
+		List<Article> articles = em.listerArticles();
+
+		request.setAttribute("liste", articles);
 		getServletContext().getRequestDispatcher("/WEB-INF/jsp/accueil.jsp").forward(request, response);
 	}
 

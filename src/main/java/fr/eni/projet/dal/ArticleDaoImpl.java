@@ -15,13 +15,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import fr.eni.projet.bo.Article;
+import fr.eni.projet.bo.Categorie;
 import fr.eni.projet.bo.Utilisateur;
 import fr.eni.projet.util.ConnexionProvider;
 
 public class ArticleDaoImpl implements ArticleDAO {
 
 	private static final String INSERT = "INSERT INTO ARTICLES_VENDUS (nom_article, description, date-debut-encheres, date_fin_encheres, prix_initial, no_utilisateur, no_categorie) VALUES (?, ?, ?, ?, ?, ?, ?);";
-	private static final String SELECT_ARTICLE = "SELECT (nom_article, description, date-debut-encheres, date_fin_encheres, prix_initial, no_utilisateur, no_categorie) FROM ARTICLES_VENDUS";
+	private static final String SELECT_ALL = "SELECT * FROM ARTICLES_VENDUS";
 
 	@Override
 	public void insertArticle(Article article) {
@@ -53,6 +54,11 @@ public class ArticleDaoImpl implements ArticleDAO {
 	@Override
 	public List<Article> selectAll() {
 		List<Article> liste_article = new ArrayList<>();
+		Article art;
+		Categorie cat;
+		Utilisateur user;
+		UtilisateurDAO udao = DAOFactory.getUtilisateurDAO();
+		CategorieDAO cdao = DAOFactory.getCategorieDAO();
 		try {
 			// déclaration de mes variable
 			Connection cnx;
@@ -61,23 +67,23 @@ public class ArticleDaoImpl implements ArticleDAO {
 			// hydrataion de mes varibales
 			cnx = ConnexionProvider.getConnection();
 			stmt = cnx.createStatement();
-			rs = stmt.executeQuery(SELECT_ARTICLE);
+			rs = stmt.executeQuery(SELECT_ALL);
 
-			Article art = new Article();
 			while (rs.next()) {
-//				Date date = LocalDate.valueOf(date);
-//				LocalDate local;
-//				date.toLocalDate();
-				Utilisateur user;
-				user.getNoUtilisateur();
+
+				user = udao.selectById(rs.getInt("no_utilisateur"));
+				cat = cdao.selectById(rs.getInt("no_categorie"));
+				
 				art = new Article(rs.getString("nom_article"), rs.getString("description"),
 						rs.getDate("date-debut-encheres").toLocalDate(), rs.getDate("date-fin-encheres").toLocalDate(),
-						rs.getInt("prix_initial"), rs.getInt("no_utilisateur"), rs.getInt("no_categorie"));
+						rs.getInt("prix_initial"), user, cat);
+				liste_article.add(art);
+
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return null;
+		return liste_article;
 	}
 }

@@ -15,7 +15,7 @@ public class UtilisateurDaoImpl implements UtilisateurDAO {
 	// requete SQL Insert
 	private final static String SQL_INSERT = "INSERT INTO  UTILISATEURS (pseudo,nom,prenom,email,telephone,rue,code_postal,ville,mot_de_passe,credit,administrateur) VALUES (?,?,?,?,?,?,?,?,?,?,?);";
 	private final static String SELECT_BY_PSEUDO = "SELECT * FROM UTILISATEURS WHERE pseudo = ?;";
-	private final static String SELECT_BY_PSEUDO_CONNEXION = "SELECT * FROM UTILISATEUR WHERE (pseudo =? OR email =?) AND password =?";
+	private final static String SELECT_BY_PSEUDO_CONNEXION = "SELECT * FROM UTILISATEURS WHERE (pseudo =? OR email =?)";
 
 	@Override
 	public void newUtilisateur(Utilisateur utilisateur) {
@@ -83,17 +83,19 @@ public class UtilisateurDaoImpl implements UtilisateurDAO {
 		return utilisateur;
 	}
 
-	public Utilisateur selectByPseudoConnexion(Utilisateur utilisateur) throws BLLException, DALException {
+	public Utilisateur selectByPseudoConnexion(String identifiant, String motDePasse)
+			throws BLLException, DALException {
 		try {
 			Connection cnx = ConnexionProvider.getConnection();
 			PreparedStatement stmt = cnx.prepareStatement(SELECT_BY_PSEUDO_CONNEXION);
-			stmt.setString(1, utilisateur.getPseudo());
-			stmt.setString(2, utilisateur.getEmail());
-			stmt.setString(3, utilisateur.getMotDePasse());
+			stmt.setString(1, identifiant);
+			stmt.setString(2, identifiant);
+			Utilisateur user = null;
+
 			ResultSet result = stmt.executeQuery();
 			if (result.next()) {
-				utilisateur.setNom(result.getString("nom"));
-				utilisateur.setPrenom(result.getString("prenom"));
+				user = new Utilisateur(result.getString("nom"), result.getString("prenom"), result);
+				return true;
 			} else {
 				// levee d'une BLLException
 				throw new BLLException("identification incorect");
@@ -104,7 +106,7 @@ public class UtilisateurDaoImpl implements UtilisateurDAO {
 			throw new DALException("probleme technique", e);
 			e.printStackTrace();
 		}
-		return utilisateur;
+		return user;
 	}
 
 }

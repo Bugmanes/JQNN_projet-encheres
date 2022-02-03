@@ -13,7 +13,6 @@
     <div class="container">
       <header></header>
       <main>
-      	<%Article article = (Article) request.getAttribute("article"); %>
         <h2>Détail vente</h2>
         <div class="corpsVente">
           <p>${article.nomArticle}</p>
@@ -28,14 +27,14 @@
           </div>
           <div class="right">
             <div>${article.description}</div>
-            <div><%=article.getCategorie().getLibelle() %></div>
-            <div>${article.prixVentes} par <%=article.getAcheteur().getPseudo()%></div>
+            <div>${article.categorie.libelle}</div>
+            <div>${article.prixVentes} par ${article.acheteur.pseudo}</div>
             <div>${article.prixInitial}</div>
             <div>${article.dateFinEncheres}</div>
-            <div><%=article.getRetrait().getRue()%><br>
-            	<%=article.getRetrait().getCodePostal() + " " + article.getRetrait().getVille()%>
+            <div>${article.retrait.rue}<br>
+            	${article.retrait.codePostal} ${article.retrait.ville}
             </div>
-            <div><%=article.getVendeur().getPseudo()%></div>
+            <div>${article.vendeur.pseudo}</div>
           </div>
         </div>
         <form method="post" action="#">

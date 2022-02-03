@@ -33,6 +33,7 @@ public class AfficherVente extends HttpServlet {
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		// faire une enchère sur une vente
+		int enchere = Integer.parseInt(request.getParameter("enchere"));
 	}
 
 }

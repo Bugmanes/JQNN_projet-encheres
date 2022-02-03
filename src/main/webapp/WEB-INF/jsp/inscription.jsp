@@ -1,3 +1,4 @@
+
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -7,60 +8,70 @@
 <title>Inscription</title>
 <link rel="stylesheet" href="asset/css/style.css">
 </head>
-<%@include file="headerInvite.jsp" %>
+<%@include file="headerInvite.jsp"%>
 <body>
 	<main>
 		<div class="titreMonProfil">
 			<h4>Mon Profil</h4>
 		</div>
 		<div class="formulaireInscription">
-			<form action="<%=request.getContextPath()%>/InscriptionConnexion" method ="POST">
-				<div>
-					<label for="pseudo">Pseudo :</label> <input type="text" id="pseudo"
-						name="pseudo" />
+			<form action="<%=request.getContextPath()%>/InscriptionConnexion"
+				method="POST">
+	          <div  class="partieGauche">
+					<div class="pseudo">
+						<label for="pseudo">Pseudo :</label> <input type="text"
+							id="pseudo" name="pseudo" />
+					</div>
+					<div class="prenom">
+						<label for="prenom">prenom :</label> <input type="text"
+							id="prenom" name="prenom" />
+					</div>
+					<div  class="telephone">
+						<label for="telephone">telephone :</label> <input type="phone"
+							id="telephone" name="telephone" />
+					</div>
+
+					<div class="codePostal">
+						<label for="codePostal">Code Postal :</label> <input type="numeric"
+							id="codePostal" name="codePostal" />
+					</div>
+
+					<div class="password">
+						<label for="password">Mot de passe :</label> <input
+							type="password" id="password" name="password" />
+					</div>
 				</div>
-				<div>
-					<label for="prenom">prenom :</label> <input type="text" id="prenom"
-						name="prenom" />
+				<div class="partieDroite">
+					<div class="nom">
+						<label for="nom">Nom :</label> <input type="text" id="nom"
+							name="nom" />
+					</div>
+					<div class="email">
+						<label for="email">email :</label> <input type="email" id="email"
+							name="email" />
+					</div>
+					<div class="rue">
+						<label for="rue">Rue :</label> <input type="text" id="rue"
+							name="rue" />
+					</div>
+					<div class="ville">
+						<label for="ville">ville :</label> <input type="text" id="ville"
+							name="ville" />
+					</div>
+					<div class="password2">
+						<label for="password2">Confirmation :</label> <input
+							type="password" id="password2" name="password2" />
+					</div>
 				</div>
-				<div>
-					<label for="telephone">telephone :</label> <input type="phone"
-						id="telephone" name="telephone" />
-				</div>
-				<div>
-					<label for="password">Mot de passe :</label> <input type="password"
-						id="password" name="password" />
-				</div>
-				<div>
-					<label for="nom">Nom :</label> <input type="text" id="nom"
-						name="nom" />
-				</div>
-				<div>
-					<label for="email">email :</label> <input type="email" id="email"
-						name="email" />
-				</div>
-				<div>
-					<label for="rue">Rue :</label> <input type="text" id="rue"
-						name="rue" />
-				</div>
-				<div>
-					<label for="ville">ville :</label> <input type="text" id="ville"
-						name="ville" />
-				</div>
-				<div>
-					<label for="password2">Confirmation :</label> <input
-						type="password" id="password2" name="password2" />
-				</div>
-				
 				<div class="buttonCree">
 					<a href="/seConnecter">
-					<button type="submit">Créer</button>
+						<button type="submit">Créer</button>
 					</a>
 				</div>
-				
+
 				<div class="buttonAnnuler">
-					<a href="/acceuil.html">
-						<button>
+					<a href="/accueil">
+						<button type="reset">
 							<p>Anuller</p>
 						</button>
 					</a>

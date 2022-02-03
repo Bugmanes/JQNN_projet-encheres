@@ -23,3 +23,8 @@
 a {
   text-decoration: none;
   color: black;
+}
+
+.formulaireInscription{
+	  display: flex;
+}

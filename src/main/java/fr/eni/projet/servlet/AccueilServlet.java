@@ -26,7 +26,8 @@ public class AccueilServlet extends HttpServlet {
 //		}else 
 //		// afficher la liste d'enchères
 //		
-			
+		EnchereManager.
+	
 			
 		getServletContext().getRequestDispatcher("/WEB-INF/jsp/accueil.jsp").forward(request, response);
 	}

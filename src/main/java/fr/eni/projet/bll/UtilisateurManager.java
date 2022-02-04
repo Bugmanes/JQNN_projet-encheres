@@ -39,14 +39,19 @@ public class UtilisateurManager {
 
 	}
 	
-	public Utilisateur cherche (String pseudo, String nom, String prenom, String email, String telephone, String rue,
-			String codePostal, String ville, String motDePasse, int credit, boolean administrateur) throws DALException {
+	public int cherche (String pseudo, String nom, String prenom, String email, String telephone, String rue,
+			String codePostal, String ville, String motDePasse, int credit, boolean administrateur) {
 		Utilisateur user = new Utilisateur(pseudo, nom, prenom, email, telephone, rue, codePostal, ville, motDePasse,
 				credit, administrateur);
 		UtilisateurDAO userDAO = DAOFactory.getUtilisateurDAO();
-		userDAO.newUtilisateur(user);
-		
-		return user;
+		try {
+			userDAO.selectById(user.getNoUtilisateur());
+		} catch (DALException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}	
+		return user.getNoUtilisateur();
+
 	}
 	
 }

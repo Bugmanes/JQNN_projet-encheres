@@ -17,8 +17,7 @@ public class UtilisateurDaoImpl implements UtilisateurDAO {
 	private final static String SQL_INSERT = "INSERT INTO  UTILISATEURS (pseudo,nom,prenom,email,telephone,rue,code_postal,ville,mot_de_passe,credit,administrateur) VALUES (?,?,?,?,?,?,?,?,?,?,?);";
 	private final static String SELECT_BY_PSEUDO = "SELECT * FROM UTILISATEURS WHERE pseudo = ?;";
 	private final static String SELECT_BY_PSEUDO_CONNEXION = "SELECT * FROM UTILISATEURS WHERE (pseudo =? OR email =?)";
-	private final static String SELECT_BY_ID = "SELECT * FROM UTILISATEURS BY id = ?";
-
+	private final static String SELECT_BY_ID = "SELECT * FROM UTILISATEURS WHERE id = ?;";
 	@Override
 	public void newUtilisateur(Utilisateur utilisateur) throws DALException {
 
@@ -130,6 +129,7 @@ public class UtilisateurDaoImpl implements UtilisateurDAO {
 				utilisateur = new Utilisateur(rs.getString("pseudo"), rs.getString("nom"), rs.getString("prenom"),
 						rs.getString("email"), rs.getString("telephone"), rs.getString("rue"),
 						rs.getString("code_postal"), rs.getString("ville"));
+				utilisateur.setNoUtilisateur(id);
 			}
 
 		} catch (SQLException e) {

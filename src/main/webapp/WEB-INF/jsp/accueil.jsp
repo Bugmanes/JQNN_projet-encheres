@@ -1,3 +1,5 @@
+<%@page import="java.util.List"%>
+<%@page import="fr.eni.projet.bo.Article"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -104,11 +106,10 @@
 			<%
 			List<Article> liste = (List<Article>) request.getAttribute("liste");
 			for(Article article:liste){
-			out.print(article.getNom());
-			out.print(article.getPrix());
-			out.print(article.getPrixInitial());
-			out.print(article.getDateFinEncheres());
-			out.print(article.getVendeur());
+			out.print("<p>"+article.getNomArticle()+"</p>");
+			out.print("<p>"+article.getPrixInitial()+"</p>");
+			out.print("<p>"+article.getDateFinEncheres()+"</p>");
+			out.print("<p>"+article.getVendeur()+"</p>");
 		}
 		%>
 		</div>

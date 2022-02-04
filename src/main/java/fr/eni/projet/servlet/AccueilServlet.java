@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import fr.eni.projet.bll.EnchereManager;
 import fr.eni.projet.bo.Article;
+import fr.eni.projet.dal.DALException;
 
 @WebServlet("/accueil")
 public class AccueilServlet extends HttpServlet {
@@ -19,18 +20,22 @@ public class AccueilServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-//		if (!request.getParameter("recherche").equalsIgnoreCase("1")) {
-//			request.getRequestDispatcher("/WEB-INF/jsp/acceuil.jsp").forward(request, response);
-//		
-//		}else 
-//		// afficher la liste d'enchères
-//		
-		EnchereManager em = EnchereManager.getInstance();
-		
-		List<Article> articles = em.listerArticles();
 
-		request.setAttribute("liste", articles);
+		try {
+			// je crée un objet de type EncherManager
+			EnchereManager em = EnchereManager.getInstance();
+			// je crée un eliste d'article
+			List<Article> articles = null;
+			// j'attribu a mon article le retour de la methode em.listerArticles();
+			request.setAttribute("liste", articles);
+			articles = em.listerArticles();
+		} catch (DALException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
 		getServletContext().getRequestDispatcher("/WEB-INF/jsp/accueil.jsp").forward(request, response);
+
 	}
 
 }

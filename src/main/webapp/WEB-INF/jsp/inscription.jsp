@@ -36,9 +36,9 @@
 							id="codePostal" name="codePostal" />
 					</div>
 
-					<div class="password">
-						<label for="password">Mot de passe :</label> <input
-							type="password" id="password" name="password" />
+					<div class="motDePasse">
+						<label for="motDePasse">Mot de passe :</label> <input
+							type="password" id="motDePasse" name="motDePasse" />
 					</div>
 				</div>
 				<div class="partieDroite">
@@ -64,13 +64,13 @@
 					</div>
 				</div>
 				<div class="buttonCree">
-					<a href="/seConnecter">
+					<a href="http://localhost:8080/JQNN_projet-encheres/Connexion">
 						<button type="submit">Créer</button>
 					</a> 
 				</div>
 
 				<div class="buttonAnnuler">
-					<a href="/accueil">
+					<a href="http://localhost:8080/JQNN_projet-encheres/Accueil">
 						<button type="reset">
 							<p>Anuller</p>
 						</button>

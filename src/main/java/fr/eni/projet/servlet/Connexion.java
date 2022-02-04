@@ -34,16 +34,14 @@ public class Connexion extends HttpServlet {
 		identifiant = request.getParameter("identifiant");
 		motDePasse = request.getParameter("password");
 		um = UtilisateurManager.getInstance();
-		user = new Utilisateur();
 		user = um.authentification(identifiant, motDePasse);
 
-		HttpSession session = request.getSession();
-		session.setAttribute("utilisateur", user);
 		if (user == null) {
 			request.setAttribute("erreur", false);
 			request.getRequestDispatcher("/WEB-INF/jsp/seConnecter.jsp").forward(request, response);
 		} else {
-			// monte en session user
+			HttpSession session = request.getSession();
+			session.setAttribute("utilisateur", user);
 
 			// je vais sur la page accueil connecte
 			request.getRequestDispatcher("/WEB-INF/jsp/seConnecter.jsp").forward(request, response);

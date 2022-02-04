@@ -26,8 +26,8 @@ public class EnchereManager {
 		return instance;
 	}
 public List<Article> listerArticles() throws DALException{
-	ArticleDAO adao = DAOFactory.getArticleDAO();
 	
+	ArticleDAO adao = DAOFactory.getArticleDAO();
 	List<Article> liste = adao.selectAll();
 	
 	return liste;
@@ -35,9 +35,10 @@ public List<Article> listerArticles() throws DALException{
 	
 	public void nouvelleVente(String nom, String description, LocalDate debut, LocalDate fin, int prixInitial,
 			Utilisateur utilisateur, Categorie categorie) throws DALException {
+		
 		Article article = new Article(nom, description, debut, fin, prixInitial, utilisateur, categorie);
-		ArticleDAO articleDAO = DAOFactory.getArticleDAO();
-		articleDAO.insertArticle(article);
+		ArticleDAO aDAO = DAOFactory.getArticleDAO();
+		aDAO.insertArticle(article);
 	}
 
 }

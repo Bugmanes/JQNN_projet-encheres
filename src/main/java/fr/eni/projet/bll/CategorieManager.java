@@ -13,15 +13,15 @@ public class CategorieManager {
 	
 	private static CategorieManager instance;
 	private static ArrayList<Categorie> categories = new ArrayList<>();
-	private static CategorieDAO categorieDAO;
+	private static CategorieDAO cDAO;
 	
 	private CategorieManager() {
 	
 	}
 	
 	public static CategorieManager getInstance() throws DALException {
-		categorieDAO = DAOFactory.getCategorieDAO();
-		categories = categorieDAO.selectAll();
+		cDAO = DAOFactory.getCategorieDAO();
+		categories = cDAO.selectAll();
 		if (instance == null) {
 			instance = new CategorieManager();
 		}

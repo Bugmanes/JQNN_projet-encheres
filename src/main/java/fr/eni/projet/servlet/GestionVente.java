@@ -25,17 +25,10 @@ import fr.eni.projet.bll.EnchereManager;
 import fr.eni.projet.bo.Categorie;
 import fr.eni.projet.bo.Utilisateur;
 
-/**
- * Servlet implementation class GestionVente
- */
 @WebServlet("/GestionVente")
 public class GestionVente extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
@@ -53,10 +46,6 @@ public class GestionVente extends HttpServlet {
 		request.getRequestDispatcher("/WEB-INF/nouvelleVente.jsp").forward(request, response);
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// créer une vente

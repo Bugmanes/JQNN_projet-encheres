@@ -25,16 +25,11 @@ public class Connexion extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		//doGet(request, response);
-		//******** bloc de declaration ********
+
 		Utilisateur user = null;
 		String identifiant = "";
-		String motDePasse="";
+		String motDePasse = "";
 		UtilisateurManager um = null;
-		
-		//*********bloc de traitement**********
-		// connexion d'un utilisateur
 
 		identifiant = request.getParameter("identifiant");
 		motDePasse = request.getParameter("password");
@@ -43,16 +38,16 @@ public class Connexion extends HttpServlet {
 		user = um.authentification(identifiant, motDePasse);
 
 		HttpSession session = request.getSession();
-		session.setAttribute("utilisateur", um);
+		session.setAttribute("utilisateur", user);
 		if (user == null) {
 			request.setAttribute("erreur", false);
 			request.getRequestDispatcher("/WEB-INF/jsp/seConnecter.jsp").forward(request, response);
-		}else {
-			//monte en session user
-			
-			//je vais sur la page accueil connecte
+		} else {
+			// monte en session user
+
+			// je vais sur la page accueil connecte
 			request.getRequestDispatcher("/WEB-INF/jsp/seConnecter.jsp").forward(request, response);
-			
+
 		}
 
 	}

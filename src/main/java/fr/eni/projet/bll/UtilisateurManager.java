@@ -17,15 +17,15 @@ public class UtilisateurManager {
 	public static UtilisateurManager getInstance() {
 		if (instance == null) {
 			instance = new UtilisateurManager();
-			dao = DAOFactory.getUtilisateurDAO();
 		}
 		return instance;
 	}
 
 	public Utilisateur authentification(String identifiant, String motDePasse) {
-		Utilisateur user = new Utilisateur (identifiant, motDePasse);
-		//contacte la dal
-		user = dao.getClass()
+		
+		Utilisateur user = null;
+		UtilisateurDAO uDao = DAOFactory.getUtilisateurDAO(); 
+		
 		return user;
 
 	}

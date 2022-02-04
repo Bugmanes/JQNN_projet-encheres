@@ -16,6 +16,8 @@ public class Enchere {
 
 	// constructeur surchargé
 	public Enchere(Date dateEnchere, int montantEnchere, Utilisateur utilisateur, Article article) {
+		
+		//insertion des paramétres
 		setDateEnchere(dateEnchere);
 		setMontantEnchere(montantEnchere);
 		setUtilisateur(utilisateur);

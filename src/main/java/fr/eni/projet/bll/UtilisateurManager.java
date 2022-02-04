@@ -19,9 +19,10 @@ public class UtilisateurManager {
 		}
 		return instance;
 	}
-
+	//methode d'authentification par identifiant et mot de passe
 	public Utilisateur authentification(String identifiant, String motDePasse) throws DALException {
-
+		
+		//initialisation
 		Utilisateur user = null;
 		UtilisateurDAO uDao = null;
 		uDao = DAOFactory.getUtilisateurDAO();
@@ -29,7 +30,7 @@ public class UtilisateurManager {
 
 		return user;
 	}
-
+	//methode pour créer un nouvel utilisateur
 	public void nouvelUtilisateur(String pseudo, String nom, String prenom, String email, String telephone, String rue,
 			String codePostal, String ville, String motDePasse, int credit, boolean administrateur)
 			throws DALException {
@@ -39,7 +40,7 @@ public class UtilisateurManager {
 		UtilisateurDAO userDAO = DAOFactory.getUtilisateurDAO();
 		userDAO.newUtilisateur(user);
 	}
-
+	//methode pour chercher un utilisateur
 	public int cherche(String pseudo, String nom, String prenom, String email, String telephone, String rue,
 			String codePostal, String ville, String motDePasse, int credit, boolean administrateur) {
 		Utilisateur user = new Utilisateur(pseudo, nom, prenom, email, telephone, rue, codePostal, ville, motDePasse,
@@ -53,7 +54,7 @@ public class UtilisateurManager {
 		}
 		return user.getNoUtilisateur();
 	}
-
+	//methode pour modifier un utilisateur
 	public Utilisateur modifierUtilisateur(String pseudo, String nom, String prenom, String email, String telephone,
 			String rue, String codePostal, String ville, String motDePasse, Utilisateur utilisateur)
 			throws DALException {

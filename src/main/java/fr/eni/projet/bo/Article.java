@@ -28,7 +28,8 @@ public class Article {
 //coonstructeur surcharger de la classe Article
 	public Article(String nomArticle, String description, LocalDate dateDebutEncheres, LocalDate dateFinEncheres,
 			int prixInitial, Utilisateur vendeur, Categorie categorie) {
-
+		
+		//insertion des paramétres
 		setNomArticle(nomArticle);
 		setDescription(description);
 		setDateDebutEncheres(dateDebutEncheres);

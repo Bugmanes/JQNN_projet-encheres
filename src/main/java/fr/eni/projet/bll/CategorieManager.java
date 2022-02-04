@@ -30,7 +30,9 @@ public class CategorieManager {
 		return instance;
 	}
 
+	//methode pour choisir une categorie
 	public Categorie chercherCategorie(String libelle) {
+		//initialisattion de categorie a null
 		Categorie categorie = null;
 
 		for (Categorie cat : categories) {

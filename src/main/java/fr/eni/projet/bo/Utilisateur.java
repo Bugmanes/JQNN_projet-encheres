@@ -4,6 +4,7 @@ import java.util.List;
 
 public class Utilisateur {
 
+	//déclaration de mes variables
 	private int noUtilisateur;
 	private String pseudo;
 	private String nom;
@@ -25,6 +26,8 @@ public class Utilisateur {
 
 	public Utilisateur(String pseudo, String nom, String prenom, String email, String telephone, String rue,
 			String codePostal, String ville) {
+		
+		//insertion des paramétres
 		setPseudo(pseudo);
 		setNom(nom);
 		setPrenom(prenom);
@@ -37,6 +40,8 @@ public class Utilisateur {
 
 	public Utilisateur(String pseudo, String nom, String prenom, String email, String telephone, String rue,
 			String codePostal, String ville, String motDePasse, int credit, boolean administrateur) {
+		
+		//insertion des parametres
 		setPseudo(pseudo);
 		setNom(nom);
 		setPrenom(prenom);
@@ -52,16 +57,18 @@ public class Utilisateur {
 
 	public Utilisateur(String pseudo, String email, String motDePasse) {
 
+		//insertion des paramétres
 		setPseudo(pseudo);
 		setMotDePasse(motDePasse);
 	}
 
 	public Utilisateur(String email, String motDePasse) {
 
+		//insertion des paramétres
 		setEmail(email);
 		setMotDePasse(motDePasse);
 	}
-
+	//methode pour avoir une liste d'article achete
 	public List<Article> getArticlesAchete() {
 		return articlesAchete;
 	}

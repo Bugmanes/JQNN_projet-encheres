@@ -59,7 +59,7 @@ public class UtilisateurDaoImpl implements UtilisateurDAO {
 
 	@Override
 	public Utilisateur selectByPseudo(String pseudo) throws DALException {
-		// declaration
+		// déclaration
 		Utilisateur utilisateur = null;
 		Connection cnx;
 		ResultSet rs;
@@ -118,6 +118,7 @@ public class UtilisateurDaoImpl implements UtilisateurDAO {
 		try {
 			Connection cnx = ConnexionProvider.getConnection();
 			PreparedStatement pstmt = cnx.prepareStatement(UPDATE_UTILISATEUR);
+			//insertion des paramétres dans la base de données
 			pstmt.setString(1, utilisateur.getNom());
 			pstmt.setString(2, utilisateur.getPrenom());
 			pstmt.setString(3, utilisateur.getEmail());
@@ -127,6 +128,7 @@ public class UtilisateurDaoImpl implements UtilisateurDAO {
 			pstmt.setString(7, utilisateur.getVille());
 			pstmt.setString(8, utilisateur.getPseudo());
 			if(oldPseudo.isEmpty()) {
+				//si l'ancien pseudo est vide
 				pstmt.setString(9, utilisateur.getPseudo());
 			}
 			else

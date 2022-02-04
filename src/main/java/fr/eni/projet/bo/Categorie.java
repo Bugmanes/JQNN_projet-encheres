@@ -12,10 +12,14 @@ public class Categorie {
 	}
 
 	public Categorie(String libelle) {
+		
+		//insertion des paramétres
 		setLibelle(libelle);
 	}
 	
 	public Categorie(int no, String libelle) {
+		
+		//insertion des paramétres
 		setNoCategorie(no);
 		setLibelle(libelle);
 	}

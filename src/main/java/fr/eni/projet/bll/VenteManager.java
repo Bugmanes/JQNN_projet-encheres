@@ -29,11 +29,13 @@ public class VenteManager {
 	public List<Article> listerArticles() throws DALException {
 
 		ArticleDAO adao = DAOFactory.getArticleDAO();
+		//insertion d'une liste d'article
 		List<Article> liste = adao.selectAll();
 
 		return liste;
 	};
 
+	//methode pour créer une nouvelle vente
 	public void nouvelleVente(String nom, String description, LocalDate debut, LocalDate fin, int prixInitial,
 			Utilisateur utilisateur, Categorie categorie) throws DALException {
 

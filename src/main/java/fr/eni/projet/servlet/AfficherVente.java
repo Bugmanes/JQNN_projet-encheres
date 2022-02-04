@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import fr.eni.projet.bll.VenteManager;
 import fr.eni.projet.bo.Article;
 
 @WebServlet("/Encherir")
@@ -16,11 +17,21 @@ public class AfficherVente extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		//afficher une vente
-		Article article = (Article) request.getAttribute("article");
-		//parametrage des atributs 
+		int idArt;
+		Article article = null;
+		VenteManager vm;
+		
+		// recuperer l'id de l'article
+		idArt = Integer.parseInt(request.getParameter("idArticle"));
+		
+		//recuperer l'article à partir de son id
+		vm = VenteManager.getInstance();
+		vm.obtenirArticle(idArt);		
+		
+		// passage de l'article en attribut de requete
 		request.setAttribute("article", article);
-		//renvoie des atributs dans detailVente.jsp
+		
+		// envoi des attributs dans à la jsp
 		request.getRequestDispatcher("/WEB-INF/jsp/detailVente.jsp").forward(request, response);
 	}
 

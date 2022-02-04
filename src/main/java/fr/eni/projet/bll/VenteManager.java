@@ -16,7 +16,7 @@ public class VenteManager {
 	private static VenteManager instance;
 
 	private VenteManager() {
- 
+
 	}
 
 	public static VenteManager getInstance() {
@@ -25,20 +25,27 @@ public class VenteManager {
 		}
 		return instance;
 	}
-public List<Article> listerArticles() throws DALException{
-	
-	ArticleDAO adao = DAOFactory.getArticleDAO();
-	List<Article> liste = adao.selectAll();
-	
-	return liste;
-};
-	
+
+	public List<Article> listerArticles() throws DALException {
+
+		ArticleDAO adao = DAOFactory.getArticleDAO();
+		List<Article> liste = adao.selectAll();
+
+		return liste;
+	};
+
 	public void nouvelleVente(String nom, String description, LocalDate debut, LocalDate fin, int prixInitial,
 			Utilisateur utilisateur, Categorie categorie) throws DALException {
-		
+
 		Article article = new Article(nom, description, debut, fin, prixInitial, utilisateur, categorie);
 		ArticleDAO aDAO = DAOFactory.getArticleDAO();
 		aDAO.insertArticle(article);
 	}
 
+	public Article obtenirArticle(int id) {
+		
+		Article article = null;
+		
+		return article;
+	}
 }

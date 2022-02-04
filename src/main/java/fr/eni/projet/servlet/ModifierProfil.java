@@ -41,8 +41,8 @@ public class ModifierProfil extends HttpServlet {
 		
 		HttpSession session = request.getSession();
 		Utilisateur utilisateur =(Utilisateur) session.getAttribute("utilisateur");
-		
+		request.setAttribute("Utilisateur", utilisateur);
 		UtilisateurManager um = UtilisateurManager.getInstance();
 	}
-}
+};
 

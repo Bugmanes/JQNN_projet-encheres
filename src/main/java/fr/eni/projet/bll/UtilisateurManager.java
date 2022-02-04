@@ -23,7 +23,8 @@ public class UtilisateurManager {
 	public Utilisateur authentification(String identifiant, String motDePasse) {
 		
 		Utilisateur user = null;
-		UtilisateurDAO uDao = DAOFactory.getUtilisateurDAO(); 
+		UtilisateurDAO uDao = null;
+		uDao= DAOFactory.getUtilisateurDAO();
 		
 		return user;
 

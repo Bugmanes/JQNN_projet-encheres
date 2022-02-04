@@ -18,8 +18,8 @@ public class UtilisateurDaoImpl implements UtilisateurDAO {
 	private final static String SELECT_BY_PSEUDO = "SELECT * FROM UTILISATEURS WHERE pseudo = ?;";
 	private final static String SELECT_CONNEXION = "SELECT * FROM UTILISATEURS WHERE (pseudo =? OR email =?)";
 	private final static String SELECT_BY_ID = "SELECT * FROM UTILISATEURS WHERE id = ?;";
-	private final static String UPDATE_UTILISATEUR ="UPDATE UTILISATEURS SET nom = ?, prenom =?, email = ?, telephone = ?, rue = ?,code_postal =?,ville = ? WHERE pseudo =?;";
-	
+	private final static String UPDATE_UTILISATEUR = "UPDATE UTILISATEURS SET nom = ?, prenom =?, email = ?, telephone = ?, rue = ?,code_postal =?,ville = ? WHERE pseudo =?;";
+
 	@Override
 	public void newUtilisateur(Utilisateur utilisateur) throws DALException {
 
@@ -77,7 +77,7 @@ public class UtilisateurDaoImpl implements UtilisateurDAO {
 			}
 
 		} catch (SQLException e) {
-			throw new DALException("problème de méthode selectByPseudo()",e);
+			throw new DALException("problème de méthode selectByPseudo()", e);
 		} finally {
 			// cnx.close(); //TODO by @Nael
 		}
@@ -114,26 +114,30 @@ public class UtilisateurDaoImpl implements UtilisateurDAO {
 
 	public void updateUtilisateur(Utilisateur utilisateur) {
 		try {
-			Connection cnx =ConnexionProvider.getConnection();
+			Connection cnx = ConnexionProvider.getConnection();
 			PreparedStatement pstmt = cnx.prepareStatement(UPDATE_UTILISATEUR);
-			
-			pstmt.setString(1,utilisateur.getNom() );
+
+			pstmt.setString(1, utilisateur.getNom());
 			pstmt.setString(2, utilisateur.getPrenom());
 			pstmt.setString(3, utilisateur.getEmail());
 			pstmt.setString(4, utilisateur.getTelephone());
 			pstmt.setString(5, utilisateur.getRue());
 			pstmt.setString(6, utilisateur.getCodePostal());
-			pstmt.setString(7,utilisateur.getVille());
-			pstmt.setString(8,utilisateur.getPseudo());
-			
+			pstmt.setString(7, utilisateur.getVille());
+			pstmt.setString(8, utilisateur.getPseudo());
+
 			pstmt.executeUpdate();
-			
-			
-			
+
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
+	}
+
+	@Override
+	public Utilisateur selectConnexion(String identifiant, String password) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

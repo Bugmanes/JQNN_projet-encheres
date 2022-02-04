@@ -7,7 +7,6 @@ import fr.eni.projet.dal.UtilisateurDAO;
 
 public class UtilisateurManager {
 
-	private static UtilisateurDAO dao= null;
 	private static UtilisateurManager instance;
 
 	private UtilisateurManager() {

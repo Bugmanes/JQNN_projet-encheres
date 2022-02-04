@@ -39,12 +39,12 @@
 				</div>
 			</div>
 			<%
-			if(request.getAttribute("erreur")!=null){
-				boolean ok =(boolean) request.getAttribute("erreur");
+			if(request.getAttribute("connexion")!=null){
+				boolean ok =(boolean) request.getAttribute("connexion");
 				if (!ok){		
 			%>
 			<div class = "messageErreur">
-				<a>authentification incorrecte</a>
+				<a>identifiant ou mot de passe incorrect</a>
 			</div>
 			<%
 				}

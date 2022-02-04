@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import fr.eni.projet.bll.EnchereManager;
+import fr.eni.projet.bll.VenteManager;
 import fr.eni.projet.bo.Article;
 import fr.eni.projet.dal.DALException;
 
@@ -23,7 +23,7 @@ public class AccueilServlet extends HttpServlet {
 
 		try {
 			// je crée un objet de type EncherManager
-			EnchereManager em = EnchereManager.getInstance();
+			VenteManager em = VenteManager.getInstance();
 			// je crée un eliste d'article
 			List<Article> articles = null;
 			// j'attribu a mon article le retour de la methode em.listerArticles();

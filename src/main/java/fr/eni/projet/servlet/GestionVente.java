@@ -21,7 +21,7 @@ import org.apache.tomcat.util.http.fileupload.disk.DiskFileItemFactory;
 import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
 
 import fr.eni.projet.bll.CategorieManager;
-import fr.eni.projet.bll.EnchereManager;
+import fr.eni.projet.bll.VenteManager;
 import fr.eni.projet.bo.Categorie;
 import fr.eni.projet.bo.Utilisateur;
 
@@ -70,7 +70,7 @@ public class GestionVente extends HttpServlet {
 		
 		
 		// envoi à la bll
-		EnchereManager em = EnchereManager.getInstance();
+		VenteManager em = VenteManager.getInstance();
 		em.nouvelleVente(nom, description, dateDebut, dateFin, miseAPrix, utilisateur, categorie);
 		
 		// renvoi vers l'accueil

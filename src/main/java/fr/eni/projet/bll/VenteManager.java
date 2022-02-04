@@ -11,17 +11,17 @@ import fr.eni.projet.dal.ArticleDAO;
 import fr.eni.projet.dal.DALException;
 import fr.eni.projet.dal.DAOFactory;
 
-public class EnchereManager {
+public class VenteManager {
 
-	private static EnchereManager instance;
+	private static VenteManager instance;
 
-	private EnchereManager() {
+	private VenteManager() {
 
 	}
 
-	public static EnchereManager getInstance() {
+	public static VenteManager getInstance() {
 		if (instance == null) {
-			instance = new EnchereManager();
+			instance = new VenteManager();
 		}
 		return instance;
 	}

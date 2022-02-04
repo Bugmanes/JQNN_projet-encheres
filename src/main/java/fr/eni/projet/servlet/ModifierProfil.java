@@ -19,16 +19,20 @@ public class ModifierProfil extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		//création de la session
 		HttpSession session = request.getSession();
+		//récuperation d'un utilisateur
 		Utilisateur utilisateur =(Utilisateur) session.getAttribute("utilisateur");
+		//paramétrage d'un utilisateur
 		request.setAttribute("Utilisateur", utilisateur);
-		// envoi aï¿½la page monProfil.jsp
+		// envoi a la page monProfil.jsp
 		request.getRequestDispatcher("/WEB-INF/jsp/monProfil.jsp").forward(request, response);
 		
 	}
-
+//envoie de la requte
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		//parametrage de la requete
 		String pseudo = request.getParameter("pseudo");
 		String nom = request.getParameter("nom");
 		String prenom = request.getParameter("prenom");
@@ -40,10 +44,14 @@ public class ModifierProfil extends HttpServlet {
 		//String old_mdp = request.getParameter("old_mdp");
 		//String new_mdp = request.getParameter("new_mdp");
 		
+		//création de la session
 		HttpSession session = request.getSession();
+		//récuperation d'un utilisateur
 		Utilisateur utilisateur =(Utilisateur) session.getAttribute("utilisateur");
+		//paramétrage d'un utilisateur
 		request.setAttribute("Utilisateur", utilisateur);
 		UtilisateurManager um = UtilisateurManager.getInstance();
+		//insertion de paramétre dans modifierUtilisateur
 		um.modifierUtilisateur(pseudo, nom, prenom, email, telephone, rue, codePostal, ville, ville, utilisateur);
 	}		
 }

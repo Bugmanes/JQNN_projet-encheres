@@ -16,9 +16,11 @@ public class AfficherVente extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		// afficher une vente
+		//afficher une vente
 		Article article = (Article) request.getAttribute("article");
+		//parametrage des atributs 
 		request.setAttribute("article", article);
+		//renvoie des atributs dans detailVente.jsp
 		request.getRequestDispatcher("/WEB-INF/jsp/detailVente.jsp").forward(request, response);
 	}
 

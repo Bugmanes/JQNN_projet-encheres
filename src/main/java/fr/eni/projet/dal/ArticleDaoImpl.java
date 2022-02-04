@@ -20,7 +20,8 @@ import fr.eni.projet.bo.Utilisateur;
 import fr.eni.projet.util.ConnexionProvider;
 
 public class ArticleDaoImpl implements ArticleDAO {
-
+	
+	//insertion des requettes SQL
 	private static final String INSERT = "INSERT INTO ARTICLES_VENDUS (nom_article, description, date-debut-encheres, date_fin_encheres, prix_initial, no_utilisateur, no_categorie) VALUES (?, ?, ?, ?, ?, ?, ?);";
 	private static final String SELECT_ALL = "SELECT * FROM ARTICLES_VENDUS";
 
@@ -30,6 +31,7 @@ public class ArticleDaoImpl implements ArticleDAO {
 		try {
 			Connection cnx = ConnexionProvider.getConnection();
 			PreparedStatement stmt = cnx.prepareStatement(INSERT, Statement.RETURN_GENERATED_KEYS);
+			//insertion des parametres dans la base de données 
 			stmt.setString(1, article.getNomArticle());
 			stmt.setString(2, article.getDescription());
 			stmt.setDate(3, Date.valueOf(article.getDateDebutEncheres()));
@@ -40,6 +42,7 @@ public class ArticleDaoImpl implements ArticleDAO {
 			stmt.executeQuery();
 			ResultSet rs = stmt.getGeneratedKeys();
 			article.setNoArticle(rs.getInt(1));
+			//fermeture de connection...
 			rs.close();
 			stmt.close();
 			cnx.close();
@@ -52,7 +55,9 @@ public class ArticleDaoImpl implements ArticleDAO {
 
 	@Override
 	public List<Article> selectAll() throws DALException {
+		//creation d'une liste "article"
 		List<Article> liste_article = new ArrayList<>();
+		//parametre de la liste
 		Article art;
 		Categorie cat;
 		Utilisateur user;
@@ -69,7 +74,7 @@ public class ArticleDaoImpl implements ArticleDAO {
 			rs = stmt.executeQuery(SELECT_ALL);
 
 			while (rs.next()) {
-
+				
 				user = udao.selectById(rs.getInt("no_utilisateur"));
 				cat = cdao.selectById(rs.getInt("no_categorie"));
 				

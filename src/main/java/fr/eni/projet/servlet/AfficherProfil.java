@@ -17,14 +17,15 @@ public class AfficherProfil extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
-		// récupération de l'utilisateur de la session et passage en attribut de request
+		// récupération de l'utilisateur de la session 
 		HttpSession session = request.getSession();
-		request.setAttribute("utilisateur", session.getAttribute("utilisateur"));
-		
-		// envoi à la page d'affichage du profil
+		//passage en attribut de request
+		request.setAttribute("utilisateur", session.getAttribute("utilisateur"));		
+		// envoi à la page d'affichage profil.jsp
 		request.getRequestDispatcher("/WEB-INF/jsp/profil.jsp").forward(request, response);
 	}
 
+	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		

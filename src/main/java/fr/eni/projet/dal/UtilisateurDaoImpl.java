@@ -26,7 +26,7 @@ public class UtilisateurDaoImpl implements UtilisateurDAO {
 		try {
 			Connection cnx = ConnexionProvider.getConnection();
 			ResultSet rs = null;
-			// crï¿½ation du PrepareStatement la definition des point d'interogation dans la
+			// creation du PrepareStatement la definition des points d'interogation dans la
 			// requete SQL
 			PreparedStatement pstmt = cnx.prepareStatement(SQL_INSERT, PreparedStatement.RETURN_GENERATED_KEYS);
 			pstmt.setString(1, utilisateur.getPseudo());
@@ -45,6 +45,7 @@ public class UtilisateurDaoImpl implements UtilisateurDAO {
 			if (rs.next()) {
 				utilisateur.setNoUtilisateur(rs.getInt(1));
 			}
+			//fermeture de connection...
 			rs.close();
 			pstmt.close();
 			cnx.close();
@@ -67,10 +68,11 @@ public class UtilisateurDaoImpl implements UtilisateurDAO {
 			cnx = ConnexionProvider.getConnection();
 			PreparedStatement pstmt = cnx.prepareStatement(SELECT_BY_PSEUDO);
 			pstmt.setString(1, pseudo);
-			// rï¿½cupere les valeurs de bdd
+			// récupere les valeurs de bdd
 			rs = pstmt.executeQuery();
 
-			if (rs.next()) {// creation d'un nouveau utilisateur
+			if (rs.next()) {
+				// creation d'un nouveau utilisateur
 				utilisateur = new Utilisateur(pseudo, rs.getString("nom"), rs.getString("prenom"),
 						rs.getString("email"), rs.getString("telephone"), rs.getString("rue"),
 						rs.getString("code_postal"), rs.getString("ville"));
@@ -86,18 +88,18 @@ public class UtilisateurDaoImpl implements UtilisateurDAO {
 
 	@Override
 	public Utilisateur selectById(int id) throws DALException {
-		// crï¿½ation de mes varibales
+		// création de mes varibales
 		Utilisateur utilisateur = null;
 		Connection cnx;
 		ResultSet rs;
 		PreparedStatement pstmt = null;
 		try {
-			// rï¿½cupï¿½ration de la connexion
+			// récupération de la connexion
 			cnx = ConnexionProvider.getConnection();
 			PreparedStatement stmt = cnx.prepareStatement(SELECT_BY_ID);
 			pstmt.setInt(1, id);
 			rs = pstmt.executeQuery();
-			// crï¿½ation du nouveau utilisateur
+			// création du nouveau utilisateur
 			if (rs.next()) {
 				utilisateur = new Utilisateur(rs.getString("pseudo"), rs.getString("nom"), rs.getString("prenom"),
 						rs.getString("email"), rs.getString("telephone"), rs.getString("rue"),
@@ -106,7 +108,7 @@ public class UtilisateurDaoImpl implements UtilisateurDAO {
 			}
 
 		} catch (SQLException e) {
-			throw new DALException("problï¿½me avec la mï¿½thode selectById", e);
+			throw new DALException("probléme avec la méthode selectById", e);
 		}
 
 		return utilisateur;
@@ -137,13 +139,14 @@ public class UtilisateurDaoImpl implements UtilisateurDAO {
 			cnx.close();
 
 		} catch (SQLException e) {
-			throw new DALException("problï¿½me avec la mï¿½thode updateUtilisateur", e);
+			throw new DALException("probléme avec la méthode updateUtilisateur", e);
 		}
 	}
 
 	@Override
 	public Utilisateur selectConnexion(String identifiant, String password) throws DALException {
-
+		
+		//déclaration de mes variables
 		Connection cnx = null;
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
@@ -173,7 +176,7 @@ public class UtilisateurDaoImpl implements UtilisateurDAO {
 			}
 
 		} catch (SQLException e) {
-			throw new DALException("problï¿½me avec la mï¿½thode selectConnexion", e);
+			throw new DALException("problème avec la méthode selectConnexion", e);
 		}
 
 		return user;

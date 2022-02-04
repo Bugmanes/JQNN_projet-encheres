@@ -64,6 +64,7 @@ public class GestionVente extends HttpServlet {
 		
 		// récupération d'utilisateur de la session
 		HttpSession session = request.getSession();
+		//récupération d'utilisateur de la session
 		Utilisateur utilisateur = (Utilisateur) session.getAttribute("utilisateur");
 		
 		// récupération de l'image de l'article
@@ -71,6 +72,7 @@ public class GestionVente extends HttpServlet {
 		
 		// envoi à la bll
 		VenteManager em = VenteManager.getInstance();
+		//insertion des paramétrage d'un nouvel utilisateur
 		em.nouvelleVente(nom, description, dateDebut, dateFin, miseAPrix, utilisateur, categorie);
 		
 		// renvoi vers l'accueil

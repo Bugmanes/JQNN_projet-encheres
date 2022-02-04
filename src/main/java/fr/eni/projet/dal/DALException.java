@@ -2,7 +2,7 @@ package fr.eni.projet.dal;
 
 public class DALException extends Exception {
 
-	// Constructeurs
+	// Constructeurs DALException
 	public DALException() {
 		super();
 	}

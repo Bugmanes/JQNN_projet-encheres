@@ -18,6 +18,7 @@ public class Inscription extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		//envoie a la page inscription.jsp
 		request.getRequestDispatcher("/WEB-INF/jsp/inscription.jsp").forward(request, response);
 	}
 
@@ -39,6 +40,7 @@ public class Inscription extends HttpServlet {
 		Boolean administrateur = false;
 		UtilisateurManager um = UtilisateurManager.getInstance();
 		try {
+			//insertion des parametre dans un nouvel utilisateur
 			um.nouvelUtilisateur(pseudo, nom, prenom, email, telephone, rue, codePostal, ville, motDePasse, credit,
 					administrateur);
 		} catch (DALException e) {

@@ -8,6 +8,7 @@ public interface CategorieDAO {
 	
 	public ArrayList<Categorie> selectAll() throws DALException;
 
+	//methode categories par identifiant
 	public Categorie selectById(int id) throws DALException;
 
 }

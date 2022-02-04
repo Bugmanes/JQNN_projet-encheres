@@ -38,12 +38,13 @@ public class Connexion extends HttpServlet {
 
 		if (user == null) {
 			request.setAttribute("connexion", false);
+			//envoie a la page seConnecter.jsp
 			request.getRequestDispatcher("/WEB-INF/jsp/seConnecter.jsp").forward(request, response);
 		} else {
 			HttpSession session = request.getSession();
 			session.setAttribute("utilisateur", user);
 
-			// je vais sur la page accueil connecte
+			// envoie a la page accueil.jsp
 			request.getRequestDispatcher("/WEB-INF/jsp/accueil.jsp").forward(request, response);
 
 		}

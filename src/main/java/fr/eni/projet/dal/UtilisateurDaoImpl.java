@@ -127,7 +127,7 @@ public class UtilisateurDaoImpl implements UtilisateurDAO {
 			pstmt.setString(8, utilisateur.getPseudo());
 
 			pstmt.executeUpdate();
-			
+
 			pstmt.close();
 			cnx.close();
 
@@ -138,18 +138,39 @@ public class UtilisateurDaoImpl implements UtilisateurDAO {
 
 	@Override
 	public Utilisateur selectConnexion(String identifiant, String password) throws DALException {
-		
+
 		Connection cnx = null;
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
 		Utilisateur user = null;
-		
+		boolean admin;
+
 		try {
 			cnx = ConnexionProvider.getConnection();
+			stmt = cnx.prepareStatement(SELECT_CONNEXION);
+			stmt.setString(1, identifiant);
+			stmt.setString(2, identifiant);
+			rs = stmt.executeQuery();
+
+			if (rs.next()) {
+				if (password.equals(rs.getString("mot_de_passe"))) {
+					if (rs.getInt("administrateur") == 1) {
+						admin = true;
+					} else {
+						admin = false;
+					}
+					user = new Utilisateur(rs.getString("pseudo"), rs.getString("nom"), rs.getString("prenom"),
+							rs.getString("email"), rs.getString("telephone"), rs.getString("rue"),
+									rs.getString("code_postal"), rs.getString("ville"), rs.getString("mot_de_passe"),
+									rs.getInt("credit"), admin);
+					user.setNoUtilisateur(rs.getInt("no_utilisateur"));
+				}
+			}
+
 		} catch (SQLException e) {
 			throw new DALException("problème avec la méthode selectConnexion", e);
 		}
-		
+
 		return user;
 	}
 }

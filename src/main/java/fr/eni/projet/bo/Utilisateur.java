@@ -25,14 +25,14 @@ public class Utilisateur {
 
 	public Utilisateur(String pseudo, String nom, String prenom, String email, String telephone, String rue,
 			String codePostal, String ville) {
-		this.pseudo = pseudo;
-		this.nom = nom;
-		this.prenom = prenom;
-		this.email = email;
-		this.telephone = telephone;
-		this.rue = rue;
-		this.codePostal = codePostal;
-		this.ville = ville;
+		setPseudo(pseudo);
+		setNom(nom);
+		setPrenom(prenom);
+		setEmail(email);
+		setTelephone(telephone);
+		setRue(rue);
+		setCodePostal(codePostal);
+		setVille(ville);
 	}
 
 	public Utilisateur(String pseudo, String nom, String prenom, String email, String telephone, String rue,

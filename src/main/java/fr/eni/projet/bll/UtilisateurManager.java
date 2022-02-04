@@ -11,7 +11,7 @@ public class UtilisateurManager {
 
 	private UtilisateurManager() {
 
-	}
+	} 
 
 	public static UtilisateurManager getInstance() {
 		if (instance == null) {

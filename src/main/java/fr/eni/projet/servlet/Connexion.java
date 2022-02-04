@@ -37,14 +37,14 @@ public class Connexion extends HttpServlet {
 		user = um.authentification(identifiant, motDePasse);
 
 		if (user == null) {
-			request.setAttribute("erreur", false);
+			request.setAttribute("connexion", false);
 			request.getRequestDispatcher("/WEB-INF/jsp/seConnecter.jsp").forward(request, response);
 		} else {
 			HttpSession session = request.getSession();
 			session.setAttribute("utilisateur", user);
 
 			// je vais sur la page accueil connecte
-			request.getRequestDispatcher("/WEB-INF/jsp/seConnecter.jsp").forward(request, response);
+			request.getRequestDispatcher("/WEB-INF/jsp/accueil.jsp").forward(request, response);
 
 		}
 

@@ -16,7 +16,7 @@ public class UtilisateurDaoImpl implements UtilisateurDAO {
 	// requete SQL Insert
 	private final static String SQL_INSERT = "INSERT INTO  UTILISATEURS (pseudo,nom,prenom,email,telephone,rue,code_postal,ville,mot_de_passe,credit,administrateur) VALUES (?,?,?,?,?,?,?,?,?,?,?);";
 	private final static String SELECT_BY_PSEUDO = "SELECT * FROM UTILISATEURS WHERE pseudo = ?;";
-	private final static String SELECT_BY_PSEUDO_CONNEXION = "SELECT * FROM UTILISATEURS WHERE (pseudo =? OR email =?)";
+	private final static String SELECT_CONNEXION = "SELECT * FROM UTILISATEURS WHERE (pseudo =? OR email =?)";
 	private final static String SELECT_BY_ID = "SELECT * FROM UTILISATEURS WHERE id = ?;";
 	private final static String UPDATE_UTILISATEUR ="UPDATE UTILISATEURS SET nom = ?, prenom =?, email = ?, telephone = ?, rue = ?,code_postal =?,ville = ? WHERE pseudo =?;";
 	
@@ -82,35 +82,6 @@ public class UtilisateurDaoImpl implements UtilisateurDAO {
 			// cnx.close(); //TODO by @Nael
 		}
 		return utilisateur;
-	}
-
-	public Utilisateur selectByPseudoConnexion(String identifiant, String motDePasse) throws DALException {
-		Utilisateur user = null;
-		try {
-			Connection cnx = ConnexionProvider.getConnection();
-			PreparedStatement stmt = cnx.prepareStatement(SELECT_BY_PSEUDO_CONNEXION);
-			stmt.setString(1, identifiant);
-			stmt.setString(2, identifiant);
-
-			ResultSet result = stmt.executeQuery();
-			if (result.next()) {
-				if (result.equals(result.getInt("mot_de_passe"))) {
-					user = new Utilisateur(result.getString("no_utilisateur"), result.getString("pseudo"),
-							result.getString("nom"), result.getString("prenom"), result.getString("email"),
-							result.getString("telephone"), result.getString("rue"), result.getString("code_postal"),
-							result.getString("ville"), result.getInt("credit"), result.getBoolean("administrateur"));
-
-				}
-				return user = null;
-
-			}
-		} catch (SQLException e) {
-
-			throw new DALException("probleme avec la méthode selectByPseudoConnexion", e);
-			
-		}
-		return user;
-
 	}
 
 	@Override

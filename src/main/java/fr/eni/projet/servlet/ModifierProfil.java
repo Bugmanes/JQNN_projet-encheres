@@ -52,7 +52,11 @@ public class ModifierProfil extends HttpServlet {
 		request.setAttribute("Utilisateur", utilisateur);
 		UtilisateurManager um = UtilisateurManager.getInstance();
 		//insertion de paramétre dans modifierUtilisateur
-		um.modifierUtilisateur(pseudo, nom, prenom, email, telephone, rue, codePostal, ville, ville, utilisateur);
+		try {
+			um.modifierUtilisateur(pseudo, nom, prenom, email, telephone, rue, codePostal, ville, ville, utilisateur);
+		} catch (DALException e) {
+			System.err.println(e.getMessage());
+		}
 	}		
 }
 

@@ -24,6 +24,7 @@ import fr.eni.projet.bll.CategorieManager;
 import fr.eni.projet.bll.VenteManager;
 import fr.eni.projet.bo.Categorie;
 import fr.eni.projet.bo.Utilisateur;
+import fr.eni.projet.dal.DALException;
 
 @WebServlet("/GestionVente")
 public class GestionVente extends HttpServlet {
@@ -59,7 +60,12 @@ public class GestionVente extends HttpServlet {
 		
 		// récupération de la catégorie
 		String libelle = request.getParameter("categorie");
-		CategorieManager cm = CategorieManager.getInstance();
+		CategorieManager cm = null;
+		try {
+			cm = CategorieManager.getInstance();
+		} catch (DALException e) {
+			System.err.println(e.getMessage());
+		}
 		Categorie categorie = cm.chercherCategorie(libelle);
 		
 		// récupération d'utilisateur de la session
@@ -73,7 +79,11 @@ public class GestionVente extends HttpServlet {
 		// envoi à la bll
 		VenteManager em = VenteManager.getInstance();
 		//insertion des paramétrage d'un nouvel utilisateur
-		em.nouvelleVente(nom, description, dateDebut, dateFin, miseAPrix, utilisateur, categorie);
+		try {
+			em.nouvelleVente(nom, description, dateDebut, dateFin, miseAPrix, utilisateur, categorie);
+		} catch (DALException e) {
+			System.err.println(e.getMessage());
+		}
 		
 		// renvoi vers l'accueil
 		request.getRequestDispatcher("/accueil").forward(request, response);

@@ -34,7 +34,11 @@ public class Connexion extends HttpServlet {
 		identifiant = request.getParameter("identifiant");
 		motDePasse = request.getParameter("password");
 		um = UtilisateurManager.getInstance();
-		user = um.authentification(identifiant, motDePasse);
+		try {
+			user = um.authentification(identifiant, motDePasse);
+		} catch (DALException e) {
+			System.err.println(e.getMessage());
+		}
 
 		if (user == null) {
 			request.setAttribute("connexion", false);

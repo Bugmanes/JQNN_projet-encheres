@@ -44,13 +44,7 @@ public class ModifierProfil extends HttpServlet {
 		Utilisateur utilisateur =(Utilisateur) session.getAttribute("utilisateur");
 		request.setAttribute("Utilisateur", utilisateur);
 		UtilisateurManager um = UtilisateurManager.getInstance();
-		try {
-			um.modifierUtilisateur(pseudo, nom, prenom, email, telephone, rue, codePostal, ville, ville, utilisateur);
-			
-		} catch (DALException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
-};
+		um.modifierUtilisateur(pseudo, nom, prenom, email, telephone, rue, codePostal, ville, ville, utilisateur);
+	}		
+}
 

@@ -31,14 +31,21 @@
 			</div>
 			<div class="categorie">
 				<div class="choixCategorie">
-					<label for="categorie">Catégorie :</label> <select name="categorie"
+					<label for="categorie">Catégorie :</label> 
+					<form action="<%=request.getContextPath()%>/AcceuilServlet"
+					methode="post">
+					<select name="categorie"
 						id="categorie">
-						<option value="">Toutes</option>
+						<!-- <option value="">Toutes</option> -->
 						<option value="Informatique">Informatique</option>
 						<option value="Ameublement">Ameublement</option>
 						<option value="Vètement">Vètement</option>
 						<option value="Sport&Loisirs">Sport&Loisirs</option>
 					</select>
+					<button type="submit">
+					<p>rechercher</p>
+					</button>
+					</form>
 				</div>
 			</div>
 			<div class="checkBox">

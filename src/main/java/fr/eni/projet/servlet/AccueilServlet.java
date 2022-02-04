@@ -38,4 +38,13 @@ public class AccueilServlet extends HttpServlet {
 
 	}
 
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		
+//		String categorie = request.getParameter("categorie");
+		
+		System.out.println(request.getParameter("categorie"));
+		getServletContext().getRequestDispatcher("/WEB-INF/jsp/accueil.jsp").forward(request, response);
+
+	}
 }

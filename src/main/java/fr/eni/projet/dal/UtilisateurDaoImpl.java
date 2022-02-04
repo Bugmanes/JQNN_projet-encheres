@@ -26,7 +26,7 @@ public class UtilisateurDaoImpl implements UtilisateurDAO {
 		try {
 			Connection cnx = ConnexionProvider.getConnection();
 			ResultSet rs = null;
-			// création du PrepareStatement la definition des point d'interogation dans la
+			// crï¿½ation du PrepareStatement la definition des point d'interogation dans la
 			// requete SQL
 			PreparedStatement pstmt = cnx.prepareStatement(SQL_INSERT, PreparedStatement.RETURN_GENERATED_KEYS);
 			pstmt.setString(1, utilisateur.getPseudo());
@@ -49,7 +49,7 @@ public class UtilisateurDaoImpl implements UtilisateurDAO {
 			pstmt.close();
 			cnx.close();
 		} catch (SQLException e) {
-			throw new DALException("problème avec la méthode newUtilisateur", e);
+			throw new DALException("problï¿½me avec la mï¿½thode newUtilisateur", e);
 		}
 
 		// TODO Auto-generated method stub
@@ -67,7 +67,7 @@ public class UtilisateurDaoImpl implements UtilisateurDAO {
 			cnx = ConnexionProvider.getConnection();
 			PreparedStatement pstmt = cnx.prepareStatement(SELECT_BY_PSEUDO);
 			pstmt.setString(1, pseudo);
-			// récupere les valeurs de bdd
+			// rï¿½cupere les valeurs de bdd
 			rs = pstmt.executeQuery();
 
 			if (rs.next()) {// creation d'un nouveau utilisateur
@@ -77,7 +77,7 @@ public class UtilisateurDaoImpl implements UtilisateurDAO {
 			}
 
 		} catch (SQLException e) {
-			throw new DALException("problème de méthode selectByPseudo()", e);
+			throw new DALException("problï¿½me de mï¿½thode selectByPseudo()", e);
 		} finally {
 			// cnx.close(); //TODO by @Nael
 		}
@@ -86,18 +86,18 @@ public class UtilisateurDaoImpl implements UtilisateurDAO {
 
 	@Override
 	public Utilisateur selectById(int id) throws DALException {
-		// création de mes varibales
+		// crï¿½ation de mes varibales
 		Utilisateur utilisateur = null;
 		Connection cnx;
 		ResultSet rs;
 		PreparedStatement pstmt = null;
 		try {
-			// récupération de la connexion
+			// rï¿½cupï¿½ration de la connexion
 			cnx = ConnexionProvider.getConnection();
 			PreparedStatement stmt = cnx.prepareStatement(SELECT_BY_ID);
 			pstmt.setInt(1, id);
 			rs = pstmt.executeQuery();
-			// création du nouveau utilisateur
+			// crï¿½ation du nouveau utilisateur
 			if (rs.next()) {
 				utilisateur = new Utilisateur(rs.getString("pseudo"), rs.getString("nom"), rs.getString("prenom"),
 						rs.getString("email"), rs.getString("telephone"), rs.getString("rue"),
@@ -106,17 +106,16 @@ public class UtilisateurDaoImpl implements UtilisateurDAO {
 			}
 
 		} catch (SQLException e) {
-			throw new DALException("problème avec la méthode selectById", e);
+			throw new DALException("problï¿½me avec la mï¿½thode selectById", e);
 		}
 
 		return utilisateur;
 	}
 
-	public void updateUtilisateur(Utilisateur utilisateur) throws DALException {
+	public void updateUtilisateur(Utilisateur utilisateur,String oldPseudo) throws DALException {
 		try {
 			Connection cnx = ConnexionProvider.getConnection();
 			PreparedStatement pstmt = cnx.prepareStatement(UPDATE_UTILISATEUR);
-
 			pstmt.setString(1, utilisateur.getNom());
 			pstmt.setString(2, utilisateur.getPrenom());
 			pstmt.setString(3, utilisateur.getEmail());
@@ -125,14 +124,20 @@ public class UtilisateurDaoImpl implements UtilisateurDAO {
 			pstmt.setString(6, utilisateur.getCodePostal());
 			pstmt.setString(7, utilisateur.getVille());
 			pstmt.setString(8, utilisateur.getPseudo());
-
+			if(oldPseudo.isEmpty()) {
+				pstmt.setString(9, utilisateur.getPseudo());
+			}
+			else
+			{
+				pstmt.setString(9, oldPseudo);
+			}
 			pstmt.executeUpdate();
-
+			
 			pstmt.close();
 			cnx.close();
 
 		} catch (SQLException e) {
-			throw new DALException("problème avec la méthode updateUtilisateur", e);
+			throw new DALException("problï¿½me avec la mï¿½thode updateUtilisateur", e);
 		}
 	}
 
@@ -168,7 +173,7 @@ public class UtilisateurDaoImpl implements UtilisateurDAO {
 			}
 
 		} catch (SQLException e) {
-			throw new DALException("problème avec la méthode selectConnexion", e);
+			throw new DALException("problï¿½me avec la mï¿½thode selectConnexion", e);
 		}
 
 		return user;

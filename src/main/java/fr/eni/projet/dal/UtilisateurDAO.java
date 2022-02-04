@@ -3,7 +3,7 @@ package fr.eni.projet.dal;
 import fr.eni.projet.bo.Utilisateur;
 
 public interface UtilisateurDAO {
-//methode pour création d'utlisateur
+//methode pour crï¿½ation d'utlisateur
 	public void newUtilisateur(Utilisateur utilisateur) throws DALException;
 
 	// methode de selection par pseudo
@@ -11,7 +11,7 @@ public interface UtilisateurDAO {
 
 	public Utilisateur selectById(int id) throws DALException;
 
-	public void updateUtilisateur(Utilisateur utilisateur) throws DALException;
+	public void updateUtilisateur(Utilisateur utilisateur,String oldPseudo) throws DALException;
 	
 	public Utilisateur selectConnexion(String identifiant, String password) throws DALException;
 }

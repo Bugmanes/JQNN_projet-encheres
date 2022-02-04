@@ -57,18 +57,21 @@ public class UtilisateurManager {
 	public Utilisateur modifierUtilisateur(String pseudo, String nom, String prenom, String email, String telephone,
 			String rue, String codePostal, String ville, String motDePasse, Utilisateur utilisateur)
 			throws DALException {
-
-		utilisateur.setPseudo(pseudo);
-		utilisateur.setNom(nom);
-		utilisateur.setPrenom(prenom);
-		utilisateur.setEmail(email);
-		utilisateur.setTelephone(telephone);
-		utilisateur.setRue(rue);
-		utilisateur.setCodePostal(codePostal);
-		utilisateur.setVille(ville);
-
+		String oldPseudo = "";
+		if (utilisateur.getPseudo().equals(pseudo)) {
+			utilisateur.setNom(nom);
+			utilisateur.setPrenom(prenom);
+			utilisateur.setEmail(email);
+			utilisateur.setTelephone(telephone);
+			utilisateur.setRue(rue);
+			utilisateur.setCodePostal(codePostal);
+			utilisateur.setVille(ville);
+		} else {
+			oldPseudo = utilisateur.getPseudo();
+			utilisateur.setPseudo(pseudo);
+		}
 		UtilisateurDAO udao = DAOFactory.getUtilisateurDAO();
-		udao.updateUtilisateur(utilisateur);
+		udao.updateUtilisateur(utilisateur, oldPseudo);
 		return utilisateur;
 	}
 

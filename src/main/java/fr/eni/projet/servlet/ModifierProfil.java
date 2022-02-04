@@ -10,6 +10,7 @@ import javax.servlet.http.HttpSession;
 
 import fr.eni.projet.bll.UtilisateurManager;
 import fr.eni.projet.bo.Utilisateur;
+import fr.eni.projet.dal.DALException;
 
 @WebServlet("/ModifierProfil")
 public class ModifierProfil extends HttpServlet {
@@ -21,7 +22,7 @@ public class ModifierProfil extends HttpServlet {
 		HttpSession session = request.getSession();
 		Utilisateur utilisateur =(Utilisateur) session.getAttribute("utilisateur");
 		request.setAttribute("Utilisateur", utilisateur);
-		// envoi a la page monProfil.jsp
+		// envoi aï¿½la page monProfil.jsp
 		request.getRequestDispatcher("/WEB-INF/jsp/monProfil.jsp").forward(request, response);
 		
 	}
@@ -43,6 +44,13 @@ public class ModifierProfil extends HttpServlet {
 		Utilisateur utilisateur =(Utilisateur) session.getAttribute("utilisateur");
 		request.setAttribute("Utilisateur", utilisateur);
 		UtilisateurManager um = UtilisateurManager.getInstance();
+		try {
+			um.modifierUtilisateur(pseudo, nom, prenom, email, telephone, rue, codePostal, ville, ville, utilisateur);
+			
+		} catch (DALException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 };
 

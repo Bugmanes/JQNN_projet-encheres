@@ -20,7 +20,7 @@ public class UtilisateurManager {
 		return instance;
 	}
 
-	public Utilisateur authentification(String identifiant, String motDePasse) {
+	public Utilisateur authentification(String identifiant, String motDePasse) throws DALException {
 
 		Utilisateur user = null;
 		UtilisateurDAO uDao = null;

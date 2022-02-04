@@ -137,14 +137,18 @@ public class UtilisateurDaoImpl implements UtilisateurDAO {
 	}
 
 	@Override
-	public Utilisateur selectConnexion(String identifiant, String password) {
+	public Utilisateur selectConnexion(String identifiant, String password) throws DALException {
 		
 		Connection cnx = null;
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
 		Utilisateur user = null;
 		
-		
+		try {
+			cnx = ConnexionProvider.getConnection();
+		} catch (SQLException e) {
+			throw new DALException("problème avec la méthode selectConnexion", e);
+		}
 		
 		return user;
 	}

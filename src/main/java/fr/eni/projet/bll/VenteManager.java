@@ -16,7 +16,7 @@ public class VenteManager {
 	private static VenteManager instance;
 
 	private VenteManager() {
-
+ 
 	}
 
 	public static VenteManager getInstance() {

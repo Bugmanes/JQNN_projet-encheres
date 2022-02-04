@@ -103,15 +103,21 @@
 			</div>
 		</div> -->
 		<div class="Articles">
+
 			<%
 			List<Article> liste = (List<Article>) request.getAttribute("liste");
-			for(Article article:liste){
-			out.print("<p>"+article.getNomArticle()+"</p>");
-			out.print("<p>"+article.getPrixInitial()+"</p>");
-			out.print("<p>"+article.getDateFinEncheres()+"</p>");
-			out.print("<p>"+article.getVendeur()+"</p>");
-		}
-		%>
+			if (liste != null) {
+				for (Article article : liste) {
+					out.print("<p>" + article.getNomArticle() + "</p>");
+					out.print("<p>" + article.getPrixInitial() + "</p>");
+					out.print("<p>" + article.getDateFinEncheres() + "</p>");
+					out.print("<p>" + article.getVendeur() + "</p>");
+				}
+
+			} else {
+				out.print("<p>zertyuio</p>");
+			}
+			%>
 		</div>
 	</main>
 

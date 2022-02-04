@@ -33,8 +33,8 @@ public class Connexion extends HttpServlet {
 
 		identifiant = request.getParameter("identifiant");
 		motDePasse = request.getParameter("password");
-		user = new Utilisateur();
 		um = UtilisateurManager.getInstance();
+		user = new Utilisateur();
 		user = um.authentification(identifiant, motDePasse);
 
 		HttpSession session = request.getSession();

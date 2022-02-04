@@ -138,7 +138,13 @@ public class UtilisateurDaoImpl implements UtilisateurDAO {
 
 	@Override
 	public Utilisateur selectConnexion(String identifiant, String password) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		Connection cnx = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		Utilisateur user = null;
+		
+		
+		return user;
 	}
 }

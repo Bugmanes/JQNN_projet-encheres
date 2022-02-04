@@ -10,7 +10,7 @@
 <link rel="stylesheet" href="asset/css/style.css">
 </head>
 <body>
-	<%-- <%@include file="headerInvite.jsp"%>
+	<%@include file="headerInvite.jsp"%>
 	<main>
 		<div class="titre">
 			<h3>Liste des enchères</h3>
@@ -31,24 +31,23 @@
 			</div>
 			<div class="categorie">
 				<div class="choixCategorie">
-					<label for="categorie">Catégorie :</label> 
-					
-					 --%>
-					
-					<form action="<%=request.getContextPath()%>/accueil.html"	method="post">
-					<select name="categorie" id="categorie">
-						<option value="1">Informatique</option>
-						<option value="2">Ameublement</option>
-						<option value="3">Vètement</option>
-						<option value="4">Sport&Loisirs</option>
-					</select>
-					<button type="submit">
-					<p>rechercher</p>
-					</button>
+					<label for="categorie">Catégorie :</label>
+
+
+
+					<form action="<%=request.getContextPath()%>/accueil.html"
+						method="post">
+						<select name="categorie" id="categorie">
+							<option value="1">Informatique</option>
+							<option value="2">Ameublement</option>
+							<option value="3">Vètement</option>
+							<option value="4">Sport&Loisirs</option>
+						</select>
+						<button type="submit">rechercher</button>
 					</form>
-				
-				<%-- 
-				
+
+
+
 				</div>
 			</div>
 			<div class="checkBox">
@@ -130,6 +129,6 @@
 			%>
 		</div>
 	</main>
- --%>
+
 </body>
 </html>

@@ -41,9 +41,10 @@ public class AccueilServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
+		String cat = request.getParameter("categorie");
+		int categorie = Integer.parseInt(cat);
 
-		
-		System.out.println(request.getParameter("categorie"));
+		System.out.println(categorie);
 		getServletContext().getRequestDispatcher("/WEB-INF/jsp/accueil.jsp").forward(request, response);
 
 	}

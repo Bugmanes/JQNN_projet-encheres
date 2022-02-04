@@ -11,7 +11,7 @@ public interface UtilisateurDAO {
 
 	public Utilisateur selectById(int id) throws DALException;
 
-	public void updateUtilisateur(Utilisateur utilisateur);
+	public void updateUtilisateur(Utilisateur utilisateur) throws DALException;
 	
 	public Utilisateur selectConnexion(String identifiant, String password);
 }

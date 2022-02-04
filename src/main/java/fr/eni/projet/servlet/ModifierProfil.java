@@ -34,7 +34,7 @@ public class ModifierProfil extends HttpServlet {
 		String email = request.getParameter("email");
 		String telephone = request.getParameter("telephone");
 		String rue = request.getParameter("rue");
-		String code_postal = request.getParameter("code_postal");
+		String codePostal = request.getParameter("code_postal");
 		String ville = request.getParameter("ville");
 		//String old_mdp = request.getParameter("old_mdp");
 		//String new_mdp = request.getParameter("new_mdp");

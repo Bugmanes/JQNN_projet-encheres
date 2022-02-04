@@ -112,7 +112,7 @@ public class UtilisateurDaoImpl implements UtilisateurDAO {
 		return utilisateur;
 	}
 
-	public void updateUtilisateur(Utilisateur utilisateur) {
+	public void updateUtilisateur(Utilisateur utilisateur) throws DALException {
 		try {
 			Connection cnx = ConnexionProvider.getConnection();
 			PreparedStatement pstmt = cnx.prepareStatement(UPDATE_UTILISATEUR);
@@ -127,12 +127,13 @@ public class UtilisateurDaoImpl implements UtilisateurDAO {
 			pstmt.setString(8, utilisateur.getPseudo());
 
 			pstmt.executeUpdate();
+			
+			pstmt.close();
+			cnx.close();
 
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			throw new DALException("problème avec la méthode updateUtilisateur", e);
 		}
-
 	}
 
 	@Override

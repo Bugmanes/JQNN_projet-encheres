@@ -11,7 +11,7 @@
 	<div class="container">
 		<%@include file="headerConnecter.jsp" %>
 		<main>
-			<form action="" method="POST">
+			<form action="/ModifierProfil" method="post">
 
      			<%Utilisateur utilisateur = (Utilisateur) request.getAttribute("utilisateur");%>
      			Pseudo : <input type="text" value = "pseudo" placeholder="Saisissez votre user Pseudo :" autocomplete="${utilisateur.pseudo}" ><br>

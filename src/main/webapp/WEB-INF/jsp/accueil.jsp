@@ -10,7 +10,7 @@
 <link rel="stylesheet" href="asset/css/style.css">
 </head>
 <body>
-	<%@include file="headerInvite.jsp"%>
+	<%-- <%@include file="headerInvite.jsp"%>
 	<main>
 		<div class="titre">
 			<h3>Liste des enchères</h3>
@@ -32,20 +32,23 @@
 			<div class="categorie">
 				<div class="choixCategorie">
 					<label for="categorie">Catégorie :</label> 
-					<%-- <form action="<%=request.getContextPath()%>/AcceuilServlet"
-					methode="post"> --%>
-					<select name="categorie"
-						id="categorie">
-						<!-- <option value="">Toutes</option> -->
-						<option value="Informatique">Informatique</option>
-						<option value="Ameublement">Ameublement</option>
-						<option value="Vètement">Vètement</option>
-						<option value="Sport&Loisirs">Sport&Loisirs</option>
+					
+					 --%>
+					
+					<form action="<%=request.getContextPath()%>/accueil.html"	method="post">
+					<select name="categorie" id="categorie">
+						<option value="1">Informatique</option>
+						<option value="2">Ameublement</option>
+						<option value="3">Vètement</option>
+						<option value="4">Sport&Loisirs</option>
 					</select>
 					<button type="submit">
 					<p>rechercher</p>
 					</button>
-					<!-- </form> -->
+					</form>
+				
+				<%-- 
+				
 				</div>
 			</div>
 			<div class="checkBox">
@@ -122,11 +125,11 @@
 				}
 
 			} else {
-				out.print("<p>zertyuio</p>");
+				out.print("<h1>La Boutique est fermée<h1>");
 			}
 			%>
 		</div>
 	</main>
-
+ --%>
 </body>
 </html>

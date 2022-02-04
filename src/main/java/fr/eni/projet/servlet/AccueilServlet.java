@@ -14,7 +14,7 @@ import fr.eni.projet.bll.VenteManager;
 import fr.eni.projet.bo.Article;
 import fr.eni.projet.dal.DALException;
 
-@WebServlet("/accueil")
+@WebServlet("/accueil.html")
 public class AccueilServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -41,7 +41,7 @@ public class AccueilServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
-//		String categorie = request.getParameter("categorie");
+
 		
 		System.out.println(request.getParameter("categorie"));
 		getServletContext().getRequestDispatcher("/WEB-INF/jsp/accueil.jsp").forward(request, response);

@@ -10,6 +10,7 @@ import javax.servlet.http.HttpSession;
 
 import fr.eni.projet.bll.UtilisateurManager;
 import fr.eni.projet.bo.Utilisateur;
+import fr.eni.projet.dal.DALException;
 
 @WebServlet("/InscriptionConnexion")
 public class Inscription extends HttpServlet {
@@ -37,8 +38,13 @@ public class Inscription extends HttpServlet {
 		int credit = 1000;
 		Boolean administrateur = false;
 		UtilisateurManager um = UtilisateurManager.getInstance();
-		um.nouvelUtilisateur(pseudo, nom, prenom, email, telephone, rue, codePostal, ville, motDePasse, credit,
-				administrateur);
+		try {
+			um.nouvelUtilisateur(pseudo, nom, prenom, email, telephone, rue, codePostal, ville, motDePasse, credit,
+					administrateur);
+		} catch (DALException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 		// TODO navigation
 		

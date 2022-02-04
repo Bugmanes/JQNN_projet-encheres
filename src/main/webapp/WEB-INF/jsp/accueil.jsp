@@ -32,8 +32,8 @@
 			<div class="categorie">
 				<div class="choixCategorie">
 					<label for="categorie">Catégorie :</label> 
-					<form action="<%=request.getContextPath()%>/AcceuilServlet"
-					methode="post">
+					<%-- <form action="<%=request.getContextPath()%>/AcceuilServlet"
+					methode="post"> --%>
 					<select name="categorie"
 						id="categorie">
 						<!-- <option value="">Toutes</option> -->
@@ -45,7 +45,7 @@
 					<button type="submit">
 					<p>rechercher</p>
 					</button>
-					</form>
+					<!-- </form> -->
 				</div>
 			</div>
 			<div class="checkBox">

@@ -21,7 +21,7 @@ public class ModifierProfil extends HttpServlet {
 		HttpSession session = request.getSession();
 		Utilisateur utilisateur =(Utilisateur) session.getAttribute("utilisateur");
 		request.setAttribute("Utilisateur", utilisateur);
-		// envoi Ã  la page monProfil.jsp
+		// envoi a la page monProfil.jsp
 		request.getRequestDispatcher("/WEB-INF/jsp/monProfil.jsp").forward(request, response);
 		
 	}

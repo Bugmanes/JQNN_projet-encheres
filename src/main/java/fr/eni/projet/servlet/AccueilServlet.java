@@ -13,17 +13,10 @@ import javax.servlet.http.HttpServletResponse;
 import fr.eni.projet.bll.EnchereManager;
 import fr.eni.projet.bo.Article;
 
-/**
- * Servlet implementation class AccueilServlet
- */
 @WebServlet("/accueil")
 public class AccueilServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 //		if (!request.getParameter("recherche").equalsIgnoreCase("1")) {

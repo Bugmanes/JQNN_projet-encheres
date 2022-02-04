@@ -10,16 +10,11 @@ import javax.servlet.http.HttpSession;
 
 import fr.eni.projet.bo.Utilisateur;
 
-/**
- * Servlet implementation class ModifierProfil
- */
 @WebServlet("/ModifierProfil")
 public class ModifierProfil extends HttpServlet {
+	
 	private static final long serialVersionUID = 1L;
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		HttpSession session = request.getSession();
@@ -30,9 +25,6 @@ public class ModifierProfil extends HttpServlet {
 		
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 	}

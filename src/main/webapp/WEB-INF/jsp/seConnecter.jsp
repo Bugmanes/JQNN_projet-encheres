@@ -8,6 +8,7 @@
 <link rel="stylesheet" href="asset/css/style.css">
 </head>
 <body>
+	<div class="container">
 	<%@include file="headerInvite.jsp"%>
 	<main>
 		<div class="connexion">
@@ -16,18 +17,18 @@
 				<form action="<%=request.getContextPath() + "/Connexion"%>"
 					method="post">
 					<div>
-						<label for="identifiant">votre identifiant :</label> <input
-							type="text" id="identifiant" name="identifiant" />
+						<label for="identifiant">votre identifiant : </label>
+						<input type="text" id="identifiant" name="identifiant" />
 					</div>
 					<div>
-						<label for="password">Mot de passe :</label> <input
-							type="password" id="password" name="password" />
+						<label for="password">Mot de passe : </label>
+						<input type="password" id="password" name="password" />
 					</div>
 
 					<div class="checkbox">
 						<input type="checkbox" id="souvenir" name="souvenir"
-							value="souvenir" /> <label for="souvenir">Se souvennir
-							de moi</label>
+							value="souvenir" />
+						<label for="souvenir">Se souvennir de moi</label>
 					</div>
 					<div class="buttonSeconnecter">
 						<button type="submit">connexion</button>
@@ -57,5 +58,7 @@
 			</div>
 		</div>
 	</main>
+	<footer></footer>
+	</div>
 </body>
 </html>

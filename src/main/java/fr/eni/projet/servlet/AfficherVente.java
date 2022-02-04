@@ -16,7 +16,7 @@ public class AfficherVente extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
+ 
 		int idArt;
 		Article article = null;
 		VenteManager vm;

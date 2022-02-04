@@ -53,5 +53,20 @@ public class UtilisateurManager {
 		return user.getNoUtilisateur();
 
 	}
+	public Utilisateur modifierUtilisateur(String pseudo, String nom, String prenom, String email, String telephone, String rue,
+			String codePostal, String ville, String motDePasse,Utilisateur utilisateur) {
+		utilisateur.setPseudo(pseudo);
+		utilisateur.setNom(nom);
+		utilisateur.setPrenom(prenom);
+		utilisateur.setEmail(email);
+		utilisateur.setTelephone(telephone);
+		utilisateur.setRue(rue);
+		utilisateur.setCodePostal(codePostal);
+		utilisateur.setVille(ville);
+		
+		UtilisateurDAO udao =DAOFactory.getUtilisateurDAO();
+		udao.updateUtilisateur(utilisateur);
+		return utilisateur;
+	}
 	
 }

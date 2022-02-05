@@ -33,32 +33,33 @@ public class GestionVente extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
-		// transmission de l'utilisateur à la page nouvelle vente
-		// récupération de l'utilisateur de la session en cours
+		// transmission de l'utilisateur a la page nouvelle vente
+		
+		// recuperation de l'utilisateur de la session en cours
 		HttpSession session = request.getSession();
 		Utilisateur utilisateur = (Utilisateur) session.getAttribute("utilisateur");
 		
-		// paramètrage des attributs à transmettre à la jsp
+		// parametrage des attributs à transmettre à la jsp
 		request.setAttribute("rue", utilisateur.getRue());
 		request.setAttribute("codePostal", utilisateur.getCodePostal());
 		request.setAttribute("ville", utilisateur.getVille());
 		
-		// envoi à la jsp
+		// envoi a la jsp
 		request.getRequestDispatcher("/WEB-INF/nouvelleVente.jsp").forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// créer une vente
+		// creer une vente
 		
-		// récupération des paramètres
+		// recuperation des parametres
 		String nom = request.getParameter("nomArticle");
 		String description = request.getParameter("description");
 		int miseAPrix = Integer.parseInt(request.getParameter("prixInitial"));
 		LocalDate dateDebut = LocalDate.parse(request.getParameter("debut"));
 		LocalDate dateFin = LocalDate.parse(request.getParameter("fin"));
 		
-		// récupération de la catégorie
+		// recuperation de la categorie
 		String libelle = request.getParameter("categorie");
 		CategorieManager cm = null;
 		try {
@@ -68,17 +69,17 @@ public class GestionVente extends HttpServlet {
 		}
 		Categorie categorie = cm.chercherCategorie(libelle);
 		
-		// récupération d'utilisateur de la session
+		// recuperation d'utilisateur de la session
 		HttpSession session = request.getSession();
-		//récupération d'utilisateur de la session
+		//recuperation d'utilisateur de la session
 		Utilisateur utilisateur = (Utilisateur) session.getAttribute("utilisateur");
 		
-		// récupération de l'image de l'article
+		// recuperation de l'image de l'article
 		
 		
 		// envoi à la bll
 		VenteManager em = VenteManager.getInstance();
-		//insertion des paramétrage d'un nouvel utilisateur
+		//insertion des parametrage d'un nouvel utilisateur
 		try {
 			em.nouvelleVente(nom, description, dateDebut, dateFin, miseAPrix, utilisateur, categorie);
 		} catch (DALException e) {
@@ -88,5 +89,4 @@ public class GestionVente extends HttpServlet {
 		// renvoi vers l'accueil
 		request.getRequestDispatcher("/accueil").forward(request, response);
 	}
-
 }

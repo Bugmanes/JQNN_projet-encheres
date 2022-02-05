@@ -17,12 +17,12 @@ public class ConnexionProvider {
 			Context context = new InitialContext();
 			datasource = (DataSource) context.lookup("java:comp/env/jdbc/EncheresCNXPool");
 		} catch (NamingException e) {
-			//TODO gestion d'erreur à faire
-			e.printStackTrace(); 
+			System.err.println(e.getMessage());
 		}
 	}
 
 	public static Connection getConnection() throws SQLException {
+
 		return datasource.getConnection();
 	}
 }

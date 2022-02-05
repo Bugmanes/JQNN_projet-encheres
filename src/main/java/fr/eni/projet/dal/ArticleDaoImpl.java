@@ -98,16 +98,16 @@ public class ArticleDaoImpl implements ArticleDAO {
 		Connection cnx = null;
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
+		Utilisateur user = null;
+		Categorie cat = null;
+		UtilisateurDAO udao = DAOFactory.getUtilisateurDAO();
+		CategorieDAO cdao = DAOFactory.getCategorieDAO();
 
 		try {
 			cnx = ConnexionProvider.getConnection();
 			stmt = cnx.prepareStatement(SELECT_BY_ID);
 			stmt.setInt(1, id);
 			rs = stmt.executeQuery();
-			Utilisateur user = null;
-			UtilisateurDAO udao = DAOFactory.getUtilisateurDAO();
-			Categorie cat = null;
-			CategorieDAO cdao = DAOFactory.getCategorieDAO();
 
 			if (rs.next()) {
 				user = udao.selectById(rs.getInt("no_utilisateur"));

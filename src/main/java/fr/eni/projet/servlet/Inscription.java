@@ -24,9 +24,10 @@ public class Inscription extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// gérer une nouvelle inscription
+		
+		// gerer une nouvelle inscription
+		
 		// attribut que l'on vient hydrater grace au valeur reçu par la jsp
-
 		String pseudo = request.getParameter("pseudo");
 		String nom = request.getParameter("nom");
 		String prenom = request.getParameter("prenom");
@@ -39,6 +40,7 @@ public class Inscription extends HttpServlet {
 		int credit = 1000;
 		Boolean administrateur = false;
 		UtilisateurManager um = UtilisateurManager.getInstance();
+		
 		try {
 			//insertion des parametre dans un nouvel utilisateur
 			um.nouvelUtilisateur(pseudo, nom, prenom, email, telephone, rue, codePostal, ville, motDePasse, credit,

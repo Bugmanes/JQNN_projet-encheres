@@ -22,16 +22,17 @@ public class AccueilServlet extends HttpServlet {
 			throws ServletException, IOException {
 
 		try {
-			// je crée un objet de type EncherManager
+			// recuperation d'un objet de type EnchereManager
 			VenteManager em = VenteManager.getInstance();
-			// je crée un eliste d'article
+			
+			// creation d'une liste d'articles
 			List<Article> articles = null;
-			// j'attribu a mon article le retour de la methode em.listerArticles();
+			
+			// attribution a l'article le retour de la methode em.listerArticles();
 			request.setAttribute("liste", articles);
 			articles = em.listerArticles();
 		} catch (DALException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			throw new ServletException("problème dans la méthode doGet de la servlet Accueil", e);
 		}
 
 		getServletContext().getRequestDispatcher("/WEB-INF/jsp/accueil.jsp").forward(request, response);

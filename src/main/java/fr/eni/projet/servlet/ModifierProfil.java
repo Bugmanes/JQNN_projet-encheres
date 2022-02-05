@@ -14,25 +14,30 @@ import fr.eni.projet.dal.DALException;
 
 @WebServlet("/ModifierProfil")
 public class ModifierProfil extends HttpServlet {
-	
+
 	private static final long serialVersionUID = 1L;
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		//création de la session
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
+		// creation de la session
 		HttpSession session = request.getSession();
-		//récuperation d'un utilisateur
-		Utilisateur utilisateur =(Utilisateur) session.getAttribute("utilisateur");
-		//paramétrage d'un utilisateur
+
+		// recuperation d'un utilisateur
+		Utilisateur utilisateur = (Utilisateur) session.getAttribute("utilisateur");
+
+		// parametrage d'un utilisateur
 		request.setAttribute("Utilisateur", utilisateur);
+
 		// envoi a la page monProfil.jsp
 		request.getRequestDispatcher("/WEB-INF/jsp/monProfil.jsp").forward(request, response);
-		
+
 	}
-//envoie de la requte
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		//parametrage de la requete
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
+		// parametrage de la requete
 		String pseudo = request.getParameter("pseudo");
 		String nom = request.getParameter("nom");
 		String prenom = request.getParameter("prenom");
@@ -41,22 +46,24 @@ public class ModifierProfil extends HttpServlet {
 		String rue = request.getParameter("rue");
 		String codePostal = request.getParameter("code_postal");
 		String ville = request.getParameter("ville");
-		//String old_mdp = request.getParameter("old_mdp");
-		//String new_mdp = request.getParameter("new_mdp");
-		
-		//création de la session
+		// String old_mdp = request.getParameter("old_mdp");
+		// String new_mdp = request.getParameter("new_mdp");
+
+		// creation de la session
 		HttpSession session = request.getSession();
-		//récuperation d'un utilisateur
-		Utilisateur utilisateur =(Utilisateur) session.getAttribute("utilisateur");
-		//paramétrage d'un utilisateur
+		
+		// recuperation d'un utilisateur
+		Utilisateur utilisateur = (Utilisateur) session.getAttribute("utilisateur");
+		
+		// parametrage d'un utilisateur
 		request.setAttribute("Utilisateur", utilisateur);
 		UtilisateurManager um = UtilisateurManager.getInstance();
-		//insertion de paramétre dans modifierUtilisateur
+		
+		// insertion de parametre dans modifierUtilisateur
 		try {
 			um.modifierUtilisateur(pseudo, nom, prenom, email, telephone, rue, codePostal, ville, ville, utilisateur);
 		} catch (DALException e) {
 			System.err.println(e.getMessage());
 		}
-	}		
+	}
 }
-

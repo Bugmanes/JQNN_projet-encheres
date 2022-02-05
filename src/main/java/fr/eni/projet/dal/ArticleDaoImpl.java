@@ -24,7 +24,8 @@ public class ArticleDaoImpl implements ArticleDAO {
 	// insertion des requettes SQL
 	private static final String INSERT = "INSERT INTO ARTICLES_VENDUS (nom_article, description, date_debut_encheres, date_fin_encheres, prix_initial, no_utilisateur, no_categorie) VALUES (?, ?, ?, ?, ?, ?, ?);";
 	private static final String SELECT_ALL = "SELECT * FROM ARTICLES_VENDUS";
-	private final static String SELECT_BY_ID = "SELECT * FROM ARTICLES WHERE no_article=?;";
+	private final static String SELECT_BY_ID = "SELECT * FROM ARTICLES_VENDUS WHERE no_article=?;";
+	private final static String SELECT_BY_CAT = "SELECT * FROM ARTICLES_VENDUS WHERE no_categorie=? ;";
 
 	@Override
 	public void insertArticle(Article article) throws DALException {
@@ -116,6 +117,40 @@ public class ArticleDaoImpl implements ArticleDAO {
 						rs.getDate("date_debut_enchere").toLocalDate(), rs.getDate("date_fin_enchere").toLocalDate(),
 						rs.getInt("prix_initial"), user, cat);
 				article.setNoArticle(id);
+			}
+
+		} catch (SQLException e) {
+			throw new DALException("problème avec la méthode selectById d'article", e);
+		}
+
+		return article;
+	}
+
+	@Override
+	public List<Article> selectByCat(int id) throws DALException {
+		List<Article> liste_article = new ArrayList<>();
+		Article article = null;
+		Connection cnx = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		Utilisateur user = null;
+		Categorie cat = null;
+		UtilisateurDAO udao = DAOFactory.getUtilisateurDAO();
+		CategorieDAO cdao = DAOFactory.getCategorieDAO();
+
+		try {
+			cnx = ConnexionProvider.getConnection();
+			pstmt = cnx.prepareStatement(SELECT_BY_ID);
+			pstmt.setInt(1, id);
+			rs = pstmt.executeQuery();
+
+			if (rs.next()) {
+				user = udao.selectById(rs.getInt("no_utilisateur"));
+				cat = cdao.selectById(rs.getInt("no_categorie"));
+				article = new Article(rs.getString("nom_article"), rs.getString("descritpion"),
+						rs.getDate("date_debut_enchere").toLocalDate(), rs.getDate("date_fin_enchere").toLocalDate(),
+						rs.getInt("prix_initial"), user, cat);
+				article.setCategorie(cat);
 			}
 
 		} catch (SQLException e) {

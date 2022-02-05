@@ -6,7 +6,7 @@
 <header>
       <div class="nav">
         <div class="logo" position>
-          <h1><a href="http://localhost:8080/JQNN_projet-encheres/accueil">ENI-Encheres</a></h1>
+          <h1><a href="http://localhost:8080/JQNN_projet-encheres/accueil.html">ENI-Encheres</a></h1>
         </div>
         <div class="login">
           <div class="inscription">

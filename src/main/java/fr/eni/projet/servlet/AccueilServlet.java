@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import fr.eni.projet.bll.CategorieManager;
 import fr.eni.projet.bll.VenteManager;
 import fr.eni.projet.bo.Article;
 import fr.eni.projet.dal.DALException;
@@ -41,6 +42,16 @@ public class AccueilServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		
+		try {
+			//créeation d'un objet de type Categoriemanager
+			CategorieManager cm = CategorieManager.getInstance();
+			//je crée un liste d'Aticle 
+			List<Article> articles = null;
+		} catch (DALException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		String cat = request.getParameter("categorie");
 		int categorie = Integer.parseInt(cat);

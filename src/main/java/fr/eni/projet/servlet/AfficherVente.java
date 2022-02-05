@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import fr.eni.projet.bll.VenteManager;
 import fr.eni.projet.bo.Article;
+import fr.eni.projet.dal.DALException;
 
 @WebServlet("/Encherir")
 public class AfficherVente extends HttpServlet {
@@ -26,7 +27,11 @@ public class AfficherVente extends HttpServlet {
 		
 		//recuperer l'article à partir de son id
 		vm = VenteManager.getInstance();
-		vm.obtenirArticle(idArt);		
+		try {
+			article = vm.obtenirArticle(idArt);
+		} catch (DALException e) {
+			System.err.println(e.getMessage());
+		}		
 		
 		// passage de l'article en attribut de requete
 		request.setAttribute("article", article);

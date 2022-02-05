@@ -44,9 +44,13 @@ public class VenteManager {
 		aDAO.insertArticle(article);
 	}
 
-	public Article obtenirArticle(int id) {
+	public Article obtenirArticle(int id) throws DALException {
 		
 		Article article = null;
+		ArticleDAO adao = null;
+		
+		adao = DAOFactory.getArticleDAO();
+		article = adao.selectById(id);
 		
 		return article;
 	}

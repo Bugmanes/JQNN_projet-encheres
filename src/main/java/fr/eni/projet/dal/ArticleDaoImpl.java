@@ -20,10 +20,11 @@ import fr.eni.projet.bo.Utilisateur;
 import fr.eni.projet.util.ConnexionProvider;
 
 public class ArticleDaoImpl implements ArticleDAO {
-	
-	//insertion des requettes SQL
-	private static final String INSERT = "INSERT INTO ARTICLES_VENDUS (nom_article, description, date-debut-encheres, date_fin_encheres, prix_initial, no_utilisateur, no_categorie) VALUES (?, ?, ?, ?, ?, ?, ?);";
+
+	// insertion des requettes SQL
+	private static final String INSERT = "INSERT INTO ARTICLES_VENDUS (nom_article, description, date_debut_encheres, date_fin_encheres, prix_initial, no_utilisateur, no_categorie) VALUES (?, ?, ?, ?, ?, ?, ?);";
 	private static final String SELECT_ALL = "SELECT * FROM ARTICLES_VENDUS";
+	private final static String SELECT_BY_ID = "SELECT * FROM ARTICLES WHERE no_article=?;";
 
 	@Override
 	public void insertArticle(Article article) throws DALException {
@@ -31,7 +32,7 @@ public class ArticleDaoImpl implements ArticleDAO {
 		try {
 			Connection cnx = ConnexionProvider.getConnection();
 			PreparedStatement stmt = cnx.prepareStatement(INSERT, Statement.RETURN_GENERATED_KEYS);
-			//insertion des parametres dans la base de données 
+			// insertion des parametres dans la base de données
 			stmt.setString(1, article.getNomArticle());
 			stmt.setString(2, article.getDescription());
 			stmt.setDate(3, Date.valueOf(article.getDateDebutEncheres()));
@@ -42,7 +43,7 @@ public class ArticleDaoImpl implements ArticleDAO {
 			stmt.executeQuery();
 			ResultSet rs = stmt.getGeneratedKeys();
 			article.setNoArticle(rs.getInt(1));
-			//fermeture de connection...
+			// fermeture de connection...
 			rs.close();
 			stmt.close();
 			cnx.close();
@@ -55,9 +56,9 @@ public class ArticleDaoImpl implements ArticleDAO {
 
 	@Override
 	public List<Article> selectAll() throws DALException {
-		//creation d'une liste "article"
+		// creation d'une liste "article"
 		List<Article> liste_article = new ArrayList<>();
-		//parametre de la liste
+		// parametre de la liste
 		Article art;
 		Categorie cat;
 		Utilisateur user;
@@ -74,10 +75,10 @@ public class ArticleDaoImpl implements ArticleDAO {
 			rs = stmt.executeQuery(SELECT_ALL);
 
 			while (rs.next()) {
-				
+
 				user = udao.selectById(rs.getInt("no_utilisateur"));
 				cat = cdao.selectById(rs.getInt("no_categorie"));
-				
+
 				art = new Article(rs.getString("nom_article"), rs.getString("description"),
 						rs.getDate("date-debut-encheres").toLocalDate(), rs.getDate("date-fin-encheres").toLocalDate(),
 						rs.getInt("prix_initial"), user, cat);
@@ -88,5 +89,39 @@ public class ArticleDaoImpl implements ArticleDAO {
 			throw new DALException("problème avec la méthode selectAll article", e);
 		}
 		return liste_article;
+	}
+
+	@Override
+	public Article selectById(int id) throws DALException {
+
+		Article article = null;
+		Connection cnx = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+
+		try {
+			cnx = ConnexionProvider.getConnection();
+			stmt = cnx.prepareStatement(SELECT_BY_ID);
+			stmt.setInt(1, id);
+			rs = stmt.executeQuery();
+			Utilisateur user = null;
+			UtilisateurDAO udao = DAOFactory.getUtilisateurDAO();
+			Categorie cat = null;
+			CategorieDAO cdao = DAOFactory.getCategorieDAO();
+
+			if (rs.next()) {
+				user = udao.selectById(rs.getInt("no_utilisateur"));
+				cat = cdao.selectById(rs.getInt("no_categorie"));
+				article = new Article(rs.getString("nom_article"), rs.getString("descritpion"),
+						rs.getDate("date_debut_enchere").toLocalDate(), rs.getDate("date_fin_enchere").toLocalDate(),
+						rs.getInt("prix_initial"), user, cat);
+				article.setNoArticle(id);
+			}
+
+		} catch (SQLException e) {
+			throw new DALException("problème avec la méthode selectById d'article", e);
+		}
+
+		return article;
 	}
 }

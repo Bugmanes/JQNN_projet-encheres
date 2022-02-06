@@ -45,7 +45,6 @@ public class ModifierProfil extends HttpServlet {
 		} else if (choix.equals("valider ")) {
 			request.setAttribute("Valider", "Votre profil est modifié");
 			this.getServletContext().getRequestDispatcher("/WEB-INF/jsp/monProfil.jsp").forward(request, response);
-
 		}
 
 		HttpSession session = request.getSession();
@@ -65,16 +64,16 @@ public class ModifierProfil extends HttpServlet {
 		String ville = request.getParameter("ville").trim();
 		String old_mdp = request.getParameter("old_mdp").trim();
 		String new_mdp = request.getParameter("new_mdp").trim();
-		
-		boolean pseudoOK = false;			
+
+		boolean pseudoOK = false;
 		boolean nomOK = false;
 		boolean prenomOK = false;
 		boolean telOK = false;
 		boolean pseudoUniqueOK = false;
 		boolean emailUniqueOK = false;
-		
+
 		if (!utilisateur.getPseudo().equals(pseudo)) {
-			pseudoOK = um.verifPseudo(pseudo);			
+			pseudoOK = um.verifPseudo(pseudo);
 			try {
 				pseudoUniqueOK = um.verifUniquePseudo(pseudo);
 			} catch (DALException e) {
@@ -93,15 +92,15 @@ public class ModifierProfil extends HttpServlet {
 		if (!utilisateur.getEmail().equals(email)) {
 			emailUniqueOK = false;
 		}
-		
-		if(!pseudoOK || !nomOK || !prenomOK || !telOK || !pseudoUniqueOK || !emailUniqueOK)
+
+		if (!pseudoOK || !nomOK || !prenomOK || !telOK || !pseudoUniqueOK || !emailUniqueOK)
 			request.setAttribute("pseudoOK", pseudoOK);
-			request.setAttribute("pseudoUniqueOK", pseudoUniqueOK);
-			request.setAttribute("nomOK", nomOK);
-			request.setAttribute("prenomOK", prenomOK);
-			request.setAttribute("telOK", telOK);
-			request.setAttribute("emailUniqueOK", emailUniqueOK);
-			request.getRequestDispatcher("/WEB-INF/jsp/monProfil.jsp").forward(request, response);
+		request.setAttribute("pseudoUniqueOK", pseudoUniqueOK);
+		request.setAttribute("nomOK", nomOK);
+		request.setAttribute("prenomOK", prenomOK);
+		request.setAttribute("telOK", telOK);
+		request.setAttribute("emailUniqueOK", emailUniqueOK);
+		request.getRequestDispatcher("/WEB-INF/jsp/monProfil.jsp").forward(request, response);
 
 		try {
 			// insertion de parametres dans modifierUtilisateur

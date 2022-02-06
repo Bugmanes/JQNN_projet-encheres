@@ -29,7 +29,6 @@
 						<div class="messageErreur">
 							<a>Le pseudo ne peut pas contenir de caractères spéciaux ou de lettres accentuées</a>
 						</div>
-						%>
 						<%
 								}
 							}
@@ -42,7 +41,6 @@
 						<div class="messageErreur">
 							<a>Ce pseudo n'est pas disponible</a>
 						</div>
-						%>
 						<%
 								}
 							}
@@ -59,7 +57,6 @@
 						<div class="messageErreur">
 							<a>Le nom ne peut pas comporter de chiffres et caracteres speciaux</a>
 						</div>
-						%>
 						<%
 								}
 							}
@@ -76,7 +73,6 @@
 						<div class="messageErreur">
 							<a>Le numero de telephone ne peut pas contenir de lettres</a>
 						</div>
-						%>
 						<%
 								}
 							}
@@ -105,7 +101,6 @@
 						<div class="messageErreur">
 							<a>Le nom ne peut pas comporter de chiffres et caracteres spéciaux</a>
 						</div>
-						%>
 						<%
 								}
 							}
@@ -122,7 +117,6 @@
 						<div class="messageErreur">
 							<a>Cet email est deja utilise par un compte utilisateur</a>
 						</div>
-						%>
 						<%
 								}
 							}

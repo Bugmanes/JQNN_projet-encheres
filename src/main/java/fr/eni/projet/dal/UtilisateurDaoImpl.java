@@ -19,7 +19,8 @@ public class UtilisateurDaoImpl implements UtilisateurDAO {
 	private final static String SELECT_CONNEXION = "SELECT * FROM UTILISATEURS WHERE (pseudo =? OR email =?)";
 	private final static String SELECT_BY_ID = "SELECT * FROM UTILISATEURS WHERE id = ?;";
 	private final static String UPDATE_UTILISATEUR = "UPDATE UTILISATEURS SET nom = ?, prenom =?, email = ?, telephone = ?, rue = ?,code_postal =?,ville = ? WHERE pseudo =?;";
-
+	private final static String SELECT_BY_MAIL = "SELECT * FROM UTILISATEURS WHERE email=?;";
+	
 	@Override
 	public void newUtilisateur(Utilisateur utilisateur) throws DALException {
 
@@ -45,7 +46,7 @@ public class UtilisateurDaoImpl implements UtilisateurDAO {
 			if (rs.next()) {
 				utilisateur.setNoUtilisateur(rs.getInt(1));
 			}
-			//fermeture de connection...
+			// fermeture de connection...
 			rs.close();
 			pstmt.close();
 			cnx.close();
@@ -59,16 +60,19 @@ public class UtilisateurDaoImpl implements UtilisateurDAO {
 
 	@Override
 	public Utilisateur selectByPseudo(String pseudo) throws DALException {
-		// déclaration
+
+		// declaration
 		Utilisateur utilisateur = null;
 		Connection cnx;
 		ResultSet rs;
+
 		try {
 			// connection
 			cnx = ConnexionProvider.getConnection();
 			PreparedStatement pstmt = cnx.prepareStatement(SELECT_BY_PSEUDO);
 			pstmt.setString(1, pseudo);
-			// récupere les valeurs de bdd
+
+			// recupere les valeurs de bdd
 			rs = pstmt.executeQuery();
 
 			if (rs.next()) {
@@ -79,7 +83,7 @@ public class UtilisateurDaoImpl implements UtilisateurDAO {
 			}
 
 		} catch (SQLException e) {
-			throw new DALException("problï¿½me de mï¿½thode selectByPseudo()", e);
+			throw new DALException("probleme de methode selectByPseudo()", e);
 		} finally {
 			// cnx.close(); //TODO by @Nael
 		}
@@ -108,17 +112,17 @@ public class UtilisateurDaoImpl implements UtilisateurDAO {
 			}
 
 		} catch (SQLException e) {
-			throw new DALException("probléme avec la méthode selectById", e);
+			throw new DALException("probleme avec la methode selectById", e);
 		}
 
 		return utilisateur;
 	}
 
-	public void updateUtilisateur(Utilisateur utilisateur,String oldPseudo) throws DALException {
+	public void updateUtilisateur(Utilisateur utilisateur, String oldPseudo) throws DALException {
 		try {
 			Connection cnx = ConnexionProvider.getConnection();
 			PreparedStatement pstmt = cnx.prepareStatement(UPDATE_UTILISATEUR);
-			//insertion des paramétres dans la base de données
+			// insertion des paramétres dans la base de données
 			pstmt.setString(1, utilisateur.getNom());
 			pstmt.setString(2, utilisateur.getPrenom());
 			pstmt.setString(3, utilisateur.getEmail());
@@ -127,28 +131,26 @@ public class UtilisateurDaoImpl implements UtilisateurDAO {
 			pstmt.setString(6, utilisateur.getCodePostal());
 			pstmt.setString(7, utilisateur.getVille());
 			pstmt.setString(8, utilisateur.getPseudo());
-			if(oldPseudo.isEmpty()) {
-				//si l'ancien pseudo est vide
+			if (oldPseudo.isEmpty()) {
+				// si l'ancien pseudo est vide
 				pstmt.setString(9, utilisateur.getPseudo());
-			}
-			else
-			{
+			} else {
 				pstmt.setString(9, oldPseudo);
 			}
 			pstmt.executeUpdate();
-			
+
 			pstmt.close();
 			cnx.close();
 
 		} catch (SQLException e) {
-			throw new DALException("probléme avec la méthode updateUtilisateur", e);
+			throw new DALException("probleme avec la methode updateUtilisateur", e);
 		}
 	}
 
 	@Override
 	public Utilisateur selectConnexion(String identifiant, String password) throws DALException {
-		
-		//déclaration de mes variables
+
+		// déclaration de mes variables
 		Connection cnx = null;
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
@@ -171,16 +173,72 @@ public class UtilisateurDaoImpl implements UtilisateurDAO {
 					}
 					user = new Utilisateur(rs.getString("pseudo"), rs.getString("nom"), rs.getString("prenom"),
 							rs.getString("email"), rs.getString("telephone"), rs.getString("rue"),
-									rs.getString("code_postal"), rs.getString("ville"), rs.getString("mot_de_passe"),
-									rs.getInt("credit"), admin);
+							rs.getString("code_postal"), rs.getString("ville"), rs.getString("mot_de_passe"),
+							rs.getInt("credit"), admin);
 					user.setNoUtilisateur(rs.getInt("no_utilisateur"));
 				}
 			}
 
 		} catch (SQLException e) {
-			throw new DALException("problème avec la méthode selectConnexion", e);
+			throw new DALException("probleme avec la methode selectConnexion", e);
 		}
 
 		return user;
+	}
+
+	@Override
+	public boolean selectUniquePseudo(String pseudo) throws DALException {
+
+		Connection cnx;
+		PreparedStatement stmt;
+		ResultSet rs;
+		boolean ok = true;
+
+		try {
+			cnx = ConnexionProvider.getConnection();
+			stmt = cnx.prepareStatement(SELECT_BY_PSEUDO);
+			stmt.setString(1, pseudo);
+			rs = stmt.executeQuery();
+
+			if (rs.next()) {
+				ok = false;
+			}
+			rs.close();
+			stmt.close();
+			cnx.close();
+
+		} catch (SQLException e) {
+			throw new DALException("probleme avec la methode selectUniquePseudo", e);
+		}
+
+		return ok;
+	}
+
+	@Override
+	public boolean selectUniqueMail(String mail) throws DALException {
+
+		Connection cnx;
+		PreparedStatement stmt;
+		ResultSet rs;
+		boolean ok = true;
+
+		try {
+			cnx = ConnexionProvider.getConnection();
+			stmt = cnx.prepareStatement(SELECT_BY_MAIL);
+			stmt.setString(1, mail);
+			rs = stmt.executeQuery();
+
+			if (rs.next()) {
+				ok = false;
+			}
+			rs.close();
+			stmt.close();
+			cnx.close();
+
+		} catch (SQLException e) {
+			throw new DALException("probleme avec la methode selectUniquePseudo", e);
+		}
+
+		return ok;
 	}
 }

@@ -17,4 +17,10 @@ public interface UtilisateurDAO {
 	
 	//methode de connection
 	public Utilisateur selectConnexion(String identifiant, String password) throws DALException;
+	
+	// methode de verification de pseudo unique
+	public boolean selectUniquePseudo(String pseudo) throws DALException;
+	
+	// methode de verification d'email unique
+	public boolean selectUniqueMail(String mail) throws DALException;
 }

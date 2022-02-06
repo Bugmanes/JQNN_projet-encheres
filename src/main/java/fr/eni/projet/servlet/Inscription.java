@@ -27,27 +27,49 @@ public class Inscription extends HttpServlet {
 		
 		// gerer une nouvelle inscription
 		
-		// attribut que l'on vient hydrater grace au valeur reçu par la jsp
-		String pseudo = request.getParameter("pseudo");
-		String nom = request.getParameter("nom");
-		String prenom = request.getParameter("prenom");
-		String email = request.getParameter("email");
-		String telephone = request.getParameter("telephone");
-		String rue = request.getParameter("rue");
-		String codePostal = request.getParameter("codePostal");
-		String ville = request.getParameter("ville");
-		String motDePasse = request.getParameter("motDePasse");
+		// recuperation des saisies utilisateurs
+		String pseudo = request.getParameter("pseudo").trim();
+		String nom = request.getParameter("nom").trim();
+		String prenom = request.getParameter("prenom").trim();
+		String email = request.getParameter("email").trim();
+		String telephone = request.getParameter("telephone").trim();
+		String rue = request.getParameter("rue").trim();
+		String codePostal = request.getParameter("codePostal").trim();
+		String ville = request.getParameter("ville").trim();
+		String motDePasse = request.getParameter("motDePasse").trim();
 		int credit = 1000;
 		Boolean administrateur = false;
 		UtilisateurManager um = UtilisateurManager.getInstance();
+		
+		// verification de la conformite des saisies utilisateurs
+		boolean pseudoOK = um.verifPseudoNomPrenom(pseudo);
+		boolean nomOK = um.verifPseudoNomPrenom(nom);
+		boolean prenomOK = um.verifPseudoNomPrenom(prenom);
+		boolean telOK = um.verifTel(telephone);
+		boolean pseudoUniqueOK = false;
+		boolean emailUniqueOK = false;
+		try {
+			pseudoUniqueOK = um.verifUniquePseudo(pseudo);
+			emailUniqueOK = um.verifUniqueMail(email);
+		} catch (DALException e) {
+			System.err.println(e.getMessage());
+		}
+		
+		if(!pseudoOK || !nomOK || !prenomOK || !telOK || !pseudoUniqueOK || !emailUniqueOK)
+			request.setAttribute("pseudoOK", pseudoOK);
+			request.setAttribute("pseudoUniqueOK", pseudoUniqueOK);
+			request.setAttribute("nomOK", nomOK);
+			request.setAttribute("prenomOK", prenomOK);
+			request.setAttribute("telOK", telOK);
+			request.setAttribute("emailUniqueOK", emailUniqueOK);
+			request.getRequestDispatcher("/WEB-INF/jsp/inscription.jsp").forward(request, response);
 		
 		try {
 			//insertion des parametre dans un nouvel utilisateur
 			um.nouvelUtilisateur(pseudo, nom, prenom, email, telephone, rue, codePostal, ville, motDePasse, credit,
 					administrateur);
 		} catch (DALException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.err.println(e.getMessage());
 		}
 
 		// TODO navigation

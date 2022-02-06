@@ -81,13 +81,26 @@ public class UtilisateurManager {
 	}
 
 	// methode pour verifier les caracteres alphanumerique du pseudo nom et prenom
-	public boolean verifPseudoNomPrenom(String str) {
+	public boolean verifPseudo(String str) {
 
 		Pattern p;
 		Matcher m;
 		boolean ok;
 
 		p = Pattern.compile("[^a-zA-Z_0-9]");
+		m = p.matcher(str);
+		ok = m.matches();
+		ok = !ok;
+
+		return ok;
+	}
+	
+	public boolean verifNomPrenom(String str) {
+		Pattern p;
+		Matcher m;
+		boolean ok;
+
+		p = Pattern.compile("[^a-zA-Z]");
 		m = p.matcher(str);
 		ok = m.matches();
 		ok = !ok;

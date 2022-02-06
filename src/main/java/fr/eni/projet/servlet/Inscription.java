@@ -42,9 +42,9 @@ public class Inscription extends HttpServlet {
 		UtilisateurManager um = UtilisateurManager.getInstance();
 		
 		// verification de la conformite des saisies utilisateurs
-		boolean pseudoOK = um.verifPseudoNomPrenom(pseudo);
-		boolean nomOK = um.verifPseudoNomPrenom(nom);
-		boolean prenomOK = um.verifPseudoNomPrenom(prenom);
+		boolean pseudoOK = um.verifPseudo(pseudo);
+		boolean nomOK = um.verifNomPrenom(nom);
+		boolean prenomOK = um.verifNomPrenom(prenom);
 		boolean telOK = um.verifTel(telephone);
 		boolean pseudoUniqueOK = false;
 		boolean emailUniqueOK = false;

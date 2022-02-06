@@ -23,4 +23,7 @@ public interface UtilisateurDAO {
 	
 	// methode de verification d'email unique
 	public boolean selectUniqueMail(String mail) throws DALException;
+	
+	//methode de suppression d'utilisateur 
+	void deleteUtilisateur(String pseudo, String MDP) throws DALException;
 }

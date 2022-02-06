@@ -1,7 +1,6 @@
 package fr.eni.projet.dal;
 
-import fr.eni.projet.bo.Article;
-
 public interface EnchereDAO {
+	public void deleteEnchere(int numUtil) throws DALException;
 
 }

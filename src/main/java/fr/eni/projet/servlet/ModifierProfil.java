@@ -37,6 +37,23 @@ public class ModifierProfil extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
+		String choix = request.getParameter("choix");
+		request.setAttribute("choix", choix);
+		if (choix.equals("supprimer")) {
+			request.setAttribute("suppession", "Votre compte viens d'etre supprimer");
+			this.getServletContext().getRequestDispatcher("/WEB-INF/jsp/accueil.jsp").forward(request, response);
+		} else if (choix.equals("valider ")) {
+			request.setAttribute("Valider", "Votre profil est modifié");
+			this.getServletContext().getRequestDispatcher("/WEB-INF/jsp/monProfil.jsp").forward(request, response);
+
+		}
+
+		HttpSession session = request.getSession();
+		Utilisateur utilisateur = (Utilisateur) session.getAttribute("utilisateur");
+
+		request.setAttribute("Utilisateur", utilisateur);
+		UtilisateurManager um = UtilisateurManager.getInstance();
+
 		// parametrage de la requete
 		String pseudo = request.getParameter("pseudo");
 		String nom = request.getParameter("nom");
@@ -46,21 +63,11 @@ public class ModifierProfil extends HttpServlet {
 		String rue = request.getParameter("rue");
 		String codePostal = request.getParameter("code_postal");
 		String ville = request.getParameter("ville");
-		// String old_mdp = request.getParameter("old_mdp");
-		// String new_mdp = request.getParameter("new_mdp");
+		String old_mdp = request.getParameter("old_mdp");
+		String new_mdp = request.getParameter("new_mdp");
 
-		// creation de la session
-		HttpSession session = request.getSession();
-		
-		// recuperation d'un utilisateur
-		Utilisateur utilisateur = (Utilisateur) session.getAttribute("utilisateur");
-		
-		// parametrage d'un utilisateur
-		request.setAttribute("Utilisateur", utilisateur);
-		UtilisateurManager um = UtilisateurManager.getInstance();
-		
-		// insertion de parametre dans modifierUtilisateur
 		try {
+			// insertion de parametre dans modifierUtilisateur
 			um.modifierUtilisateur(pseudo, nom, prenom, email, telephone, rue, codePostal, ville, ville, utilisateur);
 		} catch (DALException e) {
 			System.err.println(e.getMessage());

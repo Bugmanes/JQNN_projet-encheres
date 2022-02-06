@@ -20,7 +20,8 @@ public class UtilisateurDaoImpl implements UtilisateurDAO {
 	private final static String SELECT_BY_ID = "SELECT * FROM UTILISATEURS WHERE id = ?;";
 	private final static String UPDATE_UTILISATEUR = "UPDATE UTILISATEURS SET nom = ?, prenom =?, email = ?, telephone = ?, rue = ?,code_postal =?,ville = ? WHERE pseudo =?;";
 	private final static String SELECT_BY_MAIL = "SELECT * FROM UTILISATEURS WHERE email=?;";
-	
+	private final static String DELETE_UTILISATEUR = "DELETE FROM UTILISATEURS WHERE no_utilisateur = ? and mot_de_passe=?;";
+
 	@Override
 	public void newUtilisateur(Utilisateur utilisateur) throws DALException {
 
@@ -241,4 +242,33 @@ public class UtilisateurDaoImpl implements UtilisateurDAO {
 
 		return ok;
 	}
+
+	
+	public void deleteUtilisateur(String pseudo, String mdp) throws DALException {
+		Connection cnx = null;
+		PreparedStatement pstmt = null;
+
+		try {
+			cnx = ConnexionProvider.getConnection();
+			pstmt = cnx.prepareStatement(DELETE_UTILISATEUR);
+			pstmt.setString(1, pseudo);
+			pstmt.setString(2, mdp);
+			pstmt.executeUpdate();
+
+		} catch (SQLException e) {
+			throw new DALException("problème de deleteUtilisateur", e);
+		} finally {
+			try {
+				if (pstmt != null)
+					pstmt.close();
+				if (cnx != null)
+					cnx.close();
+			} catch (SQLException e) {
+				throw new DALException("problème fermer la connection", e);
+			}
+		}
+	}
+	
+
+
 }

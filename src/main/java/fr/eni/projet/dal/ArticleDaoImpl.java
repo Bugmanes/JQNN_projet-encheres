@@ -87,10 +87,11 @@ public class ArticleDaoImpl implements ArticleDAO {
 						rs.getInt("prix_initial"), user, cat);
 				liste_article.add(art);
 				
-				rs.close();
-				stmt.close();
-				cnx.close();
+				
 			}
+			rs.close();
+			stmt.close();
+			cnx.close();
 		} catch (SQLException e) {
 			throw new DALException("probl�me avec la m�thode selectAll article", e);
 		}

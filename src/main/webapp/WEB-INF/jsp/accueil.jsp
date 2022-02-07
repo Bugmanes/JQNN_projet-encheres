@@ -149,13 +149,7 @@
 
 
 
-					<table>
-						<thead>
-							<th>titre</th>
-							<th>prix</th>
-							<th>date de fin</th>
-							<th>Vendeur</th>
-						<tbody>
+					
 
 							<%
 		List<Article> listeC = (List<Article>) request.getAttribute("listeCat");

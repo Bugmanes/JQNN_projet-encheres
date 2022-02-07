@@ -1,6 +1,8 @@
 package fr.eni.projet.servlet;
 
 import java.io.IOException;
+import java.time.LocalDate;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -36,19 +38,23 @@ public class AfficherVente extends HttpServlet {
 			System.err.println(e.getMessage());
 		}
 		
-		// passage de l'article en attribut de requete
+		// passage de l'article et de l'utilisateur en attribut de requete
 		request.setAttribute("article", article);
+		request.setAttribute("utilisateur", session.getAttribute("utilisateur"));
 		
 		// passage de l'article en attribut de session si l'utilisateur encheri
 		session.setAttribute("article", article);
 		
-		// envoi des attributs dans à la jsp
-		request.getRequestDispatcher("/WEB-INF/jsp/detailVente.jsp").forward(request, response);
+		// envoi des attributs dans à la jsp appropriee
+		if (article.getDateFinEncheres().isAfter(LocalDate.now())) {
+			request.getRequestDispatcher("/WEB-INF/jsp/detailVente.jsp").forward(request, response);			
+		} else {
+			request.getRequestDispatcher("/WEB-INF/jsp/venteTerminee.jsp").forward(request, response);
+		}
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		// faire une enchere sur une vente
 		
 		// recuperation de l'utilisateur, de l'article et du montant de l'enchere

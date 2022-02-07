@@ -35,7 +35,7 @@ public class VenteManager {
 		List<Article> liste = adao.selectAll();
 
 		return liste;
-	};
+	}
 
 	//methode de listage d'article en fonction de la catégorie
 	public List<Article> listerArticlesCat(int id) throws DALException {
@@ -45,7 +45,7 @@ public class VenteManager {
 		List<Article> liste = adao.selectByCat(id);
 
 		return liste;
-	};
+	}
 	
 	// methode pour creer une nouvelle vente
 	public void nouvelleVente(String nom, String description, LocalDate debut, LocalDate fin, int prixInitial,
@@ -58,16 +58,26 @@ public class VenteManager {
 
 	public Article obtenirArticle(int id) throws DALException {
 
-		Article article = null;
-		ArticleDAO adao = null;
-
+		Article article;
+		ArticleDAO adao;
+		EnchereDAO edao;
+		List<Enchere> encheres;
+		
+		// recuperation de l'article en BDD
 		adao = DAOFactory.getArticleDAO();
 		article = adao.selectById(id);
+		
+		//recuperation des encheres sur cet article en BDD
+		edao = DAOFactory.getEnchereDAO();
+		encheres = edao.selectByNoArticle(article);
+		
+		//ajout de la liste d'encheres à l'instance d'article
+		article.setEncheres(encheres);
 
 		return article;
 	}
 
-	public void encherir(Utilisateur user, Article art, int montantEnchere) throws DALException {
+public void encherir(Utilisateur user, Article art, int montantEnchere) throws DALException {
 		Enchere enchere = new Enchere(LocalDate.now(), montantEnchere, user, art);
 		art.ajouterEnchere(user, enchere);
 		EnchereDAO edao = DAOFactory.getEnchereDAO();

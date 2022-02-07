@@ -3,6 +3,7 @@ package fr.eni.projet.dal;
 import java.util.List;
 
 import fr.eni.projet.bo.Article;
+import fr.eni.projet.bo.Utilisateur;
 
 public interface ArticleDAO {
 
@@ -14,6 +15,6 @@ public interface ArticleDAO {
 
 	public List<Article> selectByCat(int id) throws DALException;
 
-	public List<Article> selectByNomUtilisateur(Article article) throws DALException;
+	public List<Article> selectByNomUtilisateur(Utilisateur user) throws DALException;
 
 }

@@ -25,23 +25,22 @@ public class AccueilServlet extends HttpServlet {
 		try {
 			// recuperation d'un objet de type EnchereManager
 			VenteManager em = VenteManager.getInstance();
-			
+
 			// creation d'une liste d'articles
 			List<Article> articles = null;
-			
-			
+
 			// attribution a l'article le retour de la methode em.listerArticles();
 			articles = em.listerArticles();
 			request.setAttribute("liste", articles);
-			
-        		for(Article article : articles) {
+
+			for (Article article : articles) {
 				System.out.println(article.getNomArticle());
-			System.out.println(article.getPrixInitial());
+				System.out.println(article.getPrixInitial());
 				System.out.println(article.getDateFinEncheres());
 				System.out.println(article.getVendeur());
-				
+
 			}
-			
+
 		} catch (DALException e) {
 			throw new ServletException("problème dans la méthode doGet de la servlet Accueil", e);
 		}
@@ -52,45 +51,38 @@ public class AccueilServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
+
 		try {
-			//créeation d'un objet de type Categoriemanager
+			// creation d'une liste d'article
 			List<Article> articles = null;
+			// créeation d'un objet de type VenteManager
 			VenteManager vm = VenteManager.getInstance();
+			// variable qui récupère la catégoriie sélectionné
 			String cat = request.getParameter("categorie");
+			// Ont parse
 			int categorie = Integer.parseInt(cat);
+			// ont vient instancier cette liste avec les article de cette catégorie
 			articles = vm.listerArticlesCat(categorie);
-			//je crée un liste d'Aticle 
-			
-			
+			// je crée un liste d'Aticle
 			request.setAttribute("listeCat", articles);
-		
-			
+
 			System.out.println(categorie);
-			
-			
-			
-		 while(articles != null){
-	              for(Article article : articles) {
+
+			if (articles != null) {
+				for (Article article : articles) {
 					System.out.println(article.getNomArticle());
-				System.out.println(article.getPrixInitial());
+					System.out.println(article.getPrixInitial());
 					System.out.println(article.getDateFinEncheres());
 					System.out.println(article.getVendeur().getPseudo());
-		}
-			
-		 }System.out.println(categorie + "aucun article dans cette catégorie");
-			
-				
-			
-			
+				}
+
+			}
+			System.out.println(categorie + "aucun article dans cette catégorie");
+
 		} catch (DALException e) {
 			throw new ServletException("problème dans la méthode doPost de la servlet Accueil", e);
 		}
-		
-		
 
-		
-		
 		getServletContext().getRequestDispatcher("/WEB-INF/jsp/accueil.jsp").forward(request, response);
 
 	}

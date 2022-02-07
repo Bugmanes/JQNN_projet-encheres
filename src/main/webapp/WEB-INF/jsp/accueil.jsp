@@ -124,7 +124,7 @@
 				}
 
 			} else {
-				out.print("<h1>La Boutique est fermée<h1>");
+				out.print("<h1>La Boutique est fermée</h1>");
 			}
 			%>
 			
@@ -135,11 +135,11 @@
 					out.print("<p>" + article.getNomArticle() + "</p>");
 					out.print("<p>" + article.getPrixInitial() + "</p>");
 					out.print("<p>" + article.getDateFinEncheres() + "</p>");
-					out.print("<p>" + article.getVendeur() + "</p>");
+					out.print("<p>" + article.getVendeur().getPseudo() + "</p>");
 				}
 
 			} else {
-				out.print("<h3>Pas d'article dans cette catégorie<h3>");
+				out.print("<p>Pas d'article dans cette catégorie</p>");
 			}
 			
 			%>

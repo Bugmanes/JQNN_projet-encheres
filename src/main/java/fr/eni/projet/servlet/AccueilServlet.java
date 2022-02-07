@@ -66,6 +66,7 @@ public class AccueilServlet extends HttpServlet {
 			// je crée un liste d'Aticle
 			request.setAttribute("listeCat", articles);
 
+			
 			System.out.println(categorie);
 
 			if (articles != null) {

@@ -112,39 +112,83 @@
 			</div>
 		</div> -->
 		<div class="Articles">
-
-			<%
+			<table>
+				<thead>
+					<th>titre</th>
+					<th>prix</th>
+					<th>date de fin</th>
+					<th>Vendeur</th>
+				<tbody>
+					<%
 			List<Article> liste = (List<Article>) request.getAttribute("liste");
 			if (liste != null) {
 				for (Article article : liste) {
-					out.print("<p>" + article.getNomArticle() + "</p>");
-					out.print("<p>" + article.getPrixInitial() + "</p>");
-					out.print("<p>" + article.getDateFinEncheres() + "</p>");
-					out.print("<p>" + article.getVendeur().getPseudo() + "</p>");
+				out.print("<tr>");
+				out.print("<td>" + article.getNomArticle() + "</td>");
+				out.print("<td>" + article.getPrixInitial() + "</td>");
+				out.print("<td>" + article.getDateFinEncheres() + "</td>");
+				out.print("<td>" + article.getVendeur().getPseudo() + "</td>");
+				out.print("</tr>");
 				}
+				
+				out.print("</tbody>");
+				out.print("</table>"); 
+				
+			
+			
+			
+				}else 
+				
+				{
+				%>
 
-			} else {
-				out.print("<h1>La Boutique est fermée</h1>");
+					<%out.print("<h1>La Boutique est fermée</h1>");%>
+					<%
+				}
+				%>
+
+
+
+					<table>
+						<thead>
+							<th>titre</th>
+							<th>prix</th>
+							<th>date de fin</th>
+							<th>Vendeur</th>
+						<tbody>
+
+							<%
+		List<Article> listeC = (List<Article>) request.getAttribute("listeCat");
+		if (listeC != null) {
+			
+			for (Article article : listeC) {
+			out.print("<tr>");
+			out.print("<td>" + article.getNomArticle() + "</td>");
+			out.print("<td>" + article.getPrixInitial() + "</td>");
+			out.print("<td>" + article.getDateFinEncheres() + "</td>");
+			out.print("<td>" + article.getVendeur().getPseudo() + "</td>");
+			out.print("</tr>");
+			}
+			
+			out.print("</tbody>");
+			out.print("</table>"); 
+			
+		
+		
+		
+			}else 
+		
+			{
+		%>
+				<%out.print("<h1>La Boutique est fermée</h1>");%>
+
+<%
+							
 			}
 			%>
-			
-			<%
-			List<Article> listeCat = (List<Article>) request.getAttribute("listeCat");
-			if (listeCat != null) {
-				for (Article article : listeCat) {
-					out.print("<p>" + article.getNomArticle() + "</p>");
-					out.print("<p>" + article.getPrixInitial() + "</p>");
-					out.print("<p>" + article.getDateFinEncheres() + "</p>");
-					out.print("<p>" + article.getVendeur().getPseudo() + "</p>");
-				}
 
-			} else {
-				out.print("<p>Pas d'article dans cette catégorie</p>");
-			}
-			
-			%>
-		</div>
-	</main>
 
+							</div>
+							</main>
 </body>
 </html>

@@ -94,7 +94,7 @@ public class UtilisateurManager {
 
 		return ok;
 	}
-	
+
 	public boolean verifNomPrenom(String str) {
 		Pattern p;
 		Matcher m;
@@ -160,5 +160,8 @@ public class UtilisateurManager {
 		return ok;
 	}
 
-
+	public void supressionUtilisateur(Utilisateur utilisateur) throws DALException {
+		UtilisateurDAO udao = DAOFactory.getUtilisateurDAO();
+		udao.deleteUtilisateur(utilisateur);
+	}
 }

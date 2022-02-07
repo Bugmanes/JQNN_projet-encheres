@@ -1,6 +1,7 @@
 package fr.eni.projet.dal;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
@@ -23,14 +24,31 @@ public class EnchereDaoImpl implements EnchereDAO {
 			pstmt.setInt(1, numUtil);
 			pstmt.executeUpdate();
 		} catch (SQLException e) {
-			throw new DALException("problem de deleteEnchere ", e);
+			throw new DALException("probleme de deleteEnchere ", e);
 		}
 	}
 
 	@Override
 	public void insertEnchere(Enchere enchere) throws DALException {
-		// TODO Auto-generated method stub
+
+		Connection cnx;
+		PreparedStatement stmt;
 		
+		try {
+			cnx = ConnexionProvider.getConnection();
+			stmt = cnx.prepareStatement(INSERT_ENCHERE);
+			stmt.setInt(1, enchere.getUtilisateur().getNoUtilisateur());
+			stmt.setInt(2, enchere.getArticle().getNoArticle());
+			stmt.setDate(3, Date.valueOf(enchere.getDateEnchere()));
+			stmt.setInt(4, enchere.getMontantEnchere());
+			stmt.executeUpdate();
+			
+			stmt.close();
+			cnx.close();
+			
+		} catch (SQLException e) {
+			throw new DALException("problème avec la méthode insertEnchere", e);
+		}
 	}
 
 	

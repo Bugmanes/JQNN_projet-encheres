@@ -1,11 +1,11 @@
 package fr.eni.projet.bo;
 
-import java.sql.Date;
+import java.time.LocalDate;
 
 public class Enchere {
 
 	// Declaratio des attributes
-	private Date dateEnchere;
+	private LocalDate dateEnchere;
 	private int montantEnchere;
 	private Utilisateur utilisateur;
 	private Article article;
@@ -15,7 +15,7 @@ public class Enchere {
 	}
 
 	// constructeur surchargé
-	public Enchere(Date dateEnchere, int montantEnchere, Utilisateur utilisateur, Article article) {
+	public Enchere(LocalDate dateEnchere, int montantEnchere, Utilisateur utilisateur, Article article) {
 		
 		//insertion des paramétres
 		setDateEnchere(dateEnchere);
@@ -24,11 +24,11 @@ public class Enchere {
 		setArticle(article);
 	}
 
-	public Date getDateEnchere() {
+	public LocalDate getDateEnchere() {
 		return dateEnchere;
 	}
 
-	public void setDateEnchere(Date dateEnchere) {
+	public void setDateEnchere(LocalDate dateEnchere) {
 		this.dateEnchere = dateEnchere;
 	}
 

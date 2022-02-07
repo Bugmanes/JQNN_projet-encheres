@@ -6,6 +6,7 @@ import java.util.List;
 
 import fr.eni.projet.bo.Article;
 import fr.eni.projet.bo.Categorie;
+import fr.eni.projet.bo.Enchere;
 import fr.eni.projet.bo.Utilisateur;
 import fr.eni.projet.dal.ArticleDAO;
 import fr.eni.projet.dal.DALException;
@@ -35,7 +36,7 @@ public class VenteManager {
 		return liste;
 	};
 
-	//methode pour créer une nouvelle vente
+	//methode pour creer une nouvelle vente
 	public void nouvelleVente(String nom, String description, LocalDate debut, LocalDate fin, int prixInitial,
 			Utilisateur utilisateur, Categorie categorie) throws DALException {
 
@@ -53,5 +54,10 @@ public class VenteManager {
 		article = adao.selectById(id);
 		
 		return article;
+	}
+	
+	public void encherir(Utilisateur user, Article art, int montantEnchere) {
+		Enchere enchere = new Enchere(LocalDate.now(), montantEnchere, user, art);
+		art.ajouterEnchere(user, enchere);
 	}
 }

@@ -243,7 +243,6 @@ public class UtilisateurDaoImpl implements UtilisateurDAO {
 		return ok;
 	}
 
-	
 	public void deleteUtilisateur(String pseudo, String mdp) throws DALException {
 		Connection cnx = null;
 		PreparedStatement pstmt = null;

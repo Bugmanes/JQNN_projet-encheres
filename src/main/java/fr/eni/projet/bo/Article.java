@@ -135,5 +135,11 @@ public class Article {
 	public void setPrixVentes(int prixVentes) {
 		this.prixVentes = prixVentes;
 	}
+	
+	public void ajouterEnchere(Utilisateur user, Enchere enchere) {
+		setAcheteur(user);
+		setPrixVentes(enchere.getMontantEnchere());
+		encheres.add(enchere);
+	}
 
 }

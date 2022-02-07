@@ -37,7 +37,7 @@
             <div>${article.vendeur.pseudo}</div>
           </div>
         </div>
-        <form method="post" action="#">
+        <form method="post" action="<%=request.getContextPath()%>/encherir">
           <label for="enchere">Ma proposition : </label>
           <input type="number" name="enchere" id="enchere" />
           <input type="submit" value="Enchérir" />

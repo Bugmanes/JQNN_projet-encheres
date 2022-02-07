@@ -21,8 +21,7 @@ public class UtilisateurDaoImpl implements UtilisateurDAO {
 	private final static String UPDATE_UTILISATEUR = "UPDATE UTILISATEURS SET nom = ?, prenom =?, email = ?, telephone = ?, rue = ?,code_postal =?,ville = ? WHERE pseudo =?;";
 	private final static String SELECT_BY_MAIL = "SELECT * FROM UTILISATEURS WHERE email=?;";
 	private final static String ANONYMISER_UTILISATEUR = "UPDATE UTILISATEURS SET nom = ?, prenom =?, email = ?, telephone = ?, rue = ?,code_postal =?,ville = ? WHERE pseudo =? , and no_utilisateur=?;";
-	
-	
+
 	@Override
 	public void newUtilisateur(Utilisateur utilisateur) throws DALException {
 
@@ -247,20 +246,20 @@ public class UtilisateurDaoImpl implements UtilisateurDAO {
 	public void deleteUtilisateur(Utilisateur utilisateur) throws DALException {
 		Connection cnx = null;
 		PreparedStatement pstmt = null;
-		String anonyme= "anonyme";
+		String anonyme = "anonyme";
 		try {
 			cnx = ConnexionProvider.getConnection();
-			pstmt =cnx.prepareStatement(ANONYMISER_UTILISATEUR);
-			pstmt.setString(1,anonyme);
+			pstmt = cnx.prepareStatement(ANONYMISER_UTILISATEUR);
+			pstmt.setString(1, anonyme);
 			pstmt.setString(2, anonyme);
-			pstmt.setString(3,anonyme);
-			pstmt.setString(4,anonyme);
+			pstmt.setString(3, anonyme);
+			pstmt.setString(4, anonyme);
 			pstmt.setString(5, anonyme);
 			pstmt.setString(6, anonyme);
 			pstmt.setString(7, anonyme);
 			pstmt.setString(8, anonyme);
 			pstmt.setInt(9, utilisateur.getNoUtilisateur());
-			
+
 		} catch (SQLException e) {
 			throw new DALException("probl�me de deleteUtilisateur", e);
 		} finally {
@@ -273,10 +272,6 @@ public class UtilisateurDaoImpl implements UtilisateurDAO {
 				throw new DALException("probl�me fermer la connection", e);
 			}
 		}
-		
-		
 	}
-	
-
 
 }

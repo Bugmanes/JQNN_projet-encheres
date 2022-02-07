@@ -10,7 +10,7 @@ import fr.eni.projet.util.ConnexionProvider;
 
 public class EnchereDaoImpl implements EnchereDAO {
 
-	private static final String DELETE_ENCHERE = "DELETE FROM ENCHERES where no_utilisateur = ?;";
+	private static final String DELETE_ENCHERE = "DELETE FROM ENCHERES where no_utilisateur = ?;"; 
 	private static final String INSERT_ENCHERE = "INSERT INTO ENCHERES (no_utilisateur, no_article, date_enchere, montant_enchere) VALUES (?, ?, ?, ?);";
 
 	@Override

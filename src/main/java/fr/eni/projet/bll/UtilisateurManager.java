@@ -176,8 +176,8 @@ public class UtilisateurManager {
 		UtilisateurDAO udao = DAOFactory.getUtilisateurDAO();
 		udao.deleteUtilisateur(utilisateur);
 		
-		ArticleDAO aDao = DAOFactory.getArticleDAO();
-		articles =aDao.selectByNoUtilisateur(utilisateur);
+		ArticleDAO adao = DAOFactory.getArticleDAO();
+		articles =adao.selectByNoUtilisateur(utilisateur);
 	}
 
 	

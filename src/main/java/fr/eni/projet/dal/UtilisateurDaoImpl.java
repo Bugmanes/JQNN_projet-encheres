@@ -20,7 +20,7 @@ public class UtilisateurDaoImpl implements UtilisateurDAO {
 	private final static String SELECT_BY_ID = "SELECT * FROM UTILISATEURS WHERE no_utilisateur = ?;";
 	private final static String UPDATE_UTILISATEUR = "UPDATE UTILISATEURS SET nom = ?, prenom =?, email = ?, telephone = ?, rue = ?,code_postal =?,ville = ? WHERE pseudo =?;";
 	private final static String SELECT_BY_MAIL = "SELECT * FROM UTILISATEURS WHERE email=?;";
-	private final static String ANONYMISER_UTILISATEUR = "UPDATE UTILISATEURS SET nom = ?, prenom =?, email = ?, telephone = ?, rue = ?,code_postal =?,ville = ?, pseudo =? WHERE no_utilisateur=?;";
+	private final static String ANONYMISER_UTILISATEUR = "UPDATE UTILISATEURS SET nom = ?, prenom =?, email = ?, telephone = ?, rue = ?,code_postal =?,ville = ?, pseudo =?, credit=? WHERE no_utilisateur=?;";
 
 	@Override
 	public void newUtilisateur(Utilisateur utilisateur) throws DALException {
@@ -267,22 +267,15 @@ public class UtilisateurDaoImpl implements UtilisateurDAO {
 			pstmt.setString(6, anonyme);
 			pstmt.setString(7, anonyme);
 			pstmt.setString(8, anonyme);
-			pstmt.setInt(9, utilisateur.getNoUtilisateur());
+			pstmt.setInt(9, 0);
+			pstmt.setInt(10, utilisateur.getNoUtilisateur());
+			pstmt.executeUpdate();
 			
 			pstmt.close();
 			cnx.close();
  
 		} catch (SQLException e) {
 			throw new DALException("probleme de methode deleteUtilisateur", e);
-		} finally {
-			try {
-				if (pstmt != null)
-					pstmt.close();
-				if (cnx != null)
-					cnx.close();
-			} catch (SQLException e) {
-				throw new DALException("probleme fermer la connection", e);
-			}
 		}
 	}
 

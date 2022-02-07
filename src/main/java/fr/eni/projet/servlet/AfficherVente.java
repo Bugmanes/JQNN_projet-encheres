@@ -76,8 +76,8 @@ public class AfficherVente extends HttpServlet {
 			}
 		} else {
 			request.setAttribute("enchereOK", ok);
-			request.getRequestDispatcher("/WEB-INF/jsp/detailVente.jsp").forward(request, response);
 		}
+		request.getRequestDispatcher("/WEB-INF/jsp/detailVente.jsp").forward(request, response);
 	}
 
 }

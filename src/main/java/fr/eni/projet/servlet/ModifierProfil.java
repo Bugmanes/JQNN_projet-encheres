@@ -42,7 +42,7 @@ public class ModifierProfil extends HttpServlet {
 		if (choix.equals("supprimer")) {
 			request.setAttribute("suppression", "Votre compte vient d'etre supprimer");
 			this.getServletContext().getRequestDispatcher("/WEB-INF/jsp/accueil.jsp").forward(request, response);
-		} else if (choix.equals("valider ")) {
+		} else if (choix.equals("valider")) {
 			request.setAttribute("Valider", "Votre profil est modifié");
 			this.getServletContext().getRequestDispatcher("/WEB-INF/jsp/monProfil.jsp").forward(request, response);
 		}

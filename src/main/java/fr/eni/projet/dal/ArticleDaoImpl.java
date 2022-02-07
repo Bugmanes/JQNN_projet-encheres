@@ -123,7 +123,7 @@ public class ArticleDaoImpl implements ArticleDAO {
 			throw new DALException("problème avec la méthode selectById d'article", e);
 		}
 
-		return article;
+		return article; 
 	}
 
 	@Override

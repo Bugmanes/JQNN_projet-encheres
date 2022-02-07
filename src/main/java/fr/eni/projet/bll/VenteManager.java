@@ -11,13 +11,14 @@ import fr.eni.projet.bo.Utilisateur;
 import fr.eni.projet.dal.ArticleDAO;
 import fr.eni.projet.dal.DALException;
 import fr.eni.projet.dal.DAOFactory;
+import fr.eni.projet.dal.EnchereDAO;
 
 public class VenteManager {
 
 	private static VenteManager instance;
 
 	private VenteManager() {
- 
+
 	}
 
 	public static VenteManager getInstance() {
@@ -30,13 +31,13 @@ public class VenteManager {
 	public List<Article> listerArticles() throws DALException {
 
 		ArticleDAO adao = DAOFactory.getArticleDAO();
-		//insertion d'une liste d'article
+		// insertion d'une liste d'article
 		List<Article> liste = adao.selectAll();
 
 		return liste;
 	};
 
-	//methode pour creer une nouvelle vente
+	// methode pour creer une nouvelle vente
 	public void nouvelleVente(String nom, String description, LocalDate debut, LocalDate fin, int prixInitial,
 			Utilisateur utilisateur, Categorie categorie) throws DALException {
 
@@ -46,29 +47,31 @@ public class VenteManager {
 	}
 
 	public Article obtenirArticle(int id) throws DALException {
-		
+
 		Article article = null;
 		ArticleDAO adao = null;
-		
+
 		adao = DAOFactory.getArticleDAO();
 		article = adao.selectById(id);
-		
+
 		return article;
 	}
-	
-	public void encherir(Utilisateur user, Article art, int montantEnchere) {
+
+	public void encherir(Utilisateur user, Article art, int montantEnchere) throws DALException {
 		Enchere enchere = new Enchere(LocalDate.now(), montantEnchere, user, art);
 		art.ajouterEnchere(user, enchere);
+		EnchereDAO edao = DAOFactory.getEnchereDAO();
+		edao.insertEnchere(enchere);
 	}
-	
+
 	public boolean verifEnchere(Article art, int enchere) {
-		
+
 		boolean ok = true;
-		
-		if(enchere<=art.getPrixVentes()) {
+
+		if (enchere <= art.getPrixVentes()) {
 			ok = false;
 		}
-		
+
 		return ok;
 	}
 }

@@ -63,7 +63,11 @@ public class AfficherVente extends HttpServlet {
 		
 		//selon la verification, enregistrement de l'enchere ou retour avec message d'erreur
 		if (ok) {
-			vm.encherir(utilisateur, article, enchere);
+			try {
+				vm.encherir(utilisateur, article, enchere);
+			} catch (DALException e) {
+				System.err.println(e.getMessage());
+			}
 		} else {
 			request.setAttribute("enchereOK", ok);
 			request.getRequestDispatcher("/WEB-INF/jsp/detailVente.jsp").forward(request, response);

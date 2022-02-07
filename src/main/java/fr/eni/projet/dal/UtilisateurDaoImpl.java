@@ -20,8 +20,9 @@ public class UtilisateurDaoImpl implements UtilisateurDAO {
 	private final static String SELECT_BY_ID = "SELECT * FROM UTILISATEURS WHERE id = ?;";
 	private final static String UPDATE_UTILISATEUR = "UPDATE UTILISATEURS SET nom = ?, prenom =?, email = ?, telephone = ?, rue = ?,code_postal =?,ville = ? WHERE pseudo =?;";
 	private final static String SELECT_BY_MAIL = "SELECT * FROM UTILISATEURS WHERE email=?;";
-	private final static String DELETE_UTILISATEUR = "DELETE FROM UTILISATEURS WHERE no_utilisateur = ? and mot_de_passe=?;";
-
+	private final static String ANONYMISER_UTILISATEUR = "UPDATE UTILISATEURS SET nom = ?, prenom =?, email = ?, telephone = ?, rue = ?,code_postal =?,ville = ? WHERE pseudo =? , and no_utilisateur=?;";
+	
+	
 	@Override
 	public void newUtilisateur(Utilisateur utilisateur) throws DALException {
 
@@ -93,18 +94,18 @@ public class UtilisateurDaoImpl implements UtilisateurDAO {
 
 	@Override
 	public Utilisateur selectById(int id) throws DALException {
-		// création de mes varibales
+		// crï¿½ation de mes varibales
 		Utilisateur utilisateur = null;
 		Connection cnx;
 		ResultSet rs;
 		PreparedStatement pstmt = null;
 		try {
-			// récupération de la connexion
+			// rï¿½cupï¿½ration de la connexion
 			cnx = ConnexionProvider.getConnection();
 			PreparedStatement stmt = cnx.prepareStatement(SELECT_BY_ID);
 			pstmt.setInt(1, id);
 			rs = pstmt.executeQuery();
-			// création du nouveau utilisateur
+			// crï¿½ation du nouveau utilisateur
 			if (rs.next()) {
 				utilisateur = new Utilisateur(rs.getString("pseudo"), rs.getString("nom"), rs.getString("prenom"),
 						rs.getString("email"), rs.getString("telephone"), rs.getString("rue"),
@@ -123,7 +124,7 @@ public class UtilisateurDaoImpl implements UtilisateurDAO {
 		try {
 			Connection cnx = ConnexionProvider.getConnection();
 			PreparedStatement pstmt = cnx.prepareStatement(UPDATE_UTILISATEUR);
-			// insertion des paramétres dans la base de données
+			// insertion des paramï¿½tres dans la base de donnï¿½es
 			pstmt.setString(1, utilisateur.getNom());
 			pstmt.setString(2, utilisateur.getPrenom());
 			pstmt.setString(3, utilisateur.getEmail());
@@ -151,7 +152,7 @@ public class UtilisateurDaoImpl implements UtilisateurDAO {
 	@Override
 	public Utilisateur selectConnexion(String identifiant, String password) throws DALException {
 
-		// déclaration de mes variables
+		// dï¿½claration de mes variables
 		Connection cnx = null;
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
@@ -243,19 +244,25 @@ public class UtilisateurDaoImpl implements UtilisateurDAO {
 		return ok;
 	}
 
-	public void deleteUtilisateur(String pseudo, String mdp) throws DALException {
+	public void deleteUtilisateur(Utilisateur utilisateur) throws DALException {
 		Connection cnx = null;
 		PreparedStatement pstmt = null;
-
+		String anonyme= "anonyme";
 		try {
 			cnx = ConnexionProvider.getConnection();
-			pstmt = cnx.prepareStatement(DELETE_UTILISATEUR);
-			pstmt.setString(1, pseudo);
-			pstmt.setString(2, mdp);
-			pstmt.executeUpdate();
-
+			pstmt =cnx.prepareStatement(ANONYMISER_UTILISATEUR);
+			pstmt.setString(1,anonyme);
+			pstmt.setString(2, anonyme);
+			pstmt.setString(3,anonyme);
+			pstmt.setString(4,anonyme);
+			pstmt.setString(5, anonyme);
+			pstmt.setString(6, anonyme);
+			pstmt.setString(7, anonyme);
+			pstmt.setString(8, anonyme);
+			pstmt.setInt(9, utilisateur.getNoUtilisateur());
+			
 		} catch (SQLException e) {
-			throw new DALException("problème de deleteUtilisateur", e);
+			throw new DALException("problï¿½me de deleteUtilisateur", e);
 		} finally {
 			try {
 				if (pstmt != null)
@@ -263,9 +270,11 @@ public class UtilisateurDaoImpl implements UtilisateurDAO {
 				if (cnx != null)
 					cnx.close();
 			} catch (SQLException e) {
-				throw new DALException("problème fermer la connection", e);
+				throw new DALException("problï¿½me fermer la connection", e);
 			}
 		}
+		
+		
 	}
 	
 

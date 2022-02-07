@@ -53,14 +53,14 @@ public class GestionVente extends HttpServlet {
 		// creer une vente
 		
 		// recuperation des parametres
-		String nom = request.getParameter("nomArticle");
-		String description = request.getParameter("description");
+		String nom = request.getParameter("nomArticle").trim();
+		String description = request.getParameter("description").trim();
 		int miseAPrix = Integer.parseInt(request.getParameter("prixInitial"));
 		LocalDate dateDebut = LocalDate.parse(request.getParameter("debut"));
 		LocalDate dateFin = LocalDate.parse(request.getParameter("fin"));
 		
 		// recuperation de la categorie
-		String libelle = request.getParameter("categorie");
+		String libelle = request.getParameter("categorie").trim();
 		CategorieManager cm = null;
 		try {
 			cm = CategorieManager.getInstance();

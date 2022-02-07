@@ -39,7 +39,7 @@ public class AfficherVente extends HttpServlet {
 		// passage de l'article en attribut de requete
 		request.setAttribute("article", article);
 		
-		// passage de l'article en attribut de session si l'utilisateur enchéri
+		// passage de l'article en attribut de session si l'utilisateur encheri
 		session.setAttribute("article", article);
 		
 		// envoi des attributs dans à la jsp
@@ -51,13 +51,23 @@ public class AfficherVente extends HttpServlet {
 		// TODO Auto-generated method stub
 		// faire une enchere sur une vente
 		
+		// recuperation de l'utilisateur, de l'article et du montant de l'enchere
 		HttpSession session = request.getSession();
 		Utilisateur utilisateur = (Utilisateur) session.getAttribute("utilisateur");
 		Article article = (Article) session.getAttribute("article");
 		int enchere = Integer.parseInt(request.getParameter("enchere"));
 		
+		// verification que l'enchere est bien superieure a la precedente
 		VenteManager vm = VenteManager.getInstance();
-		vm.encherir(utilisateur, article, enchere);
+		boolean ok = vm.verifEnchere(article, enchere);
+		
+		//selon la verification, enregistrement de l'enchere ou retour avec message d'erreur
+		if (ok) {
+			vm.encherir(utilisateur, article, enchere);
+		} else {
+			request.setAttribute("enchereOK", ok);
+			request.getRequestDispatcher("/WEB-INF/jsp/detailVente.jsp").forward(request, response);
+		}
 	}
 
 }

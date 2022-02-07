@@ -60,4 +60,15 @@ public class VenteManager {
 		Enchere enchere = new Enchere(LocalDate.now(), montantEnchere, user, art);
 		art.ajouterEnchere(user, enchere);
 	}
+	
+	public boolean verifEnchere(Article art, int enchere) {
+		
+		boolean ok = true;
+		
+		if(enchere<=art.getPrixVentes()) {
+			ok = false;
+		}
+		
+		return ok;
+	}
 }

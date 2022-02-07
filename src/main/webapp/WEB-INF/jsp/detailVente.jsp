@@ -40,6 +40,18 @@
         <form method="post" action="<%=request.getContextPath()%>/encherir">
           <label for="enchere">Ma proposition : </label>
           <input type="number" name="enchere" id="enchere" />
+          <%
+				if (request.getAttribute("enchereOK")!=null){
+					boolean enchereOK = (boolean) request.getAttribute("enchereOK");
+					if (!enchereOK){
+			%>
+				<div class="messageErreur">
+					<a>L'enchère doit être supérieur à la précédente</a>
+				</div>
+			<%
+					}
+				}
+			%>
           <input type="submit" value="Enchérir" />
         </form>
       </main>

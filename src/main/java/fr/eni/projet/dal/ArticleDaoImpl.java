@@ -66,7 +66,7 @@ public class ArticleDaoImpl implements ArticleDAO {
 		UtilisateurDAO udao = DAOFactory.getUtilisateurDAO();
 		CategorieDAO cdao = DAOFactory.getCategorieDAO();
 		try {
-			// d�claration de mes variable
+			// declaration de mes variable
 			Connection cnx;
 			Statement stmt;
 			ResultSet rs;
@@ -84,7 +84,10 @@ public class ArticleDaoImpl implements ArticleDAO {
 						rs.getDate("date_debut_encheres").toLocalDate(), rs.getDate("date_fin_encheres").toLocalDate(),
 						rs.getInt("prix_initial"), user, cat);
 				liste_article.add(art);
-
+				
+				rs.close();
+				stmt.close();
+				cnx.close();
 			}
 		} catch (SQLException e) {
 			throw new DALException("probl�me avec la m�thode selectAll article", e);
@@ -118,6 +121,10 @@ public class ArticleDaoImpl implements ArticleDAO {
 						rs.getInt("prix_initial"), user, cat);
 				article.setNoArticle(id);
 			}
+			
+			rs.close();
+			stmt.close();
+			cnx.close();
 
 		} catch (SQLException e) {
 			throw new DALException("probl�me avec la m�thode selectById d'article", e);
@@ -156,6 +163,10 @@ public class ArticleDaoImpl implements ArticleDAO {
 				
 				liste_article.add(article);
 			}
+			
+			rs.close();
+			pstmt.close();
+			cnx.close();
 
 		} catch (SQLException e) {
 			throw new DALException("probleme avec la methode selectByCat d'article", e);
@@ -163,10 +174,8 @@ public class ArticleDaoImpl implements ArticleDAO {
 
 		return liste_article;
 	}
-
 	
-	
-	public  List<Article> selectByNomUtilisateur(Utilisateur user) throws DALException {
+	public  List<Article> selectByNoUtilisateur(Utilisateur user) throws DALException {
 		Connection cnx = null;
 		PreparedStatement pstmt = null;
 		LocalDate today = LocalDate.now();
@@ -188,19 +197,20 @@ public class ArticleDaoImpl implements ArticleDAO {
 
 			}
 			// if la fin d'enchere apres la date d'aujourd'hui
-			if(rs.getDate("date_fin_encheres").toLocalDate().isAfter(today)) {
-				
-				
-			}else if (rs.getDate("date_fin_encheres").toLocalDate().isAfter(today)){
-				// if la fin d'enchere avant la date d'aujourd'hui
-				
+			for (Article article2 : listeEnchere) {
+				if(article2.getDateFinEncheres().isBefore(today)) {
+					listeEnchere.remove(article2);
+				}
 			}
 			
+			rs.close();
+			pstmt.close();
+			cnx.close();
 
 		} catch (SQLException e) {
 			throw new DALException("problem de la methode selectByNomUtilisateur", e);
 		}
 
-		return null;
+		return listeEnchere;
 	}
 }

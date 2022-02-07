@@ -20,7 +20,7 @@
 				<h4>Filtres :</h4>
 			</div>
 			<div class="rechercher">
-				<form action="<%=request.getContextPath()%>/AcceuilServlet"
+				<form action="<%=request.getContextPath()%>/accueil.html"
 					method="get">
 					<div>
 						<input type="search" id="maRecherche" name="q"
@@ -126,6 +126,22 @@
 			} else {
 				out.print("<h1>La Boutique est fermée<h1>");
 			}
+			%>
+			
+			<%
+			List<Article> listeCat = (List<Article>) request.getAttribute("listeCat");
+			if (listeCat != null) {
+				for (Article article : listeCat) {
+					out.print("<p>" + article.getNomArticle() + "</p>");
+					out.print("<p>" + article.getPrixInitial() + "</p>");
+					out.print("<p>" + article.getDateFinEncheres() + "</p>");
+					out.print("<p>" + article.getVendeur() + "</p>");
+				}
+
+			} else {
+				out.print("<h3>Pas d'article dans cette catégorie<h3>");
+			}
+			
 			%>
 		</div>
 	</main>

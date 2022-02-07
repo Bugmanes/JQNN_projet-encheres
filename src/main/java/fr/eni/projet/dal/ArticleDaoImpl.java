@@ -151,12 +151,13 @@ public class ArticleDaoImpl implements ArticleDAO {
 						rs.getDate("date_debut_enchere").toLocalDate(), rs.getDate("date_fin_enchere").toLocalDate(),
 						rs.getInt("prix_initial"), user, cat);
 				article.setCategorie(cat);
+				liste_article.add(article);
 			}
 
 		} catch (SQLException e) {
-			throw new DALException("problème avec la méthode selectById d'article", e);
+			throw new DALException("problème avec la méthode selectByCat d'article", e);
 		}
 
-		return article;
+		return liste_article;
 	}
 }

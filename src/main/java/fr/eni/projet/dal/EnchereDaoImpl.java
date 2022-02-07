@@ -80,6 +80,7 @@ public class EnchereDaoImpl implements EnchereDAO {
 						art);
 				encheres.add(enchere);
 			}
+			
 		} catch (SQLException e) {
 			throw new DALException("problème avec la méthode selectByNoArticle de EnchereDAO", e);
 		}

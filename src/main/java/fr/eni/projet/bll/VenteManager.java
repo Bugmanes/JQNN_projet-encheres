@@ -4,6 +4,8 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.jasper.tagplugins.jstl.core.ForEach;
+
 import fr.eni.projet.bo.Article;
 import fr.eni.projet.bo.Categorie;
 import fr.eni.projet.bo.Enchere;
@@ -63,6 +65,7 @@ public class VenteManager {
 		ArticleDAO adao;
 		EnchereDAO edao;
 		List<Enchere> encheres;
+		Enchere meilleurOffre = null;
 		
 		// recuperation de l'article en BDD
 		adao = DAOFactory.getArticleDAO();
@@ -74,6 +77,17 @@ public class VenteManager {
 		
 		//ajout de la liste d'encheres à l'instance d'article
 		article.setEncheres(encheres);
+		
+		// recherche de la meilleure offre et modification des parametres de l'article
+		for (Enchere enchere : encheres) {
+			if (meilleurOffre == null) {
+				meilleurOffre = enchere;
+			} else if (enchere.getMontantEnchere() > meilleurOffre.getMontantEnchere()){
+				meilleurOffre = enchere;				
+			}
+		}
+		article.setAcheteur(meilleurOffre.getUtilisateur());
+		article.setPrixVentes(meilleurOffre.getMontantEnchere());
 
 		return article;
 	}

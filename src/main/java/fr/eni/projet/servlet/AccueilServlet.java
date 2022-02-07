@@ -48,15 +48,18 @@ public class AccueilServlet extends HttpServlet {
 			CategorieManager cm = CategorieManager.getInstance();
 			//je crée un liste d'Aticle 
 			List<Article> articles = null;
+			request.setAttribute("listeCat", articles);
+			String cat = request.getParameter("categorie");
+			int categorie = Integer.parseInt(cat);
+			System.out.println(categorie);
 		} catch (DALException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			throw new ServletException("problème dans la méthode doPost de la servlet Accueil", e);
 		}
 		
-		String cat = request.getParameter("categorie");
-		int categorie = Integer.parseInt(cat);
+		
 
-		System.out.println(categorie);
+		
+		
 		getServletContext().getRequestDispatcher("/WEB-INF/jsp/accueil.jsp").forward(request, response);
 
 	}

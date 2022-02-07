@@ -3,7 +3,7 @@ package fr.eni.projet.dal;
 import fr.eni.projet.bo.Utilisateur;
 
 public interface UtilisateurDAO {
-	//methode pour création d'utlisateur
+	//methode pour crï¿½ation d'utlisateur
 	public void newUtilisateur(Utilisateur utilisateur) throws DALException;
 
 	// methode de selection par pseudo
@@ -24,6 +24,4 @@ public interface UtilisateurDAO {
 	// methode de verification d'email unique
 	public boolean selectUniqueMail(String mail) throws DALException;
 	
-	//methode de suppression d'utilisateur 
-	void deleteUtilisateur(String pseudo, String MDP) throws DALException;
 }

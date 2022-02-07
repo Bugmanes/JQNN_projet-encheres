@@ -52,7 +52,7 @@ public class CategorieDaoImpl implements CategorieDAO {
 		ResultSet rs;
 		PreparedStatement pstmt;
 
-		// r�cup�ration de la connexion
+		// recuperation de la connexion
 		try {
 			//hydratation de mes variables
 			cnx = ConnexionProvider.getConnection();
@@ -62,7 +62,7 @@ public class CategorieDaoImpl implements CategorieDAO {
 			if (rs.next()) {
 				categorie = new Categorie(rs.getInt("no_categorie"), rs.getString("libelle"));
 			}
-			//fermeture de connction...
+			// fermeture de connection...
 			rs.close();
 			pstmt.close();
 			cnx.close();

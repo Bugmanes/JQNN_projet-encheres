@@ -47,16 +47,15 @@ public class UtilisateurDaoImpl implements UtilisateurDAO {
 			if (rs.next()) {
 				utilisateur.setNoUtilisateur(rs.getInt(1));
 			}
+			
 			// fermeture de connection...
 			rs.close();
 			pstmt.close();
 			cnx.close();
+			
 		} catch (SQLException e) {
 			throw new DALException("probl�me avec la m�thode newUtilisateur", e);
 		}
-
-		// TODO Auto-generated method stub
-
 	}
 
 	@Override
@@ -82,12 +81,14 @@ public class UtilisateurDaoImpl implements UtilisateurDAO {
 						rs.getString("email"), rs.getString("telephone"), rs.getString("rue"),
 						rs.getString("code_postal"), rs.getString("ville"));
 			}
+			
+			rs.close();
+			pstmt.close();
 
 		} catch (SQLException e) {
 			throw new DALException("probleme de methode selectByPseudo()", e);
-		} finally {
-			// cnx.close(); //TODO by @Nael
-		}
+		} 
+		
 		return utilisateur;
 	}
 
@@ -111,6 +112,10 @@ public class UtilisateurDaoImpl implements UtilisateurDAO {
 						rs.getString("code_postal"), rs.getString("ville"));
 				utilisateur.setNoUtilisateur(id);
 			}
+			
+			rs.close();
+			pstmt.close();
+			cnx.close();
 
 		} catch (SQLException e) {
 			throw new DALException("probleme avec la methode selectById", e);
@@ -151,7 +156,7 @@ public class UtilisateurDaoImpl implements UtilisateurDAO {
 	@Override
 	public Utilisateur selectConnexion(String identifiant, String password) throws DALException {
 
-		// d�claration de mes variables
+		// declaration de mes variables
 		Connection cnx = null;
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
@@ -179,6 +184,10 @@ public class UtilisateurDaoImpl implements UtilisateurDAO {
 					user.setNoUtilisateur(rs.getInt("no_utilisateur"));
 				}
 			}
+			
+			rs.close();
+			stmt.close();
+			cnx.close();
 
 		} catch (SQLException e) {
 			throw new DALException("probleme avec la methode selectConnexion", e);
@@ -259,6 +268,9 @@ public class UtilisateurDaoImpl implements UtilisateurDAO {
 			pstmt.setString(7, anonyme);
 			pstmt.setString(8, anonyme);
 			pstmt.setInt(9, utilisateur.getNoUtilisateur());
+			
+			pstmt.close();
+			cnx.close();
  
 		} catch (SQLException e) {
 			throw new DALException("probleme de methode deleteUtilisateur", e);

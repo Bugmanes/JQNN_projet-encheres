@@ -30,6 +30,9 @@ public class EnchereDaoImpl implements EnchereDAO {
 			cnx = ConnexionProvider.getConnection();
 			pstmt.setInt(1, numUtil);
 			pstmt.executeUpdate();
+			
+			pstmt.close();
+			cnx.close();
 		} catch (SQLException e) {
 			throw new DALException("probleme de deleteEnchere ", e);
 		}
@@ -85,6 +88,10 @@ public class EnchereDaoImpl implements EnchereDAO {
 				// ajout de l'enchere
 				encheres.add(enchere);
 			}
+			
+			rs.close();
+			stmt.close();
+			cnx.close();
 			
 		} catch (SQLException e) {
 			throw new DALException("problème avec la méthode selectByNoArticle de EnchereDAO", e);

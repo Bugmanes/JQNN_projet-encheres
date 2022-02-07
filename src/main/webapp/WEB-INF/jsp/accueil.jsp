@@ -120,69 +120,63 @@
 					<th>Vendeur</th>
 				<tbody>
 					<%
-			List<Article> liste = (List<Article>) request.getAttribute("liste");
-			if (liste != null) {
-				for (Article article : liste) {
-				out.print("<tr>");
-				out.print("<td>" + article.getNomArticle() + "</td>");
-				out.print("<td>" + article.getPrixInitial() + "</td>");
-				out.print("<td>" + article.getDateFinEncheres() + "</td>");
-				out.print("<td>" + article.getVendeur().getPseudo() + "</td>");
-				out.print("</tr>");
-				}
-				
-				out.print("</tbody>");
-				out.print("</table>"); 
-				
-			
-			
-			
-				}else 
-				
-				{
-				%>
+					List<Article> liste = (List<Article>) request.getAttribute("liste");
+					if (liste != null && liste.size() > 0) {
+						for (Article article : liste) {
+							out.print("<tr>");
+							out.print("<td>" + article.getNomArticle() + "</td>");
+							out.print("<td>" + article.getPrixInitial() + "</td>");
+							out.print("<td>" + article.getDateFinEncheres() + "</td>");
+							out.print("<td>" + article.getVendeur().getPseudo() + "</td>");
+							out.print("</tr>");
+						}
 
-					<%out.print("<h1>La Boutique est fermée</h1>");%>
+						out.print("</tbody>");
+						out.print("</table>");
+
+					} else
+
+					{
+
+						out.print("<p>La Boutique est fermée</p>");
+
+					}
+					%>
+
+
+
+
+
 					<%
-				}
-				%>
-
-
-
+					List<Article> listeC = (List<Article>) request.getAttribute("listeCat");
+					%>
 					
+					<%
+					if (listeC != null && listeC.size() > 0) {
 
-							<%
-		List<Article> listeC = (List<Article>) request.getAttribute("listeCat");
-		if (listeC != null) {
-			
-			for (Article article : listeC) {
-			out.print("<tr>");
-			out.print("<td>" + article.getNomArticle() + "</td>");
-			out.print("<td>" + article.getPrixInitial() + "</td>");
-			out.print("<td>" + article.getDateFinEncheres() + "</td>");
-			out.print("<td>" + article.getVendeur().getPseudo() + "</td>");
-			out.print("</tr>");
-			}
-			
-			out.print("</tbody>");
-			out.print("</table>"); 
-			
-		
-		
-		
-			}else 
-		
-			{
-		%>
-				<%out.print("<h1>La Boutique est fermée</h1>");%>
+						for (Article article : listeC) {
+							out.print("<tr>");
+							out.print("<td>" + article.getNomArticle() + "</td>");
+							out.print("<td>" + article.getPrixInitial() + "</td>");
+							out.print("<td>" + article.getDateFinEncheres() + "</td>");
+							out.print("<td>" + article.getVendeur().getPseudo() + "</td>");
+							out.print("</tr>");
+						}
 
-<%
-							
-			}
-			%>
+						out.print("</tbody>");
+						out.print("</table>");
+
+					} else
+
+					{
+
+						out.print("<p>La Boutique est fermée</p>");
+
+					}
+					%>
 
 
-							</div>
-							</main>
+					</div>
+					</main>
 </body>
 </html>

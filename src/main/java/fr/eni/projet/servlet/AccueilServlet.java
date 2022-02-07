@@ -83,6 +83,30 @@ public class AccueilServlet extends HttpServlet {
 		} catch (DALException e) {
 			throw new ServletException("problème dans la méthode doPost de la servlet Accueil", e);
 		}
+		
+		
+		 ArrayList listeAB= new ArrayList();
+		 
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 
 		getServletContext().getRequestDispatcher("/WEB-INF/jsp/accueil.jsp").forward(request, response);
 

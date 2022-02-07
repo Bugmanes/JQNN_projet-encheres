@@ -166,35 +166,41 @@ public class ArticleDaoImpl implements ArticleDAO {
 
 	
 	
-	@Override
-	public  List<Article> selectByNomUtilisateur(Article article) throws DALException {
-		Connection cnx= null;
+	public  List<Article> selectByNomUtilisateur(Utilisateur user) throws DALException {
+		Connection cnx = null;
 		PreparedStatement pstmt = null;
-		
 		LocalDate today = LocalDate.now();
-		List<Article> listeEnchere;
-		
+		List<Article> listeEnchere = new ArrayList<Article>();
+		Categorie category;
+		CategorieDAO cdao = DAOFactory.getCategorieDAO();
+		Article article;
 		try {
 			cnx = ConnexionProvider.getConnection();
-			pstmt = cnx.prepareStatement( SELECT_BY_NO_UTILISATEUR);
-			pstmt.setString(1, article.getNomArticle());
-			pstmt.setDate(2, Date.valueOf(article.getDateFinEncheres()));
-			pstmt.executeQuery();
-								
-			//if la fin d'enchere apres la date d'aujourd'hui
-			if (article.getDateFinEncheres().isAfter(today)) {
+			pstmt = cnx.prepareStatement(SELECT_BY_NO_UTILISATEUR);
+			pstmt.setInt(1, user.getNoUtilisateur());
+			ResultSet rs = pstmt.executeQuery();
+			while (rs.next()) {
+				category = cdao.selectById(rs.getInt("no_categorie"));
+				article = new Article(rs.getString("nom_article"), rs.getString("description"),
+						rs.getDate("date_debut_encheres").toLocalDate(), rs.getDate("date_fin_encheres").toLocalDate(),
+						rs.getInt("prix_initial"), user, category);
+				listeEnchere.add(article);
+
+			}
+			// if la fin d'enchere apres la date d'aujourd'hui
+			if(rs.getDate("date_fin_encheres").toLocalDate().isAfter(today)) {
 				
+				
+			}else if (rs.getDate("date_fin_encheres").toLocalDate().isAfter(today)){
+				// if la fin d'enchere avant la date d'aujourd'hui
+				
+			}
 			
-			}
-			//if la fin d'enchere avant la date d'aujourd'hui
-			else {
-				
-			}
+
 		} catch (SQLException e) {
-			throw new DALException("problem de la methode selectByNomUtilisateur",e);
+			throw new DALException("problem de la methode selectByNomUtilisateur", e);
 		}
-		
-		
+
 		return null;
 	}
 }

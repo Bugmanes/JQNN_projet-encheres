@@ -259,7 +259,7 @@ public class UtilisateurDaoImpl implements UtilisateurDAO {
 			pstmt.setString(7, anonyme);
 			pstmt.setString(8, anonyme);
 			pstmt.setInt(9, utilisateur.getNoUtilisateur());
-
+ 
 		} catch (SQLException e) {
 			throw new DALException("probleme de methode deleteUtilisateur", e);
 		} finally {

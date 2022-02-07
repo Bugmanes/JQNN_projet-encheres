@@ -14,4 +14,6 @@ public interface ArticleDAO {
 
 	public List<Article> selectByCat(int id) throws DALException;
 
+	public List<Article> selectByNomUtilisateur(Article article) throws DALException;
+
 }

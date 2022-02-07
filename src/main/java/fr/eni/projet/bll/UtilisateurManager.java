@@ -63,6 +63,8 @@ public class UtilisateurManager {
 			String rue, String codePostal, String ville, String motDePasse, Utilisateur utilisateur)
 			throws DALException {
 		String oldPseudo = "";
+		
+		// veriffier si les donnees correspondent
 		if (utilisateur.getPseudo().equals(pseudo)) {
 			utilisateur.setNom(nom);
 			utilisateur.setPrenom(prenom);
@@ -72,6 +74,7 @@ public class UtilisateurManager {
 			utilisateur.setCodePostal(codePostal);
 			utilisateur.setVille(ville);
 		} else {
+			// demander l'ancien pseudo
 			oldPseudo = utilisateur.getPseudo();
 			utilisateur.setPseudo(pseudo);
 		}
@@ -87,6 +90,7 @@ public class UtilisateurManager {
 		Matcher m;
 		boolean ok;
 
+		// verifie si le pseudo contient uniquement des lettres et/ou des chiffres
 		p = Pattern.compile("[^a-zA-Z_0-9]");
 		m = p.matcher(str);
 		ok = m.matches();
@@ -100,6 +104,7 @@ public class UtilisateurManager {
 		Matcher m;
 		boolean ok;
 
+		// verifie si le nom et prenom contiennent uniquement des lettres
 		p = Pattern.compile("[^a-zA-Z]");
 		m = p.matcher(str);
 		ok = m.matches();
@@ -115,6 +120,7 @@ public class UtilisateurManager {
 		Matcher m;
 		boolean ok;
 
+		// verifie si le numero de telephone contient uniquement des chiffres
 		p = Pattern.compile("[a-zA-Z]");
 		m = p.matcher(str);
 		ok = m.matches();
@@ -130,6 +136,7 @@ public class UtilisateurManager {
 		Matcher m;
 		boolean ok;
 
+		// verifie si le code postal contient uniquement des chiffres
 		p = Pattern.compile("[^0-9]");
 		m = p.matcher(str);
 		ok = m.matches();

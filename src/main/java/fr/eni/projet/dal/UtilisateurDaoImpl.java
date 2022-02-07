@@ -77,7 +77,7 @@ public class UtilisateurDaoImpl implements UtilisateurDAO {
 			rs = pstmt.executeQuery();
 
 			if (rs.next()) {
-				// creation d'un nouveau utilisateur
+				// creation d'un nouvel utilisateur
 				utilisateur = new Utilisateur(pseudo, rs.getString("nom"), rs.getString("prenom"),
 						rs.getString("email"), rs.getString("telephone"), rs.getString("rue"),
 						rs.getString("code_postal"), rs.getString("ville"));
@@ -93,18 +93,18 @@ public class UtilisateurDaoImpl implements UtilisateurDAO {
 
 	@Override
 	public Utilisateur selectById(int id) throws DALException {
-		// cr�ation de mes varibales
+		// creation de mes varibales
 		Utilisateur utilisateur = null;
 		Connection cnx;
 		ResultSet rs;
 	
 		try {
-			// r�cup�ration de la connexion
+			// recuperation de la connexion
 			cnx = ConnexionProvider.getConnection();
 			PreparedStatement pstmt = cnx.prepareStatement(SELECT_BY_ID);
 			pstmt.setInt(1, id);
 			rs = pstmt.executeQuery();
-			// cr�ation du nouveau utilisateur
+			// creation du nouveau utilisateur
 			if (rs.next()) {
 				utilisateur = new Utilisateur(rs.getString("pseudo"), rs.getString("nom"), rs.getString("prenom"),
 						rs.getString("email"), rs.getString("telephone"), rs.getString("rue"),
@@ -123,7 +123,7 @@ public class UtilisateurDaoImpl implements UtilisateurDAO {
 		try {
 			Connection cnx = ConnexionProvider.getConnection();
 			PreparedStatement pstmt = cnx.prepareStatement(UPDATE_UTILISATEUR);
-			// insertion des param�tres dans la base de donn�es
+			// insertion des parametres dans la base de donnees
 			pstmt.setString(1, utilisateur.getNom());
 			pstmt.setString(2, utilisateur.getPrenom());
 			pstmt.setString(3, utilisateur.getEmail());

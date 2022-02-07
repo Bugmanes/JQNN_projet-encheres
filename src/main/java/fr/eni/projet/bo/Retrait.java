@@ -2,7 +2,7 @@ package fr.eni.projet.bo;
 
 public class Retrait {
 
-	//déclaration de mes variables
+	// declaration de mes variables
 	private String rue;
 	private String codePostal;
 	private String ville;
@@ -11,10 +11,10 @@ public class Retrait {
 	public Retrait() {
 	}
 
-	//methode pour avoir des informations sur un retrait
+	// methode pour avoir des informations sur un retrait
 	public Retrait(String rue, String codePostal, String ville, Article article) {
 		
-		//insertion des paramétres
+		// insertion des parametres
 		setRue(rue);
 		setCodePostal(codePostal);
 		setVille(ville);

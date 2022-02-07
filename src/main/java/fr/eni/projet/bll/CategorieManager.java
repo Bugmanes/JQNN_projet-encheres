@@ -22,17 +22,17 @@ public class CategorieManager {
 	public static CategorieManager getInstance() throws DALException {
 		cDAO = DAOFactory.getCategorieDAO();
 		categories = cDAO.selectAll();
-		//parametrage de l'instance
+		// parametrage de l'instance
 		if (instance == null) {
 			instance = new CategorieManager();
 		}
-		//renvoie de l'instance
+		// renvoie de l'instance
 		return instance;
 	}
 
-	//methode pour choisir une categorie
+	// methode pour choisir une categorie
 	public Categorie chercherCategorie(String libelle) {
-		//initialisattion de categorie a null
+		// initialisattion de categorie a null
 		Categorie categorie = null;
 
 		for (Categorie cat : categories) {

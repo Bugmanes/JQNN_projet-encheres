@@ -4,7 +4,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-//class Nicolas
+// class Nicolas
 public class Article {
 	// Attribut de la classe Article
 	private int noArticle;
@@ -20,12 +20,12 @@ public class Article {
 	private Utilisateur vendeur;
 	private List<Enchere> encheres = new ArrayList<>();
 
-//constructeur par defaut de la classe Article
+	// constructeur par defaut de la classe Article
 	public Article() {
 
 	}
 
-//coonstructeur surcharger de la classe Article
+	// coonstructeur surcharger de la classe Article
 	public Article(String nomArticle, String description, LocalDate dateDebutEncheres, LocalDate dateFinEncheres,
 			int prixInitial, Utilisateur vendeur, Categorie categorie) {
 		

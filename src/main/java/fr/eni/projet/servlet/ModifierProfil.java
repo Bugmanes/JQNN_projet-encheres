@@ -71,6 +71,7 @@ public class ModifierProfil extends HttpServlet {
 			boolean pseudoUniqueOK = false;
 			boolean emailUniqueOK = false;
 
+			// verification si le pseudo est correspond
 			if (!utilisateur.getPseudo().equals(pseudo)) {
 				pseudoOK = um.verifPseudo(pseudo);
 				try {
@@ -79,19 +80,24 @@ public class ModifierProfil extends HttpServlet {
 					System.err.println(e.getMessage());
 				}
 			}
+			// verification si le nom est correspond
 			if (!utilisateur.getNom().equals(nom)) {
 				nomOK = um.verifNomPrenom(nom);
 			}
+			// verification si le prenom est correspond
 			if (!utilisateur.getPrenom().equals(prenom)) {
 				prenomOK = um.verifNomPrenom(prenom);
 			}
+			// verification si le numéro de téléphone est correspond
 			if (!utilisateur.getTelephone().equals(telephone)) {
 				telOK = um.verifTel(telephone);
 			}
+			// verification si le l'email est correspond
 			if (!utilisateur.getEmail().equals(email)) {
 				emailUniqueOK = false;
 			}
 
+			// verification si un ou des parametres sont faux
 			if (!pseudoOK || !nomOK || !prenomOK || !telOK || !pseudoUniqueOK || !emailUniqueOK)
 				request.setAttribute("pseudoOK", pseudoOK);
 			request.setAttribute("pseudoUniqueOK", pseudoUniqueOK);

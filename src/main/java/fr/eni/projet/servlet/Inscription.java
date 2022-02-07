@@ -55,6 +55,7 @@ public class Inscription extends HttpServlet {
 			System.err.println(e.getMessage());
 		}
 		
+		// si une ou des requtes sont erronnes, demander une donnee valide
 		if(!pseudoOK || !nomOK || !prenomOK || !telOK || !pseudoUniqueOK || !emailUniqueOK)
 			request.setAttribute("pseudoOK", pseudoOK);
 			request.setAttribute("pseudoUniqueOK", pseudoUniqueOK);
@@ -65,7 +66,7 @@ public class Inscription extends HttpServlet {
 			request.getRequestDispatcher("/WEB-INF/jsp/inscription.jsp").forward(request, response);
 		
 		try {
-			//insertion des parametre dans un nouvel utilisateur
+			// insertion des parametre dans un nouvel utilisateur
 			um.nouvelUtilisateur(pseudo, nom, prenom, email, telephone, rue, codePostal, ville, motDePasse, credit,
 					administrateur);
 		} catch (DALException e) {

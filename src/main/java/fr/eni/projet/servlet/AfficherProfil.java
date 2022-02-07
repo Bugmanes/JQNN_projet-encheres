@@ -20,7 +20,7 @@ public class AfficherProfil extends HttpServlet {
 		// recuperation de l'utilisateur de la session 
 		HttpSession session = request.getSession();
 		
-		//passage en attribut de request
+		// passage en attribut de request
 		request.setAttribute("utilisateur", session.getAttribute("utilisateur"));	
 		
 		// envoi a la page d'affichage profil.jsp

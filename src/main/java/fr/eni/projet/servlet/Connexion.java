@@ -42,7 +42,7 @@ public class Connexion extends HttpServlet {
 
 		if (user == null) {
 			request.setAttribute("connexion", false);
-			//envoie a la page seConnecter.jsp
+			// envoie a la page seConnecter.jsp
 			request.getRequestDispatcher("/WEB-INF/jsp/seConnecter.jsp").forward(request, response);
 		} else {
 			HttpSession session = request.getSession();

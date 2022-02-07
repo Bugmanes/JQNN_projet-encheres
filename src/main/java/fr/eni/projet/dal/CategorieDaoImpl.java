@@ -13,7 +13,7 @@ import fr.eni.projet.util.ConnexionProvider;
 
 public class CategorieDaoImpl implements CategorieDAO {
 
-	//insertion methodes SQL
+	// insertion methodes SQL
 	private final static String SELECT_ALL = "SELECT * FROM CATEGORIES;";
 	private final static String SELECT_BY_ID = "SELECT * FROM Articles_Vendus WHERE no_utilisateur = ?;";
 
@@ -28,10 +28,12 @@ public class CategorieDaoImpl implements CategorieDAO {
 			Statement stmt = cnx.createStatement();
 			ResultSet rs = stmt.executeQuery(SELECT_ALL);
 			while (rs.next()) {
+				// creation du numero de categorie et du libelle
 				categorie = new Categorie(rs.getInt("no_categorie"), rs.getString("libelle"));
+				// ajout de la categorie
 				categories.add(categorie);
 			}
-			//fermeture de connection ...
+			// fermeture de connection ...
 			rs.close();
 			stmt.close();
 			cnx.close();
@@ -44,7 +46,7 @@ public class CategorieDaoImpl implements CategorieDAO {
 
 	@Override
 	public Categorie selectById(int id) throws DALException {
-		//declaration de mes variables
+		// declaration de mes variables
 		Categorie categorie = null;
 		Connection cnx;
 		ResultSet rs;
@@ -52,7 +54,6 @@ public class CategorieDaoImpl implements CategorieDAO {
 
 		// récupération de la connexion
 		try {
-			//hydratation de mes variables
 			cnx = ConnexionProvider.getConnection();
 			pstmt = cnx.prepareStatement(SELECT_BY_ID);
 			pstmt.setInt(1, id);
@@ -61,7 +62,7 @@ public class CategorieDaoImpl implements CategorieDAO {
 				categorie = new Categorie(rs.getInt("no_categorie"), rs.getString("libelle"));
 				categorie.setNoCategorie(id);
 			}
-			//fermeture de connction...
+			// fermeture de connction...
 			rs.close();
 			pstmt.close();
 			cnx.close();

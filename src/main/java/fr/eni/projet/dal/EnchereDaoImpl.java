@@ -21,6 +21,7 @@ public class EnchereDaoImpl implements EnchereDAO {
 	private final static String SELECT_BY_NO_ARTICLE = "SELECT * FROM ENCHERES WHERE no_article=?";
 
 	@Override
+	// supprimer une enchere
 	public void deleteEnchere(int numUtil) throws DALException {
 		Connection cnx = null;
 		PreparedStatement pstmt = null;
@@ -35,12 +36,14 @@ public class EnchereDaoImpl implements EnchereDAO {
 	}
 
 	@Override
+	// creer une enchere
 	public void insertEnchere(Enchere enchere) throws DALException {
 
 		Connection cnx;
 		PreparedStatement stmt;
 
 		try {
+			// preparer les parametres
 			cnx = ConnexionProvider.getConnection();
 			stmt = cnx.prepareStatement(INSERT_ENCHERE);
 			stmt.setInt(1, enchere.getUtilisateur().getNoUtilisateur());
@@ -75,9 +78,11 @@ public class EnchereDaoImpl implements EnchereDAO {
 			rs = stmt.executeQuery();
 
 			while (rs.next()) {
+				// recuperation des informations de l'utilisateur grace a son numero("no_utilisateur")
 				user = udao.selectById(rs.getInt("no_utilisateur"));
 				enchere = new Enchere(rs.getDate("date_enchere").toLocalDate(), rs.getInt("montant_enchere"), user,
 						art);
+				// ajout de l'enchere
 				encheres.add(enchere);
 			}
 			

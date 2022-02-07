@@ -71,7 +71,7 @@ public class GestionVente extends HttpServlet {
 		
 		// recuperation d'utilisateur de la session
 		HttpSession session = request.getSession();
-		//recuperation d'utilisateur de la session
+		// recuperation d'utilisateur de la session
 		Utilisateur utilisateur = (Utilisateur) session.getAttribute("utilisateur");
 		
 		// recuperation de l'image de l'article
@@ -79,7 +79,7 @@ public class GestionVente extends HttpServlet {
 		
 		// envoi à la bll
 		VenteManager em = VenteManager.getInstance();
-		//insertion des parametrage d'un nouvel utilisateur
+		// insertion des parametrage d'un nouvel utilisateur
 		try {
 			em.nouvelleVente(nom, description, dateDebut, dateFin, miseAPrix, utilisateur, categorie);
 		} catch (DALException e) {

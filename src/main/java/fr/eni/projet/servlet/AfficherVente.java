@@ -28,7 +28,7 @@ public class AfficherVente extends HttpServlet {
 		// recuperer l'id de l'article
 		idArt = Integer.parseInt(request.getParameter("idArticle"));
 		
-		//recuperer l'article à partir de son id
+		// recuperer l'article à partir de son id
 		vm = VenteManager.getInstance();
 		try {
 			article = vm.obtenirArticle(idArt);
@@ -61,7 +61,7 @@ public class AfficherVente extends HttpServlet {
 		VenteManager vm = VenteManager.getInstance();
 		boolean ok = vm.verifEnchere(article, enchere);
 		
-		//selon la verification, enregistrement de l'enchere ou retour avec message d'erreur
+		// selon la verification, enregistrement de l'enchere ou retour avec message d'erreur
 		if (ok) {
 			try {
 				vm.encherir(utilisateur, article, enchere);

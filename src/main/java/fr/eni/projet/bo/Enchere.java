@@ -4,20 +4,20 @@ import java.time.LocalDate;
 
 public class Enchere {
 
-	// Declaratio des attributes
+	// declaratio des attributes
 	private LocalDate dateEnchere;
 	private int montantEnchere;
 	private Utilisateur utilisateur;
 	private Article article;
 
-	// Constracteur vide
+	// constracteur vide
 	public Enchere() {
 	}
 
-	// constructeur surchargé
+	// constructeur surcharge
 	public Enchere(LocalDate dateEnchere, int montantEnchere, Utilisateur utilisateur, Article article) {
 		
-		//insertion des paramétres
+		// insertion des parametres
 		setDateEnchere(dateEnchere);
 		setMontantEnchere(montantEnchere);
 		setUtilisateur(utilisateur);

@@ -27,6 +27,8 @@ public class ArticleDaoImpl implements ArticleDAO {
 	private final static String SELECT_BY_ID = "SELECT * FROM ARTICLES_VENDUS WHERE no_article=?;";
 	private final static String SELECT_BY_CAT = "SELECT * FROM ARTICLES_VENDUS WHERE no_categorie=? ;";
 	private final static String SELECT_BY_NO_UTILISATEUR ="SELECT * FROM ARTICLES_VENDUS WHERE no_utilisateur=? AND date_fin_encheres = ?;";
+	private final static String DELETE_ARTICLE ="DELETE FROM ARTICLES_VENDUS WHERE no_article=?;";
+	
 	@Override
 	public void insertArticle(Article article) throws DALException {
 
@@ -201,6 +203,7 @@ public class ArticleDaoImpl implements ArticleDAO {
 				if(article2.getDateFinEncheres().isBefore(today)) {
 					listeEnchere.remove(article2);
 				}
+				
 			}
 			
 			rs.close();
@@ -213,4 +216,27 @@ public class ArticleDaoImpl implements ArticleDAO {
 
 		return listeEnchere;
 	}
+
+	public void deleteArticle(Article article) throws DALException{
+		Connection cnx=null;
+		PreparedStatement pstmt=null;
+		LocalDate today = LocalDate.now();
+		ResultSet rs =null;
+		
+		try {
+			cnx = ConnexionProvider.getConnection();
+			pstmt = cnx.prepareStatement(DELETE_ARTICLE);
+			pstmt.setInt(1,article.getNoArticle() );
+			pstmt.executeQuery();
+			if(article.getDateFinEncheres().isAfter(today)) {
+				System.out.println("la putin Article est Supprimé");
+			}
+			
+			
+		} catch (SQLException e) {
+		throw new DALException("Probleme de la methode deleteArticle",e);
+		}
+		
+	}
+
 }

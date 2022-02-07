@@ -1,9 +1,13 @@
 package fr.eni.projet.bll;
 
+import fr.eni.projet.bo.Article;
 import fr.eni.projet.bo.Utilisateur;
+import fr.eni.projet.dal.ArticleDAO;
 import fr.eni.projet.dal.DALException;
 import fr.eni.projet.dal.DAOFactory;
 import fr.eni.projet.dal.UtilisateurDAO;
+
+import java.util.List;
 import java.util.regex.*;
 
 public class UtilisateurManager {
@@ -168,7 +172,13 @@ public class UtilisateurManager {
 	}
 
 	public void supressionUtilisateur(Utilisateur utilisateur) throws DALException {
+		List<Article> articles;
 		UtilisateurDAO udao = DAOFactory.getUtilisateurDAO();
 		udao.deleteUtilisateur(utilisateur);
+		
+		ArticleDAO aDao = DAOFactory.getArticleDAO();
+		articles =aDao.selectByNoUtilisateur(utilisateur);
 	}
+
+	
 }

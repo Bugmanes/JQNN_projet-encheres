@@ -39,7 +39,7 @@ public class VenteManager {
 		return liste;
 	}
 
-	//methode de listage d'article en fonction de la catégorie
+	//methode de listage d'article en fonction de la catï¿½gorie
 	public List<Article> listerArticlesCat(int id) throws DALException {
 
 		
@@ -75,7 +75,7 @@ public class VenteManager {
 		edao = DAOFactory.getEnchereDAO();
 		encheres = edao.selectByNoArticle(article);
 		
-		//ajout de la liste d'encheres à l'instance d'article
+		//ajout de la liste d'encheres ï¿½ l'instance d'article
 		article.setEncheres(encheres);
 		
 		// recherche de la meilleure offre et modification des parametres de l'article
@@ -92,7 +92,7 @@ public class VenteManager {
 		return article;
 	}
 
-public void encherir(Utilisateur user, Article art, int montantEnchere) throws DALException {
+     public void encherir(Utilisateur user, Article art, int montantEnchere) throws DALException {
 		Enchere enchere = new Enchere(LocalDate.now(), montantEnchere, user, art);
 		art.ajouterEnchere(user, enchere);
 		EnchereDAO edao = DAOFactory.getEnchereDAO();
@@ -109,4 +109,6 @@ public void encherir(Utilisateur user, Article art, int montantEnchere) throws D
 
 		return ok;
 	}
+
+
 }

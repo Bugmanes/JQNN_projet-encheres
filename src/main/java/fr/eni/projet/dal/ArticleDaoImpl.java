@@ -14,6 +14,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
+import fr.eni.projet.bll.UtilisateurManager;
 import fr.eni.projet.bo.Article;
 import fr.eni.projet.bo.Categorie;
 import fr.eni.projet.bo.Utilisateur;
@@ -221,19 +222,14 @@ public class ArticleDaoImpl implements ArticleDAO {
 	public void deleteArticle(Article article) throws DALException{
 		Connection cnx=null;
 		PreparedStatement pstmt=null;
-		LocalDate today = LocalDate.now();
-		ResultSet rs =null;
 		
 		try {
 			cnx = ConnexionProvider.getConnection();
 			pstmt = cnx.prepareStatement(DELETE_ARTICLE);
 			pstmt.setInt(1,article.getNoArticle() );
 			pstmt.executeQuery();
-			if(article.getDateFinEncheres().isAfter(today)) {
-				System.out.println("la putin Article est Supprimé");
-			}
-			
-			
+			pstmt.close();
+			cnx.close();
 		} catch (SQLException e) {
 		throw new DALException("Probleme de la methode deleteArticle",e);
 		}

@@ -178,6 +178,10 @@ public class UtilisateurManager {
 		
 		ArticleDAO adao = DAOFactory.getArticleDAO();
 		articles =adao.selectByNoUtilisateur(utilisateur);
+		for (Article article : articles) {
+			
+			adao.deleteArticle(article);
+		}
 	}
 
 	

@@ -270,7 +270,6 @@ public class UtilisateurDaoImpl implements UtilisateurDAO {
 			pstmt.setInt(9, 0);
 			pstmt.setInt(10, utilisateur.getNoUtilisateur());
 			pstmt.executeUpdate();
-			
 			pstmt.close();
 			cnx.close();
  

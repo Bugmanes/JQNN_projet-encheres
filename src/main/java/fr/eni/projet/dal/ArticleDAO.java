@@ -16,5 +16,7 @@ public interface ArticleDAO {
 	public List<Article> selectByCat(int id) throws DALException;
 
 	public List<Article> selectByNoUtilisateur(Utilisateur user) throws DALException;
+	
+	public void deleteArticle(Article article) throws DALException;
 
 }

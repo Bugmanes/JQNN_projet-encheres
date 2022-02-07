@@ -140,17 +140,19 @@ public class ArticleDaoImpl implements ArticleDAO {
 
 		try {
 			cnx = ConnexionProvider.getConnection();
-			pstmt = cnx.prepareStatement(SELECT_BY_ID);
+			pstmt = cnx.prepareStatement(SELECT_BY_CAT);
 			pstmt.setInt(1, id);
 			rs = pstmt.executeQuery();
 
 			if (rs.next()) {
 				user = udao.selectById(rs.getInt("no_utilisateur"));
 				cat = cdao.selectById(rs.getInt("no_categorie"));
-				article = new Article(rs.getString("nom_article"), rs.getString("descritpion"),
-						rs.getDate("date_debut_enchere").toLocalDate(), rs.getDate("date_fin_enchere").toLocalDate(),
+			
+				article = new Article(rs.getString("nom_article"), rs.getString("description"),
+						rs.getDate("date_debut_encheres").toLocalDate(), rs.getDate("date_fin_encheres").toLocalDate(),
 						rs.getInt("prix_initial"), user, cat);
 				article.setCategorie(cat);
+				
 				liste_article.add(article);
 			}
 

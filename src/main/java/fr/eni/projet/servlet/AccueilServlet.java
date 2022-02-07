@@ -55,26 +55,29 @@ public class AccueilServlet extends HttpServlet {
 		
 		try {
 			//créeation d'un objet de type Categoriemanager
-			VenteManager vm = VenteManager.getInstance();
-			
-			//je crée un liste d'Aticle 
 			List<Article> articles = null;
-			
-			request.setAttribute("listeCat", articles);
+			VenteManager vm = VenteManager.getInstance();
 			String cat = request.getParameter("categorie");
 			int categorie = Integer.parseInt(cat);
-			vm.listerArticlesCat(categorie);
+			articles = vm.listerArticlesCat(categorie);
+			//je crée un liste d'Aticle 
+			
+			
+			request.setAttribute("listeCat", articles);
+		
+			
 			System.out.println(categorie);
 			
 			
-				
-				for(Article article : articles) {
+		 while(articles != null){
+	              for(Article article : articles) {
 					System.out.println(article.getNomArticle());
 				System.out.println(article.getPrixInitial());
 					System.out.println(article.getDateFinEncheres());
 					System.out.println(article.getVendeur().getPseudo());
-				}
+		}
 			
+		 }System.out.println(categorie + "aucun article dans cette catégorie");
 			
 				
 			

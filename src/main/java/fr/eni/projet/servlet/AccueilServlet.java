@@ -69,6 +69,7 @@ public class AccueilServlet extends HttpServlet {
 			System.out.println(categorie);
 			
 			
+			
 		 while(articles != null){
 	              for(Article article : articles) {
 					System.out.println(article.getNomArticle());

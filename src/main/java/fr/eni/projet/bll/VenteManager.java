@@ -40,6 +40,7 @@ public class VenteManager {
 	//methode de listage d'article en fonction de la catégorie
 	public List<Article> listerArticlesCat(int id) throws DALException {
 
+		
 		ArticleDAO adao = DAOFactory.getArticleDAO();
 		//insertion d'une liste d'article
 		List<Article> liste = adao.selectByCat(id);

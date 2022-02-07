@@ -143,7 +143,8 @@ public class ArticleDaoImpl implements ArticleDAO {
 			pstmt = cnx.prepareStatement(SELECT_BY_CAT);
 			pstmt.setInt(1, id);
 			rs = pstmt.executeQuery();
-
+ 
+			
 			if (rs.next()) {
 				user = udao.selectById(rs.getInt("no_utilisateur"));
 				cat = cdao.selectById(rs.getInt("no_categorie"));

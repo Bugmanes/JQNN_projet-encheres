@@ -28,7 +28,7 @@
           <div class="right">
             <div>${article.description}</div>
             <div>${article.categorie.libelle}</div>
-            <div>${article.prixVentes} par ${article.acheteur.pseudo}</div>
+            <div>${article.prixVentes} pts par ${article.acheteur.pseudo}</div>
             <div>${article.prixInitial}</div>
             <div>${article.dateFinEncheres}</div>
             <div>${article.retrait.rue}<br>

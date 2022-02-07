@@ -120,7 +120,7 @@
 					out.print("<p>" + article.getNomArticle() + "</p>");
 					out.print("<p>" + article.getPrixInitial() + "</p>");
 					out.print("<p>" + article.getDateFinEncheres() + "</p>");
-					out.print("<p>" + article.getVendeur() + "</p>");
+					out.print("<p>" + article.getVendeur().getPseudo() + "</p>");
 				}
 
 			} else {

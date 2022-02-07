@@ -55,13 +55,30 @@ public class AccueilServlet extends HttpServlet {
 		
 		try {
 			//créeation d'un objet de type Categoriemanager
-			CategorieManager cm = CategorieManager.getInstance();
+			VenteManager vm = VenteManager.getInstance();
+			
 			//je crée un liste d'Aticle 
 			List<Article> articles = null;
+			
 			request.setAttribute("listeCat", articles);
 			String cat = request.getParameter("categorie");
 			int categorie = Integer.parseInt(cat);
+			vm.listerArticlesCat(categorie);
 			System.out.println(categorie);
+			
+			
+				
+				for(Article article : articles) {
+					System.out.println(article.getNomArticle());
+				System.out.println(article.getPrixInitial());
+					System.out.println(article.getDateFinEncheres());
+					System.out.println(article.getVendeur().getPseudo());
+				}
+			
+			
+				
+			
+			
 		} catch (DALException e) {
 			throw new ServletException("problème dans la méthode doPost de la servlet Accueil", e);
 		}

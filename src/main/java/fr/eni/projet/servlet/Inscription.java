@@ -72,7 +72,7 @@ public class Inscription extends HttpServlet {
 			System.err.println(e.getMessage());
 		}
 
-		// TODO navigation
+		request.getRequestDispatcher("/WEB-INF/jsp/seConnecter.jsp").forward(request, response);
 		
 	}
 

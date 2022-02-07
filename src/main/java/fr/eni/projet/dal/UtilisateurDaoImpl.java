@@ -17,10 +17,10 @@ public class UtilisateurDaoImpl implements UtilisateurDAO {
 	private final static String SQL_INSERT = "INSERT INTO UTILISATEURS (pseudo,nom,prenom,email,telephone,rue,code_postal,ville,mot_de_passe,credit,administrateur) VALUES (?,?,?,?,?,?,?,?,?,?,?);";
 	private final static String SELECT_BY_PSEUDO = "SELECT * FROM UTILISATEURS WHERE pseudo = ?;";
 	private final static String SELECT_CONNEXION = "SELECT * FROM UTILISATEURS WHERE (pseudo =? OR email =?)";
-	private final static String SELECT_BY_ID = "SELECT * FROM UTILISATEURS WHERE id = ?;";
+	private final static String SELECT_BY_ID = "SELECT * FROM UTILISATEURS WHERE no_utilisateur = ?;";
 	private final static String UPDATE_UTILISATEUR = "UPDATE UTILISATEURS SET nom = ?, prenom =?, email = ?, telephone = ?, rue = ?,code_postal =?,ville = ? WHERE pseudo =?;";
 	private final static String SELECT_BY_MAIL = "SELECT * FROM UTILISATEURS WHERE email=?;";
-	private final static String ANONYMISER_UTILISATEUR = "UPDATE UTILISATEURS SET nom = ?, prenom =?, email = ?, telephone = ?, rue = ?,code_postal =?,ville = ?, pseudo =?, credit =? WHERE no_utilisateur=?;";
+	private final static String ANONYMISER_UTILISATEUR = "UPDATE UTILISATEURS SET nom = ?, prenom =?, email = ?, telephone = ?, rue = ?,code_postal =?,ville = ?, pseudo =? WHERE no_utilisateur=?;";
 
 	@Override
 	public void newUtilisateur(Utilisateur utilisateur) throws DALException {
@@ -97,11 +97,11 @@ public class UtilisateurDaoImpl implements UtilisateurDAO {
 		Utilisateur utilisateur = null;
 		Connection cnx;
 		ResultSet rs;
-		PreparedStatement pstmt = null;
+	
 		try {
 			// r�cup�ration de la connexion
 			cnx = ConnexionProvider.getConnection();
-			PreparedStatement stmt = cnx.prepareStatement(SELECT_BY_ID);
+			PreparedStatement pstmt = cnx.prepareStatement(SELECT_BY_ID);
 			pstmt.setInt(1, id);
 			rs = pstmt.executeQuery();
 			// cr�ation du nouveau utilisateur
@@ -258,8 +258,7 @@ public class UtilisateurDaoImpl implements UtilisateurDAO {
 			pstmt.setString(6, anonyme);
 			pstmt.setString(7, anonyme);
 			pstmt.setString(8, anonyme);
-			pstmt.setInt(9, 0);
-			pstmt.setInt(10, utilisateur.getNoUtilisateur());
+			pstmt.setInt(9, utilisateur.getNoUtilisateur());
  
 		} catch (SQLException e) {
 			throw new DALException("probleme de methode deleteUtilisateur", e);

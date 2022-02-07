@@ -29,9 +29,19 @@ public class AccueilServlet extends HttpServlet {
 			// creation d'une liste d'articles
 			List<Article> articles = null;
 			
+			
 			// attribution a l'article le retour de la methode em.listerArticles();
-			request.setAttribute("liste", articles);
 			articles = em.listerArticles();
+			request.setAttribute("liste", articles);
+			
+        		for(Article article : articles) {
+				System.out.println(article.getNomArticle());
+			System.out.println(article.getPrixInitial());
+				System.out.println(article.getDateFinEncheres());
+				System.out.println(article.getVendeur());
+				
+			}
+			
 		} catch (DALException e) {
 			throw new ServletException("problème dans la méthode doGet de la servlet Accueil", e);
 		}

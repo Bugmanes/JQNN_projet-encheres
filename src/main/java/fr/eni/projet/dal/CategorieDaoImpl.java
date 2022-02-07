@@ -15,7 +15,7 @@ public class CategorieDaoImpl implements CategorieDAO {
 
 	//insertion methodes SQL
 	private final static String SELECT_ALL = "SELECT * FROM CATEGORIES;";
-	private final static String SELECT_BY_ID = "SELECT * FROM Articles_Vendus WHERE id = ?;";
+	private final static String SELECT_BY_ID = "SELECT * FROM Articles_Vendus WHERE no_utilisateur = ?;";
 
 	@Override
 	public ArrayList<Categorie> selectAll() throws DALException {

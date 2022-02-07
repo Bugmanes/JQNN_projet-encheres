@@ -71,8 +71,9 @@ public class Article {
 		this.acheteur = acheteur;
 	}
 
-	public Utilisateur getVendeur() {
-		return vendeur;
+	public String getVendeur() {
+		
+		return vendeur.getNom();
 	}
 
 	public void setVendeur(Utilisateur vendeur) {

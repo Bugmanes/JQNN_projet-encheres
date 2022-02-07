@@ -81,7 +81,7 @@ public class ArticleDaoImpl implements ArticleDAO {
 				cat = cdao.selectById(rs.getInt("no_categorie"));
 
 				art = new Article(rs.getString("nom_article"), rs.getString("description"),
-						rs.getDate("date-debut-encheres").toLocalDate(), rs.getDate("date-fin-encheres").toLocalDate(),
+						rs.getDate("date_debut_encheres").toLocalDate(), rs.getDate("date_fin_encheres").toLocalDate(),
 						rs.getInt("prix_initial"), user, cat);
 				liste_article.add(art);
 

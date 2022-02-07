@@ -55,7 +55,7 @@
 								if (!prenomOK){
 						%>
 						<div class="messageErreur">
-							<a>Le nom ne peut pas comporter de chiffres et caracteres speciaux</a>
+							<a>Le prénom ne peut pas comporter de chiffres et caracteres speciaux</a>
 						</div>
 						<%
 								}
@@ -115,7 +115,7 @@
 								if (!emailUniqueOK){
 						%>
 						<div class="messageErreur">
-							<a>Cet email est deja utilise par un compte utilisateur</a>
+							<a>Cet email est deja utilisé par un compte utilisateur</a>
 						</div>
 						<%
 								}

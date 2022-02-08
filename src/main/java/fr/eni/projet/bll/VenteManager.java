@@ -86,7 +86,7 @@ public class VenteManager {
 	public List<Article> triByVentesNonDebutees(Utilisateur user) throws DALException {
 
 		ArticleDAO adao = DAOFactory.getArticleDAO();
-		List<Article> selection = null;
+		List<Article> selection = adao.selectVentesNonDebutees(user);
 
 		return selection;
 	}
@@ -94,7 +94,7 @@ public class VenteManager {
 	public List<Article> triByVentesTerminees(Utilisateur user) throws DALException {
 
 		ArticleDAO adao = DAOFactory.getArticleDAO();
-		List<Article> selection = null;
+		List<Article> selection = adao.selectVentesTerminees(user);
 
 		return selection;
 	}

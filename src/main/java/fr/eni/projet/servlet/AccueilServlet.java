@@ -71,7 +71,7 @@ public class AccueilServlet extends HttpServlet {
 			resultats = request.getParameterValues("triVentes");
 		}
 		List<String> result = Arrays.asList(resultats);
-		
+
 		// tri par mots cles
 		if (motsClés != null) {
 			try {
@@ -80,13 +80,13 @@ public class AccueilServlet extends HttpServlet {
 				System.err.println(e.getMessage());
 			}
 		}
-		
-		//tri par categorie
+
+		// tri par categorie
 		if (!categorie.equals("all")) {
 			int cat = Integer.parseInt(categorie);
 			try {
 				if (selection.isEmpty()) {
-					selection = vm.triByCategorie(cat);					
+					selection = vm.triByCategorie(cat);
 				} else {
 					temp = vm.triByCategorie(cat);
 					for (Article article : temp) {
@@ -99,12 +99,12 @@ public class AccueilServlet extends HttpServlet {
 				System.err.println(e.getMessage());
 			}
 		}
-		
+
 		// selection des encheres ouvertes d'achats
 		if (result.indexOf("encheresOuvertes") != -1) {
 			try {
 				if (selection.isEmpty()) {
-					selection = vm.triByEncheresOuvertes(user);					
+					selection = vm.triByEncheresOuvertes(user);
 				} else {
 					temp = vm.triByEncheresOuvertes(user);
 					for (Article article : temp) {
@@ -117,12 +117,12 @@ public class AccueilServlet extends HttpServlet {
 				System.err.println(e.getMessage());
 			}
 		}
-		
+
 		// selection de mes encheres en cours
 		if (result.indexOf("encheresEnCours") != -1) {
 			try {
 				if (selection.isEmpty()) {
-					selection = vm.triByEncheresEnCours(user);					
+					selection = vm.triByEncheresEnCours(user);
 				} else {
 					temp = vm.triByEncheresEnCours(user);
 					for (Article article : temp) {
@@ -135,12 +135,12 @@ public class AccueilServlet extends HttpServlet {
 				System.err.println(e.getMessage());
 			}
 		}
-		
+
 		// tri par mes encheres remportees
-		if (result.indexOf("encheresEnCours") != -1) {
+		if (result.indexOf("encheresRemportees") != -1) {
 			try {
 				if (selection.isEmpty()) {
-					selection = vm.triByEncheresRemportees(user);					
+					selection = vm.triByEncheresRemportees(user);
 				} else {
 					temp = vm.triByEncheresRemportees(user);
 					for (Article article : temp) {
@@ -153,12 +153,12 @@ public class AccueilServlet extends HttpServlet {
 				System.err.println(e.getMessage());
 			}
 		}
-		
+
 		// tri par mes ventes en cours
-		if (result.indexOf("encheresEnCours") != -1) {
+		if (result.indexOf("venteEnCours") != -1) {
 			try {
 				if (selection.isEmpty()) {
-					selection = vm.triByVenteEnCours(user);					
+					selection = vm.triByVenteEnCours(user);
 				} else {
 					temp = vm.triByVenteEnCours(user);
 					for (Article article : temp) {
@@ -171,40 +171,44 @@ public class AccueilServlet extends HttpServlet {
 				System.err.println(e.getMessage());
 			}
 		}
-		
+
+		// tri par mes ventes non debutees
+		if (result.indexOf("ventesNonDebutees") != -1) {
+			try {
+				if (selection.isEmpty()) {
+					selection = vm.triByVentesNonDebutees(user);
+				} else {
+					temp = vm.triByVentesNonDebutees(user);
+					for (Article article : temp) {
+						if (selection.indexOf(article) == -1) {
+							selection.add(article);
+						}
+					}
+				}
+			} catch (DALException e) {
+				System.err.println(e.getMessage());
+			}
+		}
+
+		// tri par mes ventes terminées
+		if (result.indexOf("ventesNonDebutees") != -1) {
+			try {
+				if (selection.isEmpty()) {
+					selection = vm.triByVentesTerminees(user);
+				} else {
+					temp = vm.triByVentesTerminees(user);
+					for (Article article : temp) {
+						if (selection.indexOf(article) == -1) {
+							selection.add(article);
+						}
+					}
+				}
+			} catch (DALException e) {
+				System.err.println(e.getMessage());
+			}
+		}
+
 		request.setAttribute("selection", selection);
-		request.getRequestDispatcher("WEB-INF/jsp/accueil.jsp");
-
-//		
-//		try {
-//			
-//			// Ont parse
-//			int categorie = Integer.parseInt(cat);
-//			// On vient instancier cette liste avec les article de cette categorie
-//			articles = vm.listerArticlesCat(categorie);
-//			// je cree un liste d'Aticle
-//			request.setAttribute("listeCat", articles);
-//
-//			System.out.println(categorie);
-//
-//			if (articles != null) {
-//				for (Article article : articles) {
-//					System.out.println(article.getNomArticle());
-//					System.out.println(article.getPrixInitial());
-//					System.out.println(article.getDateFinEncheres());
-//					System.out.println(article.getVendeur().getPseudo());
-//				}
-//
-//			}
-//			System.out.println(categorie + "aucun article dans cette catégorie");
-//
-//		} catch (DALException e) {
-//			throw new ServletException("problème dans la méthode doPost de la servlet Accueil", e);
-//		}
-//
-//		ArrayList listeAB = new ArrayList();
-
-		getServletContext().getRequestDispatcher("/WEB-INF/jsp/accueil.jsp").forward(request, response);
-
+		request.getRequestDispatcher("WEB-INF/jsp/accueil.jsp").forward(request, response);
 	}
 }

@@ -10,11 +10,105 @@
 <link rel="stylesheet" href="asset/css/style.css">
 <link href="/src/main/webapp/asset/css/bootstrap.min.css"
 	rel="stylesheet">
-</head>
+</head> 
 <body>
 	<div class="container">
 		<%@include file="headerInvite.jsp"%>
-		<main>
+	</div>
+
+		<!-- ----------------------------------------Nael---------------------------------------- -->
+
+<main>
+			<div class="text-center m-3">
+				<h3>Liste des Enchères</h3>
+			</div>
+			
+	<form action="<%=request.getContextPath()%>/accueil.html" method="post">
+				
+				<div class="row p-3">
+						<input class="form-control " type="search"
+						placeholder="Le nom de l'article contient" aria-label="Search">
+				</div>
+				
+		<div class="row ">
+			<div class="categorie">
+				<label for="categorie">Catégorie :</label> <select name="categorie"
+					id="categorie">
+					<option value="all">Toutes</option>
+					<option value="1">Informatique</option>
+					<option value="2">Ameublement</option>
+					<option value="3">Vetement</option>
+					<option value="4">Sport and Loisirs</option>
+				</select>
+			</div>
+		</div>
+	
+		<div class="border border-dark">
+	
+			<div class="row m-3">
+				<div class="  col-6 achats  ">
+					<label for="achats">Achats</label> <input type="radio" id="achats"
+						name="choix" checked value="achats" />
+					<div class="p-2">
+						<input type="checkbox" id="encheresOuvertes" name="triAchats"
+							value="encheresOuvertes" /> <label for="encheresOuvertes">enchères
+							ouvertes</label><br> <input type="checkbox" id="encheresEnCours"
+							name="triAchats" value="encheresEnCours" /> <label
+							for="encheresEnCours">Mes enchères en cours</label><br> <input
+							type="checkbox" id="encheresRemportees" name="triAchats"
+							value="encheresRemportees" /> <label for="encheresRemportees">Mes
+							enchères remportées</label>
+					</div>
+				</div>
+				<div class="col col-6 ventes ">
+					<label for="ventes">Mes ventes</label> <input type="radio"
+						id="ventes" name="choix" value="ventes" />
+					<div class="p-2">
+						<input type="checkbox" id="venteEnCours" name="triVentes"
+								value="venteEnCours" /> <label for="venteEnCours">mes
+								ventes en cours</label><br> <input type="checkbox"
+								id="ventesNonDebutees" name="triVentes" value="ventesNonDebutees" />
+							<label for="ventesNonDebutees">ventes non débutées</label><br>
+							<input type="checkbox" id="ventesTerminees" name="triVentes"
+									value="ventesTerminees" /> <label for="ventesTerminees">ventes
+							terminées</label>
+					</div>
+				</div>
+				
+				<div>
+					<div class="d-grid col-3 mx-auto " class="btn btn-primary">
+						<input type="submit" value="Rechercher">
+					</div>
+				</div>
+			</div>
+	
+		</div>
+	</form>
+</main>		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	<!-- ----------------------------------Orginal---------------------------------------- -->
+		
+		<%-- <main>
+		
 			<div class="titre">
 				<h3>Liste des enchères</h3>
 			</div>
@@ -67,7 +161,15 @@
 					<input type="submit" value="Rechercher">
 				</div>
 			</form>
-			</div>
+			</div> --%>
+<!-- ------------------------------------------------------------------------------- -->
+
+
+
+
+
+
+
 
 	<!-- 		<div class="annonce">
 			<div class="annonce1">
@@ -164,8 +266,8 @@
 			</tbody>
 		</table>-->
 
-		</main>
+		
 		<footer></footer>
-	</div>
+
 </body>
 </html>

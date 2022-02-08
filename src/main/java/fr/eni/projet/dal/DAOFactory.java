@@ -29,5 +29,10 @@ public class DAOFactory {
 		ArticleDAO art = new ArticleDaoImpl();
 		return art;
 	}
+	
+	public static RetraitDAO getRetraitDAO() {
+		RetraitDAO rdao = new RetraitDaoImpl();
+		return rdao;
+	}
 
 }

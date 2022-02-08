@@ -58,6 +58,9 @@ public class GestionVente extends HttpServlet {
 		int miseAPrix = Integer.parseInt(request.getParameter("prixInitial"));
 		LocalDate dateDebut = LocalDate.parse(request.getParameter("debut"));
 		LocalDate dateFin = LocalDate.parse(request.getParameter("fin"));
+		String rue = request.getParameter("rue").trim();
+		String cp = request.getParameter("codePostal").trim();
+		String ville = request.getParameter("ville").trim();
 		
 		// recuperation de la categorie
 		String libelle = request.getParameter("categorie").trim();
@@ -71,17 +74,16 @@ public class GestionVente extends HttpServlet {
 		
 		// recuperation d'utilisateur de la session
 		HttpSession session = request.getSession();
-		// recuperation d'utilisateur de la session
 		Utilisateur utilisateur = (Utilisateur) session.getAttribute("utilisateur");
 		
 		// recuperation de l'image de l'article
 		
 		
 		// envoi à la bll
-		VenteManager em = VenteManager.getInstance();
+		VenteManager vm = VenteManager.getInstance();
 		// insertion des parametrage d'un nouvel utilisateur
 		try {
-			em.nouvelleVente(nom, description, dateDebut, dateFin, miseAPrix, utilisateur, categorie);
+			vm.nouvelleVente(nom, description, dateDebut, dateFin, miseAPrix, utilisateur, categorie, rue, cp, ville);
 		} catch (DALException e) {
 			System.err.println(e.getMessage());
 		}

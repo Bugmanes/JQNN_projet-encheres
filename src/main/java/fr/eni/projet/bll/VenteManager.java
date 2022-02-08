@@ -9,11 +9,13 @@ import org.apache.jasper.tagplugins.jstl.core.ForEach;
 import fr.eni.projet.bo.Article;
 import fr.eni.projet.bo.Categorie;
 import fr.eni.projet.bo.Enchere;
+import fr.eni.projet.bo.Retrait;
 import fr.eni.projet.bo.Utilisateur;
 import fr.eni.projet.dal.ArticleDAO;
 import fr.eni.projet.dal.DALException;
 import fr.eni.projet.dal.DAOFactory;
 import fr.eni.projet.dal.EnchereDAO;
+import fr.eni.projet.dal.RetraitDAO;
 
 public class VenteManager {
 
@@ -112,11 +114,14 @@ public class VenteManager {
 
 	// methode pour creer une nouvelle vente
 	public void nouvelleVente(String nom, String description, LocalDate debut, LocalDate fin, int prixInitial,
-			Utilisateur utilisateur, Categorie categorie) throws DALException {
+			Utilisateur utilisateur, Categorie categorie, String rue, String cp, String ville) throws DALException {
 
 		Article article = new Article(nom, description, debut, fin, prixInitial, utilisateur, categorie);
 		ArticleDAO aDAO = DAOFactory.getArticleDAO();
 		aDAO.insertArticle(article);
+		Retrait retrait = new Retrait(rue, cp, ville, article);
+		RetraitDAO rdao = DAOFactory.getRetraitDAO();
+		rdao.insertRetrait(retrait);
 	}
 
 	public Article obtenirArticle(int id) throws DALException {

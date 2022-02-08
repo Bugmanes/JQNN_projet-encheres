@@ -55,7 +55,6 @@ public class ArticleDaoImpl implements ArticleDAO {
 		} catch (SQLException e) {
 			throw new DALException("probl�me dans la m�thode insertArticle", e);
 		}
-
 	}
 
 	@Override
@@ -69,11 +68,11 @@ public class ArticleDaoImpl implements ArticleDAO {
 		UtilisateurDAO udao = DAOFactory.getUtilisateurDAO();
 		CategorieDAO cdao = DAOFactory.getCategorieDAO();
 		try {
-			// declaration de mes variable
+			// declaration de mes variables
 			Connection cnx;
 			Statement stmt;
 			ResultSet rs;
-			// hydrataion de mes varibales
+			// hydrataion de mes variables
 			cnx = ConnexionProvider.getConnection();
 			stmt = cnx.createStatement();
 			rs = stmt.executeQuery(SELECT_ALL);
@@ -94,7 +93,7 @@ public class ArticleDaoImpl implements ArticleDAO {
 			stmt.close();
 			cnx.close();
 		} catch (SQLException e) {
-			throw new DALException("probl�me avec la m�thode selectAll article", e);
+			throw new DALException("probleme avec la methode selectAll article", e);
 		}
 		return liste_article;
 	}

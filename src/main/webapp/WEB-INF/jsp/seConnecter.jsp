@@ -14,8 +14,7 @@
 		<div class="connexion">
 			<div class="formuulaireConnexion">
 
-				<form action="<%=request.getContextPath() + "/Connexion"%>"
-					method="post">
+				<form action="<%=request.getContextPath() + "/Connexion"%>" method="post">
 					<div>
 						<label for="identifiant">votre identifiant : </label>
 						<input type="text" id="identifiant" name="identifiant" />
@@ -62,3 +61,53 @@
 	</div>
 </body>
 </html>
+
+
+<%-- 
+
+
+											for nael
+
+<!DOCTYPE html>
+<html lang="en">
+
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="seconnecterStyle.css">
+	<title>Document</title>
+</head>
+<body>
+
+	<form action="<%=request.getContextPath() + "/Connexion"%>" method="post">
+	<div class="main">
+		<div class="wrapper">
+		  <div class="content">
+			<div class="buttons">
+			  <div class="close">
+			  </div>
+			  <div class="minimize">
+			  </div>
+			  <div class="zoom">
+			  </div>
+			</div>
+	  
+			<h2>Login Form</h2>
+	  
+			<label for="uname"><b>votre identifiant</b></label>
+			<input type="text" placeholder="Enter Username" name="uname" required>
+	  
+			<label for="psw"><b>Password</b></label>
+			<input type="password" placeholder="Enter Password" name="psw" required>
+	  
+			<button type="submit">Login</button>
+			<br>
+	  
+			<span class="psw">Forgot password</span>
+	  
+		  </div>
+		</div>
+	  </div>
+	
+</body>
+</html> --%>

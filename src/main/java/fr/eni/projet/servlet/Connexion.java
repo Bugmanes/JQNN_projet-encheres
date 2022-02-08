@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import fr.eni.projet.bll.UtilisateurManager;
+import fr.eni.projet.bo.Password;
 import fr.eni.projet.bo.Utilisateur;
 import fr.eni.projet.dal.DALException;
 
@@ -33,26 +34,31 @@ public class Connexion extends HttpServlet {
 
 		identifiant = request.getParameter("identifiant");
 		motDePasse = request.getParameter("password");
-		um = UtilisateurManager.getInstance();
+
+		
 		try {
+			
+			
+			um = UtilisateurManager.getInstance();
 			user = um.authentification(identifiant, motDePasse);
-		} catch (DALException e) {
-			System.err.println(e.getMessage());
+			if (user != null) {
+				
+				HttpSession session = request.getSession();
+				session.setAttribute("utilisateur", user);
+
+				// envoie a la page accueil.jsp
+				request.getRequestDispatcher("/WEB-INF/jsp/accueil.jsp").forward(request, response);
+			} else {
+				
+				request.setAttribute("connexion", false);
+				// envoie a la page seConnecter.jsp
+				request.getRequestDispatcher("/WEB-INF/jsp/seConnecter.jsp").forward(request, response);
+			}
+			
+		} catch (Exception e2) {
+			// TODO Auto-generated catch block
+			e2.printStackTrace();
 		}
-
-		if (user == null) {
-			request.setAttribute("connexion", false);
-			// envoie a la page seConnecter.jsp
-			request.getRequestDispatcher("/WEB-INF/jsp/seConnecter.jsp").forward(request, response);
-		} else {
-			HttpSession session = request.getSession();
-			session.setAttribute("utilisateur", user);
-
-			// envoie a la page accueil.jsp
-			request.getRequestDispatcher("/WEB-INF/jsp/accueil.jsp").forward(request, response);
-
-		}
-
 	}
 
 }

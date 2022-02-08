@@ -16,7 +16,7 @@ public interface UtilisateurDAO {
 	public void updateUtilisateur(Utilisateur utilisateur,String oldPseudo) throws DALException;
 	
 	// methode de connection
-	public Utilisateur selectConnexion(String identifiant, String password) throws DALException;
+	public Utilisateur selectConnexion(String identifiant, String password) throws DALException, Exception;
 	
 	// methode de verification de pseudo unique
 	public boolean selectUniquePseudo(String pseudo) throws DALException;

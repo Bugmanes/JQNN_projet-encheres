@@ -39,7 +39,8 @@ public class ArticleDaoImpl implements ArticleDAO {
 			+ "SELECT MAX(montant_enchere) FROM ENCHERES e2 WHERE e2.no_article = av.no_article \r\n" + ");";
 	private final static String SELECT_MES_VENTES_NON_DEBUTEES = "select * from ARTICLES_VENDUS where no_utilisateur = ? and date_debut_encheres > getdate();";
 	private final static String SELECT_MES_VENTES_TERMINEES = "select * from ARTICLES_VENDUS where no_utilisateur = ? and date_fin_encheres < getdate();";
-
+	private final static String SELECT_DEBUT_TODAY = "select * from ARTICLES_VENDUS where date_debut_encheres = getdate();";
+	
 	@Override
 	public void insertArticle(Article article) throws DALException {
 
@@ -585,6 +586,60 @@ public class ArticleDaoImpl implements ArticleDAO {
 			stmt = cnx.prepareStatement(SELECT_MES_VENTES_TERMINEES);
 			stmt.setInt(1, user1.getNoUtilisateur());
 			rs = stmt.executeQuery();
+
+			while (rs.next()) {
+
+				user = udao.selectById(rs.getInt("no_utilisateur"));
+				cat = cdao.selectById(rs.getInt("no_categorie"));
+
+				art = new Article(rs.getString("nom_article"), rs.getString("description"),
+						rs.getDate("date_debut_encheres").toLocalDate(), rs.getDate("date_fin_encheres").toLocalDate(),
+						rs.getInt("prix_initial"), user, cat);
+				art.setNoArticle(rs.getInt("no_article"));
+				encheres = edao.selectByNoArticle(art);
+				art.setEncheres(encheres);
+				if (encheres != null) {
+					for (Enchere enchere : encheres) {
+						if (meilleureOffre == null) {
+							meilleureOffre = enchere;
+						} else if (enchere.getMontantEnchere() > meilleureOffre.getMontantEnchere()) {
+							meilleureOffre = enchere;
+						}
+					}
+					art.setAcheteur(meilleureOffre.getUtilisateur());
+					art.setPrixVentes(meilleureOffre.getMontantEnchere());
+				}
+				selection.add(art);
+			}
+			rs.close();
+			stmt.close();
+			cnx.close();
+		} catch (SQLException e) {
+			throw new DALException("probleme avec la methode select by mots-cles de articles", e);
+		}
+		return selection;
+	}
+
+	@Override
+	public List<Article> selectDebutToday() throws DALException {
+
+		Connection cnx;
+		Statement stmt;
+		ResultSet rs;
+		List<Article> selection = new ArrayList<Article>();
+		Article art = null;
+		Categorie cat;
+		Utilisateur user;
+		Enchere meilleureOffre = null;
+		List<Enchere> encheres;
+		CategorieDAO cdao = DAOFactory.getCategorieDAO();
+		UtilisateurDAO udao = DAOFactory.getUtilisateurDAO();
+		EnchereDAO edao = DAOFactory.getEnchereDAO();
+
+		try {
+			cnx = ConnexionProvider.getConnection();
+			stmt = cnx.createStatement();
+			rs = stmt.executeQuery(SELECT_DEBUT_TODAY);
 
 			while (rs.next()) {
 

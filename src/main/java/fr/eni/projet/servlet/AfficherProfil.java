@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import fr.eni.projet.bll.UtilisateurManager;
+import fr.eni.projet.bll.VenteManager;
 import fr.eni.projet.bo.Utilisateur;
 
 @WebServlet("/AfficherProfil")
@@ -16,14 +18,21 @@ public class AfficherProfil extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
-		// recuperation de l'utilisateur de la session 
+		 
+		int id = Integer.parseInt(request.getParameter("id"));
 		HttpSession session = request.getSession();
+		Utilisateur user = (Utilisateur) session.getAttribute("utilisateur");
+		boolean ok;
 		
-		// passage en attribut de request
-		request.setAttribute("utilisateur", session.getAttribute("utilisateur"));	
+		if(id != user.getNoUtilisateur()) {
+			ok = false;
+			UtilisateurManager um = UtilisateurManager.getInstance();
+			
+		} else {
+			ok = true;
+		}
 		
-		// envoi a la page d'affichage profil.jsp
+		request.setAttribute("ok", ok);
 		request.getRequestDispatcher("/WEB-INF/jsp/profil.jsp").forward(request, response);
 	}
 

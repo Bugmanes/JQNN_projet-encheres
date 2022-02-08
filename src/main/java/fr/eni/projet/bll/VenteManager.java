@@ -51,33 +51,52 @@ public class VenteManager {
 		return selection;
 	}
 
-	public List<Article> triByEncheresOuvertes(List<Article> selection) {
+	public List<Article> triByEncheresOuvertes(Utilisateur user) throws DALException {
 
+		List<Article> selection = null;
+		ArticleDAO adao = DAOFactory.getArticleDAO();
+		selection = adao.selectEncheresOuvertes(user);
+		
 		return selection;
 	}
 	
-	public List<Article> triByEncheresEnCours(List<Article> selection, Utilisateur user) {
+	public List<Article> triByEncheresEnCours(Utilisateur user) {
 
+		List<Article> selection = null;
+		ArticleDAO adao = DAOFactory.getArticleDAO();
+		
 		return selection;
 	}
 	
-	public List<Article> triByEncheresRemportees(List<Article> selection, Utilisateur user) {
+	public List<Article> triByEncheresRemportees(Utilisateur user) {
 
+		List<Article> selection = null;
+		ArticleDAO adao = DAOFactory.getArticleDAO();
+		
 		return selection;
 	}
 	
-	public List<Article> triByVenteEnCours(List<Article> selection, Utilisateur user) {
+	public List<Article> triByVenteEnCours(Utilisateur user) {
 
+		List<Article> selection = null;
+		ArticleDAO adao = DAOFactory.getArticleDAO();
+		
 		return selection;
 	}
 	
-	public List<Article> triByVentesNonDebutees(List<Article> selection, Utilisateur user) {
+	public List<Article> triByVentesNonDebutees(Utilisateur user) {
 
+		List<Article> selection = null;
+		ArticleDAO adao = DAOFactory.getArticleDAO();
+		
 		return selection;
 	}
 	
-	public List<Article> triByVentesTerminees(List<Article> selection, Utilisateur user) {
+	public List<Article> triByVentesTerminees(Utilisateur user) {
 
+		List<Article> selection = null;
+		ArticleDAO adao = DAOFactory.getArticleDAO();
+		
 		return selection;
 	}
 	

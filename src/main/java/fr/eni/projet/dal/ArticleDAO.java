@@ -20,4 +20,6 @@ public interface ArticleDAO {
 	public void deleteArticle(Article article) throws DALException;
 
 	public List<Article> selectByMotsCles (String motsCles) throws DALException;
+	
+	public List<Article> selectEncheresOuvertes (Utilisateur user1) throws DALException;
 }

@@ -2,6 +2,7 @@ package fr.eni.projet.servlet;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -69,6 +70,7 @@ public class AccueilServlet extends HttpServlet {
 		if (resultats == null) {
 			resultats = request.getParameterValues("triVentes");
 		}
+		List<String> result = Arrays.asList(resultats);
 		
 		// tri par mots cles
 		if (motsClés != null) {
@@ -87,6 +89,24 @@ public class AccueilServlet extends HttpServlet {
 					selection = vm.triByCategorie(cat);					
 				} else {
 					temp = vm.triByCategorie(cat);
+					for (Article article : temp) {
+						if (selection.indexOf(article) == -1) {
+							selection.add(article);
+						}
+					}
+				}
+			} catch (DALException e) {
+				System.err.println(e.getMessage());
+			}
+		}
+		
+		// selection des encheres ouvertes d'achats
+		if (result.indexOf("encheresOuvertes") != -1) {
+			try {
+				if (selection.isEmpty()) {
+					selection = vm.triByEncheresOuvertes(user);					
+				} else {
+					temp = vm.triByEncheresOuvertes(user);
 					for (Article article : temp) {
 						if (selection.indexOf(article) == -1) {
 							selection.add(article);

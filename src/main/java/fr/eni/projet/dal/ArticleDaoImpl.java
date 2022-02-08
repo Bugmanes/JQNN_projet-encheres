@@ -17,6 +17,7 @@ import java.util.List;
 import fr.eni.projet.bll.UtilisateurManager;
 import fr.eni.projet.bo.Article;
 import fr.eni.projet.bo.Categorie;
+import fr.eni.projet.bo.Enchere;
 import fr.eni.projet.bo.Utilisateur;
 import fr.eni.projet.util.ConnexionProvider;
 
@@ -67,6 +68,10 @@ public class ArticleDaoImpl implements ArticleDAO {
 		Utilisateur user;
 		UtilisateurDAO udao = DAOFactory.getUtilisateurDAO();
 		CategorieDAO cdao = DAOFactory.getCategorieDAO();
+		EnchereDAO edao = DAOFactory.getEnchereDAO();
+		List<Enchere> encheres;
+		Enchere meilleureOffre = null;
+		
 		try {
 			// declaration de mes variables
 			Connection cnx;
@@ -85,8 +90,22 @@ public class ArticleDaoImpl implements ArticleDAO {
 				art = new Article(rs.getString("nom_article"), rs.getString("description"),
 						rs.getDate("date_debut_encheres").toLocalDate(), rs.getDate("date_fin_encheres").toLocalDate(),
 						rs.getInt("prix_initial"), user, cat);
+				art.setNoArticle(rs.getInt("no_article"));
 				liste_article.add(art);
-				
+				encheres = edao.selectByNoArticle(art);
+				art.setEncheres(encheres);
+				if (encheres != null) {
+					for (Enchere enchere : encheres) {
+						if (meilleureOffre == null) {
+							meilleureOffre = enchere;
+						} else if (enchere.getMontantEnchere() > meilleureOffre.getMontantEnchere()) {
+							meilleureOffre = enchere;
+						}
+					}
+					art.setAcheteur(meilleureOffre.getUtilisateur());
+					art.setPrixVentes(meilleureOffre.getMontantEnchere());
+
+				}
 				
 			}
 			rs.close();

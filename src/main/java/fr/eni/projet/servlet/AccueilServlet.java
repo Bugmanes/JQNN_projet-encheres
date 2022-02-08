@@ -14,6 +14,7 @@ import javax.servlet.http.HttpSession;
 import fr.eni.projet.bll.CategorieManager;
 import fr.eni.projet.bll.VenteManager;
 import fr.eni.projet.bo.Article;
+import fr.eni.projet.bo.Utilisateur;
 import fr.eni.projet.dal.DALException;
 
 @WebServlet("/accueil.html")
@@ -24,7 +25,7 @@ public class AccueilServlet extends HttpServlet {
 			throws ServletException, IOException {
 
 		HttpSession session = request.getSession();
-		
+
 		try {
 			// recuperation d'un objet de type EnchereManager
 			VenteManager em = VenteManager.getInstance();
@@ -34,7 +35,6 @@ public class AccueilServlet extends HttpServlet {
 
 			// attribution a l'article le retour de la methode em.listerArticles();
 			articles = em.listerArticles();
-			request.setAttribute("liste", articles);
 
 			for (Article article : articles) {
 				System.out.println(article.getNomArticle());
@@ -42,8 +42,8 @@ public class AccueilServlet extends HttpServlet {
 				System.out.println(article.getDateFinEncheres());
 				System.out.println(article.getVendeur());
 			}
-			
-			session.setAttribute("listeArticles", articles);
+
+			session.setAttribute("selection", articles);
 
 		} catch (DALException e) {
 			System.err.println(e.getMessage());
@@ -58,8 +58,11 @@ public class AccueilServlet extends HttpServlet {
 
 		String motsClés;
 		String categorie;
-		List<Article> articles = null;
 		VenteManager vm = VenteManager.getInstance();
+		HttpSession session = request.getSession();
+		Utilisateur user = (Utilisateur) session.getAttribute("utilisateur");
+		List<Article> articles = (List<Article>) session.getAttribute("selection");
+		List<Article> selection = articles;
 
 		motsClés = request.getParameter("recherche").trim();
 		categorie = request.getParameter("categorie").trim();
@@ -67,6 +70,34 @@ public class AccueilServlet extends HttpServlet {
 		String[] resultats = request.getParameterValues("triAchats");
 		if (resultats == null) {
 			resultats = request.getParameterValues("triVentes");
+		}
+
+		// tri par categorie
+		if (!categorie.equals("all")) {
+			int cat = Integer.parseInt(categorie);
+			selection = vm.triByCategorie(selection, cat);
+		}
+		if (resultats != null) {
+			for (int i = 0; i < resultats.length; i++) {
+				if (resultats[i].equals("encheresOuvertes")) {
+					selection = vm.triByEncheresOuvertes(articles);
+				}
+				if (resultats[i].equals("encheresEnCours")) {
+					selection = vm.triByEncheresEnCours(selection, user);
+				}
+				if (resultats[i].equals("encheresRemportees")) {
+					selection = vm.triByEncheresRemportees(selection, user);
+				}
+				if (resultats[i].equals("venteEnCours")) {
+					selection = vm.triByVenteEnCours(selection, user);
+				}
+				if (resultats[i].equals("ventesNonDebutees")) {
+					selection = vm.triByVentesNonDebutees(selection, user);
+				}
+				if (resultats[i].equals("ventesTerminees")) {
+					selection = vm.triByVentesTerminees(selection, user);
+				}
+			}
 		}
 
 //		

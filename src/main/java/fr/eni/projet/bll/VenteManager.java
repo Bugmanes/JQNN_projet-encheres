@@ -39,17 +39,77 @@ public class VenteManager {
 		return liste;
 	}
 
-	//methode de listage d'article en fonction de la cat�gorie
-	public List<Article> listerArticlesCat(int id) throws DALException {
+	// methode de listage d'article en fonction de la categorie
+	public List<Article> triByCategorie(int id) throws DALException {
 
-		
-		ArticleDAO adao = DAOFactory.getArticleDAO();
-		//insertion d'une liste d'article
-		List<Article> liste = adao.selectByCat(id);
+		List<Article> selection = null;
+		ArticleDAO adao = null;
 
-		return liste;
+		adao = DAOFactory.getArticleDAO();
+		selection = adao.selectByCat(id);
+
+		return selection;
 	}
-	
+
+	public List<Article> triByEncheresOuvertes(Utilisateur user) throws DALException {
+
+		ArticleDAO adao = DAOFactory.getArticleDAO();
+		List<Article> selection = adao.selectEncheresOuvertes(user);
+
+		return selection;
+	}
+
+	public List<Article> triByEncheresEnCours(Utilisateur user) throws DALException {
+
+		ArticleDAO adao = DAOFactory.getArticleDAO();
+		List<Article> selection = adao.selectMesEncheresEnCours(user);
+
+		return selection;
+	}
+
+	public List<Article> triByEncheresRemportees(Utilisateur user) throws DALException {
+
+		ArticleDAO adao = DAOFactory.getArticleDAO();
+		List<Article> selection = adao.selectMesEncheresremportees(user);
+
+		return selection;
+	}
+
+	public List<Article> triByVenteEnCours(Utilisateur user) throws DALException {
+
+		ArticleDAO adao = DAOFactory.getArticleDAO();
+		List<Article> selection = adao.selectByNoUtilisateur(user);
+
+		return selection;
+	}
+
+	public List<Article> triByVentesNonDebutees(Utilisateur user) throws DALException {
+
+		ArticleDAO adao = DAOFactory.getArticleDAO();
+		List<Article> selection = adao.selectVentesNonDebutees(user);
+
+		return selection;
+	}
+
+	public List<Article> triByVentesTerminees(Utilisateur user) throws DALException {
+
+		ArticleDAO adao = DAOFactory.getArticleDAO();
+		List<Article> selection = adao.selectVentesTerminees(user);
+
+		return selection;
+	}
+
+	public List<Article> triByMotsCles(String motsCles) throws DALException {
+
+		List<Article> selection = null;
+		ArticleDAO adao = null;
+
+		adao = DAOFactory.getArticleDAO();
+		selection = adao.selectByMotsCles(motsCles);
+
+		return selection;
+	}
+
 	// methode pour creer une nouvelle vente
 	public void nouvelleVente(String nom, String description, LocalDate debut, LocalDate fin, int prixInitial,
 			Utilisateur utilisateur, Categorie categorie) throws DALException {
@@ -66,24 +126,24 @@ public class VenteManager {
 		EnchereDAO edao;
 		List<Enchere> encheres;
 		Enchere meilleurOffre = null;
-		
+
 		// recuperation de l'article en BDD
 		adao = DAOFactory.getArticleDAO();
 		article = adao.selectById(id);
-		
-		//recuperation des encheres sur cet article en BDD
+
+		// recuperation des encheres sur cet article en BDD
 		edao = DAOFactory.getEnchereDAO();
 		encheres = edao.selectByNoArticle(article);
-		
-		//ajout de la liste d'encheres � l'instance d'article
+
+		// ajout de la liste d'encheres � l'instance d'article
 		article.setEncheres(encheres);
-		
+
 		// recherche de la meilleure offre et modification des parametres de l'article
 		for (Enchere enchere : encheres) {
 			if (meilleurOffre == null) {
 				meilleurOffre = enchere;
-			} else if (enchere.getMontantEnchere() > meilleurOffre.getMontantEnchere()){
-				meilleurOffre = enchere;				
+			} else if (enchere.getMontantEnchere() > meilleurOffre.getMontantEnchere()) {
+				meilleurOffre = enchere;
 			}
 		}
 		article.setAcheteur(meilleurOffre.getUtilisateur());
@@ -92,7 +152,7 @@ public class VenteManager {
 		return article;
 	}
 
-     public void encherir(Utilisateur user, Article art, int montantEnchere) throws DALException {
+	public void encherir(Utilisateur user, Article art, int montantEnchere) throws DALException {
 		Enchere enchere = new Enchere(LocalDate.now(), montantEnchere, user, art);
 		art.ajouterEnchere(user, enchere);
 		EnchereDAO edao = DAOFactory.getEnchereDAO();
@@ -109,6 +169,5 @@ public class VenteManager {
 
 		return ok;
 	}
-
 
 }

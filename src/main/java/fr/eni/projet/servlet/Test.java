@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import fr.eni.projet.bo.Password;
+
 /**
  * Servlet implementation class Test
  */
@@ -27,7 +29,17 @@ public class Test extends HttpServlet {
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		response.getWriter().append("Served at: ").append(request.getContextPath());
-         System.out.println(request.getParameter("categorie"));
+		String motDePasse = request.getParameter("pseudo").trim();
+		Password mdp = new Password();
+		try {
+			motDePasse = mdp.getSaltedHash(motDePasse);
+		} catch (Exception e1) {
+			//TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
+		System.out.println(request.getParameter("pseudo"));
+		System.out.println(motDePasse);
 
 	getServletContext().getRequestDispatcher("/WEB-INF/jsp/test.jsp").forward(request, response);
 	

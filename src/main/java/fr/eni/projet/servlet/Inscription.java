@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import fr.eni.projet.bll.UtilisateurManager;
+import fr.eni.projet.bo.Password;
 import fr.eni.projet.bo.Utilisateur;
 import fr.eni.projet.dal.DALException;
 
@@ -37,6 +38,15 @@ public class Inscription extends HttpServlet {
 		String codePostal = request.getParameter("codePostal").trim();
 		String ville = request.getParameter("ville").trim();
 		String motDePasse = request.getParameter("motDePasse").trim();
+//		Password mdp = new Password();
+//		try {
+//			motDePasse = mdp.getSaltedHash(motDePasse);
+//		} catch (Exception e1) {
+//			// TODO Auto-generated catch block
+//			e1.printStackTrace();
+//		}
+		
+		
 		int credit = 1000;
 		Boolean administrateur = false;
 		UtilisateurManager um = UtilisateurManager.getInstance();
@@ -73,7 +83,7 @@ public class Inscription extends HttpServlet {
 			System.err.println(e.getMessage());
 		}
 
-		request.getRequestDispatcher("/WEB-INF/jsp/seConnecter.jsp").forward(request, response);
+		request.getRequestDispatcher("/Connexion").forward(request, response);
 		
 	}
 

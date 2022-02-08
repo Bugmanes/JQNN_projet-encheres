@@ -24,8 +24,6 @@ public class AccueilServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		HttpSession session = request.getSession();
-
 		try {
 			// recuperation d'un objet de type EnchereManager
 			VenteManager em = VenteManager.getInstance();
@@ -43,7 +41,7 @@ public class AccueilServlet extends HttpServlet {
 				System.out.println(article.getVendeur());
 			}
 
-			session.setAttribute("selection", articles);
+			request.setAttribute("selection", articles);
 
 		} catch (DALException e) {
 			System.err.println(e.getMessage());
@@ -61,44 +59,30 @@ public class AccueilServlet extends HttpServlet {
 		VenteManager vm = VenteManager.getInstance();
 		HttpSession session = request.getSession();
 		Utilisateur user = (Utilisateur) session.getAttribute("utilisateur");
-		List<Article> articles = (List<Article>) session.getAttribute("selection");
-		List<Article> selection = articles;
+		List<Article> selection = null;
 
+		// recuperation du formulaire
 		motsClés = request.getParameter("recherche").trim();
 		categorie = request.getParameter("categorie").trim();
-
 		String[] resultats = request.getParameterValues("triAchats");
 		if (resultats == null) {
 			resultats = request.getParameterValues("triVentes");
 		}
-
-		// tri par categorie
+		
+		//tri par categorie
 		if (!categorie.equals("all")) {
 			int cat = Integer.parseInt(categorie);
-			selection = vm.triByCategorie(selection, cat);
-		}
-		if (resultats != null) {
-			for (int i = 0; i < resultats.length; i++) {
-				if (resultats[i].equals("encheresOuvertes")) {
-					selection = vm.triByEncheresOuvertes(articles);
-				}
-				if (resultats[i].equals("encheresEnCours")) {
-					selection = vm.triByEncheresEnCours(selection, user);
-				}
-				if (resultats[i].equals("encheresRemportees")) {
-					selection = vm.triByEncheresRemportees(selection, user);
-				}
-				if (resultats[i].equals("venteEnCours")) {
-					selection = vm.triByVenteEnCours(selection, user);
-				}
-				if (resultats[i].equals("ventesNonDebutees")) {
-					selection = vm.triByVentesNonDebutees(selection, user);
-				}
-				if (resultats[i].equals("ventesTerminees")) {
-					selection = vm.triByVentesTerminees(selection, user);
-				}
+			try {
+				vm.triByCategorie(cat);
+			} catch (DALException e) {
+				System.err.println(e.getMessage());
 			}
 		}
+		
+		
+		
+		request.setAttribute("selection", selection);
+		request.getRequestDispatcher("WEB-INF/jsp/accueil.jsp");
 
 //		
 //		try {

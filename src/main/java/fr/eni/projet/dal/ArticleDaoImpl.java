@@ -166,6 +166,9 @@ public class ArticleDaoImpl implements ArticleDAO {
 		Categorie cat = null;
 		UtilisateurDAO udao = DAOFactory.getUtilisateurDAO();
 		CategorieDAO cdao = DAOFactory.getCategorieDAO();
+		EnchereDAO edao = DAOFactory.getEnchereDAO();
+		List<Enchere> encheres;
+		Enchere meilleureOffre = null;
 
 		try {
 			cnx = ConnexionProvider.getConnection();
@@ -173,17 +176,30 @@ public class ArticleDaoImpl implements ArticleDAO {
 			pstmt.setInt(1, id);
 			rs = pstmt.executeQuery();
  
-			
-			if (rs.next()) {
+			while (rs.next()) {
 				user = udao.selectById(rs.getInt("no_utilisateur"));
 				cat = cdao.selectById(rs.getInt("no_categorie"));
 			
 				article = new Article(rs.getString("nom_article"), rs.getString("description"),
 						rs.getDate("date_debut_encheres").toLocalDate(), rs.getDate("date_fin_encheres").toLocalDate(),
 						rs.getInt("prix_initial"), user, cat);
-				article.setCategorie(cat);
+				article.setNoArticle(rs.getInt("no_article"));
 				
 				liste_article.add(article);
+				encheres = edao.selectByNoArticle(article);
+				article.setEncheres(encheres);
+				if (encheres != null) {
+					for (Enchere enchere : encheres) {
+						if (meilleureOffre == null) {
+							meilleureOffre = enchere;
+						} else if (enchere.getMontantEnchere() > meilleureOffre.getMontantEnchere()) {
+							meilleureOffre = enchere;
+						}
+					}
+					article.setAcheteur(meilleureOffre.getUtilisateur());
+					article.setPrixVentes(meilleureOffre.getMontantEnchere());
+
+				}
 			}
 			
 			rs.close();

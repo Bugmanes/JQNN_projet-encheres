@@ -40,116 +40,48 @@ public class VenteManager {
 	}
 
 	// methode de listage d'article en fonction de la cat�gorie
-	public List<Article> triByCategorie(List<Article> selection, int id) {
+	public List<Article> triByCategorie(int id) throws DALException {
 
-		for (Article article : selection) {
-			if (article.getCategorie().getNoCategorie() != id) {
-				selection.remove(article);
-			}
-		}
-
+		List<Article> selection = null;
+		ArticleDAO adao = null;
+		
+		adao = DAOFactory.getArticleDAO();
+		selection = adao.selectByCat(id);
+		
 		return selection;
 	}
 
 	public List<Article> triByEncheresOuvertes(List<Article> selection) {
-
-		LocalDate today = LocalDate.now();
-
-		for (Article article : selection) {
-			if (article.getDateDebutEncheres().isAfter(today) || article.getDateFinEncheres().isBefore(today)) {
-				selection.remove(article);
-			}
-		}
 
 		return selection;
 	}
 	
 	public List<Article> triByEncheresEnCours(List<Article> selection, Utilisateur user) {
 
-		LocalDate today = LocalDate.now();
-		List<Enchere> encheres;
-		boolean ok = false;
-
-		for (Article article : selection) {
-			if (article.getDateDebutEncheres().isAfter(today) || article.getDateFinEncheres().isBefore(today)) {
-				selection.remove(article);
-			}
-			encheres = article.getEncheres();
-			for (Enchere enchere : encheres) {
-				if (enchere.getUtilisateur().getNoUtilisateur() == user.getNoUtilisateur()) {
-					ok = true;
-					break;
-				}
-			}
-			if (!ok) {
-				selection.remove(article);
-			}
-			ok = false;
-		}
-
 		return selection;
 	}
 	
 	public List<Article> triByEncheresRemportees(List<Article> selection, Utilisateur user) {
-
-		LocalDate today = LocalDate.now();
-
-		for (Article article : selection) {
-			if (article.getDateFinEncheres().isAfter(today)) {
-				selection.remove(article);
-			}
-			if (article.getAcheteur().getNoUtilisateur() != user.getNoUtilisateur()) {
-				selection.remove(article);
-			}
-		}
 
 		return selection;
 	}
 	
 	public List<Article> triByVenteEnCours(List<Article> selection, Utilisateur user) {
 
-		LocalDate today = LocalDate.now();
-
-		for (Article article : selection) {
-			if (article.getVendeur().getNoUtilisateur() != user.getNoUtilisateur()) {
-				selection.remove(article);
-			}
-			if (article.getDateDebutEncheres().isAfter(today) || article.getDateFinEncheres().isBefore(today)) {
-				selection.remove(article);
-			}
-		}
-
 		return selection;
 	}
 	
 	public List<Article> triByVentesNonDebutees(List<Article> selection, Utilisateur user) {
-
-		LocalDate today = LocalDate.now();
-
-		for (Article article : selection) {
-			if (article.getVendeur().getNoUtilisateur() != user.getNoUtilisateur()) {
-				selection.remove(article);
-			}
-			if (!article.getDateDebutEncheres().isAfter(today)) {
-				selection.remove(article);
-			}
-		}
 
 		return selection;
 	}
 	
 	public List<Article> triByVentesTerminees(List<Article> selection, Utilisateur user) {
 
-		LocalDate today = LocalDate.now();
-
-		for (Article article : selection) {
-			if (article.getVendeur().getNoUtilisateur() != user.getNoUtilisateur()) {
-				selection.remove(article);
-			}
-			if (!article.getDateFinEncheres().isBefore(today)) {
-				selection.remove(article);
-			}
-		}
+		return selection;
+	}
+	
+	public List<Article> triByMotsCles(List<Article> selection, String motsCles) {
 
 		return selection;
 	}

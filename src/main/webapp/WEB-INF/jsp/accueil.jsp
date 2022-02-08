@@ -8,6 +8,8 @@
 <meta charset="UTF-8">
 <title>Liste des enchères</title>
 <link rel="stylesheet" href="asset/css/style.css">
+<link href="/src/main/webapp/asset/css/bootstrap.min.css"
+	rel="stylesheet">
 </head>
 <body>
 	<%@include file="headerInvite.jsp"%>
@@ -33,8 +35,6 @@
 				<div class="choixCategorie">
 					<label for="categorie">Catégorie :</label>
 
-
-
 					<form action="<%=request.getContextPath()%>/accueil.html"
 						method="post">
 						<select name="categorie" id="categorie">
@@ -45,45 +45,48 @@
 						</select>
 						<button type="submit">rechercher</button>
 					</form>
-
-
-
 				</div>
 			</div>
 			<div class="checkBox">
-				<div>
-					<input type="radio" id="achats" name="achats" checked /> <label
-						for="achats">achats</label>
-				</div>
+					<div>
+						<input type="radio" id="achats" name="achats" checked /> <label
+							for="achats">achats</label>
+					</div>
 
-				<div>
-					<input type="checkbox" id="Ventes" name="Ventes" /> <label
-						for="Ventes">Mes ventes</label>
-				</div>
-				<div>
-					<input type="checkbox" id="Ventes" name="Ventes" /> <label
-						for="Ventes">Mes ventes</label>
-				</div>
-				<div>
-					<input type="checkbox" id="Ventes" name="Ventes" /> <label
-						for="Ventes">Mes ventes</label>
-				</div>
-				<div>
-					<input type="checkbox" id="Ventes" name="Ventes" /> <label
-						for="Ventes">Mes ventes</label>
-				</div>
-				<div>
-					<input type="checkbox" id="Ventes" name="Ventes" /> <label
-						for="Ventes">Mes ventes</label>
-				</div>
-				<div>
-					<input type="checkbox" id="Ventes" name="Ventes" /> <label
-						for="Ventes">Mes ventes</label>
-				</div>
-				<div>
-					<input type="checkbox" id="Ventes" name="Ventes" /> <label
-						for="Ventes">Mes ventes</label>
-				</div>
+					<div>
+						<input type="checkbox" id="Ventes" name="Ventes" /> <label
+							for="Ventes">Mes ventes</label>
+					</div>
+					
+					<div>
+						<input type="checkbox" id="Ventes" name="Ventes" /> <label
+							for="Ventes">Mes ventes</label>
+					</div>
+					
+					<div>
+						<input type="checkbox" id="Ventes" name="Ventes" /> <label
+							for="Ventes">Mes ventes</label>
+					</div>
+					
+					<div>
+						<input type="checkbox" id="Ventes" name="Ventes" /> <label
+							for="Ventes">Mes ventes</label>
+					</div>
+					
+					<div>
+						<input type="checkbox" id="Ventes" name="Ventes" /> <label
+							for="Ventes">Mes ventes</label>
+					</div>
+					
+					<div>
+						<input type="checkbox" id="Ventes" name="Ventes" /> <label
+							for="Ventes">Mes ventes</label>
+					</div>
+					
+					<div>
+						<input type="checkbox" id="Ventes" name="Ventes" /> <label
+							for="Ventes">Mes ventes</label>
+					</div>
 			</div>
 		</div>
 		<!-- 		<div class="annonce">
@@ -118,6 +121,7 @@
 					<th>prix</th>
 					<th>date de fin</th>
 					<th>Vendeur</th>
+				</thead>
 				<tbody>
 					<%
 					List<Article> liste = (List<Article>) request.getAttribute("liste");
@@ -150,7 +154,7 @@
 					<%
 					List<Article> listeC = (List<Article>) request.getAttribute("listeCat");
 					%>
-					
+
 					<%
 					if (listeC != null && listeC.size() > 0) {
 
@@ -176,7 +180,11 @@
 					%>
 
 
-					</div>
-					</main>
+					<div></div>
+					<main></main>
+				</tbody>
+			</table>
+		</div>
+	</main>
 </body>
 </html>

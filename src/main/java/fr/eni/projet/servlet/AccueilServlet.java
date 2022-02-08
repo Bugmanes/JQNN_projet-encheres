@@ -154,6 +154,23 @@ public class AccueilServlet extends HttpServlet {
 			}
 		}
 		
+		// tri par mes ventes en cours
+		if (result.indexOf("encheresEnCours") != -1) {
+			try {
+				if (selection.isEmpty()) {
+					selection = vm.triByVenteEnCours(user);					
+				} else {
+					temp = vm.triByVenteEnCours(user);
+					for (Article article : temp) {
+						if (selection.indexOf(article) == -1) {
+							selection.add(article);
+						}
+					}
+				}
+			} catch (DALException e) {
+				System.err.println(e.getMessage());
+			}
+		}
 		
 		request.setAttribute("selection", selection);
 		request.getRequestDispatcher("WEB-INF/jsp/accueil.jsp");

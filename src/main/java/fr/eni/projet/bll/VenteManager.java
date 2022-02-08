@@ -39,7 +39,7 @@ public class VenteManager {
 		return liste;
 	}
 
-	// methode de listage d'article en fonction de la cat�gorie
+	// methode de listage d'article en fonction de la categorie
 	public List<Article> triByCategorie(int id) throws DALException {
 
 		List<Article> selection = null;
@@ -77,8 +77,8 @@ public class VenteManager {
 
 	public List<Article> triByVenteEnCours(Utilisateur user) throws DALException {
 
-		List<Article> selection = null;
 		ArticleDAO adao = DAOFactory.getArticleDAO();
+		List<Article> selection = adao.selectByNoUtilisateur(user);
 
 		return selection;
 	}

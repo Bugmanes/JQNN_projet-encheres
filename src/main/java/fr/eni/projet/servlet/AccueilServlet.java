@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import fr.eni.projet.bll.CategorieManager;
 import fr.eni.projet.bll.VenteManager;
@@ -22,6 +23,8 @@ public class AccueilServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
+		HttpSession session = request.getSession();
+		
 		try {
 			// recuperation d'un objet de type EnchereManager
 			VenteManager em = VenteManager.getInstance();
@@ -38,8 +41,9 @@ public class AccueilServlet extends HttpServlet {
 				System.out.println(article.getPrixInitial());
 				System.out.println(article.getDateFinEncheres());
 				System.out.println(article.getVendeur());
-
 			}
+			
+			session.setAttribute("listeArticles", articles);
 
 		} catch (DALException e) {
 			System.err.println(e.getMessage());
@@ -52,61 +56,47 @@ public class AccueilServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		try {
-			// creation d'une liste d'article
-			List<Article> articles = null;
-			// creation d'un objet de type VenteManager
-			VenteManager vm = VenteManager.getInstance();
-			// variable qui recupere la categorie selectionne
-			String cat = request.getParameter("categorie");
-			// Ont parse
-			int categorie = Integer.parseInt(cat);
-			// On vient instancier cette liste avec les article de cette categorie
-			articles = vm.listerArticlesCat(categorie);
-			// je cree un liste d'Aticle
-			request.setAttribute("listeCat", articles);
+		String motsClés;
+		String categorie;
+		List<Article> articles = null;
+		VenteManager vm = VenteManager.getInstance();
 
-			
-			System.out.println(categorie);
+		motsClés = request.getParameter("recherche").trim();
+		categorie = request.getParameter("categorie").trim();
 
-			if (articles != null) {
-				for (Article article : articles) {
-					System.out.println(article.getNomArticle());
-					System.out.println(article.getPrixInitial());
-					System.out.println(article.getDateFinEncheres());
-					System.out.println(article.getVendeur().getPseudo());
-				}
-
-			}
-			System.out.println(categorie + "aucun article dans cette catégorie");
-
-		} catch (DALException e) {
-			throw new ServletException("problème dans la méthode doPost de la servlet Accueil", e);
+		String[] resultats = request.getParameterValues("triAchats");
+		if (resultats == null) {
+			resultats = request.getParameterValues("triVentes");
 		}
-		
-		
-		 ArrayList listeAB= new ArrayList();
-		 
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
+
+//		
+//		try {
+//			
+//			// Ont parse
+//			int categorie = Integer.parseInt(cat);
+//			// On vient instancier cette liste avec les article de cette categorie
+//			articles = vm.listerArticlesCat(categorie);
+//			// je cree un liste d'Aticle
+//			request.setAttribute("listeCat", articles);
+//
+//			System.out.println(categorie);
+//
+//			if (articles != null) {
+//				for (Article article : articles) {
+//					System.out.println(article.getNomArticle());
+//					System.out.println(article.getPrixInitial());
+//					System.out.println(article.getDateFinEncheres());
+//					System.out.println(article.getVendeur().getPseudo());
+//				}
+//
+//			}
+//			System.out.println(categorie + "aucun article dans cette catégorie");
+//
+//		} catch (DALException e) {
+//			throw new ServletException("problème dans la méthode doPost de la servlet Accueil", e);
+//		}
+//
+//		ArrayList listeAB = new ArrayList();
 
 		getServletContext().getRequestDispatcher("/WEB-INF/jsp/accueil.jsp").forward(request, response);
 

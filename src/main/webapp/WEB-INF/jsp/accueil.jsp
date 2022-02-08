@@ -12,84 +12,64 @@
 	rel="stylesheet">
 </head>
 <body>
-	<%@include file="headerInvite.jsp"%>
-	<main>
-		<div class="titre">
-			<h3>Liste des enchères</h3>
-		</div>
-		<div class="filtre">
+	<div class="container">
+		<%@include file="headerInvite.jsp"%>
+		<main>
+			<div class="titre">
+				<h3>Liste des enchères</h3>
+			</div>
+			<div class="selection">
 			<div class="titreFiltre">
 				<h4>Filtres :</h4>
 			</div>
-			<div class="rechercher">
-				<form action="<%=request.getContextPath()%>/accueil.html"
-					method="get">
-					<div>
-						<input type="search" id="maRecherche" name="q"
-							placeholder="le nom de l'article contient " />
-						<button>Rechercher</button>
-					</div>
-				</form>
-			</div>
-			<div class="categorie">
-				<div class="choixCategorie">
-					<label for="categorie">Catégorie :</label>
-
-					<form action="<%=request.getContextPath()%>/accueil.html"
-						method="post">
-						<select name="categorie" id="categorie">
-							<option value="1">Informatique</option>
-							<option value="2">Ameublement</option>
-							<option value="3">Vètement</option>
-							<option value="4">Sport&Loisirs</option>
-						</select>
-						<button type="submit">rechercher</button>
-					</form>
+			<form action="<%=request.getContextPath()%>/accueil.html" method="post">
+				<div class="rechercher">
+					<input type="search" id="recherche" name="recherche" 
+						placeholder="le nom de l'article contient " />
 				</div>
-			</div>
-			<div class="checkBox">
-					<div>
-						<input type="radio" id="achats" name="achats" checked /> <label
-							for="achats">achats</label>
+				<div class="categorie">
+					<label for="categorie">Catégorie :</label>
+					<select name="categorie" id="categorie">
+						<option value="all">Toutes</option>
+						<option value="1">Informatique</option>
+						<option value="2">Ameublement</option>
+						<option value="3">Vetement</option>
+						<option value="4">Sport&Loisirs</option>
+					</select>
+				</div>
+				<div class="filtres">
+					<div class="achats">
+						<label for="achats">achats</label>
+						<input type="radio" id="achats" name="choix" checked value="achats"/>
+						<div class="checkbox">
+							<input type="checkbox" id="encheresOuvertes" name="triAchats" value="encheresOuvertes"/>
+							<label for="encheresOuvertes">enchères ouvertes</label>
+							<input type="checkbox" id="encheresEnCours" name="triAchats" value="encheresEnCours"/> 
+							<label for="encheresEnCours">Mes enchères en cours</label>
+							<input type="checkbox" id="encheresRemportees" name="triAchats" value="encheresRemportees"/>
+							<label for="encheresRemportees">Mes enchères remportées</label>
+						</div>
 					</div>
+					<div class="ventes">
+						<label for="ventes">Mes ventes</label>
+						<input type="radio" id="ventes" name="choix" value="ventes"/>
+						<div class="checkbox">
+							<input type="checkbox" id="venteEnCours" name="triVentes" value="venteEnCours"/>
+							<label for="venteEnCours">mes ventes en cours</label>
+							<input type="checkbox" id="ventesNonDebutees" name="triVentes" value="ventesNonDebutees"/> 
+							<label for="ventesNonDebutees">ventes non débutées</label>
+							<input type="checkbox" id="ventesTerminees" name="triVentes" value="ventesTerminees" />
+							<label for="ventesTerminees">ventes terminées</label>
+						</div>
+					</div>
+				</div>
+				<div class="submit">
+					<input type="submit" value="Rechercher">
+				</div>
+			</form>
+			</div>
 
-					<div>
-						<input type="checkbox" id="Ventes" name="Ventes" /> <label
-							for="Ventes">Mes ventes</label>
-					</div>
-					
-					<div>
-						<input type="checkbox" id="Ventes" name="Ventes" /> <label
-							for="Ventes">Mes ventes</label>
-					</div>
-					
-					<div>
-						<input type="checkbox" id="Ventes" name="Ventes" /> <label
-							for="Ventes">Mes ventes</label>
-					</div>
-					
-					<div>
-						<input type="checkbox" id="Ventes" name="Ventes" /> <label
-							for="Ventes">Mes ventes</label>
-					</div>
-					
-					<div>
-						<input type="checkbox" id="Ventes" name="Ventes" /> <label
-							for="Ventes">Mes ventes</label>
-					</div>
-					
-					<div>
-						<input type="checkbox" id="Ventes" name="Ventes" /> <label
-							for="Ventes">Mes ventes</label>
-					</div>
-					
-					<div>
-						<input type="checkbox" id="Ventes" name="Ventes" /> <label
-							for="Ventes">Mes ventes</label>
-					</div>
-			</div>
-		</div>
-		<!-- 		<div class="annonce">
+	<!-- 		<div class="annonce">
 			<div class="annonce1">
 				<div class="gauche">
 					<div class="imgannonce1">
@@ -113,78 +93,79 @@
 					</div>
 				</div>
 			</div>
-		</div> -->
-		<div class="Articles">
-			<table>
-				<thead>
-					<th>titre</th>
-					<th>prix</th>
-					<th>date de fin</th>
-					<th>Vendeur</th>
-				</thead>
-				<tbody>
-					<%
-					List<Article> liste = (List<Article>) request.getAttribute("liste");
-					if (liste != null && liste.size() > 0) {
-						for (Article article : liste) {
-							out.print("<tr>");
-							out.print("<td>" + article.getNomArticle() + "</td>");
-							out.print("<td>" + article.getPrixInitial() + "</td>");
-							out.print("<td>" + article.getDateFinEncheres() + "</td>");
-							out.print("<td>" + article.getVendeur().getPseudo() + "</td>");
-							out.print("</tr>");
-						}
-
-						out.print("</tbody>");
-						out.print("</table>");
-
-					} else
-
-					{
-
-						out.print("<p>La Boutique est fermée</p>");
-
+		</div> 
+	<div class="Articles">
+		<table>
+			<thead>
+				<th>titre</th>
+				<th>prix</th>
+				<th>date de fin</th>
+				<th>Vendeur</th>
+			</thead>
+			<tbody>
+				<%-- <%
+				List<Article> liste = (List<Article>) request.getAttribute("liste");
+				if (liste != null && liste.size() > 0) {
+					for (Article article : liste) {
+						out.print("<tr>");
+						out.print("<td>" + article.getNomArticle() + "</td>");
+						out.print("<td>" + article.getPrixInitial() + "</td>");
+						out.print("<td>" + article.getDateFinEncheres() + "</td>");
+						out.print("<td>" + article.getVendeur().getPseudo() + "</td>");
+						out.print("</tr>");
 					}
-					%>
+
+					out.print("</tbody>");
+					out.print("</table>");
+
+				} else
+
+				{
+
+					out.print("<p>La Boutique est fermée</p>");
+
+				}
+				%>
 
 
 
 
 
-					<%
-					List<Article> listeC = (List<Article>) request.getAttribute("listeCat");
-					%>
+				<%
+				List<Article> listeC = (List<Article>) request.getAttribute("listeCat");
+				%>
 
-					<%
-					if (listeC != null && listeC.size() > 0) {
+				<%
+				if (listeC != null && listeC.size() > 0) {
 
-						for (Article article : listeC) {
-							out.print("<tr>");
-							out.print("<td>" + article.getNomArticle() + "</td>");
-							out.print("<td>" + article.getPrixInitial() + "</td>");
-							out.print("<td>" + article.getDateFinEncheres() + "</td>");
-							out.print("<td>" + article.getVendeur().getPseudo() + "</td>");
-							out.print("</tr>");
-						}
-
-						out.print("</tbody>");
-						out.print("</table>");
-
-					} else
-
-					{
-
-						out.print("<p>La Boutique est fermée</p>");
-
+					for (Article article : listeC) {
+						out.print("<tr>");
+						out.print("<td>" + article.getNomArticle() + "</td>");
+						out.print("<td>" + article.getPrixInitial() + "</td>");
+						out.print("<td>" + article.getDateFinEncheres() + "</td>");
+						out.print("<td>" + article.getVendeur().getPseudo() + "</td>");
+						out.print("</tr>");
 					}
-					%>
+
+					out.print("</tbody>");
+					out.print("</table>");
+
+				} else
+
+				{
+
+					out.print("<p>La Boutique est fermée</p>");
+
+				}
+				%> --%>
 
 
-					<div></div>
-					<main></main>
-				</tbody>
-			</table>
-		</div>
-	</main>
+
+			</tbody>
+		</table>-->
+
+		</main>
+		<footer></footer>
+	</div>
 </body>
 </html>

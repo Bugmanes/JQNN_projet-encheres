@@ -22,4 +22,8 @@ public interface ArticleDAO {
 	public List<Article> selectByMotsCles (String motsCles) throws DALException;
 	
 	public List<Article> selectEncheresOuvertes (Utilisateur user1) throws DALException;
+	
+	public List<Article> selectMesEncheresEnCours (Utilisateur user1) throws DALException;
+	
+	public List<Article> selectMesEncheresremportees (Utilisateur user1) throws DALException;
 }

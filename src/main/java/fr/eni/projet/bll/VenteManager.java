@@ -44,10 +44,10 @@ public class VenteManager {
 
 		List<Article> selection = null;
 		ArticleDAO adao = null;
-		
+
 		adao = DAOFactory.getArticleDAO();
 		selection = adao.selectByCat(id);
-		
+
 		return selection;
 	}
 
@@ -56,58 +56,59 @@ public class VenteManager {
 		List<Article> selection = null;
 		ArticleDAO adao = DAOFactory.getArticleDAO();
 		selection = adao.selectEncheresOuvertes(user);
-		
+
 		return selection;
 	}
-	
-	public List<Article> triByEncheresEnCours(Utilisateur user) {
+
+	public List<Article> triByEncheresEnCours(Utilisateur user) throws DALException {
 
 		List<Article> selection = null;
 		ArticleDAO adao = DAOFactory.getArticleDAO();
-		
+		selection = adao.selectMesEncheresEnCours(user);
+
 		return selection;
 	}
-	
-	public List<Article> triByEncheresRemportees(Utilisateur user) {
+
+	public List<Article> triByEncheresRemportees(Utilisateur user) throws DALException {
+
+		ArticleDAO adao = DAOFactory.getArticleDAO();
+		List<Article> selection = adao.selectMesEncheresremportees(user);
+
+		return selection;
+	}
+
+	public List<Article> triByVenteEnCours(Utilisateur user) throws DALException {
 
 		List<Article> selection = null;
 		ArticleDAO adao = DAOFactory.getArticleDAO();
-		
-		return selection;
-	}
-	
-	public List<Article> triByVenteEnCours(Utilisateur user) {
 
-		List<Article> selection = null;
-		ArticleDAO adao = DAOFactory.getArticleDAO();
-		
 		return selection;
 	}
-	
-	public List<Article> triByVentesNonDebutees(Utilisateur user) {
 
-		List<Article> selection = null;
-		ArticleDAO adao = DAOFactory.getArticleDAO();
-		
-		return selection;
-	}
-	
-	public List<Article> triByVentesTerminees(Utilisateur user) {
+	public List<Article> triByVentesNonDebutees(Utilisateur user) throws DALException {
 
-		List<Article> selection = null;
 		ArticleDAO adao = DAOFactory.getArticleDAO();
-		
+		List<Article> selection = null;
+
 		return selection;
 	}
-	
+
+	public List<Article> triByVentesTerminees(Utilisateur user) throws DALException {
+
+		ArticleDAO adao = DAOFactory.getArticleDAO();
+		List<Article> selection = null;
+
+		return selection;
+	}
+
 	public List<Article> triByMotsCles(String motsCles) throws DALException {
 
 		List<Article> selection = null;
-		ArticleDAO adao= null;
-		
+		ArticleDAO adao = null;
+
 		adao = DAOFactory.getArticleDAO();
 		selection = adao.selectByMotsCles(motsCles);
-		
+
 		return selection;
 	}
 

@@ -118,6 +118,41 @@ public class AccueilServlet extends HttpServlet {
 			}
 		}
 		
+		// selection de mes encheres en cours
+		if (result.indexOf("encheresEnCours") != -1) {
+			try {
+				if (selection.isEmpty()) {
+					selection = vm.triByEncheresEnCours(user);					
+				} else {
+					temp = vm.triByEncheresEnCours(user);
+					for (Article article : temp) {
+						if (selection.indexOf(article) == -1) {
+							selection.add(article);
+						}
+					}
+				}
+			} catch (DALException e) {
+				System.err.println(e.getMessage());
+			}
+		}
+		
+		// tri par mes encheres remportees
+		if (result.indexOf("encheresEnCours") != -1) {
+			try {
+				if (selection.isEmpty()) {
+					selection = vm.triByEncheresRemportees(user);					
+				} else {
+					temp = vm.triByEncheresRemportees(user);
+					for (Article article : temp) {
+						if (selection.indexOf(article) == -1) {
+							selection.add(article);
+						}
+					}
+				}
+			} catch (DALException e) {
+				System.err.println(e.getMessage());
+			}
+		}
 		
 		
 		request.setAttribute("selection", selection);

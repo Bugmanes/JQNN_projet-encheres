@@ -81,8 +81,14 @@ public class VenteManager {
 		return selection;
 	}
 	
-	public List<Article> triByMotsCles(List<Article> selection, String motsCles) {
+	public List<Article> triByMotsCles(String motsCles) throws DALException {
 
+		List<Article> selection = null;
+		ArticleDAO adao= null;
+		
+		adao = DAOFactory.getArticleDAO();
+		selection = adao.selectByMotsCles(motsCles);
+		
 		return selection;
 	}
 

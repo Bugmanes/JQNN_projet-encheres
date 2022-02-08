@@ -60,6 +60,7 @@ public class AccueilServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		Utilisateur user = (Utilisateur) session.getAttribute("utilisateur");
 		List<Article> selection = null;
+		List<Article> temp = null;
 
 		// recuperation du formulaire
 		motsClés = request.getParameter("recherche").trim();
@@ -69,11 +70,29 @@ public class AccueilServlet extends HttpServlet {
 			resultats = request.getParameterValues("triVentes");
 		}
 		
+		// tri par mots cles
+		if (motsClés != null) {
+			try {
+				selection = vm.triByMotsCles(motsClés);
+			} catch (DALException e) {
+				System.err.println(e.getMessage());
+			}
+		}
+		
 		//tri par categorie
 		if (!categorie.equals("all")) {
 			int cat = Integer.parseInt(categorie);
 			try {
-				vm.triByCategorie(cat);
+				if (selection.isEmpty()) {
+					selection = vm.triByCategorie(cat);					
+				} else {
+					temp = vm.triByCategorie(cat);
+					for (Article article : temp) {
+						if (selection.indexOf(article) == -1) {
+							selection.add(article);
+						}
+					}
+				}
 			} catch (DALException e) {
 				System.err.println(e.getMessage());
 			}

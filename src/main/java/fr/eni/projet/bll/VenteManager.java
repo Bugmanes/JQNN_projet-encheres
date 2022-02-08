@@ -53,18 +53,16 @@ public class VenteManager {
 
 	public List<Article> triByEncheresOuvertes(Utilisateur user) throws DALException {
 
-		List<Article> selection = null;
 		ArticleDAO adao = DAOFactory.getArticleDAO();
-		selection = adao.selectEncheresOuvertes(user);
+		List<Article> selection = adao.selectEncheresOuvertes(user);
 
 		return selection;
 	}
 
 	public List<Article> triByEncheresEnCours(Utilisateur user) throws DALException {
 
-		List<Article> selection = null;
 		ArticleDAO adao = DAOFactory.getArticleDAO();
-		selection = adao.selectMesEncheresEnCours(user);
+		List<Article> selection = adao.selectMesEncheresEnCours(user);
 
 		return selection;
 	}

@@ -33,7 +33,11 @@ public class ArticleDaoImpl implements ArticleDAO {
 	private final static String SELECT_BY_MOTS_CLES = "SELECT * ARTICLES_VENDUS WHERE ' ' + nom_article + ' ' like '% ? %';";
 	private final static String SELECT_ENCHERES_OUVERTES = "select * from ARTICLES_VENDUS where date_debut_encheres <= GETDATE() AND date_fin_encheres > GETDATE() AND no_utilisateur != ?;";
 	private final static String SELECT_ENCHERES_EN_COURS = "select * from ARTICLES_VENDUS inner join ENCHERES on ARTICLES_VENDUS.no_article = ENCHERES.no_article where ENCHERES.no_utilisateur = ?;";
-	private final static String SELECT_ENCHERES_REMPORTEES = "";
+	private final static String SELECT_ENCHERES_REMPORTEES = "select * from ARTICLES_VENDUS av\r\n"
+			+ "inner join ENCHERES e on av.no_article = e.no_article\r\n"
+			+ "where e.no_utilisateur = ? AND av.date_fin_encheres < GETDATE() AND e.montant_enchere = (\r\n"
+			+ "SELECT MAX(montant_enchere) FROM ENCHERES e2 WHERE e2.no_article = av.no_article \r\n"
+			+ ");";
 	
 	@Override
 	public void insertArticle(Article article) throws DALException {

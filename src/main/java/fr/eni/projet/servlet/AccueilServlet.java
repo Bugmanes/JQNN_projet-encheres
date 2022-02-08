@@ -42,7 +42,7 @@ public class AccueilServlet extends HttpServlet {
 			}
 
 		} catch (DALException e) {
-			throw new ServletException("problème dans la méthode doGet de la servlet Accueil", e);
+			System.err.println(e.getMessage());
 		}
 
 		getServletContext().getRequestDispatcher("/WEB-INF/jsp/accueil.jsp").forward(request, response);
@@ -55,15 +55,15 @@ public class AccueilServlet extends HttpServlet {
 		try {
 			// creation d'une liste d'article
 			List<Article> articles = null;
-			// créeation d'un objet de type VenteManager
+			// creation d'un objet de type VenteManager
 			VenteManager vm = VenteManager.getInstance();
-			// variable qui récupère la catégoriie sélectionné
+			// variable qui recupere la categorie selectionne
 			String cat = request.getParameter("categorie");
 			// Ont parse
 			int categorie = Integer.parseInt(cat);
-			// ont vient instancier cette liste avec les article de cette catégorie
+			// On vient instancier cette liste avec les article de cette categorie
 			articles = vm.listerArticlesCat(categorie);
-			// je crée un liste d'Aticle
+			// je cree un liste d'Aticle
 			request.setAttribute("listeCat", articles);
 
 			

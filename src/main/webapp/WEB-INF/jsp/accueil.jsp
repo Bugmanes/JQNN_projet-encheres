@@ -8,8 +8,8 @@
 <meta charset="UTF-8">
 <title>Liste des enchères</title>
 <link rel="stylesheet" href="asset/css/style.css">
-<link href="/src/main/webapp/asset/css/bootstrap.min.css"
-	rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+	
 </head> 
 <body>
 	<div class="container">
@@ -106,8 +106,8 @@
 		
 		
 	<!-- ----------------------------------Orginal---------------------------------------- -->
-		
-		<%-- <main>
+<!-- 		
+		 <main>
 		
 			<div class="titre">
 				<h3>Liste des enchères</h3>
@@ -161,7 +161,7 @@
 					<input type="submit" value="Rechercher">
 				</div>
 			</form>
-			</div> --%>
+			</div>  -->
 <!-- ------------------------------------------------------------------------------- -->
 
 
@@ -268,6 +268,6 @@
 
 		
 		<footer></footer>
-
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>
 </html>

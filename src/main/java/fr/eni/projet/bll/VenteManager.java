@@ -34,7 +34,7 @@ public class VenteManager {
 
 		ArticleDAO adao = DAOFactory.getArticleDAO();
 		// insertion d'une liste d'article
-		List<Article> liste = adao.selectAll();
+		List<Article> liste = adao.selectDebutToday();
 
 		return liste;
 	}

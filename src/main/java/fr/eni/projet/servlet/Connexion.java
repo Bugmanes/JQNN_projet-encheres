@@ -19,7 +19,7 @@ public class Connexion extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
+
 		request.getRequestDispatcher("/WEB-INF/jsp/seConnecter.jsp").forward(request, response);
 
 	}
@@ -35,27 +35,24 @@ public class Connexion extends HttpServlet {
 		identifiant = request.getParameter("identifiant");
 		motDePasse = request.getParameter("password");
 
-		
-		
 		try {
-			
-			
+
 			um = UtilisateurManager.getInstance();
 			user = um.authentification(identifiant, motDePasse);
 			if (user != null) {
-				
+
 				HttpSession session = request.getSession();
 				session.setAttribute("utilisateur", user);
 
 				// envoie a la page accueil.jsp
 				request.getRequestDispatcher("/WEB-INF/jsp/accueil.jsp").forward(request, response);
 			} else {
-				
+
 				request.setAttribute("connexion", false);
 				// envoie a la page seConnecter.jsp
 				request.getRequestDispatcher("/WEB-INF/jsp/seConnecter.jsp").forward(request, response);
 			}
-			
+
 		} catch (Exception e2) {
 			// TODO Auto-generated catch block
 			e2.printStackTrace();

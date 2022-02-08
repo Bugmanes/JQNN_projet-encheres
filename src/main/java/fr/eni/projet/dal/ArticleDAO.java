@@ -30,4 +30,6 @@ public interface ArticleDAO {
 	public List<Article> selectVentesNonDebutees(Utilisateur user1) throws DALException;
 
 	public List<Article> selectVentesTerminees(Utilisateur user1) throws DALException;
+	
+	public List<Article> selectDebutToday() throws DALException;
 }

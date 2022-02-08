@@ -11,6 +11,7 @@ import javax.servlet.http.HttpSession;
 import fr.eni.projet.bll.UtilisateurManager;
 import fr.eni.projet.bll.VenteManager;
 import fr.eni.projet.bo.Utilisateur;
+import fr.eni.projet.dal.DALException;
 
 @WebServlet("/AfficherProfil")
 public class AfficherProfil extends HttpServlet {
@@ -22,17 +23,22 @@ public class AfficherProfil extends HttpServlet {
 		int id = Integer.parseInt(request.getParameter("id"));
 		HttpSession session = request.getSession();
 		Utilisateur user = (Utilisateur) session.getAttribute("utilisateur");
-		boolean ok;
+		boolean proprio;
 		
 		if(id != user.getNoUtilisateur()) {
-			ok = false;
+			proprio = false;
 			UtilisateurManager um = UtilisateurManager.getInstance();
-			
+			try {
+				user = um.chercherUtilisateur(id);
+			} catch (DALException e) {
+				System.err.println(e.getMessage());
+			}
 		} else {
-			ok = true;
+			proprio = true;
 		}
 		
-		request.setAttribute("ok", ok);
+		request.setAttribute("ok", proprio);
+		request.setAttribute("utilisateur", user);
 		request.getRequestDispatcher("/WEB-INF/jsp/profil.jsp").forward(request, response);
 	}
 

@@ -48,18 +48,11 @@ public class UtilisateurManager {
 	}
 
 	// methode pour chercher un utilisateur
-	public int cherche(String pseudo, String nom, String prenom, String email, String telephone, String rue,
-			String codePostal, String ville, String motDePasse, int credit, boolean administrateur) {
-		Utilisateur user = new Utilisateur(pseudo, nom, prenom, email, telephone, rue, codePostal, ville, motDePasse,
-				credit, administrateur);
-		UtilisateurDAO userDAO = DAOFactory.getUtilisateurDAO();
-		try {
-			userDAO.selectById(user.getNoUtilisateur());
-		} catch (DALException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return user.getNoUtilisateur();
+	public Utilisateur chercherUtilisateur(int id) throws DALException {
+		Utilisateur user;
+		UtilisateurDAO udao = DAOFactory.getUtilisateurDAO();
+		user = udao.selectById(id);
+		return user;
 	}
 
 	// methode pour modifier un utilisateur

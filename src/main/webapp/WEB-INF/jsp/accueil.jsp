@@ -10,7 +10,7 @@
 <link rel="stylesheet" href="asset/css/style.css">
 <link href="/src/main/webapp/asset/css/bootstrap.min.css"
 	rel="stylesheet">
-</head>
+</head> 
 <body>
 	<div class="container">
 		<%@include file="headerInvite.jsp"%>

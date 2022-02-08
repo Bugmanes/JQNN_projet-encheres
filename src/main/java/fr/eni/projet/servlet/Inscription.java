@@ -13,7 +13,7 @@ import fr.eni.projet.bo.Password;
 import fr.eni.projet.bo.Utilisateur;
 import fr.eni.projet.dal.DALException;
 
-@WebServlet("/InscriptionConnexion")
+@WebServlet("/InscriptionConnexion") 
 public class Inscription extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -38,13 +38,13 @@ public class Inscription extends HttpServlet {
 		String codePostal = request.getParameter("codePostal").trim();
 		String ville = request.getParameter("ville").trim();
 		String motDePasse = request.getParameter("motDePasse").trim();
-//		Password mdp = new Password();
-//		try {
-//			motDePasse = mdp.getSaltedHash(motDePasse);
-//		} catch (Exception e1) {
-//			// TODO Auto-generated catch block
-//			e1.printStackTrace();
-//		}
+		String mdp = null;
+		
+		try {
+			 mdp = Password.getSaltedHash(motDePasse);
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
 		
 		
 		int credit = 1000;
@@ -66,7 +66,7 @@ public class Inscription extends HttpServlet {
 		}
 		
 		// si une ou des requtes sont erronnes, demander une donnee valide
-		if(!pseudoOK || !nomOK || !prenomOK || !telOK || !pseudoUniqueOK || !emailUniqueOK)
+		if(!pseudoOK || !nomOK || !prenomOK || !telOK || !pseudoUniqueOK || !emailUniqueOK) {
 			request.setAttribute("pseudoOK", pseudoOK);
 			request.setAttribute("pseudoUniqueOK", pseudoUniqueOK);
 			request.setAttribute("nomOK", nomOK);
@@ -74,13 +74,15 @@ public class Inscription extends HttpServlet {
 			request.setAttribute("telOK", telOK);
 			request.setAttribute("emailUniqueOK", emailUniqueOK);
 			request.getRequestDispatcher("/WEB-INF/jsp/inscription.jsp").forward(request, response);
+			return;
+		}
 		
 		try {
 			// insertion des parametre dans un nouvel utilisateur
-			um.nouvelUtilisateur(pseudo, nom, prenom, email, telephone, rue, codePostal, ville, motDePasse, credit,
+			um.nouvelUtilisateur(pseudo, nom, prenom, email, telephone, rue, codePostal, ville, mdp, credit,
 					administrateur);
 		} catch (DALException e) {
-			System.err.println(e.getMessage());
+			System.err.println("rtyuiop");
 		}
 
 		request.getRequestDispatcher("/Connexion").forward(request, response);

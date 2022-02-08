@@ -20,10 +20,10 @@ public class Password {
 
 		return Base64.encodeBase64String(salt) + "$" + hash(password, salt);
 
-	}
-
+	} 
+	
 	public static boolean check(String password, String stored) throws Exception{
-		String[] saltAndHash = stored.split("/$");
+		String[] saltAndHash = stored.split("\\$");
 		if (saltAndHash.length != 2) {
 			throw new IllegalStateException(
 			"le password stocké est mainetenat sous format 'salt$hash'");

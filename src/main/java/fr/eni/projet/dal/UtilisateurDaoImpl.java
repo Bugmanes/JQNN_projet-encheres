@@ -1,6 +1,6 @@
 package fr.eni.projet.dal;
 
-import java.sql.Connection;
+import java.sql.Connection; 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Connection;
@@ -8,6 +8,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import fr.eni.projet.bo.Password;
 import fr.eni.projet.bo.Utilisateur;
 import fr.eni.projet.util.ConnexionProvider;
 
@@ -154,7 +155,7 @@ public class UtilisateurDaoImpl implements UtilisateurDAO {
 	}
 
 	@Override
-	public Utilisateur selectConnexion(String identifiant, String password) throws DALException {
+	public Utilisateur selectConnexion(String identifiant, String password) throws Exception {
 
 		// declaration de mes variables
 		Connection cnx = null;
@@ -171,7 +172,7 @@ public class UtilisateurDaoImpl implements UtilisateurDAO {
 			rs = stmt.executeQuery();
 
 			if (rs.next()) {
-				if (password.equals(rs.getString("mot_de_passe"))) {
+				if (Password.check(password, rs.getString("mot_de_passe"))) {
 					if (rs.getInt("administrateur") == 1) {
 						admin = true;
 					} else {

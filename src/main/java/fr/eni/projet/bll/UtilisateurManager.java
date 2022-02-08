@@ -1,4 +1,4 @@
-package fr.eni.projet.bll;
+ package fr.eni.projet.bll;
 
 import fr.eni.projet.bo.Article;
 import fr.eni.projet.bo.Utilisateur;
@@ -26,7 +26,7 @@ public class UtilisateurManager {
 	}
 
 	// methode d'authentification par identifiant et mot de passe
-	public Utilisateur authentification(String identifiant, String motDePasse) throws DALException {
+	public Utilisateur authentification(String identifiant, String motDePasse) throws Exception {
 
 		Utilisateur user = null;
 		UtilisateurDAO uDao = null;

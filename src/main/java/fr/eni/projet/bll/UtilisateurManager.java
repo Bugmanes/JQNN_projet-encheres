@@ -1,4 +1,4 @@
-package fr.eni.projet.bll;
+ package fr.eni.projet.bll;
 
 import fr.eni.projet.bo.Article;
 import fr.eni.projet.bo.Utilisateur;

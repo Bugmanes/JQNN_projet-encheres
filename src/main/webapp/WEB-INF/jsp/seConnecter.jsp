@@ -214,8 +214,8 @@ none;
 							<div class="minimize"></div>
 							<div class="zoom"></div>
 						</div>
-						<form action="<%=request.getContextPath() + "/Connexion"%>"
-							method="post">
+						<form action="<%=request.getContextPath()%>/accueil.html"
+							method="get">
 							<h2>Login Form</h2>   
 
 							<label for="uname"><b>votre identifiant</b></label> <input

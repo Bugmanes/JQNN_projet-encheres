@@ -15,7 +15,7 @@
 			<h4>Mon Profil</h4>
 		</div>
 		<div class="formulaireInscription">
-			<form action="<%=request.getContextPath()%>/inscription"
+			<form action="<%=request.getContextPath()%>/connexion"
 				method="post">
 	          <div  class="partieGauche">
 					<div class="pseudo">

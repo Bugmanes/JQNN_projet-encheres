@@ -220,7 +220,7 @@ none;
 
 							<label for="uname"><b>votre identifiant</b></label> <input
 								type="text" placeholder="Enter Username" name="identifiant"
-								required> <label for="psw"><b>Mot de passe </b></label>
+								required> <label for="psw"><b>Mot de passe ddd </b></label>
 							<input type="password" placeholder="Enter Password"
 								name="password" required>
 

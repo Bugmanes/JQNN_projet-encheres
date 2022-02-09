@@ -43,10 +43,9 @@ public class Connexion extends HttpServlet {
 
 				HttpSession session = request.getSession();
 				session.setAttribute("utilisateur", user);
-				request.setAttribute("utilisateur", user);
 
 				// envoie a la page accueil.jsp
-				request.getRequestDispatcher("accueil.html").forward(request, response);
+				response.sendRedirect(request.getContextPath() + "/accueil.html");
 			} else {
 
 				request.setAttribute("connexion", false);

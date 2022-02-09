@@ -242,7 +242,7 @@ none;
 						<span><a href="#">Mot de passe oublié</a></span>
 						<div class="buttonCreeCompte text-centre">
 				<a
-					href="http://localhost:8080/JQNN_projet-encheres/InscriptionConnexion">
+					href="<%=request.getContextPath()%>/inscription">
 					<button>Crée un compte</button>
 				</a>
 			</div>

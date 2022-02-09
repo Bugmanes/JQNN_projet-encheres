@@ -38,7 +38,6 @@ public class ModifierProfil extends HttpServlet {
 			throws ServletException, IOException {
 
 		// recuperation la session
-		System.out.println("ok1");
 		HttpSession session = request.getSession();
 		Utilisateur utilisateur = (Utilisateur) session.getAttribute("utilisateur");
 		String choix = "";
@@ -57,7 +56,6 @@ public class ModifierProfil extends HttpServlet {
 				response.sendRedirect(request.getContextPath() + "/accueil.html");
 			}
 		} else {
-			System.out.println("ok2");
 			// parametrage de la requete
 			String pseudo = request.getParameter("pseudo").trim();
 			String nom = request.getParameter("nom").trim();
@@ -67,7 +65,6 @@ public class ModifierProfil extends HttpServlet {
 			String rue = request.getParameter("rue").trim();
 			String codePostal = request.getParameter("codePostal").trim();
 			String ville = request.getParameter("ville").trim();
-			System.out.println("ok3");
 //			String old_mdp = request.getParameter("old_mdp").trim();
 //			String new_mdp = request.getParameter("new_mdp").trim();
 
@@ -101,7 +98,6 @@ public class ModifierProfil extends HttpServlet {
 			}
 			// verification si le l'email est correspond
 			if (!utilisateur.getEmail().equals(email)) {
-				System.out.println("ok4");
 				try {
 					emailUniqueOK = um.verifUniqueMail(email);
 				} catch (DALException e) {
@@ -111,7 +107,6 @@ public class ModifierProfil extends HttpServlet {
 
 			// verification si un ou des parametres sont faux
 			if (!pseudoOK || !nomOK || !prenomOK || !telOK || !pseudoUniqueOK || !emailUniqueOK) {
-				System.out.println("pasOk");
 				request.setAttribute("pseudoOK", pseudoOK);
 				request.setAttribute("pseudoUniqueOK", pseudoUniqueOK);
 				request.setAttribute("nomOK", nomOK);
@@ -123,7 +118,6 @@ public class ModifierProfil extends HttpServlet {
 			}
 
 			try {
-				System.out.println("ok5");
 				// insertion de parametres dans modifierUtilisateur
 				um.modifierUtilisateur(pseudo, nom, prenom, email, telephone, rue, codePostal, ville, ville,
 						utilisateur);
@@ -131,7 +125,6 @@ public class ModifierProfil extends HttpServlet {
 				e.printStackTrace();
 				System.err.println(e.getMessage());
 			}
-			System.out.println("ok6");
 			response.sendRedirect(request.getContextPath() + "/afficherProfil");
 		}
 	}

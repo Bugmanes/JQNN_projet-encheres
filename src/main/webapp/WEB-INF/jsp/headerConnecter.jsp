@@ -18,13 +18,10 @@
             <ul class="nav justify-content-end col-lg  te"  > 
 								
                 <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="<%=request.getContextPath()%>/GestionVente">Encheres</a>
+                <a class="nav-link" href="<%=request.getContextPath()%>/gestionVente">Vendre un article</a>
                 </li>
                 <li class="nav-item">
-                <a class="nav-link" href="<%=request.getContextPath()%>/GestionVente">Vendre un article</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="<%=request.getContextPath()%>/ModifierProfil">Mon Profil </a>
+                    <a class="nav-link" href="<%=request.getContextPath()%>/modifierProfil">Mon Profil </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="<%=request.getContextPath()%>/deconnexion">Deconnexion  </a>

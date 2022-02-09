@@ -15,8 +15,8 @@
 			<h4>Mon Profil</h4>
 		</div>
 		<div class="formulaireInscription">
-			<form action="<%=request.getContextPath()%>/InscriptionConnexion"
-				method="POST">
+			<form action="<%=request.getContextPath()%>/inscription"
+				method="post">
 	          <div  class="partieGauche">
 					<div class="pseudo">
 						<label for="pseudo">Pseudo :</label>
@@ -47,7 +47,7 @@
 						%>
 					</div>
 					<div class="prenom">
-						<label for="prenom">prenom :</label> <input type="text"
+						<label for="prenom">prenom :</label> <input type="text"
 							id="prenom" name="prenom" />
 						<%
 							if (request.getAttribute("prenomOK")!=null){
@@ -136,16 +136,12 @@
 					</div>
 				</div>
 				<div class="buttonCree">
-					<a href="http://localhost:8080/JQNN_projet-encheres/Connexion">
-						<button type="submit">Créer</button>
-					</a> 
+						<input type="submit" value="Créer">
 				</div>
 
 				<div class="buttonAnnuler">
-					<a href="http://localhost:8080/JQNN_projet-encheres/Accueil">
-						<button type="reset">
-							<p>Anuller</p>
-						</button>
+					<a href="<%=request.getContextPath()%>/accueil.html">
+						<button type="button">Annuler</button>
 					</a>
 				</div>
 			</form>

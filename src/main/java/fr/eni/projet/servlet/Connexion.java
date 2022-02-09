@@ -13,7 +13,7 @@ import fr.eni.projet.bo.Password;
 import fr.eni.projet.bo.Utilisateur;
 import fr.eni.projet.dal.DALException;
 
-@WebServlet("/Connexion")
+@WebServlet("/connexion")
 public class Connexion extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 

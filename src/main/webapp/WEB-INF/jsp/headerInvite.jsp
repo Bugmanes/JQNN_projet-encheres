@@ -10,17 +10,17 @@
 
 		<div class="border border-primary ">
 			<div class="row m-auto">
-				<a href="http://localhost:8080/JQNN_projet-encheres/accueil.html" style="text-decoration-line: none;">ENI-Encheres</a>
+				<a href="<%=request.getContextPath()%>/accueil.html" style="text-decoration-line: none;">ENI-Encheres</a>
 				<div class="col ">
 					<nav>
 						<ul class="nav justify-content-end col-lg  ">
 
 							<li class="nav-item"><a class="nav-link active"
 								aria-current="page"
-								href="http://localhost:8080/JQNN_projet-encheres/InscriptionConnexion">S'inscrire</a>
+								href="<%=request.getContextPath()%>/inscription">S'inscrire</a>
 							</li>
 							<li class="nav-item"><a class="nav-link"
-								href="http://localhost:8080/JQNN_projet-encheres/Connexion">Se
+								href="<%=request.getContextPath()%>/connexion">Se
 									connecter</a></li>
 
 						</ul>

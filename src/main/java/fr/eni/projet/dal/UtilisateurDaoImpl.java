@@ -21,7 +21,7 @@ public class UtilisateurDaoImpl implements UtilisateurDAO {
 	private final static String SELECT_BY_ID = "SELECT * FROM UTILISATEURS WHERE no_utilisateur = ?;";
 	private final static String UPDATE_UTILISATEUR = "UPDATE UTILISATEURS SET pseudo = ?, nom =?, prenom =?, email = ?, telephone = ?, rue = ?,code_postal =?,ville = ? WHERE no_utilisateur =?;";
 	private final static String SELECT_BY_MAIL = "SELECT * FROM UTILISATEURS WHERE email=?;";
-	private final static String ANONYMISER_UTILISATEUR = "UPDATE UTILISATEURS SET nom = ?, prenom =?, email = ?, telephone = ?, rue = ?,code_postal =?,ville = ?, pseudo =?, credit=? WHERE no_utilisateur=?;";
+	private final static String ANONYMISER_UTILISATEUR = "UPDATE UTILISATEURS SET pseudo = ?, nom = ?, prenom =?, email = ?, telephone = ?, rue = ?,code_postal =?,ville = ?, credit=? WHERE no_utilisateur=?;";
 
 	@Override
 	public void newUtilisateur(Utilisateur utilisateur) throws DALException {

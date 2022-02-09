@@ -113,9 +113,10 @@
 					<button type="submit"
 							value="supprimer" name="choix">Supprimer mon compte</button><br>
 					
-					<button type="submit"
-							value="annuler" name="choix">Annuler</button><br>
 				</form>
+					<a href="<%=request.getContextPath()%>/accueil.html">
+						<button type="submit" value="annuler" name="choix">Annuler</button>
+					</a><br>
 			</div>
 
 

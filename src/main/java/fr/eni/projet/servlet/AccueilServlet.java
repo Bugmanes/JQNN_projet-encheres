@@ -66,9 +66,7 @@ public class AccueilServlet extends HttpServlet {
 		List<Article> temp = null;
 
 		// recuperation du formulaire
-		if (!request.getParameter("recherche").isEmpty()) {
-			motsClés = request.getParameter("recherche").trim();			
-		}
+		motsClés = request.getParameter("recherche").trim();
 		categorie = request.getParameter("categorie").trim();
 		String[] resultats = request.getParameterValues("triAchats");
 		if (resultats == null) {
@@ -187,7 +185,7 @@ public class AccueilServlet extends HttpServlet {
 		if (motsClés != null) {
 			try {
 				if (selection.isEmpty()) {
-					selection = vm.triByMotsCles(motsClés);					
+					selection = vm.triByMotsCles(motsClés);
 				} else {
 					temp = vm.triByMotsCles(motsClés);
 					for (Article article : selection) {

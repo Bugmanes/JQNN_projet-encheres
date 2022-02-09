@@ -21,14 +21,14 @@
         <form action="<%=request.getContextPath()+"/afficherProfil" %>" method="post">
             <ul>
             	<%Utilisateur utilisateur = (Utilisateur) request.getAttribute("utilisateur"); %>
-                <li>${utilisateur.pseudo}</li>
-                <li>${utilisateur.nom}</li>
-                <li>${utilisateur.prenom }</li>
-                <li>${utilisateur.email }</li>
-                <li>${utilisateur.telephone }</li>
-                <li>${utilisateur.rue}</li>
-                <li>${utilisateur.codePostal}</li>
-                <li>${utilisateur.ville }</li>
+          <label> Pseudo :</label>      <li>${utilisateur.pseudo}</li>
+          <label> nom :</label>      <li>${utilisateur.nom}</li>
+          <label> prenom :</label>      <li>${utilisateur.prenom }</li>
+          <label> email :</label>      <li>${utilisateur.email }</li>
+           <label> telephone :</label>     <li>${utilisateur.telephone }</li>
+           <label> rue :</label>     <li>${utilisateur.rue}</li>
+           <label> codePostal :</label>     <li>${utilisateur.codePostal}</li>
+           <label> ville :</label>     <li>${utilisateur.ville }</li>
             </ul>
             <% if (request.getAttribute("ok") != null){
            		boolean ok = (boolean) request.getAttribute("ok");

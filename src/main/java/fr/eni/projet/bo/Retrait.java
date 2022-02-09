@@ -2,11 +2,19 @@ package fr.eni.projet.bo;
 
 public class Retrait {
 
-	// declaration de mes variables
 	private String rue;
 	private String codePostal;
 	private String ville;
 	private Article article;
+	private boolean retire;
+
+	public boolean isRetire() {
+		return retire;
+	}
+
+	public void setRetire(boolean retire) {
+		this.retire = retire;
+	}
 
 	public Retrait() {
 	}
@@ -14,11 +22,11 @@ public class Retrait {
 	// methode pour avoir des informations sur un retrait
 	public Retrait(String rue, String codePostal, String ville, Article article) {
 		
-		// insertion des parametres
 		setRue(rue);
 		setCodePostal(codePostal);
 		setVille(ville);
 		setArticle(article);
+		setRetire(false);
 	}
 
 	public String getRue() {

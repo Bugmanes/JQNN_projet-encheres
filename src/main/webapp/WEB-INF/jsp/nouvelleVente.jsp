@@ -66,7 +66,7 @@
                         
                                             <input type="text" id="codePostal" class="d-flex justify-content-center mb-1 form-control" name="codePostal" value=<%=request.getAttribute("codePostal")%>>
                         
-                                            <input type="text" name="ville" class="d-flex justify-content-center mb-1 form-control" id="ville" value=<%=request.getAttribute("ville")%>>
+                                             <input type="text" name="ville" class="d-flex justify-content-center mb-1 form-control" id="ville" value=<%=request.getAttribute("ville")%>>
                         
                                     </div>
 

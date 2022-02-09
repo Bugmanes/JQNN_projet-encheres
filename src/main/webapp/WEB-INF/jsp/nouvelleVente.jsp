@@ -8,9 +8,9 @@
 <link rel="stylesheet" href="asset/css/style.css">
 </head>
 <body>
-<%@include file="headerConnecter.jsp" %>
+      <header> <%@include file="headerConnecter.jsp" %></header>
+
     <div class="container">
-      <header></header>
   
   		<main>
   			 <form method="post"  class="" action="<%=request.getContextPath()%>/GestionVente">

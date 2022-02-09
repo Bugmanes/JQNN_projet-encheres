@@ -8,14 +8,14 @@
 <title>Inscription</title>
 <link rel="stylesheet" href="asset/css/style.css">
 </head>
-<%@include file="headerInvite.jsp"%>
 <body>
+<%@include file="headerInvite.jsp"%>
 	<main>
 		<div class="titreMonProfil">
 			<h4>Mon Profil</h4>
 		</div>
 		<div class="formulaireInscription">
-			<form action="<%=request.getContextPath()%>/connexion"
+			<form action="<%=request.getContextPath()%>/inscription"
 				method="post">
 	          <div  class="partieGauche">
 					<div class="pseudo">

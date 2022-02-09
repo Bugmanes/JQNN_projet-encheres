@@ -202,8 +202,6 @@ none;
 <body>
 	<header><%@include file="headerInvite.jsp"%></header>
 
-
-
 	<div class="main">
 		<div class="connexion">
 			<div class="main">
@@ -214,8 +212,8 @@ none;
 							<div class="minimize"></div>
 							<div class="zoom"></div>
 						</div>
-						<form action="<%=request.getContextPath()%>/accueil.html"
-							method="get">
+						<form action="<%=request.getContextPath()%>/connexion"
+							method="post">
 							<h2>Login Form</h2>   
 
 							<label for="uname"><b>votre identifiant</b></label> <input
@@ -232,6 +230,14 @@ none;
 
 							<button type="submit">connexion</button>
 							<br>
+							<% if(request.getAttribute("connexion") != null){
+								boolean ok = (boolean) request.getAttribute("connexion");
+								if (!ok){
+								out.print(ok);%>
+								<div class="messageErreur">Identifiant ou mot de passe incorrect</div>
+							<%} 
+							}
+							%>
 						</form>
 						<span><a href="#">Mot de passe oublié</a></span>
 						<div class="buttonCreeCompte text-centre">
@@ -244,19 +250,6 @@ none;
 					</div>
 				</div>
 			</div>
-
-			<%
-			if (request.getAttribute("connexion") != null) {
-				boolean ok = (boolean) request.getAttribute("connexion");
-				if (!ok) {
-			%>
-			<div class="messageErreur">
-				<a>identifiant ou mot de passe incorrect</a>
-			</div>
-			<% 
-			}   
-			}
-			%>
 			
 		</div>
 

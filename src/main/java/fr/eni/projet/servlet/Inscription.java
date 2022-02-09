@@ -85,7 +85,7 @@ public class Inscription extends HttpServlet {
 			System.err.println("rtyuiop");
 		}
 
-		request.getRequestDispatcher("/Connexion").forward(request, response);
+		response.sendRedirect(request.getContextPath() + "/connexion");
 		
 	}
 

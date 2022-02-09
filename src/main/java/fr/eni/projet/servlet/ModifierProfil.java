@@ -49,11 +49,12 @@ public class ModifierProfil extends HttpServlet {
 		}
 
 		if (!choix.isEmpty()) {
-
 			if (choix.equals("supprimer")) {
 				request.setAttribute("suppression", "Votre compte vient d'etre supprimer");
 				this.getServletContext().getRequestDispatcher("/WEB-INF/jsp/accueil.jsp").forward(request, response);
 				return;
+			} else {
+				response.sendRedirect(request.getContextPath() + "/accueil.html");
 			}
 		} else {
 			System.out.println("ok2");

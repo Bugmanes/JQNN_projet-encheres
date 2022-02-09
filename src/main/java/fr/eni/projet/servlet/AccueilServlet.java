@@ -57,7 +57,7 @@ public class AccueilServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		String motsClés;
+		String motsClés = "";
 		String categorie;
 		VenteManager vm = VenteManager.getInstance();
 		HttpSession session = request.getSession();
@@ -66,7 +66,9 @@ public class AccueilServlet extends HttpServlet {
 		List<Article> temp = null;
 
 		// recuperation du formulaire
-		motsClés = request.getParameter("recherche").trim();
+		if (!request.getParameter("recherche").isEmpty()) {
+			motsClés = request.getParameter("recherche").trim();			
+		}
 		categorie = request.getParameter("categorie").trim();
 		String[] resultats = request.getParameterValues("triAchats");
 		if (resultats == null) {

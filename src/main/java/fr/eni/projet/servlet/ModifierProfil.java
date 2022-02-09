@@ -38,44 +38,43 @@ public class ModifierProfil extends HttpServlet {
 			throws ServletException, IOException {
 
 		// recuperation la session
+		System.out.println("ok1");
 		HttpSession session = request.getSession();
 		Utilisateur utilisateur = (Utilisateur) session.getAttribute("utilisateur");
 		String choix = "";
-
 		UtilisateurManager um = UtilisateurManager.getInstance();
 
 		if (request.getParameter("choix") != null) {
 			choix = request.getParameter("choix").trim();
 		}
-		
-		if(!choix.isEmpty() && choix.equals("supprimer")) {
-			
-//		}
-//		if (choix.equals("supprimer")) {
-			request.setAttribute("suppression", "Votre compte vient d'etre supprimer");
-			this.getServletContext().getRequestDispatcher("/WEB-INF/jsp/accueil.jsp").forward(request, response);
 
+		if (!choix.isEmpty()) {
+
+			if (choix.equals("supprimer")) {
+				request.setAttribute("suppression", "Votre compte vient d'etre supprimer");
+				this.getServletContext().getRequestDispatcher("/WEB-INF/jsp/accueil.jsp").forward(request, response);
+			}
 		} else {
-			request.setAttribute("Valider", "Votre profil est modifie");
-			this.getServletContext().getRequestDispatcher("/WEB-INF/jsp/monProfil.jsp").forward(request, response);
+			System.out.println("ok2");
 			// parametrage de la requete
 			String pseudo = request.getParameter("pseudo").trim();
 			String nom = request.getParameter("nom").trim();
 			String prenom = request.getParameter("prenom").trim();
 			String email = request.getParameter("email").trim();
-			String telephone = request.getParameter("telephone").trim();
+			String telephone = request.getParameter("tel").trim();
 			String rue = request.getParameter("rue").trim();
-			String codePostal = request.getParameter("code_postal").trim();
+			String codePostal = request.getParameter("codePostal").trim();
 			String ville = request.getParameter("ville").trim();
-			String old_mdp = request.getParameter("old_mdp").trim();
-			String new_mdp = request.getParameter("new_mdp").trim();
+			System.out.println("ok3");
+//			String old_mdp = request.getParameter("old_mdp").trim();
+//			String new_mdp = request.getParameter("new_mdp").trim();
 
-			boolean pseudoOK = false;
-			boolean nomOK = false;
-			boolean prenomOK = false;
-			boolean telOK = false;
-			boolean pseudoUniqueOK = false;
-			boolean emailUniqueOK = false;
+			boolean pseudoOK = true;
+			boolean nomOK = true;
+			boolean prenomOK = true;
+			boolean telOK = true;
+			boolean pseudoUniqueOK = true;
+			boolean emailUniqueOK = true;
 
 			// verification si le pseudo est correspond
 			if (!utilisateur.getPseudo().equals(pseudo)) {
@@ -100,12 +99,18 @@ public class ModifierProfil extends HttpServlet {
 			}
 			// verification si le l'email est correspond
 			if (!utilisateur.getEmail().equals(email)) {
-				emailUniqueOK = false;
+				System.out.println("ok4");
+				try {
+					emailUniqueOK = um.verifUniqueMail(email);
+				} catch (DALException e) {
+					System.err.println(e.getMessage());
+				}
 			}
 
 			// verification si un ou des parametres sont faux
 			if (!pseudoOK || !nomOK || !prenomOK || !telOK || !pseudoUniqueOK || !emailUniqueOK)
-				request.setAttribute("pseudoOK", pseudoOK);
+			System.out.println("pasOk");
+			request.setAttribute("pseudoOK", pseudoOK);
 			request.setAttribute("pseudoUniqueOK", pseudoUniqueOK);
 			request.setAttribute("nomOK", nomOK);
 			request.setAttribute("prenomOK", prenomOK);
@@ -114,12 +119,16 @@ public class ModifierProfil extends HttpServlet {
 			request.getRequestDispatcher("/WEB-INF/jsp/monProfil.jsp").forward(request, response);
 
 			try {
+				System.out.println("ok5");
 				// insertion de parametres dans modifierUtilisateur
 				um.modifierUtilisateur(pseudo, nom, prenom, email, telephone, rue, codePostal, ville, ville,
 						utilisateur);
 			} catch (DALException e) {
 				System.err.println(e.getMessage());
 			}
+			System.out.println("ok6");
+			response.sendRedirect(request.getContextPath() + "/afficherProfil");
 		}
 	}
+
 }

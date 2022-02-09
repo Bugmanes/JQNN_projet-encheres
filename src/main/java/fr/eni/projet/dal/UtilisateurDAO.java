@@ -13,7 +13,7 @@ public interface UtilisateurDAO {
 	public Utilisateur selectById(int id) throws DALException;
 
 	// methode de modification du profil
-	public void updateUtilisateur(Utilisateur utilisateur,String oldPseudo) throws DALException;
+	public void updateUtilisateur(Utilisateur utilisateur) throws DALException;
 	
 	// methode de connection
 	public Utilisateur selectConnexion(String identifiant, String password) throws DALException, Exception;

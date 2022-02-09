@@ -60,9 +60,10 @@ public class UtilisateurManager {
 			String rue, String codePostal, String ville, String motDePasse, Utilisateur utilisateur)
 			throws DALException {
 		String oldPseudo = "";
+		UtilisateurDAO udao = DAOFactory.getUtilisateurDAO();
 		
 		// veriffier si les donnees correspondent
-		if (utilisateur.getPseudo().equals(pseudo)) {
+			utilisateur.setPseudo(pseudo);
 			utilisateur.setNom(nom);
 			utilisateur.setPrenom(prenom);
 			utilisateur.setEmail(email);
@@ -70,13 +71,8 @@ public class UtilisateurManager {
 			utilisateur.setRue(rue);
 			utilisateur.setCodePostal(codePostal);
 			utilisateur.setVille(ville);
-		} else {
-			// demander l'ancien pseudo
-			oldPseudo = utilisateur.getPseudo();
-			utilisateur.setPseudo(pseudo);
-		}
-		UtilisateurDAO udao = DAOFactory.getUtilisateurDAO();
-		udao.updateUtilisateur(utilisateur, oldPseudo);
+		
+		udao.updateUtilisateur(utilisateur);
 		return utilisateur;
 	}
 

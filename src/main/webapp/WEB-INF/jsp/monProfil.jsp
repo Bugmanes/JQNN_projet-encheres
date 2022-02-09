@@ -94,14 +94,13 @@
 					placeholder=" password Actuel :"><br> <label>
 					Saisissez nouveau password :</label><input type="password" value="new_mdp"
 					><br> <label>
-					Confirmation :</label><input type="password"
-					><br> <label>
-					Saisissez votre Rue:</label><input type="text" name="rue" value="${utilisateur.rue}"><br> <label>
+					Confirmation :</label><input type="password"><br> 
+					<label>Saisissez votre Rue:</label><input type="text" name="rue" value="${utilisateur.rue}"><br> <label>
 					Saisissez votre Ville:</label><input type="text" name="ville" value="${utilisateur.ville }"><br> <label>
 					Saisissez votre Code postal:</label><input type="text" name="codePostal" value="${utilisateur.codePostal}"><br>
 
 				<p id="credit">
-					<b>Vous avez ${Utilisateur.credit} crédits</b>
+					<b>Vous avez ${utilisateur.credit} crédits</b>
 				</p>
 
 				<div>

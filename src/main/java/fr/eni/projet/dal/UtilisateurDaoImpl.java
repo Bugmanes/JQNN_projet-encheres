@@ -19,7 +19,7 @@ public class UtilisateurDaoImpl implements UtilisateurDAO {
 	private final static String SELECT_BY_PSEUDO = "SELECT * FROM UTILISATEURS WHERE pseudo = ?;";
 	private final static String SELECT_CONNEXION = "SELECT * FROM UTILISATEURS WHERE (pseudo =? OR email =?)";
 	private final static String SELECT_BY_ID = "SELECT * FROM UTILISATEURS WHERE no_utilisateur = ?;";
-	private final static String UPDATE_UTILISATEUR = "UPDATE UTILISATEURS SET nom = ?, prenom =?, email = ?, telephone = ?, rue = ?,code_postal =?,ville = ? WHERE pseudo =?;";
+	private final static String UPDATE_UTILISATEUR = "UPDATE UTILISATEURS SET nom = ?, prenom =?, email = ?, telephone = ?, rue = ?,code_postal =?,ville = ? pseudo=? WHERE id =?;";
 	private final static String SELECT_BY_MAIL = "SELECT * FROM UTILISATEURS WHERE email=?;";
 	private final static String ANONYMISER_UTILISATEUR = "UPDATE UTILISATEURS SET nom = ?, prenom =?, email = ?, telephone = ?, rue = ?,code_postal =?,ville = ?, pseudo =?, credit=? WHERE no_utilisateur=?;";
 
@@ -125,7 +125,7 @@ public class UtilisateurDaoImpl implements UtilisateurDAO {
 		return utilisateur;
 	}
 
-	public void updateUtilisateur(Utilisateur utilisateur, String oldPseudo) throws DALException {
+	public void updateUtilisateur(Utilisateur utilisateur) throws DALException {
 		try {
 			Connection cnx = ConnexionProvider.getConnection();
 			PreparedStatement pstmt = cnx.prepareStatement(UPDATE_UTILISATEUR);
@@ -138,12 +138,7 @@ public class UtilisateurDaoImpl implements UtilisateurDAO {
 			pstmt.setString(6, utilisateur.getCodePostal());
 			pstmt.setString(7, utilisateur.getVille());
 			pstmt.setString(8, utilisateur.getPseudo());
-			if (oldPseudo.isEmpty()) {
-				// si l'ancien pseudo est vide
-				pstmt.setString(9, utilisateur.getPseudo());
-			} else {
-				pstmt.setString(9, oldPseudo);
-			}
+			pstmt.setInt(9, utilisateur.getNoUtilisateur());
 			pstmt.executeUpdate();
 
 			pstmt.close();

@@ -11,10 +11,101 @@
 <%@include file="headerConnecter.jsp" %>
     <div class="container">
       <header></header>
-      <main> 
+  
+  		<main>
+  			 <form method="post"  action="<%=request.getContextPath()%>/GestionVente">
+
+                        <div class="row"> 
+                                <div class="col-3"> 
+                                    <label  class="d-flex flex-column bd-highlight fw-bold text-light  " for="nomArticle">Article : </label><br><br>
+                                    
+                                    <label class="d-flex flex-column bd-highlight fw-bold text-light  " for="description">Description : </label><br><br>
+
+                                    <label class="d-flex flex-column bd-highlight fw-bold text-light " for="categorie">Catégorie </label> <br>
+
+                                    <label class="d-flex flex-column bd-highlight fw-bold text-light " for="photo">Photo de l'article : </label> <br>
+
+                                    <label class="d-flex flex-column bd-highlight fw-bold text-light " for="prixInitial">Mise à prix : </label><br>
+
+                                    <label class="d-flex flex-column bd-highlight fw-bold text-light " for="debut">Début de l'enchère : </label><br>
+
+                                    <label class="d-flex flex-column bd-highlight fw-bold text-light " for="fin">Fin de l'enchère : </label><br>
+
+                                    <label class="d-flex flex-column bd-highlight fw-bold text-light " for="rue">Rue : </label><br>
+
+                                    <label  class="d-flex flex-column bd-highlight fw-bold text-light "for="codePostal">Code Postal :</label><br>
+                                    
+                                    <label class="d-flex flex-column bd-highlight fw-bold text-light " for="ville">Ville :</label><br>
+
+                                </div> 
+
+
+                                <div class="col-6">
+
+                                    <input id="nomArticle"  class="float-right mb-2" type="text" name="nomArticle" /> <br>
+
+                                    <textarea class="justify-content-center" name="description"rows="4"cols="30"id="description" ></textarea><br>
+                        
+                                    <select name="categorie" id="categorie" class="mb-3">
+                                        <option value="#"></option>
+                                        <option value="#"></option>
+                                        <option value="#"></option>
+                                        <option value="#"></option>
+                                    </select>
+                        
+                                    <input type="file" name="photo" class="d-flex justify-content-center mb-3" id="photo">
+                        
+                                    <input type="number" name="prixInitial" class="d-flex justify-content-center mb-4" id="prixInitial" />
+                        
+                                    <input type="date" id="debut" class="d-flex justify-content-center mb-3" name="debut" />
+                        
+                                    <input type="date" id="fin" class="d-flex justify-content-center mb-3" name="fin" />
+                        
+                                    <div id="retrait">
+                                            <input type="text" id="rue" class="d-flex justify-content-center mb-4" name="rue" value=<%=request.getAttribute("rue")%>>
+                        
+                                            <input type="text" id="codePostal" class="d-flex justify-content-center mb-1" name="codePostal" value=<%=request.getAttribute("codePostal")%>>
+                        
+                                            <input type="text" name="ville" class="d-flex justify-content-center mb-1" id="ville" value=<%=request.getAttribute("ville")%>>
+                        
+                                    </div>
+
+                                    <div>
+                                            <input type="submit" class="btn btn-success" value="Enregistrer">
+                                            <input type="reset" class="btn btn-danger" value="Annuler">
+                                       
+                                    </div>
+                                </div>  
+
+
+                            
+                        </div> 
+                                
+                </form>
+  		
+  		</main>
+  
+  
+      <footer></footer>
+    </div>
+  </body>
+</html>
+
+
+
+
+
+
+
+<!-- ----------------------------------------------Orginal----------------------------- -->
+
+
+  <%--   <main> 
         <div id="photo"></div>
         <div class="corpsVente">
           <form method="post" action="<%=request.getContextPath()%>/GestionVente">
+           
+           
             <label for="nomArticle">Article : </label>
             <input id="nomArticle" type="text" name="nomArticle" />
             <label for="description">Description : </label>
@@ -48,11 +139,11 @@
               <input type="text" name="ville" id="ville" value=<%=request.getAttribute("ville")%>>
             </div>
             <input type="submit" value="Enregistrer">
+          
+          
             <input type="reset" value="Annuler">
+          
           </form>
+          
         </div>
-      </main>
-      <footer></footer>
-    </div>
-  </body>
-</html>
+      </main> --%>

@@ -18,11 +18,11 @@
 				Utilisateur utilisateur = (Utilisateur) request.getAttribute("utilisateur");
 				%>
 				<p id="Paragraphe">
-					<b>Bonjour ${utilisateur.prenom}.</b>
+					<b>Bonjour ${sessionScope.utilisateur.prenom}</b>
 				</p>
 				<label> Pseudo : </label><input type="text" value="pseudo"
 					placeholder="Saisissez votre user Pseudo :"
-					autocomplete="${utilisateur.pseudo}"><br> <label>
+					autocomplete="${sessionScope.utilisateur.pseudo}"><br> <label>
 					<%
 							if (request.getAttribute("pseudoOK")!=null){
 								boolean pseudoOK = (boolean) request.getAttribute("pseudoOK");
@@ -119,7 +119,7 @@
 					autocomplete="${utilisateur.codePostal}"><br>
 
 				<p id="credit">
-					<b>Vous avez ${Utilisateur.credit} </b>
+					<b>Vous avez ${Utilisateur.credit} crédits</b>
 				</p>
 
 				<div>

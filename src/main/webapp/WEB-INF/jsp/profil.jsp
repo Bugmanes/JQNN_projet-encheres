@@ -18,26 +18,27 @@
 		<%@include file="headerConnecter.jsp"%>
 	<%} %>
 	<section>
-        <form action="<%=request.getContextPath()+"/afficherProfil" %>" method="post">
+        <div class="profil">
             <ul>
             	<%Utilisateur utilisateur = (Utilisateur) request.getAttribute("utilisateur"); %>
-          <label> Pseudo :</label>      <li>${utilisateur.pseudo}</li>
-          <label> nom :</label>      <li>${utilisateur.nom}</li>
-          <label> prenom :</label>      <li>${utilisateur.prenom }</li>
-          <label> email :</label>      <li>${utilisateur.email }</li>
-           <label> telephone :</label>     <li>${utilisateur.telephone }</li>
-           <label> rue :</label>     <li>${utilisateur.rue}</li>
-           <label> codePostal :</label>     <li>${utilisateur.codePostal}</li>
-           <label> ville :</label>     <li>${utilisateur.ville }</li>
+          <div> Pseudo :</div>      <li>${utilisateur.pseudo}</li>
+          <div> nom :</div>      <li>${utilisateur.nom}</li>
+          <div> prenom :</div>      <li>${utilisateur.prenom }</li>
+          <div> email :</div>      <li>${utilisateur.email }</li>
+           <div> telephone :</div>     <li>${utilisateur.telephone }</li>
+           <div> rue :</div>     <li>${utilisateur.rue}</li>
+           <div> codePostal :</div>     <li>${utilisateur.codePostal}</li>
+           <div> ville :</div>     <li>${utilisateur.ville }</li>
             </ul>
             <% if (request.getAttribute("ok") != null){
            		boolean ok = (boolean) request.getAttribute("ok");
             	if(ok){%>
+            	<a href="<%=request.getContextPath()%>/modifierProfil">
             <button type="submit" value="modifier" name="modifier" >Modifier</button>					
+            	</a>
 			<%}
-            	}%>
-					
-        </form>
+            	}%>	
+        </div>
     </section>
 
  

@@ -224,7 +224,7 @@ none;
 
 							<div class="checkbox">
 								<input type="checkbox" id="souvenir" name="souvenir"
-									value="souvenir" /> <label for="souvenir">Se souvennir
+									value="souvenir" /> <label for="souvenir">Se souvenir
 									de moi</label>
 							</div>
 
@@ -242,7 +242,7 @@ none;
 						<div class="buttonCreeCompte text-centre">
 				<a
 					href="<%=request.getContextPath()%>/inscription">
-					<button>Crée un compte</button>
+					<button>Créer un compte</button>
 				</a>
 			</div>
 

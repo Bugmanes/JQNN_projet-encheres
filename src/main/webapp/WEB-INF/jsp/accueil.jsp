@@ -94,14 +94,18 @@
                 <img src="#" class="card-img-top" alt="...">
                 
                 <ul class="list-group list-group-flush ">
-                <li class="list-group-item">${article.nomArticle}</li>
+                <li class="list-group-item"><a href="<%=request.getContextPath()%>/encherir" class="card-link">
+                	<button type="submit" value="${article.nomArticle}" name="idArticle">${article.nomArticle}</button></a></li>
                 <li class="list-group-item">Prix : ${article.prixVentes} points</li>
                 <li class="list-group-item">Fin date enchère : ${article.dateFinEncheres}</li>
-                <li class="list-group-item">Vendeur : ${article.vendeur.pseudo}</li>
+                <li class="list-group-item">Vendeur : <a href="<%=request.getContextPath()%>/afficherProfil" class="card-link">
+					<button type="submit" value="${article.vendeur.pseudo}" name="pseudo">${article.vendeur.pseudo}</button></a></li>
                 </ul>
                 <div class="card-body">
-                <a href="#" class="card-link">Card link</a>
-                <a href="#" class="card-link">Another link</a>
+<%--                 <a href="<%=request.getContextPath()%>/encherir" class="card-link">
+                	<button type="submit" value="${article.nomArticle}" name="idArticle">${article.nomArticle}</button></a>
+                <a href="<%=request.getContextPath()%>/afficherProfil" class="card-link">
+					<button type="submit" value="${article.vendeur.pseudo}" name="pseudo">${article.vendeur.pseudo}</button></a> --%>
                 </div>
             </div>
         </div>

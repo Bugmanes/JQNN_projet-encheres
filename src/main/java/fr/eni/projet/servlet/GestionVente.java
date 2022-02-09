@@ -45,7 +45,7 @@ public class GestionVente extends HttpServlet {
 		request.setAttribute("ville", utilisateur.getVille());
 		
 		// envoi a la jsp
-		request.getRequestDispatcher("/WEB-INF/nouvelleVente.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/jsp/nouvelleVente.jsp").forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)

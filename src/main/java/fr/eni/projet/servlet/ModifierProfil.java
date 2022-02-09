@@ -12,7 +12,7 @@ import fr.eni.projet.bll.UtilisateurManager;
 import fr.eni.projet.bo.Utilisateur;
 import fr.eni.projet.dal.DALException;
 
-@WebServlet("/ModifierProfil")
+@WebServlet("/modifierProfil")
 public class ModifierProfil extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;

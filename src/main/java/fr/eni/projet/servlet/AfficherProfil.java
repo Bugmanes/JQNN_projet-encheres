@@ -13,7 +13,7 @@ import fr.eni.projet.bll.VenteManager;
 import fr.eni.projet.bo.Utilisateur;
 import fr.eni.projet.dal.DALException;
 
-@WebServlet("/AfficherProfil")
+@WebServlet("/afficherProfil")
 public class AfficherProfil extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 

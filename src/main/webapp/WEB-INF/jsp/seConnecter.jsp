@@ -234,6 +234,12 @@ none;
 							<br>
 						</form>
 						<span><a href="#">Mot de passe oublié</a></span>
+						<div class="buttonCreeCompte text-centre">
+				<a
+					href="http://localhost:8080/JQNN_projet-encheres/InscriptionConnexion">
+					<button>Crée un compte</button>
+				</a>
+			</div>
 
 					</div>
 				</div>
@@ -251,12 +257,7 @@ none;
 			}   
 			}
 			%>
-			<div class="buttonCreeCompte">
-				<a
-					href="http://localhost:8080/JQNN_projet-encheres/InscriptionConnexion">
-					<button>Crée un compte</button>
-				</a>
-			</div>
+			
 		</div>
 
 		<footer></footer>

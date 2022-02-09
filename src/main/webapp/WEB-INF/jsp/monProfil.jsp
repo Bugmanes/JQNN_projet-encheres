@@ -13,16 +13,11 @@
 		<main>
 
 			<form action="/ModifierProfil" method="post">
-
-				<%
-				Utilisateur utilisateur = (Utilisateur) request.getAttribute("utilisateur");
-				%>
 				<p id="Paragraphe">
 					<b>Bonjour ${sessionScope.utilisateur.prenom}</b>
 				</p>
-				<label> Pseudo : </label><input type="text" value="pseudo"
-					placeholder="Saisissez votre user Pseudo :"
-					autocomplete="${sessionScope.utilisateur.pseudo}"><br> <label>
+				<label> Pseudo : </label><input type="text" name="pseudo" value="${sessionScope.utilisateur.pseudo}"
+					placeholder="Saisissez votre user Pseudo :"><br> <label>
 					<%
 							if (request.getAttribute("pseudoOK")!=null){
 								boolean pseudoOK = (boolean) request.getAttribute("pseudoOK");
@@ -45,8 +40,7 @@
 								}
 							}
 						%> Saisissez votre Nom :
-				</label><input type="text" value="nom" placeholder="Saisissez votre nom :"
-					autocomplete="${utilisateur.nom}"><br> <label>
+				</label><input type="text" name="nom" value="${utilisateur.nom}" ><br> <label>
 					<%
 							if (request.getAttribute("nomOK")!=null){
 								boolean nomOK = (boolean) request.getAttribute("nomOK");
@@ -59,9 +53,7 @@
 								}
 							}
 						%> Saisissez votre prenom :
-				</label><input type="text" value="prenom"
-					placeholder="Saisissez votre prenom :"
-					autocomplete="${utilisateur.prenom }"><br> <label>
+				</label><input type="text" name="prenom" value="${utilisateur.prenom }"><br> <label>
 					<%
 							if (request.getAttribute("prenomOK")!=null){
 								boolean prenomOK = (boolean) request.getAttribute("prenomOK");
@@ -74,9 +66,7 @@
 								}
 							}
 						%> Saisissez votre email:
-				</label><input type="email" value="email"
-					placeholder="Saisissez votre email:"
-					autocomplete="${utilisateur.email }"><br> <label>
+				</label><input type="email" name="email" value="${utilisateur.email }"><br> <label>
 					<%
 							if (request.getAttribute("emailUniqueOK")!=null){
 								boolean emailUniqueOK = (boolean) request.getAttribute("emailUniqueOK");
@@ -88,9 +78,7 @@
 								}
 							}
 						%> Saisissez votre Telephone :
-				</label><input type="text" value="telephone"
-					placeholder="Saisissez votre telephone :"
-					autocomplete="${utilisateur.telephone }"><br> <label>
+				</label><input type="text" name="tel" value="${utilisateur.telephone }"><br> <label>
 					<%
 							if (request.getAttribute("telOK")!=null){
 								boolean telOK = (boolean) request.getAttribute("telOK");
@@ -105,18 +93,12 @@
 				</label><input type="password" value="old_mdp"
 					placeholder=" password Actuel :"><br> <label>
 					Saisissez nouveau password :</label><input type="password" value="new_mdp"
-					placeholder="Saisissez nouveau password :"><br> <label>
+					><br> <label>
 					Confirmation :</label><input type="password"
-					placeholder="Conform your password :"><br> <label>
-					Saisissez votre Rue:</label><input type="email" value="rue"
-					placeholder="Saisissez votre Rue:"
-					autocomplete="${utilisateur.rue}"><br> <label>
-					Saisissez votre Ville:</label><input type="email" value="ville"
-					placeholder="Saisissez votre Ville :"
-					autocomplete="${utilisateur.ville }"><br> <label>
-					Saisissez votre Code postal:</label><input type="text" value="code_postal"
-					placeholder="Saisissez votre Code Pstal:"
-					autocomplete="${utilisateur.codePostal}"><br>
+					><br> <label>
+					Saisissez votre Rue:</label><input type="text" name="rue" value="${utilisateur.rue}"><br> <label>
+					Saisissez votre Ville:</label><input type="text" name="ville" value="${utilisateur.ville }"><br> <label>
+					Saisissez votre Code postal:</label><input type="text" name="codePostal" value="${utilisateur.codePostal}"><br>
 
 				<p id="credit">
 					<b>Vous avez ${Utilisateur.credit} crédits</b>

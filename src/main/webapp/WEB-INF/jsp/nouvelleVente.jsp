@@ -13,34 +13,34 @@
       <header></header>
   
   		<main>
-  			 <form method="post"  action="<%=request.getContextPath()%>/GestionVente">
+  			 <form method="post"  class="" action="<%=request.getContextPath()%>/GestionVente">
 
                         <div class="row"> 
                                 <div class="col-3"> 
-                                    <label  class="d-flex flex-column bd-highlight fw-bold text-light  " for="nomArticle">Article : </label><br><br>
+                                    <label  class="d-flex flex-column bd-highlight fw-bold text-light form-label " for="nomArticle">Article : </label><br><br>
                                     
-                                    <label class="d-flex flex-column bd-highlight fw-bold text-light  " for="description">Description : </label><br><br>
+                                    <label class="d-flex flex-column bd-highlight fw-bold text-light form-label " for="description">Description : </label><br><br>
 
-                                    <label class="d-flex flex-column bd-highlight fw-bold text-light " for="categorie">Catégorie </label> <br>
+                                    <label class="d-flex flex-column bd-highlight fw-bold text-light form-label" for="categorie">Catégorie </label> <br>
 
-                                    <label class="d-flex flex-column bd-highlight fw-bold text-light " for="photo">Photo de l'article : </label> <br>
+                                    <label class="d-flex flex-column bd-highlight fw-bold text-light form-label" for="photo">Photo de l'article : </label> <br>
 
-                                    <label class="d-flex flex-column bd-highlight fw-bold text-light " for="prixInitial">Mise à prix : </label><br>
+                                    <label class="d-flex flex-column bd-highlight fw-bold text-light form-label form-label " for="prixInitial">Mise à prix : </label><br>
 
-                                    <label class="d-flex flex-column bd-highlight fw-bold text-light " for="debut">Début de l'enchère : </label><br>
+                                    <label class="d-flex flex-column bd-highlight fw-bold text-light form-label" for="debut">Début de l'enchère : </label><br>
 
-                                    <label class="d-flex flex-column bd-highlight fw-bold text-light " for="fin">Fin de l'enchère : </label><br>
+                                    <label class="d-flex flex-column bd-highlight fw-bold text-light form-label" for="fin">Fin de l'enchère : </label><br>
 
-                                    <label class="d-flex flex-column bd-highlight fw-bold text-light " for="rue">Rue : </label><br>
+                                    <label class="d-flex flex-column bd-highlight fw-bold text-light form-label" for="rue">Rue : </label><br>
 
-                                    <label  class="d-flex flex-column bd-highlight fw-bold text-light "for="codePostal">Code Postal :</label><br>
+                                    <label  class="d-flex flex-column bd-highlight fw-bold text-light form-label"for="codePostal">Code Postal :</label><br>
                                     
-                                    <label class="d-flex flex-column bd-highlight fw-bold text-light " for="ville">Ville :</label><br>
+                                    <label class="d-flex flex-column bd-highlight fw-bold text-light form-label" for="ville">Ville :</label><br>
 
                                 </div> 
 
 
-                                <div class="col-6">
+                                <div class="col-6 ">
 
                                     <input id="nomArticle"  class="float-right mb-2" type="text" name="nomArticle" /> <br>
 
@@ -53,20 +53,20 @@
                                         <option value="#"></option>
                                     </select>
                         
-                                    <input type="file" name="photo" class="d-flex justify-content-center mb-3" id="photo">
+                                    <input type="file" name="photo" class="d-flex justify-content-center mb-3 form-control" id="photo">
                         
-                                    <input type="number" name="prixInitial" class="d-flex justify-content-center mb-4" id="prixInitial" />
+                                    <input type="number" name="prixInitial" class="d-flex justify-content-center mb-4 form-control" id="prixInitial" />
                         
-                                    <input type="date" id="debut" class="d-flex justify-content-center mb-3" name="debut" />
+                                    <input type="date" id="debut" class="d-flex justify-content-center mb-3 form-control" name="debut" />
                         
-                                    <input type="date" id="fin" class="d-flex justify-content-center mb-3" name="fin" />
+                                    <input type="date" id="fin" class="d-flex justify-content-center mb-3 form-control" name="fin" />
                         
                                     <div id="retrait">
-                                            <input type="text" id="rue" class="d-flex justify-content-center mb-4" name="rue" value=<%=request.getAttribute("rue")%>>
+                                            <input type="text" id="rue" class="d-flex justify-content-center mb-4 form-control" name="rue" value=<%=request.getAttribute("rue")%>>
                         
-                                            <input type="text" id="codePostal" class="d-flex justify-content-center mb-1" name="codePostal" value=<%=request.getAttribute("codePostal")%>>
+                                            <input type="text" id="codePostal" class="d-flex justify-content-center mb-1 form-control" name="codePostal" value=<%=request.getAttribute("codePostal")%>>
                         
-                                            <input type="text" name="ville" class="d-flex justify-content-center mb-1" id="ville" value=<%=request.getAttribute("ville")%>>
+                                            <input type="text" name="ville" class="d-flex justify-content-center mb-1 form-control" id="ville" value=<%=request.getAttribute("ville")%>>
                         
                                     </div>
 

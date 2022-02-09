@@ -1,3 +1,4 @@
+		<!-- ----------------------------------------Nael---------------------------------------- -->
 <%@page import="java.util.List"%>
 <%@page import="fr.eni.projet.bo.Article"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
@@ -20,7 +21,6 @@
 	<%} %>
 	
 
-		<!-- ----------------------------------------Nael---------------------------------------- -->
 
 <main>
 			<div class="text-center m-3">
@@ -87,10 +87,33 @@
 					</div>
 				</div>
 			</div>
-	
 		</div>
+
+
+        <div class="row  m-5  ">
+            <div class="card col-auto " style="width: 18rem;">
+                <img src="..." class="card-img-top" alt="...">
+                
+                <ul class="list-group list-group-flush ">
+                <li class="list-group-item">Prix :</li>
+                <li class="list-group-item">Fin date enchère :</li>
+                <li class="list-group-item">Vendeur</li>
+                </ul>
+                <div class="card-body">
+                <a href="#" class="card-link">Card link</a>
+                <a href="#" class="card-link">Another link</a>
+                </div>
+            </div>
+        </div>     
+        
+        
 	</form>
-</main>		
+</main>	
+		<footer></footer>
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+</div>
+</body>
+</html>
 		
 		
 		
@@ -273,8 +296,3 @@
 		</table>-->
 
 		
-		<footer></footer>
-		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-</div>
-</body>
-</html>

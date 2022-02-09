@@ -26,6 +26,7 @@
 	<form action="<%=request.getContextPath()%>/accueil.html" method="post">
 				
 				<div class="row p-3">
+					<h5>Filtres :</h5>
 						<input class="form-control " type="search"
 						placeholder="Le nom de l'article contient" aria-label="Search">
 				</div>
@@ -43,8 +44,8 @@
 			</div>
 		</div>
 	 
-		<div class="border border-dark">
-	
+		<div class="border border-dark m-2">
+			<% if (request.getAttribute("utilisateur") != null){ %>
 			<div class="row m-3">
 				<div class="  col-6 achats  ">
 					<label for="achats">Achats</label> <input type="radio" id="achats"
@@ -74,9 +75,10 @@
 							terminées</label>
 					</div>
 				</div>
+				<%} %>
 				
 				<div>
-					<div class="d-grid col-3 mx-auto " class="btn btn-primary">
+					<div class="d-grid col-3 mx-auto p-2" class="btn btn-primary">
 						<input type="submit" value="Rechercher">
 					</div>
 				</div>

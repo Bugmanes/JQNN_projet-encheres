@@ -28,3 +28,7 @@ a {
 .formulaireInscription{
 	  display: flex;
 }
+
+.categorie{
+	margin: 10px;
+}

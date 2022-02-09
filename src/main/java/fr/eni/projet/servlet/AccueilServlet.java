@@ -42,6 +42,8 @@ public class AccueilServlet extends HttpServlet {
 				System.out.println(article.getVendeur());
 			}
 
+			HttpSession session = request.getSession();
+			request.setAttribute("utilisateur", session.getAttribute("utilisateur"));
 			request.setAttribute("selection", articles);
 
 		} catch (DALException e) {

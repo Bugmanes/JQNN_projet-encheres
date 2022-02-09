@@ -40,12 +40,18 @@ public class ModifierProfil extends HttpServlet {
 		// recuperation la session
 		HttpSession session = request.getSession();
 		Utilisateur utilisateur = (Utilisateur) session.getAttribute("utilisateur");
+		String choix = "";
 
 		UtilisateurManager um = UtilisateurManager.getInstance();
 
-		String choix = request.getParameter("choix").trim();
-
-		if (choix.equals("supprimer")) {
+		if (request.getParameter("choix") != null) {
+			choix = request.getParameter("choix").trim();
+		}
+		
+		if(!choix.isEmpty() && choix.equals("supprimer")) {
+			
+//		}
+//		if (choix.equals("supprimer")) {
 			request.setAttribute("suppression", "Votre compte vient d'etre supprimer");
 			this.getServletContext().getRequestDispatcher("/WEB-INF/jsp/accueil.jsp").forward(request, response);
 

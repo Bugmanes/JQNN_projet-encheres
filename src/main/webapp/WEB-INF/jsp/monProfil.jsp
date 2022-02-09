@@ -12,7 +12,7 @@
 		<%@include file="headerConnecter.jsp"%>
 		<main>
 
-			<form action="/ModifierProfil" method="post">
+			<form action="<%= request.getContextPath()%>/modifierProfil" method="post">
 				<p id="Paragraphe">
 					<b>Bonjour ${sessionScope.utilisateur.prenom}</b>
 				</p>
@@ -105,18 +105,17 @@
 				</p>
 
 				<div>
-					<button type="submit" value="valider" name="choix">Enregistrer
-						les modifications</button>
+					<input type="submit" value="Enregistrer" >
 					<br>
 				</div>
 			</form>
 			<div>
-				<form action="./ModifierProfil" method="get">
-					<a href="./AccueilServlet"><button type="submit"
-							value="supprimer" name="choix">Supprimer mon compte</button> </a><br>
+				<form action="<%= request.getContextPath()%>/modifierProfil" method="post">
+					<button type="submit"
+							value="supprimer" name="choix">Supprimer mon compte</button><br>
 					
-					<a href="./AccueilServlet"><button type="submit"
-							value="annuler" name="choix">Annuler</button> </a><br>
+					<button type="submit"
+							value="annuler" name="choix">Annuler</button><br>
 				</form>
 			</div>
 

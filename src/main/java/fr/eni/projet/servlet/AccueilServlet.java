@@ -57,7 +57,7 @@ public class AccueilServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		String motsClés = "";
+		String motsCles = "";
 		String categorie;
 		VenteManager vm = VenteManager.getInstance();
 		HttpSession session = request.getSession();
@@ -66,7 +66,7 @@ public class AccueilServlet extends HttpServlet {
 		List<Article> temp = null;
 
 		// recuperation du formulaire
-		motsClés = request.getParameter("recherche").trim();
+		motsCles = request.getParameter("recherche").trim();
 		categorie = request.getParameter("categorie").trim();
 		String[] resultats = request.getParameterValues("triAchats");
 		if (resultats == null) {
@@ -182,12 +182,12 @@ public class AccueilServlet extends HttpServlet {
 			}
 		}
 		// tri par mots cles
-		if (motsClés != null) {
+		if (motsCles != null) {
 			try {
 				if (selection.isEmpty()) {
-					selection = vm.triByMotsCles(motsClés);
+					selection = vm.triByMotsCles(motsCles);
 				} else {
-					temp = vm.triByMotsCles(motsClés);
+					temp = vm.triByMotsCles(motsCles);
 					for (Article article : selection) {
 						if (temp.indexOf(article) == -1) {
 							selection.remove(article);

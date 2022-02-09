@@ -19,9 +19,6 @@
 	<%} else {%>
 		<%@include file="headerConnecter.jsp"%>
 	<%} %>
-	
-
-
 <main>
 			<div class="text-center m-3">
 				<h3>Liste des Enchères</h3>
@@ -104,9 +101,7 @@
                 <a href="#" class="card-link">Another link</a>
                 </div>
             </div>
-        </div>     
-        
-        
+        </div>
 	</form>
 </main>	
 		<footer></footer>

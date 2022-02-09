@@ -72,34 +72,6 @@ public class AccueilServlet extends HttpServlet {
 		}
 		List<String> result = Arrays.asList(resultats);
 
-		// tri par mots cles
-		if (motsClés != null) {
-			try {
-				selection = vm.triByMotsCles(motsClés);
-			} catch (DALException e) {
-				System.err.println(e.getMessage());
-			}
-		}
-
-		// tri par categorie
-		if (!categorie.equals("all")) {
-			int cat = Integer.parseInt(categorie);
-			try {
-				if (selection.isEmpty()) {
-					selection = vm.triByCategorie(cat);
-				} else {
-					temp = vm.triByCategorie(cat);
-					for (Article article : temp) {
-						if (selection.indexOf(article) == -1) {
-							selection.add(article);
-						}
-					}
-				}
-			} catch (DALException e) {
-				System.err.println(e.getMessage());
-			}
-		}
-
 		// selection des encheres ouvertes d'achats
 		if (result.indexOf("encheresOuvertes") != -1) {
 			try {
@@ -200,6 +172,42 @@ public class AccueilServlet extends HttpServlet {
 					for (Article article : temp) {
 						if (selection.indexOf(article) == -1) {
 							selection.add(article);
+						}
+					}
+				}
+			} catch (DALException e) {
+				System.err.println(e.getMessage());
+			}
+		}
+		// tri par mots cles
+		if (motsClés != null) {
+			try {
+				if (selection.isEmpty()) {
+					selection = vm.triByMotsCles(motsClés);					
+				} else {
+					temp = vm.triByMotsCles(motsClés);
+					for (Article article : selection) {
+						if (temp.indexOf(article) == -1) {
+							selection.remove(article);
+						}
+					}
+				}
+			} catch (DALException e) {
+				System.err.println(e.getMessage());
+			}
+		}
+
+		// tri par categorie
+		if (!categorie.equals("all")) {
+			int cat = Integer.parseInt(categorie);
+			try {
+				if (selection.isEmpty()) {
+					selection = vm.triByCategorie(cat);
+				} else {
+					temp = vm.triByCategorie(cat);
+					for (Article article : selection) {
+						if (temp.indexOf(article) == -1) {
+							selection.remove(article);
 						}
 					}
 				}

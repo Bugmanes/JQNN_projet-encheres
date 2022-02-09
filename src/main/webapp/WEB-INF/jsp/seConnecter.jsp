@@ -232,8 +232,7 @@ none;
 							<br>
 							<% if(request.getAttribute("connexion") != null){
 								boolean ok = (boolean) request.getAttribute("connexion");
-								if (!ok){
-								out.print(ok);%>
+								if (!ok){ %>
 								<div class="messageErreur">Identifiant ou mot de passe incorrect</div>
 							<%} 
 							}

@@ -12,9 +12,13 @@
 <title>Profil</title>
 </head>
 <body>
-<%@include file="headerInvite.jsp" %>
+<% if (request.getAttribute("utilisateur") == null){ %>
+		<%@include file="headerInvite.jsp"%>
+	<%} else {%>
+		<%@include file="headerConnecter.jsp"%>
+	<%} %>
 	<section>
-        <form action="<%=request.getContextPath()+"/AfficherProfil" %>" method="POST">
+        <form action="<%=request.getContextPath()+"/afficherProfil" %>" method="post">
             <ul>
             	<%Utilisateur utilisateur = (Utilisateur) request.getAttribute("utilisateur"); %>
                 <li>${utilisateur.pseudo}</li>
@@ -25,11 +29,13 @@
                 <li>${utilisateur.rue}</li>
                 <li>${utilisateur.codePostal}</li>
                 <li>${utilisateur.ville }</li>
-                <%boolean ok =true; %>
             </ul>
-            <% if(ok){%>
+            <% if (request.getAttribute("ok") != null){
+           		boolean ok = (boolean) request.getAttribute("ok");
+            	if(ok){%>
             <button type="submit" value="modifier" name="modifier" >Modifier</button>					
-			<%} %>
+			<%}
+            	}%>
 					
         </form>
     </section>

@@ -19,22 +19,21 @@ public class AfficherProfil extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		 
-		int id = Integer.parseInt(request.getParameter("id"));
+		
 		HttpSession session = request.getSession();
 		Utilisateur user = (Utilisateur) session.getAttribute("utilisateur");
-		boolean proprio;
-		
-		if(id != user.getNoUtilisateur()) {
-			proprio = false;
-			UtilisateurManager um = UtilisateurManager.getInstance();
-			try {
-				user = um.chercherUtilisateur(id);
-			} catch (DALException e) {
-				System.err.println(e.getMessage());
+		boolean proprio = true;
+		if (request.getParameter("id") != null){
+			int id = Integer.parseInt(request.getParameter("id"));			
+			if(id != user.getNoUtilisateur()) {
+				proprio = false;
+				UtilisateurManager um = UtilisateurManager.getInstance();
+				try {
+					user = um.chercherUtilisateur(id);
+				} catch (DALException e) {
+					System.err.println(e.getMessage());
+				}
 			}
-		} else {
-			proprio = true;
 		}
 		
 		request.setAttribute("ok", proprio);

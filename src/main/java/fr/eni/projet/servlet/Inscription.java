@@ -45,8 +45,7 @@ public class Inscription extends HttpServlet {
 		} catch (Exception e1) {
 			e1.printStackTrace();
 		}
-		
-		
+	
 		int credit = 1000;
 		Boolean administrateur = false;
 		UtilisateurManager um = UtilisateurManager.getInstance();
@@ -65,7 +64,7 @@ public class Inscription extends HttpServlet {
 			System.err.println(e.getMessage());
 		}
 		
-		// si une ou des requtes sont erronnes, demander une donnee valide
+		// si une ou des requetes sont erronnees, demander une donnee valide
 		if(!pseudoOK || !nomOK || !prenomOK || !telOK || !pseudoUniqueOK || !emailUniqueOK) {
 			request.setAttribute("pseudoOK", pseudoOK);
 			request.setAttribute("pseudoUniqueOK", pseudoUniqueOK);
@@ -74,8 +73,7 @@ public class Inscription extends HttpServlet {
 			request.setAttribute("telOK", telOK);
 			request.setAttribute("emailUniqueOK", emailUniqueOK);
 			request.getRequestDispatcher("/WEB-INF/jsp/inscription.jsp").forward(request, response);
-			return;
-		}
+		} else {
 		
 		try {
 			// insertion des parametre dans un nouvel utilisateur
@@ -86,6 +84,7 @@ public class Inscription extends HttpServlet {
 		}
 
 		response.sendRedirect(request.getContextPath() + "/connexion");
+	}
 		
 	}
 

@@ -82,63 +82,61 @@ public class UtilisateurManager {
 
 	// methode pour verifier les caracteres alphanumerique du pseudo nom et prenom
 	public boolean verifPseudo(String str) {
-
-		Pattern p;
-		Matcher m;
-		boolean ok;
-
-		// verifie si le pseudo contient uniquement des lettres et/ou des chiffres
-		p = Pattern.compile("[^a-zA-Z_0-9]");
-		m = p.matcher(str);
-		ok = m.matches();
-		ok = !ok;
-
+		
+		boolean ok = true;
+		char[] c = str.toCharArray();
+		
+		for (int i=0; i<c.length; i++) {
+			ok = Character.isLetterOrDigit(c[i]);
+			if (!ok) {
+				return ok;
+			}
+		}
 		return ok;
+
 	}
 
 	public boolean verifNomPrenom(String str) {
-		Pattern p;
-		Matcher m;
-		boolean ok;
-
-		// verifie si le nom et prenom contiennent uniquement des lettres
-		p = Pattern.compile("[^a-zA-Z]");
-		m = p.matcher(str);
-		ok = m.matches();
-		ok = !ok;
-
+		boolean ok = true;
+		char[] c = str.toCharArray();
+		
+		for (int i=0; i<c.length; i++) {
+			ok = Character.isLetter(c[i]);
+			if (!ok) {
+				return ok;
+			}
+		}
 		return ok;
 	}
 
 	// methode pour verifier que le numero de telephone ne contient pas de lettre
 	public boolean verifTel(String str) {
 
-		Pattern p;
-		Matcher m;
-		boolean ok;
-
-		// verifie si le numero de telephone contient uniquement des chiffres
-		p = Pattern.compile("[a-zA-Z]");
-		m = p.matcher(str);
-		ok = m.matches();
-		ok = !ok;
-
+		boolean ok = true;
+		char[] c = str.toCharArray();
+		
+		for (int i=0; i<c.length; i++) {
+			ok = Character.isDigit(c[i]);
+			if (!ok) {
+				return ok;
+			}
+		}
 		return ok;
 	}
 
 	// methode pour verifier que le code postal ne contient que des chiffres
 	public boolean verifCP(String str) {
 
-		Pattern p;
-		Matcher m;
-		boolean ok;
-
-		// verifie si le code postal contient uniquement des chiffres
-		p = Pattern.compile("[^0-9]");
-		m = p.matcher(str);
-		ok = m.matches();
-		ok = !ok;
-
+		boolean ok = true;
+		char[] c = str.toCharArray();
+		
+		for (int i=0; i<c.length; i++) {
+			ok = Character.isDigit(c[i]);
+			System.out.println(i + " " + ok);
+			if (!ok) {
+				return ok;
+			}
+		}
 		return ok;
 	}
 
@@ -159,7 +157,7 @@ public class UtilisateurManager {
 		UtilisateurDAO udao = DAOFactory.getUtilisateurDAO();
 		boolean ok;
 
-		ok = udao.selectUniquePseudo(mail);
+		ok = udao.selectUniqueMail(mail);
 
 		return ok;
 	}

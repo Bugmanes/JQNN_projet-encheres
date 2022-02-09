@@ -86,15 +86,18 @@
 			</div>
 		</div>
 
-
+		<%List<Article> selection = (List) request.getAttribute("selection"); 
+		for (Article article : selection){
+		%>
         <div class="row  m-5  ">
             <div class="card col-auto " style="width: 18rem;">
-                <img src="..." class="card-img-top" alt="...">
+                <img src="#" class="card-img-top" alt="...">
                 
                 <ul class="list-group list-group-flush ">
-                <li class="list-group-item">Prix :</li>
-                <li class="list-group-item">Fin date enchère :</li>
-                <li class="list-group-item">Vendeur</li>
+                <li class="list-group-item">${article.nomArticle}</li>
+                <li class="list-group-item">Prix : ${article.prixVentes} points</li>
+                <li class="list-group-item">Fin date enchère : ${article.dateFinEncheres}</li>
+                <li class="list-group-item">Vendeur : ${article.vendeur.pseudo}</li>
                 </ul>
                 <div class="card-body">
                 <a href="#" class="card-link">Card link</a>
@@ -102,6 +105,7 @@
                 </div>
             </div>
         </div>
+        <%} %>
 	</form>
 </main>	
 		<footer></footer>

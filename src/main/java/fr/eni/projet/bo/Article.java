@@ -44,6 +44,7 @@ public class Article {
 		setDateDebutEncheres(dateDebutEncheres);
 		setDateFinEncheres(dateFinEncheres);
 		setPrixInitial(prixInitial);
+		setPrixVentes(prixInitial);
 		setVendeur(vendeur);
 		setCategorie(categorie);
 		setPaye(false);

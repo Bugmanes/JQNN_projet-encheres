@@ -40,7 +40,7 @@ public class ArticleDaoImpl implements ArticleDAO {
 	private final static String SELECT_MES_VENTES_NON_DEBUTEES = "select * from ARTICLES_VENDUS where no_utilisateur = ? and date_debut_encheres > getdate();";
 	private final static String SELECT_MES_VENTES_TERMINEES = "select * from ARTICLES_VENDUS where no_utilisateur = ? and date_fin_encheres < getdate();";
 	private final static String SELECT_DEBUT_TODAY = "select * from ARTICLES_VENDUS where date_debut_encheres = getdate();";
-	
+
 	@Override
 	public void insertArticle(Article article) throws DALException {
 
@@ -110,6 +110,8 @@ public class ArticleDaoImpl implements ArticleDAO {
 					}
 					article.setAcheteur(meilleureOffre.getUtilisateur());
 					article.setPrixVentes(meilleureOffre.getMontantEnchere());
+				} else {
+					article.setPrixVentes(article.getPrixInitial());
 				}
 			}
 
@@ -126,7 +128,7 @@ public class ArticleDaoImpl implements ArticleDAO {
 
 	@Override
 	public List<Article> selectByCat(int id) throws DALException {
-		
+
 		Connection cnx = null;
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
@@ -154,7 +156,7 @@ public class ArticleDaoImpl implements ArticleDAO {
 				article = new Article(rs.getString("nom_article"), rs.getString("description"),
 						rs.getDate("date_debut_encheres").toLocalDate(), rs.getDate("date_fin_encheres").toLocalDate(),
 						rs.getInt("prix_initial"), user, cat);
-				
+
 				article.setNoArticle(rs.getInt("no_article"));
 				article.setRetrait(rdao.selectByNoArticle(article));
 
@@ -170,6 +172,8 @@ public class ArticleDaoImpl implements ArticleDAO {
 					}
 					article.setAcheteur(meilleureOffre.getUtilisateur());
 					article.setPrixVentes(meilleureOffre.getMontantEnchere());
+				} else {
+					article.setPrixVentes(article.getPrixInitial());
 				}
 				selection.add(article);
 			}
@@ -186,7 +190,7 @@ public class ArticleDaoImpl implements ArticleDAO {
 	}
 
 	public List<Article> selectByNoUtilisateur(Utilisateur user1) throws DALException {
-		
+
 		Connection cnx;
 		PreparedStatement stmt;
 		ResultSet rs;
@@ -215,10 +219,10 @@ public class ArticleDaoImpl implements ArticleDAO {
 				article = new Article(rs.getString("nom_article"), rs.getString("description"),
 						rs.getDate("date_debut_encheres").toLocalDate(), rs.getDate("date_fin_encheres").toLocalDate(),
 						rs.getInt("prix_initial"), user, cat);
-				
+
 				article.setNoArticle(rs.getInt("no_article"));
 				article.setRetrait(rdao.selectByNoArticle(article));
-				
+
 				encheres = edao.selectByNoArticle(article);
 				article.setEncheres(encheres);
 				if (encheres != null) {
@@ -231,6 +235,8 @@ public class ArticleDaoImpl implements ArticleDAO {
 					}
 					article.setAcheteur(meilleureOffre.getUtilisateur());
 					article.setPrixVentes(meilleureOffre.getMontantEnchere());
+				} else {
+					article.setPrixVentes(article.getPrixInitial());
 				}
 				selection.add(article);
 			}
@@ -291,10 +297,10 @@ public class ArticleDaoImpl implements ArticleDAO {
 				art = new Article(rs.getString("nom_article"), rs.getString("description"),
 						rs.getDate("date_debut_encheres").toLocalDate(), rs.getDate("date_fin_encheres").toLocalDate(),
 						rs.getInt("prix_initial"), user, cat);
-				
+
 				art.setNoArticle(rs.getInt("no_article"));
 				art.setRetrait(rdao.selectByNoArticle(art));
-				
+
 				encheres = edao.selectByNoArticle(art);
 				art.setEncheres(encheres);
 				if (encheres != null) {
@@ -307,6 +313,8 @@ public class ArticleDaoImpl implements ArticleDAO {
 					}
 					art.setAcheteur(meilleureOffre.getUtilisateur());
 					art.setPrixVentes(meilleureOffre.getMontantEnchere());
+				} else {
+					art.setPrixVentes(art.getPrixInitial());
 				}
 				selection.add(art);
 			}
@@ -350,10 +358,10 @@ public class ArticleDaoImpl implements ArticleDAO {
 				art = new Article(rs.getString("nom_article"), rs.getString("description"),
 						rs.getDate("date_debut_encheres").toLocalDate(), rs.getDate("date_fin_encheres").toLocalDate(),
 						rs.getInt("prix_initial"), user, cat);
-				
+
 				art.setNoArticle(rs.getInt("no_article"));
 				art.setRetrait(rdao.selectByNoArticle(art));
-				
+
 				encheres = edao.selectByNoArticle(art);
 				art.setEncheres(encheres);
 				if (encheres != null) {
@@ -366,6 +374,8 @@ public class ArticleDaoImpl implements ArticleDAO {
 					}
 					art.setAcheteur(meilleureOffre.getUtilisateur());
 					art.setPrixVentes(meilleureOffre.getMontantEnchere());
+				} else {
+					art.setPrixVentes(art.getPrixInitial());
 				}
 				selection.add(art);
 			}
@@ -409,13 +419,13 @@ public class ArticleDaoImpl implements ArticleDAO {
 				art = new Article(rs.getString("nom_article"), rs.getString("description"),
 						rs.getDate("date_debut_encheres").toLocalDate(), rs.getDate("date_fin_encheres").toLocalDate(),
 						rs.getInt("prix_initial"), user, cat);
-				
+
 				art.setNoArticle(rs.getInt("no_article"));
 				art.setRetrait(rdao.selectByNoArticle(art));
-				
+
 				encheres = edao.selectByNoArticle(art);
 				art.setEncheres(encheres);
-				
+
 				if (encheres != null) {
 					for (Enchere enchere : encheres) {
 						if (meilleureOffre == null) {
@@ -426,6 +436,8 @@ public class ArticleDaoImpl implements ArticleDAO {
 					}
 					art.setAcheteur(meilleureOffre.getUtilisateur());
 					art.setPrixVentes(meilleureOffre.getMontantEnchere());
+				} else {
+					art.setPrixVentes(art.getPrixInitial());
 				}
 				selection.add(art);
 			}
@@ -471,10 +483,10 @@ public class ArticleDaoImpl implements ArticleDAO {
 						rs.getInt("prix_initial"), user, cat);
 				art.setNoArticle(rs.getInt("no_article"));
 				art.setRetrait(rdao.selectByNoArticle(art));
-				
+
 				encheres = edao.selectByNoArticle(art);
 				art.setEncheres(encheres);
-				
+
 				if (encheres != null) {
 					for (Enchere enchere : encheres) {
 						if (meilleureOffre == null) {
@@ -485,6 +497,8 @@ public class ArticleDaoImpl implements ArticleDAO {
 					}
 					art.setAcheteur(meilleureOffre.getUtilisateur());
 					art.setPrixVentes(meilleureOffre.getMontantEnchere());
+				} else {
+					art.setPrixVentes(art.getPrixInitial());
 				}
 				selection.add(art);
 			}
@@ -530,10 +544,10 @@ public class ArticleDaoImpl implements ArticleDAO {
 						rs.getInt("prix_initial"), user, cat);
 				art.setNoArticle(rs.getInt("no_article"));
 				art.setRetrait(rdao.selectByNoArticle(art));
-				
+
 				encheres = edao.selectByNoArticle(art);
 				art.setEncheres(encheres);
-				
+
 				if (encheres != null) {
 					for (Enchere enchere : encheres) {
 						if (meilleureOffre == null) {
@@ -544,6 +558,8 @@ public class ArticleDaoImpl implements ArticleDAO {
 					}
 					art.setAcheteur(meilleureOffre.getUtilisateur());
 					art.setPrixVentes(meilleureOffre.getMontantEnchere());
+				} else {
+					art.setPrixVentes(art.getPrixInitial());
 				}
 				selection.add(art);
 			}
@@ -589,10 +605,10 @@ public class ArticleDaoImpl implements ArticleDAO {
 						rs.getInt("prix_initial"), user, cat);
 				art.setNoArticle(rs.getInt("no_article"));
 				art.setRetrait(rdao.selectByNoArticle(art));
-				
+
 				encheres = edao.selectByNoArticle(art);
 				art.setEncheres(encheres);
-				
+
 				if (encheres != null) {
 					for (Enchere enchere : encheres) {
 						if (meilleureOffre == null) {
@@ -603,6 +619,8 @@ public class ArticleDaoImpl implements ArticleDAO {
 					}
 					art.setAcheteur(meilleureOffre.getUtilisateur());
 					art.setPrixVentes(meilleureOffre.getMontantEnchere());
+				} else {
+					art.setPrixVentes(art.getPrixInitial());
 				}
 				selection.add(art);
 			}
@@ -647,10 +665,10 @@ public class ArticleDaoImpl implements ArticleDAO {
 						rs.getInt("prix_initial"), user, cat);
 				art.setNoArticle(rs.getInt("no_article"));
 				art.setRetrait(rdao.selectByNoArticle(art));
-				
+
 				encheres = edao.selectByNoArticle(art);
 				art.setEncheres(encheres);
-			
+
 				if (encheres != null) {
 					for (Enchere enchere : encheres) {
 						if (meilleureOffre == null) {
@@ -661,6 +679,8 @@ public class ArticleDaoImpl implements ArticleDAO {
 					}
 					art.setAcheteur(meilleureOffre.getUtilisateur());
 					art.setPrixVentes(meilleureOffre.getMontantEnchere());
+				} else {
+					art.setPrixVentes(art.getPrixInitial());
 				}
 				selection.add(art);
 			}

@@ -4,9 +4,9 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-// class Nicolas
+
 public class Article {
-	// Attribut de la classe Article
+
 	private int noArticle;
 	private String nomArticle;
 	private String description;
@@ -19,6 +19,15 @@ public class Article {
 	private Utilisateur acheteur;
 	private Utilisateur vendeur;
 	private List<Enchere> encheres = new ArrayList<>();
+	private boolean paye;
+
+	public boolean isPaye() {
+		return paye;
+	}
+
+	public void setPaye(boolean paye) {
+		this.paye = paye;
+	}
 
 	// constructeur par defaut de la classe Article
 	public Article() {
@@ -29,7 +38,7 @@ public class Article {
 	public Article(String nomArticle, String description, LocalDate dateDebutEncheres, LocalDate dateFinEncheres,
 			int prixInitial, Utilisateur vendeur, Categorie categorie) {
 		
-		//insertion des paramétres
+
 		setNomArticle(nomArticle);
 		setDescription(description);
 		setDateDebutEncheres(dateDebutEncheres);
@@ -37,6 +46,7 @@ public class Article {
 		setPrixInitial(prixInitial);
 		setVendeur(vendeur);
 		setCategorie(categorie);
+		setPaye(false);
 	}
 
 	public List<Enchere> getEncheres() {

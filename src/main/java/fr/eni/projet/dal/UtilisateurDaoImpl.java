@@ -19,7 +19,7 @@ public class UtilisateurDaoImpl implements UtilisateurDAO {
 	private final static String SELECT_BY_PSEUDO = "SELECT * FROM UTILISATEURS WHERE pseudo = ?;";
 	private final static String SELECT_CONNEXION = "SELECT * FROM UTILISATEURS WHERE (pseudo =? OR email =?)";
 	private final static String SELECT_BY_ID = "SELECT * FROM UTILISATEURS WHERE no_utilisateur = ?;";
-	private final static String UPDATE_UTILISATEUR = "UPDATE UTILISATEURS SET nom = ?, prenom =?, email = ?, telephone = ?, rue = ?,code_postal =?,ville = ? pseudo=? WHERE id =?;";
+	private final static String UPDATE_UTILISATEUR = "UPDATE UTILISATEURS SET pseudo = ?, nom =?, prenom =?, email = ?, telephone = ?, rue = ?,code_postal =?,ville = ? WHERE no_utilisateur =?;";
 	private final static String SELECT_BY_MAIL = "SELECT * FROM UTILISATEURS WHERE email=?;";
 	private final static String ANONYMISER_UTILISATEUR = "UPDATE UTILISATEURS SET nom = ?, prenom =?, email = ?, telephone = ?, rue = ?,code_postal =?,ville = ?, pseudo =?, credit=? WHERE no_utilisateur=?;";
 
@@ -130,14 +130,14 @@ public class UtilisateurDaoImpl implements UtilisateurDAO {
 			Connection cnx = ConnexionProvider.getConnection();
 			PreparedStatement pstmt = cnx.prepareStatement(UPDATE_UTILISATEUR);
 			// insertion des parametres dans la base de donnees
-			pstmt.setString(1, utilisateur.getNom());
-			pstmt.setString(2, utilisateur.getPrenom());
-			pstmt.setString(3, utilisateur.getEmail());
-			pstmt.setString(4, utilisateur.getTelephone());
-			pstmt.setString(5, utilisateur.getRue());
-			pstmt.setString(6, utilisateur.getCodePostal());
-			pstmt.setString(7, utilisateur.getVille());
-			pstmt.setString(8, utilisateur.getPseudo());
+			pstmt.setString(1, utilisateur.getPseudo());
+			pstmt.setString(2, utilisateur.getNom());
+			pstmt.setString(3, utilisateur.getPrenom());
+			pstmt.setString(4, utilisateur.getEmail());
+			pstmt.setString(5, utilisateur.getTelephone());
+			pstmt.setString(6, utilisateur.getRue());
+			pstmt.setString(7, utilisateur.getCodePostal());
+			pstmt.setString(8, utilisateur.getVille());
 			pstmt.setInt(9, utilisateur.getNoUtilisateur());
 			pstmt.executeUpdate();
 

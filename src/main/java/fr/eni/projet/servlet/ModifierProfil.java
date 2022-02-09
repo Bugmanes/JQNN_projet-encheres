@@ -53,6 +53,7 @@ public class ModifierProfil extends HttpServlet {
 			if (choix.equals("supprimer")) {
 				request.setAttribute("suppression", "Votre compte vient d'etre supprimer");
 				this.getServletContext().getRequestDispatcher("/WEB-INF/jsp/accueil.jsp").forward(request, response);
+				return;
 			}
 		} else {
 			System.out.println("ok2");
@@ -108,15 +109,17 @@ public class ModifierProfil extends HttpServlet {
 			}
 
 			// verification si un ou des parametres sont faux
-			if (!pseudoOK || !nomOK || !prenomOK || !telOK || !pseudoUniqueOK || !emailUniqueOK)
-			System.out.println("pasOk");
-			request.setAttribute("pseudoOK", pseudoOK);
-			request.setAttribute("pseudoUniqueOK", pseudoUniqueOK);
-			request.setAttribute("nomOK", nomOK);
-			request.setAttribute("prenomOK", prenomOK);
-			request.setAttribute("telOK", telOK);
-			request.setAttribute("emailUniqueOK", emailUniqueOK);
-			request.getRequestDispatcher("/WEB-INF/jsp/monProfil.jsp").forward(request, response);
+			if (!pseudoOK || !nomOK || !prenomOK || !telOK || !pseudoUniqueOK || !emailUniqueOK) {
+				System.out.println("pasOk");
+				request.setAttribute("pseudoOK", pseudoOK);
+				request.setAttribute("pseudoUniqueOK", pseudoUniqueOK);
+				request.setAttribute("nomOK", nomOK);
+				request.setAttribute("prenomOK", prenomOK);
+				request.setAttribute("telOK", telOK);
+				request.setAttribute("emailUniqueOK", emailUniqueOK);
+				request.getRequestDispatcher("/WEB-INF/jsp/monProfil.jsp").forward(request, response);
+				return;
+			}
 
 			try {
 				System.out.println("ok5");
@@ -124,6 +127,7 @@ public class ModifierProfil extends HttpServlet {
 				um.modifierUtilisateur(pseudo, nom, prenom, email, telephone, rue, codePostal, ville, ville,
 						utilisateur);
 			} catch (DALException e) {
+				e.printStackTrace();
 				System.err.println(e.getMessage());
 			}
 			System.out.println("ok6");

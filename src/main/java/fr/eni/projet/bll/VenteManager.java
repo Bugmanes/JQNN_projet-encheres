@@ -151,8 +151,12 @@ public class VenteManager {
 				meilleurOffre = enchere;
 			}
 		}
-		article.setAcheteur(meilleurOffre.getUtilisateur());
-		article.setPrixVentes(meilleurOffre.getMontantEnchere());
+		if (meilleurOffre != null) {
+			article.setAcheteur(meilleurOffre.getUtilisateur());
+			article.setPrixVentes(meilleurOffre.getMontantEnchere());
+		} else {
+			article.setPrixVentes(article.getPrixInitial());
+		}
 
 		return article;
 	}

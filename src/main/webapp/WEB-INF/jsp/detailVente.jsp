@@ -28,8 +28,13 @@
           <div class="right">
             <div>${article.description}</div>
             <div>${article.categorie.libelle}</div>
-            <div>${article.prixVentes} pts par ${article.acheteur.pseudo}</div>
-            <div>${article.prixInitial}</div>
+            <div>${article.prixVentes} pts 
+            <%Article art = (Article) request.getAttribute("article");
+            if (art.getPrixInitial() != art.getPrixVentes()){
+            %>
+            par ${article.acheteur.pseudo}</div>
+            <%} %>
+            <div>${article.prixInitial} pts</div>
             <div>${article.dateFinEncheres}</div>
             <div>${article.retrait.rue}<br>
             	${article.retrait.codePostal} ${article.retrait.ville}

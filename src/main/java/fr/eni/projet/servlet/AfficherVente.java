@@ -95,9 +95,9 @@ public class AfficherVente extends HttpServlet {
 			} catch (DALException e) {
 				System.err.println(e.getMessage());
 			}
-			response.sendRedirect(request.getContextPath() + "/afficherVente");
+			response.sendRedirect(request.getContextPath() + "/afficherVente?idArticle=" + article.getNoArticle());
 		} else {
-			response.sendRedirect(request.getContextPath() + "/afficherVente?enchereValeurOK=" + valeurOK + "&enchereNbOK=" + enchereNbOK);
+			response.sendRedirect(request.getContextPath() + "/afficherVente?enchereValeurOK=" + valeurOK + "&enchereNbOK=" + enchereNbOK + "&idArticle=" + article.getNoArticle());
 		}
 	}
 

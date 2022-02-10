@@ -53,10 +53,11 @@
           <label for="enchere">Ma proposition : </label>
           <input type="text" name="enchere" id="enchere" />
           <input type="submit" value="Enchérir" />
+         
           	<%
 				if (request.getAttribute("enchereValeurOK")!=null){
-					boolean enchereOK = (boolean) request.getAttribute("enchereValeurOK");
-					if (!enchereOK){
+					boolean enchereValeurOK = (boolean) request.getAttribute("enchereValeurOK");
+					if (!enchereValeurOK){
 			%>
 				<div class="messageErreur">
 					<a>L'enchère doit être supérieur à la précédente</a>
@@ -79,6 +80,7 @@
 			%>
         </form>
         <%} %>
+         <a href="<%=request.getContextPath()%>/accueil.html"><button>Retour à l'accueil</button></a>
       </main>
       <footer></footer>
     </div>

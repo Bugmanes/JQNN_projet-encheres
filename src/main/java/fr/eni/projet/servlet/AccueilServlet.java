@@ -22,7 +22,7 @@ public class AccueilServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
- 
+     //hnklvujycvut
 		try {
 			// recuperation d'un objet de type EnchereManager
 			VenteManager em = VenteManager.getInstance();
@@ -162,7 +162,7 @@ public class AccueilServlet extends HttpServlet {
 			}
 		}
 
-		// tri par mes ventes terminées
+		// tri par mes ventes terminï¿½es
 		if (result.indexOf("ventesNonDebutees") != -1) {
 			try {
 				if (selection.isEmpty()) {

@@ -10,44 +10,21 @@
      
      
         
-    <nav class="navbar navbar-light  " style="background-color: #154360">
-
-<<<<<<< HEAD
-        <nav class="navbar navbar-light" style="background-color: #e3f2fd;" style = "margin-left:-40px">
-            <ul class="nav justify-content-end col-lg  te"  > 
-								
-                <li class="nav-item">
-                <a class="nav-link" href="<%=request.getContextPath()%>/gestionVente">Vendre un article</a>
-=======
+       <nav class="navbar navbar-light  " style="background-color: #154360 ; margin-left: -40px;margin-right: -40px;">
             <a class="nav-link active m-2" aria-current="page" style="color: aliceblue;" href="<%=request.getContextPath()%>/accueil.html">ENI Enchères</a>
-
-            <ul class="nav justify-content-end "  >
-
-                               
-
+            <ul class="nav justify-content-end "  > 
+								
                 <li class="nav-item ">
-
                 <a class="nav-link" style="color: aliceblue;" href="<%=request.getContextPath()%>/gestionVente">Vendre un article</a>
-
->>>>>>> branch 'main' of https://github.com/Jeremie-VELU/JQNN_projet-encheres.git
                 </li>
-
                 <li class="nav-item">
-
                     <a class="nav-link" style="color: aliceblue;" href="<%=request.getContextPath()%>/afficherProfil">Mon Profil </a>
-
                 </li>
-
                 <li class="nav-item">
-
                     <a class="nav-link" style="color: aliceblue;" href="<%=request.getContextPath()%>/deconnexion">Deconnexion  </a>
-
                 </li>
-
-               
-
+                
             </ul>
-
         </nav>
 
 

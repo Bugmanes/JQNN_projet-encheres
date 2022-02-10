@@ -170,8 +170,10 @@ public class ArticleDaoImpl implements ArticleDAO {
 							meilleureOffre = enchere;
 						}
 					}
-					article.setAcheteur(meilleureOffre.getUtilisateur());
-					article.setPrixVentes(meilleureOffre.getMontantEnchere());
+					if (meilleureOffre != null) {
+						article.setAcheteur(meilleureOffre.getUtilisateur());
+						article.setPrixVentes(meilleureOffre.getMontantEnchere());						
+					}
 				} else {
 					article.setPrixVentes(article.getPrixInitial());
 				}

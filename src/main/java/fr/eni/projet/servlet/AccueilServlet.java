@@ -1,6 +1,7 @@
 package fr.eni.projet.servlet;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -61,9 +62,9 @@ public class AccueilServlet extends HttpServlet {
 		VenteManager vm = VenteManager.getInstance();
 		HttpSession session = request.getSession();
 		Utilisateur user = (Utilisateur) session.getAttribute("utilisateur");
-		List<Article> selection = null;
-		List<Article> temp = null;
-		List<String> result = null;
+		List<Article> selection = new ArrayList<Article>();
+		List<Article> temp = new ArrayList<Article>();
+		List<String> result = new ArrayList<String>();
 
 		// recuperation du formulaire
 		if (request.getParameter("recherche") != null) {
@@ -82,7 +83,7 @@ public class AccueilServlet extends HttpServlet {
 			result = Arrays.asList(resultats);
 		}
 
-		if (result != null) {
+		if (!result.isEmpty()) {
 			// selection des encheres ouvertes d'achats
 			if (result.indexOf("encheresOuvertes") != -1) {
 				try {
@@ -173,7 +174,7 @@ public class AccueilServlet extends HttpServlet {
 				}
 			}
 
-			// tri par mes ventes terminées
+			// tri par mes ventes terminees
 			if (result.indexOf("ventesNonDebutees") != -1) {
 				try {
 					if (selection.isEmpty()) {
@@ -192,8 +193,9 @@ public class AccueilServlet extends HttpServlet {
 			}
 		}
 		// tri par mots cles
-		if (motsCles != null) {
+		if (!motsCles.isEmpty()) {
 			try {
+				System.out.println("ok");
 				if (selection.isEmpty()) {
 					selection = vm.triByMotsCles(motsCles);
 				} else {

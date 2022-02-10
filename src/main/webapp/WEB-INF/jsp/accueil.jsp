@@ -37,10 +37,10 @@
 				<label for="categorie">Catégorie :</label> <select name="categorie"
 					id="categorie">
 					<option value="all">Toutes</option>
-					<option value="1">Informatique</option>
-					<option value="2">Ameublement</option>
-					<option value="3">Vetement</option>
-					<option value="4">Sport and Loisirs</option>
+					<option value="3">Informatique</option>
+					<option value="4">Ameublement</option>
+					<option value="5">Vetement</option>
+					<option value="6">Sport and Loisirs</option>
 				</select>
 			</div>
 		</div>
@@ -88,6 +88,7 @@
 
 		<% if (request.getAttribute("selection") != null){
 		List<Article> selection = (List) request.getAttribute("selection"); 
+		if (!selection.isEmpty()){
 		for (Article article : selection){
 		%>
         <div class="row  m-5  ">
@@ -114,7 +115,8 @@
 		}
 		else {%>
 			<h5>La boutique est fermée</h5>
-			<%} %>
+			<%}
+		}%>
 	</form>
 </main>	
 		<footer></footer>

@@ -22,7 +22,7 @@ public class AccueilServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-     //hnklvujycvut
+
 		try {
 			// recuperation d'un objet de type EnchereManager
 			VenteManager em = VenteManager.getInstance();

@@ -86,7 +86,8 @@
 			</div>
 		</div>
 
-		<%List<Article> selection = (List) request.getAttribute("selection"); 
+		<% if (request.getAttribute("selection") != null){
+		List<Article> selection = (List) request.getAttribute("selection"); 
 		for (Article article : selection){
 		%>
         <div class="row  m-5  ">
@@ -109,7 +110,11 @@
                 </div>
             </div>
         </div>
-        <%} %>
+        <%}
+		}
+		else {%>
+			<h5>La boutique est fermée</h5>
+			<%} %>
 	</form>
 </main>	
 		<footer></footer>

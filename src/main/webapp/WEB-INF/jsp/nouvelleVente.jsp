@@ -14,7 +14,7 @@
     <div class="container">
   
   		<main>
-  			 <form method="post"  class="" action="<%=request.getContextPath()%>/GestionVente">
+  			 <form method="post"  class="" action="<%=request.getContextPath()%>/gestionVente">
 
                         <div class="row"> 
                                 <div class="col-3"> 
@@ -48,10 +48,10 @@
                                     <textarea class="justify-content-center" name="description"rows="4"cols="30"id="description" ></textarea><br>
                         
                                     <select name="categorie" id="categorie" class="mb-3">
-                                        <option value="#"></option>
-                                        <option value="#"></option>
-                                        <option value="#"></option>
-                                        <option value="#"></option>
+                                        <option value="informatique">Informatique</option>
+                                        <option value="ameublement">Ameublement</option>
+                                        <option value="vetements">Vêtements</option>
+                                        <option value="sports&loisirs">Sports & Loisirs</option>
                                     </select>
                         
                                     <input type="file" name="photo" class="d-flex justify-content-center mb-3 form-control" id="photo">

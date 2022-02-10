@@ -57,126 +57,138 @@ public class AccueilServlet extends HttpServlet {
 
 		String motsCles = "";
 		String categorie;
+		String[] resultats = null;
 		VenteManager vm = VenteManager.getInstance();
 		HttpSession session = request.getSession();
 		Utilisateur user = (Utilisateur) session.getAttribute("utilisateur");
 		List<Article> selection = null;
 		List<Article> temp = null;
+		List<String> result = null;
 
 		// recuperation du formulaire
-		motsCles = request.getParameter("recherche").trim();
+		if (request.getParameter("recherche") != null) {
+			motsCles = request.getParameter("recherche").trim();
+		}
 		categorie = request.getParameter("categorie").trim();
-		String[] resultats = request.getParameterValues("triAchats");
+		if (request.getParameterValues("triAchats") != null) {
+			resultats = request.getParameterValues("triAchats");
+		}
 		if (resultats == null) {
-			resultats = request.getParameterValues("triVentes");
-		}
-		List<String> result = Arrays.asList(resultats);
-
-		// selection des encheres ouvertes d'achats
-		if (result.indexOf("encheresOuvertes") != -1) {
-			try {
-				if (selection.isEmpty()) {
-					selection = vm.triByEncheresOuvertes(user);
-				} else {
-					temp = vm.triByEncheresOuvertes(user);
-					for (Article article : temp) {
-						if (selection.indexOf(article) == -1) {
-							selection.add(article);
-						}
-					}
-				}
-			} catch (DALException e) {
-				System.err.println(e.getMessage());
+			if (request.getParameterValues("triAchats") != null) {
+				resultats = request.getParameterValues("triVentes");
 			}
 		}
-
-		// selection de mes encheres en cours
-		if (result.indexOf("encheresEnCours") != -1) {
-			try {
-				if (selection.isEmpty()) {
-					selection = vm.triByEncheresEnCours(user);
-				} else {
-					temp = vm.triByEncheresEnCours(user);
-					for (Article article : temp) {
-						if (selection.indexOf(article) == -1) {
-							selection.add(article);
-						}
-					}
-				}
-			} catch (DALException e) {
-				System.err.println(e.getMessage());
-			}
+		if (resultats != null) {
+			result = Arrays.asList(resultats);
 		}
 
-		// tri par mes encheres remportees
-		if (result.indexOf("encheresRemportees") != -1) {
-			try {
-				if (selection.isEmpty()) {
-					selection = vm.triByEncheresRemportees(user);
-				} else {
-					temp = vm.triByEncheresRemportees(user);
-					for (Article article : temp) {
-						if (selection.indexOf(article) == -1) {
-							selection.add(article);
+		if (result != null) {
+			// selection des encheres ouvertes d'achats
+			if (result.indexOf("encheresOuvertes") != -1) {
+				try {
+					if (selection.isEmpty()) {
+						selection = vm.triByEncheresOuvertes(user);
+					} else {
+						temp = vm.triByEncheresOuvertes(user);
+						for (Article article : temp) {
+							if (selection.indexOf(article) == -1) {
+								selection.add(article);
+							}
 						}
 					}
+				} catch (DALException e) {
+					System.err.println(e.getMessage());
 				}
-			} catch (DALException e) {
-				System.err.println(e.getMessage());
 			}
-		}
 
-		// tri par mes ventes en cours
-		if (result.indexOf("venteEnCours") != -1) {
-			try {
-				if (selection.isEmpty()) {
-					selection = vm.triByVenteEnCours(user);
-				} else {
-					temp = vm.triByVenteEnCours(user);
-					for (Article article : temp) {
-						if (selection.indexOf(article) == -1) {
-							selection.add(article);
+			// selection de mes encheres en cours
+			if (result.indexOf("encheresEnCours") != -1) {
+				try {
+					if (selection.isEmpty()) {
+						selection = vm.triByEncheresEnCours(user);
+					} else {
+						temp = vm.triByEncheresEnCours(user);
+						for (Article article : temp) {
+							if (selection.indexOf(article) == -1) {
+								selection.add(article);
+							}
 						}
 					}
+				} catch (DALException e) {
+					System.err.println(e.getMessage());
 				}
-			} catch (DALException e) {
-				System.err.println(e.getMessage());
 			}
-		}
 
-		// tri par mes ventes non debutees
-		if (result.indexOf("ventesNonDebutees") != -1) {
-			try {
-				if (selection.isEmpty()) {
-					selection = vm.triByVentesNonDebutees(user);
-				} else {
-					temp = vm.triByVentesNonDebutees(user);
-					for (Article article : temp) {
-						if (selection.indexOf(article) == -1) {
-							selection.add(article);
+			// tri par mes encheres remportees
+			if (result.indexOf("encheresRemportees") != -1) {
+				try {
+					if (selection.isEmpty()) {
+						selection = vm.triByEncheresRemportees(user);
+					} else {
+						temp = vm.triByEncheresRemportees(user);
+						for (Article article : temp) {
+							if (selection.indexOf(article) == -1) {
+								selection.add(article);
+							}
 						}
 					}
+				} catch (DALException e) {
+					System.err.println(e.getMessage());
 				}
-			} catch (DALException e) {
-				System.err.println(e.getMessage());
 			}
-		}
 
-		// tri par mes ventes terminï¿½es
-		if (result.indexOf("ventesNonDebutees") != -1) {
-			try {
-				if (selection.isEmpty()) {
-					selection = vm.triByVentesTerminees(user);
-				} else {
-					temp = vm.triByVentesTerminees(user);
-					for (Article article : temp) {
-						if (selection.indexOf(article) == -1) {
-							selection.add(article);
+			// tri par mes ventes en cours
+			if (result.indexOf("venteEnCours") != -1) {
+				try {
+					if (selection.isEmpty()) {
+						selection = vm.triByVenteEnCours(user);
+					} else {
+						temp = vm.triByVenteEnCours(user);
+						for (Article article : temp) {
+							if (selection.indexOf(article) == -1) {
+								selection.add(article);
+							}
 						}
 					}
+				} catch (DALException e) {
+					System.err.println(e.getMessage());
 				}
-			} catch (DALException e) {
-				System.err.println(e.getMessage());
+			}
+
+			// tri par mes ventes non debutees
+			if (result.indexOf("ventesNonDebutees") != -1) {
+				try {
+					if (selection.isEmpty()) {
+						selection = vm.triByVentesNonDebutees(user);
+					} else {
+						temp = vm.triByVentesNonDebutees(user);
+						for (Article article : temp) {
+							if (selection.indexOf(article) == -1) {
+								selection.add(article);
+							}
+						}
+					}
+				} catch (DALException e) {
+					System.err.println(e.getMessage());
+				}
+			}
+
+			// tri par mes ventes terminées
+			if (result.indexOf("ventesNonDebutees") != -1) {
+				try {
+					if (selection.isEmpty()) {
+						selection = vm.triByVentesTerminees(user);
+					} else {
+						temp = vm.triByVentesTerminees(user);
+						for (Article article : temp) {
+							if (selection.indexOf(article) == -1) {
+								selection.add(article);
+							}
+						}
+					}
+				} catch (DALException e) {
+					System.err.println(e.getMessage());
+				}
 			}
 		}
 		// tri par mots cles

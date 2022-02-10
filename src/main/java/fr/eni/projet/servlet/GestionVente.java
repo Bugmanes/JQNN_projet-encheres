@@ -89,6 +89,6 @@ public class GestionVente extends HttpServlet {
 		}
 		
 		// renvoi vers l'accueil
-		request.getRequestDispatcher("/accueil").forward(request, response);
+		request.getRequestDispatcher("/accueil.html").forward(request, response);
 	}
 }

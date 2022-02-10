@@ -10,7 +10,7 @@
      
      
         
-    <a class="nav-link active m-2" aria-current="page" href="http://localhost:8080/JQNN_projet-encheres/InscriptionConnexion">ENI Enchères</a>
+    <a class="nav-link active m-2" aria-current="page" href="<%=request.getContextPath()%>/accueil.html">ENI Enchères</a>
         
        
 

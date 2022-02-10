@@ -78,8 +78,21 @@
 					}
 				}
 			%>
+			<%
+				if (request.getAttribute("budgetOK")!=null){
+					boolean budgetOK = (boolean) request.getAttribute("budgetOK");
+					if (!budgetOK){
+			%>
+				<div class="messageErreur">
+					<a>Vous n'avez pas assez de crédits pour enchérir cette somme.</a>
+					<a>Vous disposez de ${utilisateur.credit} points</a>
+				</div>
+			<%
+					}
+				}
+        	}
+			%>
         </form>
-        <%} %>
          <a href="<%=request.getContextPath()%>/accueil.html"><button>Retour à l'accueil</button></a>
       </main>
       <footer></footer>

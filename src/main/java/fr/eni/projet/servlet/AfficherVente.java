@@ -46,12 +46,6 @@ public class AfficherVente extends HttpServlet {
 			proprio = false;
 		}
 
-		if (request.getParameter("enchereValeurOK") != null) {
-			request.setAttribute("enchereValeurOK", request.getParameter("enchereValeurOK"));
-		}
-		if(request.getParameter("enchereNbOK") != null) {
-			request.setAttribute("enchereNbOK", request.getParameter("enchereNbOK"));
-		}
 		request.setAttribute("article", article);
 		request.setAttribute("utilisateur", session.getAttribute("utilisateur"));
 		request.setAttribute("proprio", proprio);
@@ -79,25 +73,37 @@ public class AfficherVente extends HttpServlet {
 		String enchereTemp = request.getParameter("enchere");
 		boolean enchereNbOK = vm.verifEnchereNombre(enchereTemp);
 		int enchere = 0;
+		request.setAttribute("article", article);
+		request.setAttribute("utilisateur", utilisateur);
+		request.setAttribute("proprio", false);
 
 		if (enchereNbOK) {
 			enchere = Integer.parseInt(enchereTemp);
+		} else {
+			request.setAttribute("enchereNbOK", enchereNbOK);
+			request.getRequestDispatcher("WEB-INF/jsp/detailVente.jsp").forward(request, response);
+			return;
 		}
 
-		// verification que l'enchere est bien superieure a la precedente
 		boolean valeurOK = vm.verifEnchere(article, enchere);
 
-		// selon la verification, enregistrement de l'enchere ou retour avec message
-		// d'erreur
 		if (valeurOK) {
+			boolean budgetOK;
+			if(enchere > utilisateur.getCredit()) {
+				budgetOK = false;
+				request.setAttribute("budgetOK", budgetOK);
+				request.getRequestDispatcher("WEB-INF/jsp/detailVente.jsp").forward(request, response);
+				return;
+			}
 			try {
 				vm.encherir(utilisateur, article, enchere);
+				response.sendRedirect(request.getContextPath() + "/afficherVente?idArticle=" + article.getNoArticle());
 			} catch (DALException e) {
 				System.err.println(e.getMessage());
 			}
-			response.sendRedirect(request.getContextPath() + "/afficherVente?idArticle=" + article.getNoArticle());
 		} else {
-			response.sendRedirect(request.getContextPath() + "/afficherVente?enchereValeurOK=" + valeurOK + "&enchereNbOK=" + enchereNbOK + "&idArticle=" + article.getNoArticle());
+			request.setAttribute("enchereValeurOK", valeurOK);
+			request.getRequestDispatcher("WEB-INF/jsp/detailVente.jsp").forward(request, response);
 		}
 	}
 

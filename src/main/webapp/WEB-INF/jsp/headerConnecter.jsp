@@ -10,25 +10,37 @@
      
      
         
-    <a class="nav-link active m-2" aria-current="page" href="<%=request.getContextPath()%>/accueil.html">ENI Enchères</a>
-        
-       
+    <nav class="navbar navbar-light  " style="background-color: #154360">
 
-        <nav class="navbar navbar-light" style="background-color: #e3f2fd;">
-            <ul class="nav justify-content-end col-lg  te"  > 
-								
-                <li class="nav-item">
-                <a class="nav-link" href="<%=request.getContextPath()%>/gestionVente">Vendre un article</a>
+            <a class="nav-link active m-2" aria-current="page" style="color: aliceblue;" href="<%=request.getContextPath()%>/accueil.html">ENI Enchères</a>
+
+            <ul class="nav justify-content-end "  >
+
+                               
+
+                <li class="nav-item ">
+
+                <a class="nav-link" style="color: aliceblue;" href="<%=request.getContextPath()%>/gestionVente">Vendre un article</a>
+
                 </li>
+
                 <li class="nav-item">
-                    <a class="nav-link" href="<%=request.getContextPath()%>/afficherProfil">Mon Profil </a>
+
+                    <a class="nav-link" style="color: aliceblue;" href="<%=request.getContextPath()%>/afficherProfil">Mon Profil </a>
+
                 </li>
+
                 <li class="nav-item">
-                    <a class="nav-link" href="<%=request.getContextPath()%>/deconnexion">Deconnexion  </a>
+
+                    <a class="nav-link" style="color: aliceblue;" href="<%=request.getContextPath()%>/deconnexion">Deconnexion  </a>
+
                 </li>
-                
+
+               
+
             </ul>
-          </nav>
+
+        </nav>
 
 
         

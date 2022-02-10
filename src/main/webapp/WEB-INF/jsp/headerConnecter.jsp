@@ -14,7 +14,7 @@
         
        
 
-        <nav class="navbar navbar-light" style="background-color: #e3f2fd;">
+        <nav class="navbar navbar-light" style="background-color: #e3f2fd;" style = "margin-left:-40px">
             <ul class="nav justify-content-end col-lg  te"  > 
 								
                 <li class="nav-item">

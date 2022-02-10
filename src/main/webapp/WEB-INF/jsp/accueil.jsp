@@ -97,11 +97,11 @@
                 
                 <ul class="list-group list-group-flush ">
                 <li class="list-group-item"><form action="<%=request.getContextPath()%>/encherir" method="get" class="card-link"> 
-                	<button type="submit" value="${article.nomArticle}" name="idArticle">${article.nomArticle}</button></form></li>
-                <li class="list-group-item">Prix : ${article.prixVentes} points</li>
-                <li class="list-group-item">Fin date enchère : ${article.dateFinEncheres}</li>
-                <li class="list-group-item">Vendeur : <form action="<%=request.getContextPath()%>/afficherProfil" method="" class="card-link">
-					<button type="submit" value="${article.vendeur.pseudo}" name="pseudo">${article.vendeur.pseudo}</button></form></li>
+                	<button type="submit" value="<%=article.getNoArticle()%>" name="idArticle"><%=article.getNomArticle()%></button></form></li>
+                <li class="list-group-item">Prix : <%=article.getPrixVentes()%> points</li>
+                <li class="list-group-item">Fin date enchère : <%=article.getDateFinEncheres()%></li>
+                <li class="list-group-item">Vendeur : <form action="<%=request.getContextPath()%>/afficherProfil" method="get" class="card-link">
+					<button type="submit" value="<%=article.getVendeur().getNoUtilisateur()%>" name="id"><%=article.getVendeur().getPseudo()%></button></form></li>
                 </ul>
                 <div class="card-body">
 <%--                 <a href="<%=request.getContextPath()%>/encherir" class="card-link">

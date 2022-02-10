@@ -167,6 +167,19 @@ public class VenteManager {
 		EnchereDAO edao = DAOFactory.getEnchereDAO();
 		edao.insertEnchere(enchere);
 	}
+	
+	public boolean verifEnchereNombre(String str) {
+		boolean ok = true;
+		char[] c = str.toCharArray();
+		
+		for (int i=0; i<c.length; i++) {
+			ok = Character.isDigit(c[i]);
+			if (!ok) {
+				return ok;
+			}
+		}
+		return ok;
+	}
 
 	public boolean verifEnchere(Article art, int enchere) {
 

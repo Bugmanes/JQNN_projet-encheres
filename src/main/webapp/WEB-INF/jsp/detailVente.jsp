@@ -6,12 +6,15 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Detail de l'enchère</title>
-<%@include file="headerInvite.jsp" %>
 <link rel="stylesheet" href="asset/css/style.css">
 </head>
  <body>
     <div class="container">
-      <header></header>
+<% if (request.getAttribute("utilisateur") == null){ %>
+		<%@include file="headerInvite.jsp"%>
+	<%} else {%>
+		<%@include file="headerConnecter.jsp"%>
+	<%} %>
       <main>
         <h2>Détail vente</h2>
         <div class="corpsVente">
@@ -42,12 +45,17 @@
             <div>${article.vendeur.pseudo}</div>
           </div>
         </div>
-        <form method="post" action="<%=request.getContextPath()%>/encherir">
+        <%
+        boolean proprio = (boolean) request.getAttribute("proprio");
+        if (!proprio) {
+        %>
+        <form method="post" action="<%=request.getContextPath()%>/afficherVente">
           <label for="enchere">Ma proposition : </label>
-          <input type="number" name="enchere" id="enchere" />
-          <%
-				if (request.getAttribute("enchereOK")!=null){
-					boolean enchereOK = (boolean) request.getAttribute("enchereOK");
+          <input type="text" name="enchere" id="enchere" />
+          <input type="submit" value="Enchérir" />
+          	<%
+				if (request.getAttribute("enchereValeurOK")!=null){
+					boolean enchereOK = (boolean) request.getAttribute("enchereValeurOK");
 					if (!enchereOK){
 			%>
 				<div class="messageErreur">
@@ -57,8 +65,20 @@
 					}
 				}
 			%>
-          <input type="submit" value="Enchérir" />
+			<%
+				if (request.getAttribute("enchereNbOK")!=null){
+					boolean enchereNbOK = (boolean) request.getAttribute("enchereNbOK");
+					if (!enchereNbOK){
+			%>
+				<div class="enchereNbOK">
+					<a>L'enchère ne doit contenir que des chiffres</a>
+				</div>
+			<%
+					}
+				}
+			%>
         </form>
+        <%} %>
       </main>
       <footer></footer>
     </div>

@@ -18,18 +18,19 @@ import fr.eni.projet.dal.DALException;
 @WebServlet("/afficherVente")
 public class AfficherVente extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	
+
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
- 
+
 		int idArt;
 		Article article = null;
 		VenteManager vm;
 		HttpSession session = request.getSession();
-		
+		boolean proprio;
+
 		// recuperer l'id de l'article
 		idArt = Integer.parseInt(request.getParameter("idArticle"));
-		
+
 		// recuperer l'article à partir de son id
 		vm = VenteManager.getInstance();
 		try {
@@ -37,17 +38,30 @@ public class AfficherVente extends HttpServlet {
 		} catch (DALException e) {
 			System.err.println(e.getMessage());
 		}
-		
-		// passage de l'article et de l'utilisateur en attribut de requete
+
+		Utilisateur user = (Utilisateur) session.getAttribute("utilisateur");
+		if (user.getNoUtilisateur() == article.getVendeur().getNoUtilisateur()) {
+			proprio = true;
+		} else {
+			proprio = false;
+		}
+
+		if (request.getParameter("enchereValeurOK") != null) {
+			request.setAttribute("enchereValeurOK", request.getParameter("enchereValeurOK"));
+		}
+		if(request.getParameter("enchereNbOK") != null) {
+			request.setAttribute("enchereNbOK", request.getParameter("enchereNbOK"));
+		}
 		request.setAttribute("article", article);
 		request.setAttribute("utilisateur", session.getAttribute("utilisateur"));
-		
+		request.setAttribute("proprio", proprio);
+
 		// passage de l'article en attribut de session si l'utilisateur encheri
 		session.setAttribute("article", article);
-		
+
 		// envoi des attributs dans à la jsp appropriee
 		if (article.getDateFinEncheres().isAfter(LocalDate.now())) {
-			request.getRequestDispatcher("/WEB-INF/jsp/detailVente.jsp").forward(request, response);			
+			request.getRequestDispatcher("/WEB-INF/jsp/detailVente.jsp").forward(request, response);
 		} else {
 			request.getRequestDispatcher("/WEB-INF/jsp/venteTerminee.jsp").forward(request, response);
 		}
@@ -56,28 +70,35 @@ public class AfficherVente extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// faire une enchere sur une vente
-		
+
 		// recuperation de l'utilisateur, de l'article et du montant de l'enchere
 		HttpSession session = request.getSession();
 		Utilisateur utilisateur = (Utilisateur) session.getAttribute("utilisateur");
 		Article article = (Article) session.getAttribute("article");
-		int enchere = Integer.parseInt(request.getParameter("enchere"));
-		
-		// verification que l'enchere est bien superieure a la precedente
 		VenteManager vm = VenteManager.getInstance();
-		boolean ok = vm.verifEnchere(article, enchere);
-		
-		// selon la verification, enregistrement de l'enchere ou retour avec message d'erreur
-		if (ok) {
+		String enchereTemp = request.getParameter("enchere");
+		boolean enchereNbOK = vm.verifEnchereNombre(enchereTemp);
+		int enchere = 0;
+
+		if (enchereNbOK) {
+			enchere = Integer.parseInt(enchereTemp);
+		}
+
+		// verification que l'enchere est bien superieure a la precedente
+		boolean valeurOK = vm.verifEnchere(article, enchere);
+
+		// selon la verification, enregistrement de l'enchere ou retour avec message
+		// d'erreur
+		if (valeurOK) {
 			try {
 				vm.encherir(utilisateur, article, enchere);
 			} catch (DALException e) {
 				System.err.println(e.getMessage());
 			}
+			response.sendRedirect(request.getContextPath() + "/afficherVente");
 		} else {
-			request.setAttribute("enchereOK", ok);
+			response.sendRedirect(request.getContextPath() + "/afficherVente?enchereValeurOK=" + valeurOK + "&enchereNbOK=" + enchereNbOK);
 		}
-		request.getRequestDispatcher("/WEB-INF/jsp/detailVente.jsp").forward(request, response);
 	}
 
 }

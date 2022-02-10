@@ -87,16 +87,8 @@ public class AccueilServlet extends HttpServlet {
 			// selection des encheres ouvertes d'achats
 			if (result.indexOf("encheresOuvertes") != -1) {
 				try {
-					if (selection.isEmpty()) {
-						selection = vm.triByEncheresOuvertes(user);
-					} else {
-						temp = vm.triByEncheresOuvertes(user);
-						for (Article article : temp) {
-							if (selection.indexOf(article) == -1) {
-								selection.add(article);
-							}
-						}
-					}
+					selection = vm.triByEncheresOuvertes(user);
+					
 				} catch (DALException e) {
 					System.err.println(e.getMessage());
 				}
@@ -175,7 +167,7 @@ public class AccueilServlet extends HttpServlet {
 			}
 
 			// tri par mes ventes terminees
-			if (result.indexOf("ventesNonDebutees") != -1) {
+			if (result.indexOf("ventesTerminees") != -1) {
 				try {
 					if (selection.isEmpty()) {
 						selection = vm.triByVentesTerminees(user);
@@ -195,7 +187,6 @@ public class AccueilServlet extends HttpServlet {
 		// tri par mots cles
 		if (!motsCles.isEmpty()) {
 			try {
-				System.out.println("ok");
 				if (selection.isEmpty()) {
 					selection = vm.triByMotsCles(motsCles);
 				} else {

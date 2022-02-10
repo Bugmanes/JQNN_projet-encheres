@@ -96,12 +96,12 @@
                 <img src="#" class="card-img-top" alt="...">
                 
                 <ul class="list-group list-group-flush ">
-                <li class="list-group-item"><a href="<%=request.getContextPath()%>/encherir" class="card-link">
-                	<button type="submit" value="${article.nomArticle}" name="idArticle">${article.nomArticle}</button></a></li>
+                <li class="list-group-item"><form action="<%=request.getContextPath()%>/encherir" method="get" class="card-link"> 
+                	<button type="submit" value="${article.nomArticle}" name="idArticle">${article.nomArticle}</button></form></li>
                 <li class="list-group-item">Prix : ${article.prixVentes} points</li>
                 <li class="list-group-item">Fin date enchère : ${article.dateFinEncheres}</li>
-                <li class="list-group-item">Vendeur : <a href="<%=request.getContextPath()%>/afficherProfil" class="card-link">
-					<button type="submit" value="${article.vendeur.pseudo}" name="pseudo">${article.vendeur.pseudo}</button></a></li>
+                <li class="list-group-item">Vendeur : <form action="<%=request.getContextPath()%>/afficherProfil" method="" class="card-link">
+					<button type="submit" value="${article.vendeur.pseudo}" name="pseudo">${article.vendeur.pseudo}</button></form></li>
                 </ul>
                 <div class="card-body">
 <%--                 <a href="<%=request.getContextPath()%>/encherir" class="card-link">

@@ -7,10 +7,8 @@
 </head>
 <body>
 <header>
-     
-     
-        
-       <nav class="navbar navbar-light  " style="background-color: #154360 ; margin-left: -40px;margin-right: -40px;">
+ 
+       <nav class="navbar navbar-light  " style="background-color: #154360 ; margin: 0;">
             <a class="nav-link active m-2" aria-current="page" style="color: aliceblue;" href="<%=request.getContextPath()%>/accueil.html">ENI Enchères</a>
             <ul class="nav justify-content-end "  > 
 								

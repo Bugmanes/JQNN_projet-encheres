@@ -75,7 +75,7 @@ public class AccueilServlet extends HttpServlet {
 			resultats = request.getParameterValues("triAchats");
 		}
 		if (resultats == null) {
-			if (request.getParameterValues("triAchats") != null) {
+			if (request.getParameterValues("triVentes") != null) {
 				resultats = request.getParameterValues("triVentes");
 			}
 		}

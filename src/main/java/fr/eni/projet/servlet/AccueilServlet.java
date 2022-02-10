@@ -231,6 +231,7 @@ public class AccueilServlet extends HttpServlet {
 		}
 
 		request.setAttribute("selection", selection);
+		request.setAttribute("utilisateur", user);
 		request.getRequestDispatcher("WEB-INF/jsp/accueil.jsp").forward(request, response);
 	}
 }

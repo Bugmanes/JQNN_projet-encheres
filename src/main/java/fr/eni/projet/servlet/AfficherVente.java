@@ -15,7 +15,7 @@ import fr.eni.projet.bo.Article;
 import fr.eni.projet.bo.Utilisateur;
 import fr.eni.projet.dal.DALException;
 
-@WebServlet("/encherir")
+@WebServlet("/afficherVente")
 public class AfficherVente extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	

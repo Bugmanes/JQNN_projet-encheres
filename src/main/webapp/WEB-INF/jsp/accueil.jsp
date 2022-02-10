@@ -96,18 +96,16 @@
                 <img src="#" class="card-img-top" alt="...">
                 
                 <ul class="list-group list-group-flush ">
-                <li class="list-group-item"><form action="<%=request.getContextPath()%>/encherir" method="get" class="card-link"> 
-                	<button type="submit" value="<%=article.getNoArticle()%>" name="idArticle"><%=article.getNomArticle()%></button></form></li>
+                <li class="list-group-item">
+                <a href="<%=request.getContextPath()%>/afficherVente?idArticle=<%=article.getNoArticle()%>"><%=article.getNomArticle()%></a>
+                </li>
                 <li class="list-group-item">Prix : <%=article.getPrixVentes()%> points</li>
                 <li class="list-group-item">Fin date enchère : <%=article.getDateFinEncheres()%></li>
-                <li class="list-group-item">Vendeur : <form action="<%=request.getContextPath()%>/afficherProfil" method="get" class="card-link">
-					<button type="submit" value="<%=article.getVendeur().getNoUtilisateur()%>" name="id"><%=article.getVendeur().getPseudo()%></button></form></li>
+                <li class="list-group-item">Vendeur : 
+                <a href="<%=request.getContextPath()%>/afficherProfil?id=<%=article.getVendeur().getNoUtilisateur()%>"><%=article.getVendeur().getPseudo()%></a>
+                </li>
                 </ul>
                 <div class="card-body">
-<%--                 <a href="<%=request.getContextPath()%>/encherir" class="card-link">
-                	<button type="submit" value="${article.nomArticle}" name="idArticle">${article.nomArticle}</button></a>
-                <a href="<%=request.getContextPath()%>/afficherProfil" class="card-link">
-					<button type="submit" value="${article.vendeur.pseudo}" name="pseudo">${article.vendeur.pseudo}</button></a> --%>
                 </div>
             </div>
         </div>
@@ -124,185 +122,4 @@
 </div>
 </body>
 </html>
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-	<!-- ----------------------------------Orginal---------------------------------------- -->
-<!-- 		
-		 <main>
-		
-			<div class="titre">
-				<h3>Liste des enchères</h3>
-			</div>
-			<div class="selection">
-			<div class="titreFiltre">
-				<h4>Filtres :</h4>
-			</div>
-			<form action="<%=request.getContextPath()%>/accueil.html" method="post">
-				<div class="rechercher">
-					<input type="search" id="recherche" name="recherche" 
-						placeholder="le nom de l'article contient " />
-				</div>
-				<div class="categorie">
-					<label for="categorie">Catégorie :</label>
-					<select name="categorie" id="categorie">
-						<option value="all">Toutes</option>
-						<option value="1">Informatique</option>
-						<option value="2">Ameublement</option>
-						<option value="3">Vetement</option>
-						<option value="4">Sport&Loisirs</option>
-					</select>
-				</div>
-				<div class="filtres">
-					<div class="achats">
-						<label for="achats">achats</label>
-						<input type="radio" id="achats" name="choix" checked value="achats"/>
-						<div class="checkbox">
-							<input type="checkbox" id="encheresOuvertes" name="triAchats" value="encheresOuvertes"/>
-							<label for="encheresOuvertes">enchères ouvertes</label>
-							<input type="checkbox" id="encheresEnCours" name="triAchats" value="encheresEnCours"/> 
-							<label for="encheresEnCours">Mes enchères en cours</label>
-							<input type="checkbox" id="encheresRemportees" name="triAchats" value="encheresRemportees"/>
-							<label for="encheresRemportees">Mes enchères remportées</label>
-						</div>
-					</div>
-					<div class="ventes">
-						<label for="ventes">Mes ventes</label>
-						<input type="radio" id="ventes" name="choix" value="ventes"/>
-						<div class="checkbox">
-							<input type="checkbox" id="venteEnCours" name="triVentes" value="venteEnCours"/>
-							<label for="venteEnCours">mes ventes en cours</label>
-							<input type="checkbox" id="ventesNonDebutees" name="triVentes" value="ventesNonDebutees"/> 
-							<label for="ventesNonDebutees">ventes non débutées</label>
-							<input type="checkbox" id="ventesTerminees" name="triVentes" value="ventesTerminees" />
-							<label for="ventesTerminees">ventes terminées</label>
-						</div>
-					</div>
-				</div>
-				<div class="submit">
-					<input type="submit" value="Rechercher">
-				</div>
-			</form>
-			</div>  -->
-<!-- ------------------------------------------------------------------------------- -->
-
-
-
-
-
-
-
-
-	<!-- 		<div class="annonce">
-			<div class="annonce1">
-				<div class="gauche">
-					<div class="imgannonce1">
-						<img src="illustrations1.jpg" alt="" width="210" />
-					</div>
-				</div>
-				<div class="droite">
-					<div class="titre1">
-						<a href="#">enchere n1</a>
-					</div>
-					<div class="description">
-						<div class="prix">
-							<p>prix : 210 points</p>
-						</div>
-						<div class="fin">
-							<p>Fin de l'enchere : 10/08/2018</p>
-						</div>
-						<div class="vendeur">
-							<p>Vendeur : jooj44</p>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div> 
-	<div class="Articles">
-		<table>
-			<thead>
-				<th>titre</th>
-				<th>prix</th>
-				<th>date de fin</th>
-				<th>Vendeur</th>
-			</thead>
-			<tbody>
-				<%-- <%
-				List<Article> liste = (List<Article>) request.getAttribute("liste");
-				if (liste != null && liste.size() > 0) {
-					for (Article article : liste) {
-						out.print("<tr>");
-						out.print("<td>" + article.getNomArticle() + "</td>");
-						out.print("<td>" + article.getPrixInitial() + "</td>");
-						out.print("<td>" + article.getDateFinEncheres() + "</td>");
-						out.print("<td>" + article.getVendeur().getPseudo() + "</td>");
-						out.print("</tr>");
-					}
-
-					out.print("</tbody>");
-					out.print("</table>");
-
-				} else
-
-				{
-
-					out.print("<p>La Boutique est fermée</p>");
-
-				}
-				%>
-
-
-
-
-
-				<%
-				List<Article> listeC = (List<Article>) request.getAttribute("listeCat");
-				%>
-
-				<%
-				if (listeC != null && listeC.size() > 0) {
-
-					for (Article article : listeC) {
-						out.print("<tr>");
-						out.print("<td>" + article.getNomArticle() + "</td>");
-						out.print("<td>" + article.getPrixInitial() + "</td>");
-						out.print("<td>" + article.getDateFinEncheres() + "</td>");
-						out.print("<td>" + article.getVendeur().getPseudo() + "</td>");
-						out.print("</tr>");
-					}
-
-					out.print("</tbody>");
-					out.print("</table>");
-
-				} else
-
-				{
-
-					out.print("<p>La Boutique est fermée</p>");
-
-				}
-				%> --%>
-
-
-
-			</tbody>
-		</table>-->
-
 		

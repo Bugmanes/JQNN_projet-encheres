@@ -90,26 +90,7 @@
 		if (!selection.isEmpty()){
 		for (Article article : selection){
 		%>
-       <%--  <div class="row  m-5  ">
-            <div class="card col-auto " style="width: 18rem;">
-                <img src="#" class="card-img-top" alt="...">
-                
-                <ul class="list-group list-group-flush ">
-                <li class="list-group-item">
-                <a href="<%=request.getContextPath()%>/afficherVente?idArticle=<%=article.getNoArticle()%>"><%=article.getNomArticle()%></a>
-                </li>
-                <li class="list-group-item">Prix : <%=article.getPrixVentes()%> points</li>
-                <li class="list-group-item">Fin date enchère : <%=article.getDateFinEncheres()%></li>
-                <li class="list-group-item">Vendeur : 
-                <a href="<%=request.getContextPath()%>/afficherProfil?id=<%=article.getVendeur().getNoUtilisateur()%>"><%=article.getVendeur().getPseudo()%></a>
-                </li>
-                </ul>
-                <div class="card-body">
-                </div>
-            </div>
-        </div> --%>
-        
-        
+
         
           <div class="card border-primary mb-3" style="max-width: 18rem;">
                         <div class="card-header text-center">Header</div>
@@ -127,7 +108,6 @@
                                 </ul>
                          
                         </div>
-
                     </div>   
         <%}
 		}

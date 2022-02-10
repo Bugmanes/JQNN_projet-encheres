@@ -65,6 +65,7 @@ public class AccueilServlet extends HttpServlet {
 		List<Article> selection = new ArrayList<Article>();
 		List<Article> temp = new ArrayList<Article>();
 		List<String> result = new ArrayList<String>();
+		ArrayList<Article> selectionToRemove = new ArrayList<>();
 
 		// recuperation du formulaire
 		if (request.getParameter("recherche") != null) {
@@ -88,7 +89,7 @@ public class AccueilServlet extends HttpServlet {
 			if (result.indexOf("encheresOuvertes") != -1) {
 				try {
 					selection = vm.triByEncheresOuvertes(user);
-					
+
 				} catch (DALException e) {
 					System.err.println(e.getMessage());
 				}
@@ -191,11 +192,21 @@ public class AccueilServlet extends HttpServlet {
 					selection = vm.triByMotsCles(motsCles);
 				} else {
 					temp = vm.triByMotsCles(motsCles);
-					for (Article article : selection) {
-						if (temp.indexOf(article) == -1) {
-							selection.remove(article);
+					for (Article articleSelection : selection) {
+						boolean contains = false;
+						for (Article articleTemp : temp) {
+							if (articleTemp.getNoArticle() == articleSelection.getNoArticle()) {
+								contains = true;
+								break;
+							}
+						}
+						if (!contains) {
+							selectionToRemove.add(articleSelection);
 						}
 					}
+					selection.removeAll(selectionToRemove);
+					selectionToRemove = new ArrayList<Article>();
+					
 				}
 			} catch (DALException e) {
 				System.err.println(e.getMessage());
@@ -210,16 +221,31 @@ public class AccueilServlet extends HttpServlet {
 					selection = vm.triByCategorie(cat);
 				} else {
 					temp = vm.triByCategorie(cat);
-					for (Article article : selection) {
-						if (temp.indexOf(article) == -1) {
-							selection.remove(article);
+
+					for (Article articleSelection : selection) {
+
+						boolean contains = false;
+						for (Article articleTemp : temp) {
+
+							if (articleTemp.getNoArticle() == articleSelection.getNoArticle()) {
+								contains = true;
+								break;
+							}
+						}
+
+						if (!contains) {
+							selectionToRemove.add(articleSelection);
 						}
 					}
+
+					selection.removeAll(selectionToRemove);
 				}
 			} catch (DALException e) {
 				System.err.println(e.getMessage());
 			}
 		}
+
+		System.out.println(selection.size());
 
 		request.setAttribute("selection", selection);
 		request.setAttribute("utilisateur", user);

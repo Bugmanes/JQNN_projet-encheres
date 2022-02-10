@@ -73,8 +73,9 @@
 
                                     <div>
                                             <input type="submit" class="btn btn-success" value="Enregistrer">
-                                            <input type="reset" class="btn btn-danger" value="Annuler">
-                                       
+                                            <a href="<%=request.getContextPath()%>/accueil.html">
+                                            <button type="button" class="btn btn-danger" value="Annuler">Annuler</button> 
+                                            </a>
                                     </div>
                                 </div>  
 

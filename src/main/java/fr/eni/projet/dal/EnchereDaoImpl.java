@@ -19,6 +19,8 @@ public class EnchereDaoImpl implements EnchereDAO {
 	private static final String DELETE_ENCHERE = "DELETE FROM ENCHERES where no_utilisateur = ?;";
 	private static final String INSERT_ENCHERE = "INSERT INTO ENCHERES (no_utilisateur, no_article, date_enchere, montant_enchere) VALUES (?, ?, ?, ?);";
 	private final static String SELECT_BY_NO_ARTICLE = "SELECT * FROM ENCHERES WHERE no_article=?";
+	private final static String UPDATE_ENCHERE = "UPDATE ENCHERES SET montant_enchere=?, date_enchere=? WHERE no_article=? and no_utilisateur=?;";
+	private final static String SELECT_BY_ARTICLE_USER = "SELECT * FROM ENCHERES WHERE no_article=? and no_utilisateur=?;";
 
 	@Override
 	// supprimer une enchere
@@ -43,19 +45,34 @@ public class EnchereDaoImpl implements EnchereDAO {
 	public void insertEnchere(Enchere enchere) throws DALException {
 
 		Connection cnx;
-		PreparedStatement stmt;
+		PreparedStatement pstmt;
+		ResultSet rs;
 
 		try {
 			// preparer les parametres
 			cnx = ConnexionProvider.getConnection();
-			stmt = cnx.prepareStatement(INSERT_ENCHERE);
-			stmt.setInt(1, enchere.getUtilisateur().getNoUtilisateur());
-			stmt.setInt(2, enchere.getArticle().getNoArticle());
-			stmt.setDate(3, Date.valueOf(enchere.getDateEnchere()));
-			stmt.setInt(4, enchere.getMontantEnchere());
-			stmt.executeUpdate();
-
-			stmt.close();
+			pstmt = cnx.prepareStatement(SELECT_BY_ARTICLE_USER);
+			pstmt.setInt(1, enchere.getArticle().getNoArticle());
+			pstmt.setInt(2, enchere.getUtilisateur().getNoUtilisateur());
+			rs = pstmt.executeQuery();
+			
+			if (rs.next()) {
+				pstmt = cnx.prepareStatement(UPDATE_ENCHERE);
+				pstmt.setInt(1, enchere.getMontantEnchere());
+				pstmt.setDate(2, Date.valueOf(enchere.getDateEnchere()));
+				pstmt.setInt(3, enchere.getArticle().getNoArticle());
+				pstmt.setInt(4, enchere.getUtilisateur().getNoUtilisateur());
+				pstmt.executeUpdate();
+			} else {
+				pstmt = cnx.prepareStatement(INSERT_ENCHERE);
+				pstmt.setInt(1, enchere.getUtilisateur().getNoUtilisateur());
+				pstmt.setInt(2, enchere.getArticle().getNoArticle());
+				pstmt.setDate(3, Date.valueOf(enchere.getDateEnchere()));
+				pstmt.setInt(4, enchere.getMontantEnchere());
+				pstmt.executeUpdate();
+			}
+			rs.close();
+			pstmt.close();
 			cnx.close();
 
 		} catch (SQLException e) {

@@ -65,14 +65,17 @@ public class AfficherVente extends HttpServlet {
 			throws ServletException, IOException {
 		// faire une enchere sur une vente
 
-		// recuperation de l'utilisateur, de l'article et du montant de l'enchere
 		HttpSession session = request.getSession();
 		Utilisateur utilisateur = (Utilisateur) session.getAttribute("utilisateur");
 		Article article = (Article) session.getAttribute("article");
+
 		VenteManager vm = VenteManager.getInstance();
+
 		String enchereTemp = request.getParameter("enchere");
 		boolean enchereNbOK = vm.verifEnchereNombre(enchereTemp);
+
 		int enchere = 0;
+
 		request.setAttribute("article", article);
 		request.setAttribute("utilisateur", utilisateur);
 		request.setAttribute("proprio", false);
@@ -88,18 +91,21 @@ public class AfficherVente extends HttpServlet {
 		boolean valeurOK = vm.verifEnchere(article, enchere);
 
 		if (valeurOK) {
-			boolean budgetOK;
-			if(enchere > utilisateur.getCredit()) {
-				budgetOK = false;
+			boolean budgetOK = vm.verifBudget(utilisateur, enchere);
+
+			if (!budgetOK) {
 				request.setAttribute("budgetOK", budgetOK);
 				request.getRequestDispatcher("WEB-INF/jsp/detailVente.jsp").forward(request, response);
 				return;
-			}
-			try {
-				vm.encherir(utilisateur, article, enchere);
-				response.sendRedirect(request.getContextPath() + "/afficherVente?idArticle=" + article.getNoArticle());
-			} catch (DALException e) {
-				System.err.println(e.getMessage());
+			} else {
+
+				try {
+					vm.encherir(utilisateur, article, enchere);
+					response.sendRedirect(
+							request.getContextPath() + "/afficherVente?idArticle=" + article.getNoArticle());
+				} catch (DALException e) {
+					System.err.println(e.getMessage());
+				}
 			}
 		} else {
 			request.setAttribute("enchereValeurOK", valeurOK);

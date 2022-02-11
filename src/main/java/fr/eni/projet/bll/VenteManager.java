@@ -169,7 +169,7 @@ public class VenteManager {
 	}
 	
 	public boolean verifEnchereNombre(String str) {
-		boolean ok = true;
+		boolean ok; 
 		char[] c = str.toCharArray();
 		
 		for (int i=0; i<c.length; i++) {
@@ -178,17 +178,32 @@ public class VenteManager {
 				return ok;
 			}
 		}
+		ok = true;
 		return ok;
 	}
 
 	public boolean verifEnchere(Article art, int enchere) {
 
-		boolean ok = true;
+		boolean ok;
 
 		if (enchere <= art.getPrixVentes()) {
 			ok = false;
+		} else {
+			ok = true;
 		}
 
+		return ok;
+	}
+	
+	public boolean verifBudget(Utilisateur user, int enchere) {
+		
+		boolean ok;
+		
+		if(enchere > user.getCredit()) {
+			ok = false;
+		} else {
+			ok = true;
+		}
 		return ok;
 	}
 
